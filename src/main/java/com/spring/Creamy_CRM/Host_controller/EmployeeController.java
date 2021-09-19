@@ -22,14 +22,14 @@ public class EmployeeController {
 	public String Employee(HttpServletRequest req, Model model) {
 		logger.info("url -> Employee");
 	  
-		return "host/employee/Employee";
+		return "host/employee/employee";
 	}
 	   
 	@RequestMapping("host/Employee_testDetail")
 	public String Employee_testDetail(HttpServletRequest req, Model model) {
 		logger.info("url -> Employee_testDetail");
 	  
-		return "host/employee/Employee_testDetail";
+		return "host/employee/employee_detail";
 	}
 	   
 	// 직원 등록
