@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../../setting.jsp" %>
+<%@ include file="/WEB-INF/views/setting.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -124,9 +124,10 @@
 							<div id="tab-1" class="tab-pane active">
 							   <div class="panel-body">
 							   
-									<div class="form-group" id="data_4" style="width:12%;">
+									<div class="form-group" id="data_4" style="width:16%;">
 									    <div class="input-group date">
-									        <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" value="07/01/2014">
+									    	<!-- 월선택 달력!!! -->
+									        <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="month" class="form-control" value="2021/09">
 									    </div>
 									</div>
 						

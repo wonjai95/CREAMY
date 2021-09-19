@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../../setting.jsp" %>
+<%@ include file="/WEB-INF/views/setting.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,8 +21,8 @@
 <script>
 function detail(){
 	
-	var url = "Employee_testDetail"
-	window.open(url, "Employee_testDetail", "menubar=no, width=1300, height=800 ");
+	var url = "employee_detail"
+	window.open(url, "employee_detail", "menubar=no, width=1300, height=800 ");
 }
 </script>
 
