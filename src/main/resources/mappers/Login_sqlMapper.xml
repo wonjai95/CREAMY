@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <!--
+	작성자 : 정지은
+	작성일 : 2021.09.15
+	logindao에서 사용하는 mapper
+-->
+  
+  
+  <mapper namespace="com.spring.Creamy_CRM.Host_dao.loginDAO">
+  
+  	<select id="selectUser" parameterType="String" resultType="java.util.Map">
+  		SELECT id,password,key,authority,enabled
+  		FROM Auth_tbl
+  		WHERE id = #{id}
+  	</select>
+  	
+  	<insert id="insertAuth" parameterType="java.util.Map">
+  		insert into Auth_tbl(id,password,key,authority,enabled)
+  		values(#{id}, #{pw}, '-', 'ROLE_USER', 1)
+  	</insert>
+  	
+  	<select id="confirmIdPwd" parameterType="java.util.Map"  resultType="Int">
+  		SELECT COUNT(*) FROM Auth_tbl
+  		WHERE id = #{id} AND password = #{pwd}
+  	</select>
+  	
+  	<select id="getZipcodeCount" parameterType="java.util.Map" resultType="Integer">
+  		SELECT COUNT(*) FROM zipcode_tbl WHERE zipcode = #{zipcode}
+  	</select>
+  	
+  	<insert id="insertZipcode" parameterType="java.util.Map">
+  		INSERT INTO zipcode_tbl(zipcode, sido, gugun)
+		VALUES (#{zipcode}, #{sido}, #{gugun})
+  	</insert>
+  	
+  	<insert id="insertUserinfo" parameterType="com.spring.Creamy_CRM.VO.userVO">
+  		INSERT INTO user_tbl(user_code, user_password, user_name, user_birth, user_age, user_email, zipcode, user_address, phoneNumber, join_date, user_id)
+		VALUES ('U'||user_seq.NEXTVAL, #{user_password}, #{user_name}, #{user_birth}, #{user_age}, #{user_email}, #{zipcode}, #{user_address}, #{phoneNumber}, sysdate, #{user_id})
+  	</insert>
+  	
+  
+  </mapper>
