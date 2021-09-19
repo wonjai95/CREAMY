@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../../setting.jsp" %>
+<%@ include file="../../setting.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -126,7 +126,8 @@
 							   
 									<div class="form-group" id="data_4" style="width:12%;">
 									    <div class="input-group date">
-									        <input type="month" class="form-control" value="07/01/2014" style="width:auto;">
+									    	<!-- 월선택 달력!!! -->
+									      <input type="month" class="form-control" value="07/01/2014" style="width:auto;">
 									    </div>
 									</div>
 						
