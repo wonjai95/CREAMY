@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>employee_attendance.jsp</title>
 <link href="${path}/resources/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
 <link href="${path}/resources/bootstrap/css/font-awesome.css"
@@ -58,7 +58,8 @@ body {
 					<input type="button" class="btn btn-outline btn-primary" id="employee_out" value="퇴근">&nbsp;&nbsp;
 					<input type='time' max='00:59' min='00:00' name="inout_time"/>&nbsp;&nbsp;
 					<div class="form-check">
-					  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" style="display:none;">
+					  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" 
+					  	name="flexCheckDefault" style="display:none;">
 					  <label class="form-check-label" for="flexCheckDefault">
 					  		
 					  </label>
@@ -79,17 +80,17 @@ body {
 				<label class="col-sm-2 col-form-label">코로나 문진 작성</label>
 				<div class="col-sm-7">
                   	 <div class="i-checks">
-                  	 	<span>현재 가족 혹은 일상적 접촉이 잦은 지인 중에 코로나19(의심)환자,자가격리대상자가 있습니까?</span> <br>
+                  	 	<span>현재 가족 혹은 일상적 접촉이 잦은 지인 중에 코로나19(의심)환자,자가격리대상자가 있습니까?</span> <br><br>
                   	 	<label> <input type="radio"  value="option2" name="covid_chk1"> 예 </label>
-                        <label> <input type="radio"  value="option2" name="covid_chk1"> 아니오</label>
+                        <label> <input type="radio"  value="option2" name="covid_chk1"> 아니오</label> <br><br>
                       </div>
                   	 <div class="i-checks">
-                  	 	<span>  현재 발열로 인하여 해열제 성분의 약을 복용하였습니까?</span> <br>
+                  	 	<span>  현재 발열로 인하여 해열제 성분의 약을 복용하였습니까?</span> <br><br>
                   	 	<label> <input type="radio"  value="option2" name="covid_chk2"> 예 </label>
-                        <label> <input type="radio"  value="option2" name="covid_chk2"> 아니오</label>
+                        <label> <input type="radio"  value="option2" name="covid_chk2"> 아니오</label> <br><br>
                       </div>
                   	 <div class="i-checks">
-                  	 	<span> 해외 방문 이력이 있으며 귀국 후 14일 이내에 발열 또는 호흡기 증상이 있습니까? </span> <br>
+                  	 	<span> 해외 방문 이력이 있으며 귀국 후 14일 이내에 발열 또는 호흡기 증상이 있습니까? </span> <br><br>
                   	 	<label> <input type="radio"  value="option2" name="covid_chk3"> 예 </label>
                         <label> <input type="radio"  value="option2" name="covid_chk3"> 아니오</label>
                       </div>
@@ -98,13 +99,15 @@ body {
 				</div>
 			</div>
 			
+			<!-- 등록 및 창 닫기 버튼 시작 -->
 			<div class="hr-line-dashed"></div>
 			<div class="col-sm-7">
 				<div class="form-group" style="text-align: right;">
 					<input type="submit" class="btn btn-primary dim" style="width:100px;" value="등록">
-					<input type="button" class="btn btn-primary dim" style="width:100px;" value="창닫기">
+					<input type="button" class="btn btn-primary dim" name="window_close" style="width:100px;" value="창닫기">
 				</div>
 			</div>
+			<!-- 등록 및 창 닫기 버튼 끝 -->
 			
 		</form>
 	</div>
