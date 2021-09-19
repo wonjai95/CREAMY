@@ -77,7 +77,7 @@
                 <a href="product"><i class="fa fa-flask"></i> <span class="nav-label">상품</span><span class="fa arrow"></span></a>
             </li>
             <li>
-               <a href="employee"><i class="fa fa-table"></i> <span class="nav-label">직원</span><span class="fa arrow"></span></a>
+                <a href="Employee"><i class="fa fa-table"></i> <span class="nav-label">직원</span><span class="fa arrow"></span></a>
             </li>
             <li>
                 <a href=""><i class="fa fa-table"></i> <span class="nav-label">후기</span><span class="fa arrow"></span></a>

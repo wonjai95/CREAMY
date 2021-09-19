@@ -18,18 +18,18 @@ public class EmployeeController {
 	private static final Logger logger = LoggerFactory.getLogger(EmployeeController.class);
 
 		
-	@RequestMapping("host/employee")
+	@RequestMapping("host/Employee")
 	public String Employee(HttpServletRequest req, Model model) {
 		logger.info("url -> Employee");
 	  
-		return "host/employee/employee";
+		return "host/employee/Employee";
 	}
 	   
-	@RequestMapping("host/employee_detail")
+	@RequestMapping("host/Employee_testDetail")
 	public String Employee_testDetail(HttpServletRequest req, Model model) {
 		logger.info("url -> Employee_testDetail");
 	  
-		return "host/employee/employee_detail";
+		return "host/employee/Employee_testDetail";
 	}
 	   
 	// 직원 등록

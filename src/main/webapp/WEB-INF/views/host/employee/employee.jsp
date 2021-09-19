@@ -21,8 +21,8 @@
 <script>
 function detail(){
 	
-	var url = "employee_detail"
-	window.open(url, "employee_detail", "menubar=no, width=1300, height=800 ");
+	var url = "Employee_testDetail"
+    window.open(url, "Employee_testDetail", "menubar=no, width=1300, height=800 ");
 }
 </script>
 
