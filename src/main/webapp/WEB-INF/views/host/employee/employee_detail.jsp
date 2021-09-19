@@ -26,84 +26,88 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="ibox ">
-            <div class="ibox-title">
-                <h5>회원정보</h5>
-               
-				<button class="btn btn-primary btn-sm" type="submit">Save changes</button>
-				<button class="btn btn-white btn-sm" type="submit">Cancel</button>
-           		 
-                <div class="ibox-tools">
-                    <a class="collapse-link">
-                        <i class="fa fa-chevron-up"></i>
-                    </a>
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-wrench"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#" class="dropdown-item">Config option 1</a>
-                        </li>
-                        <li><a href="#" class="dropdown-item">Config option 2</a>
-                        </li>
-                    </ul>
-                    <a class="close-link">
-                        <i class="fa fa-times"></i>
-                    </a>
-                </div>
-            </div>
-            
-            <!-- 직원 정보 -- 시작 -->
-            <div class="ibox-content">
-                <form method="get">
-                	<table class="table">
-			           
-			            <tbody>
-			            <tr class="" style="border-top:1px solid;">
-			                <td>직원코드</td>
-			                <td><input type="text" value="E1"></td>
-			                <td>부서</td>
-			                <td><input type="text" value="회계"></td>
-			            </tr>
-			            <tr class="">
-			                <td>직원ID</td>
-			                <td><input type="text" value="test"></td>
-			                <td>직책</td>
-			                <td><input type="text" value="신입"></td>
-			            </tr>
-			            <tr class="">
-			                <td>직원이름</td>
-			                <td><input type="text" value="정원제"></td>
-			                <td>직위</td>
-			                <td><input type="text" value="신입"></td>
-			            </tr>
-			            <tr class="">
-			                <td>성별</td>
-			                <td><input type="text" value="남"></td>
-			                <td>직무</td>
-			                <td><input type="text" value="잡일"></td>
-			            </tr>
-			            <tr class="">
-			                <td>나이</td>
-			                <td><input type="text" value="27"></td>
-			                <td>고용형태</td>
-			                <td><input type="text" value="계약직"></td>
-			            </tr>
-			            
-			            <tr class="">
-			                <td>입사날짜</td>
-			                <td><input type="date" value="2021-09-16"></td>
-			                <td class="center">퇴사날짜</td>
-			                <td><input type="date" value="27"></td>
-			            </tr>
-			            </tbody>
-			         
-			          </table>
-						<div class="form-group row">
-							<div class="col-sm-4 col-sm-offset-2">
+            <div class="ibox-title"  style="padding:10px 21px;">
+                <h4 style="display:inline-block;">회원정보</h4>
+                	<!-- form태그 밖에서 submit를 하기 위한 방법 -->
+                	<!-- 2. form에 지정한 id를 button의 form태그에 넣어주면 된다. -->
+                		<div class="button-wrap" style="display:inline-block; float:right;">
+							<button class="btn btn-primary btn-sm" type="submit" form="modify">수정</button>
+							<button class="btn btn-white btn-sm" type="button" onclick="window.close();">취소</button>
 						</div>
-                    </div>
-                </form>
-            </div>
-            
+	           		<!-- 
+	                <div class="ibox-tools">
+	                    <a class="collapse-link">
+	                        <i class="fa fa-chevron-up"></i>
+	                    </a>
+	                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+	                        <i class="fa fa-wrench"></i>
+	                    </a>
+	                    <ul class="dropdown-menu dropdown-user">
+	                        <li><a href="#" class="dropdown-item">Config option 1</a>
+	                        </li>
+	                        <li><a href="#" class="dropdown-item">Config option 2</a>
+	                        </li>
+	                    </ul>
+	                    <a class="close-link">
+	                        <i class="fa fa-times"></i>
+	                    </a>
+	                </div>
+	                -->
+	            </div>
+	            
+	            <!-- 직원 정보 -- 시작 -->
+	            <div class="ibox-content">
+	            	<!-- 1. form태그에 id 지정하기 -->
+	                <form method="get" id="modify">
+	                	<table class="table">
+				           
+				            <tbody>
+				            <tr class="" style="border-top:1px solid;">
+				                <td>직원코드</td>
+				                <td><input type="text" value="E1"></td>
+				                <td>부서</td>
+				                <td><input type="text" value="회계"></td>
+				            </tr>
+				            <tr class="">
+				                <td>직원ID</td>
+				                <td><input type="text" value="test"></td>
+				                <td>직책</td>
+				                <td><input type="text" value="신입"></td>
+				            </tr>
+				            <tr class="">
+				                <td>직원이름</td>
+				                <td><input type="text" value="정원제"></td>
+				                <td>직위</td>
+				                <td><input type="text" value="신입"></td>
+				            </tr>
+				            <tr class="">
+				                <td>성별</td>
+				                <td><input type="text" value="남"></td>
+				                <td>직무</td>
+				                <td><input type="text" value="잡일"></td>
+				            </tr>
+				            <tr class="">
+				                <td>나이</td>
+				                <td><input type="text" value="27"></td>
+				                <td>고용형태</td>
+				                <td><input type="text" value="계약직"></td>
+				            </tr>
+				            
+				            <tr class="">
+				                <td>입사날짜</td>
+				                <td><input type="date" value="2021-09-16"></td>
+				                <td class="center">퇴사날짜</td>
+				                <td><input type="date" value="27"></td>
+				            </tr>
+				            </tbody>
+				         
+				          </table>
+							<div class="form-group row">
+								<div class="col-sm-4 col-sm-offset-2">
+							</div>
+	                    </div>
+	                </form>
+	            </div>
             
             <!-- 직원 정보 -- 끝 -->
             
@@ -124,13 +128,18 @@
 							<div id="tab-1" class="tab-pane active">
 							   <div class="panel-body">
 							   
-									<div class="form-group" id="data_4" style="width:12%;">
+							    	<!-- 월선택 달력!!! -->
+									<div class="form-group" id="data_4" style="width:13%; margin-bottom:10px; display:inline-block;">
 									    <div class="input-group date">
-									    	<!-- 월선택 달력!!! -->
 									      <input type="month" class="form-control" value="07/01/2014" style="width:auto;">
 									    </div>
 									</div>
-						
+									
+									<div class="round-btn" style="display:inline-block; float:right;">
+										<a class="btn btn-default btn-rounded" href="#">수정</a>
+										<a class="btn btn-default btn-rounded" href="#">삭제</a>
+									</div>
+									
 							       <fieldset>
 							           <table class="table table-bordered" style="font-size:12px; text-align:center;">
 			                                <thead>
@@ -192,47 +201,71 @@
                                 
                                 <div id="tab-2" class="tab-pane">
                                     <div class="panel-body">
-
-                                        <fieldset>
-                                            <div class="form-group row"><label class="col-sm-2 col-form-label">ID:</label>
-                                                <div class="col-sm-10"><input type="text" class="form-control" placeholder="543"></div>
-                                            </div>
-                                            <div class="form-group row"><label class="col-sm-2 col-form-label">Model:</label>
-                                                <div class="col-sm-10"><input type="text" class="form-control" placeholder="..."></div>
-                                            </div>
-                                            <div class="form-group row"><label class="col-sm-2 col-form-label">Location:</label>
-                                                <div class="col-sm-10"><input type="text" class="form-control" placeholder="location"></div>
-                                            </div>
-                                            <div class="form-group row"><label class="col-sm-2 col-form-label">Tax Class:</label>
-                                                <div class="col-sm-10">
-                                                    <select class="form-control" >
-                                                        <option>option 1</option>
-                                                        <option>option 2</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row"><label class="col-sm-2 col-form-label">Quantity:</label>
-                                                <div class="col-sm-10"><input type="text" class="form-control" placeholder="Quantity"></div>
-                                            </div>
-                                            <div class="form-group row"><label class="col-sm-2 col-form-label">Minimum quantity:</label>
-                                                <div class="col-sm-10"><input type="text" class="form-control" placeholder="2"></div>
-                                            </div>
-                                            <div class="form-group row"><label class="col-sm-2 col-form-label">Sort order:</label>
-                                                <div class="col-sm-10"><input type="text" class="form-control" placeholder="0"></div>
-                                            </div>
-                                            <div class="form-group row"><label class="col-sm-2 col-form-label">Status:</label>
-                                                <div class="col-sm-10">
-                                                    <select class="form-control" >
-                                                        <option>option 1</option>
-                                                        <option>option 2</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </fieldset>
-
-
+                                    
+                                        <!-- 월선택 달력!!! -->
+										<div class="form-group" id="data_4" style="width:13%; margin-bottom:10px; display:inline-block;">
+										    <div class="input-group date">
+										      <input type="month" class="form-control" style="width:auto;">
+										    </div>
+										</div>
+										
+										<div class="round-btn" style="display:inline-block; float:right;">
+											<a class="btn btn-default btn-rounded" href="#">수정</a>
+											<a class="btn btn-default btn-rounded" href="#">삭제</a>
+										</div>
+										
+								       <fieldset>
+								           <table class="table table-bordered" style="font-size:12px; text-align:center;">
+				                                <thead>
+				                                <tr>
+				                                	<!-- 여기 파트 보면 비타민에 사유가 있는데 기타메모에 합치는건 어떨까??? -->
+				                                    <th style="width:7%;">구분</th>
+				                                    <th style="width:7%;">상태</th>
+				                                    <th style="width:9%;">시작일자</th>
+				                                    <th style="width:9%;">종료일자</th>
+				                                    <th style="width:6%">사용일수</th>
+				                                    <th style="width:10%;">비상연락망</th>
+				                                    <th>기타메모</th>
+				                                    <th style="width:9%;">신청일자</th>
+				                                </tr>
+				                                </thead>
+				                                <tbody>
+				                                <tr>
+				                                    <td>● 연차</td>
+				                                    <td>승인</td>
+				                                    <td>2021-09-21</td>
+				                                    <td>2020-09-25</td>
+				                                    <td>4</td>
+				                                    <td>010-1111-1111</td>
+				                                    <td>휴가</td>
+				                                    <td>2021-09-20</td>
+				                                </tr>
+				                                <tr>
+				                                    <td>● 연차</td>
+				                                    <td>승인</td>
+				                                    <td>2021-09-13</td>
+				                                    <td>2020-09-14</td>
+				                                    <td>1</td>
+				                                    <td>010-1111-1111</td>
+				                                    <td></td>
+				                                    <td>2021-09-20</td>
+				                                </tr>
+				                                <tr>
+				                                    <td>● 연차</td>
+				                                    <td>승인</td>
+				                                    <td>2021-09-13</td>
+				                                    <td>2020-09-14</td>
+				                                    <td>1</td>
+				                                    <td>010-1111-1111</td>
+				                                    <td></td>
+				                                    <td>2021-09-20</td>
+				                                </tr>
+				                                </tbody>
+				                            </table>
+								       </fieldset>
                                     </div>
                                 </div>
+                                
                                 <div id="tab-3" class="tab-pane">
                                     <div class="panel-body">
 
