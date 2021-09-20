@@ -8,7 +8,7 @@ $("document").ready(function() {
 		
 		$.ajax({
 			url : "salesTypeStatics",
-			type : "Get",
+			type : "Post",
 			beforesend : function(jqXHR, settings) {
 				console.log("beforesend 진행");
 				jqXHR.setRequestHeader(header, token);

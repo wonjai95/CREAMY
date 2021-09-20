@@ -47,8 +47,8 @@ body {
 			<div class="form-group  row">
 				<label class="col-sm-2 col-form-label">지각 판단 기준(분)</label>
 				<div class="col-sm-3">
-					<input type="number" class="form-control" name="late_criteria"
-						value="10" required>
+					<input type="number" class="form-control" name="late_criteria" 
+						value="10" step="5" min="0" required>
 				</div>
 			</div>
 			
@@ -57,7 +57,7 @@ body {
 				<label class="col-sm-2 col-form-label">지각 판단 기준(분)</label>
 				<div class="col-sm-3">
 					<input type="number" class="form-control" name="early_criteria"
-						value="30" required>
+						value="30" step="5" min="0" required>
 				</div>
 			</div>
 			
