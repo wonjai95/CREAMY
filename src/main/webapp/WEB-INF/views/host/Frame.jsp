@@ -65,7 +65,11 @@
                  </ul>
             </li>
             <li>
-                <a href=""><i class="fa fa-globe"></i> <span class="nav-label">통계</span></a>
+                <a href=""><i class="fa fa-globe"></i> <span class="nav-label">통계</span><span class="fa arrow"></span></a>
+                 <ul class="nav nav-second-level collapse">
+                    <li><a href="userStatics">회원통계</a></li>
+                    <li><a href="salesStatics">판매통계</a></li>
+                 </ul>
             </li>
             <li>
                 <a href="product"><i class="fa fa-flask"></i> <span class="nav-label">상품</span><span class="fa arrow"></span></a>

@@ -12,8 +12,8 @@ $("document").ready(function() {
 		console.log("empCode : " + empCode);
 		
 		$("input[name=employee_code_hidden]").val(empCode);
-		$("input[name=employee_name_hidden]").val(empCode);
-		$("input[name=employee_depart_hidden]").val(empCode);
+		$("input[name=employee_name_hidden]").val(empName);
+		$("input[name=employee_depart_hidden]").val(empDepart);
 		$(this).css("background", "#20c997");
 		
 	});
@@ -34,9 +34,10 @@ $("document").ready(function() {
 			return false;
 		} else {
 			var empCode = $("input[name=employee_code_hidden]").val();
+			var empName = $("input[name=employee_name_hidden]").val();
 			console.log(empCode);
 			
-			var url = "employee_attendance?employee_code=" + empCode;
+			var url = "employee_attendance?employee_code=" + empCode + "&employee_name=" + empName;
 				window.open(url, "employee_attendance", "menubar=no, width=800, height=800");
 		}
 	});
@@ -48,9 +49,10 @@ $("document").ready(function() {
 			return false;
 		} else {
 			var empCode = $("input[name=employee_code_hidden]").val();
+			var empName = $("input[name=employee_name_hidden]").val();
 			console.log(empCode);
 			
-			var url = "employee_workhours?employee_code=" + empCode;
+			var url = "employee_workhours?employee_code=" + empCode + "&employee_name=" + empName;
 			window.open(url, "employee_workhours", "menubar=no, width=800, height=800");
 		}
 		
@@ -63,9 +65,10 @@ $("document").ready(function() {
 			return false;
 		} else {
 			var empCode = $("input[name=employee_code_hidden]").val();
+			var empName = $("input[name=employee_name_hidden]").val();
 			console.log(empCode);
 			
-			var url = "employee_leave?employee_code=" + empCode;
+			var url = "employee_leave?employee_code=" + empCode + "&employee_name=" + empName;
 			window.open(url, "employee_leave", "menubar=no, width=800, height=800");
 		}
 	});
@@ -77,11 +80,17 @@ $("document").ready(function() {
 			return false;
 		} else {
 			var empCode = $("input[name=employee_code_hidden]").val();
+			var empName = $("input[name=employee_name_hidden]").val();
 			console.log(empCode);
 			
-			var url = "employee_contract?employee_code=" + empCode;
+			var url = "employee_contract?employee_code=" + empCode + "&employee_name=" + empName;
 			window.open(url, "employee_contract", "menubar=no, width=800, height=800");
 		}
+	});
+	
+	// 창 닫기 클릭
+	$("input[name=window_close]").click(function() {
+		window.close();
 	});
 	
 	

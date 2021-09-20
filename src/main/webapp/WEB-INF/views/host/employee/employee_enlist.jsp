@@ -26,6 +26,7 @@ body {
 	text-shadow: aqua;
 }
 </style>
+<script type="text/javascript" src="${path}/resources/host/js/employee.js"></script>
 </head>
 <body>
 	<div class="ibox-content">
@@ -154,7 +155,7 @@ body {
 			<div class="col-sm-7">
 				<div class="form-group" style="text-align: right;">
 					<input type="submit" class="btn btn-primary dim" style="width:100px;" value="등록">
-					<input type="button" class="btn btn-primary dim" style="width:100px;" value="창닫기">
+					<input type="button" class="btn btn-primary dim" name="window_close" style="width:100px;" value="창닫기">
 				</div>
 			</div>
 			

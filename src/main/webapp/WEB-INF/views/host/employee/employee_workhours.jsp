@@ -6,17 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>employee_workhours.jsp</title>
-<link href="${path}/resources/bootstrap/css/bootstrap.min.css"
-	rel="stylesheet">
-<link href="${path}/resources/bootstrap/css/font-awesome.css"
-	rel="stylesheet">
-<link href="${path}/resources/bootstrap/css/summernote-bs4.css"
-	rel="stylesheet">
-<link href="${path}/resources/bootstrap/css/datepicker3.css"
-	rel="stylesheet">
-<link href="${path}/resources/bootstrap/css/animate.css"
-	rel="stylesheet">
-<link href="${path}/resources/bootstrap/css/style.css" rel="stylesheet">
 <style type="text/css">
 body {
 	background-color: white;
@@ -54,6 +43,24 @@ body {
 				</div>
 			</div>
 			
+			<div class="hr-line-dashed"></div>
+			<div class="form-group  row">
+				<label class="col-sm-2 col-form-label">지각 판단 기준(분)</label>
+				<div class="col-sm-3">
+					<input type="number" class="form-control" name="late_criteria"
+						value="10" required>
+				</div>
+			</div>
+			
+			<div class="hr-line-dashed"></div>
+			<div class="form-group  row">
+				<label class="col-sm-2 col-form-label">지각 판단 기준(분)</label>
+				<div class="col-sm-3">
+					<input type="number" class="form-control" name="early_criteria"
+						value="30" required>
+				</div>
+			</div>
+			
 			<!-- 요일 시간 등록 시작 -->
 			<div class="hr-line-dashed"></div>
 			<div class="form-group row">
@@ -63,11 +70,12 @@ body {
 						<input class="form-check-input" type="checkbox" value="mon" id="monChk" 
 							name="working_day_chk">월요일 &nbsp;&nbsp;
 					</div>
-					<input type='time' max='00:59' min='00:00' value="09:00" name="mon_in_time"/>&nbsp;&nbsp; ~ &nbsp;&nbsp;
+					<input type='time' max='00:59' min='00:00' value="09:00" name="mon_in_time" />&nbsp;&nbsp; ~ &nbsp;&nbsp;
 					<input type='time' max='00:59' min='00:00' value="18:00" name="mon_out_time"/>&nbsp;&nbsp; 
 					<input type="number" name="mon_total_hours" value="0" id="mon_total_hours" style="display: none;">
 				</div>
 			</div>	
+			
 			<div class="form-group row">
 				<label class="col-sm-2 col-form-label"></label>
 				<div class="col-sm-3" style="display: contents;">
@@ -149,9 +157,9 @@ body {
 			
 			<!-- 총 근무시간 시작 -->
 			<div class="hr-line-dashed"></div>
-			<div class="form-group  row">
+			<div class="form-group row">
 				<label class="col-sm-2 col-form-label">총 근무 시간</label>
-				<div class="col-sm-7">
+				<div class="col-sm-3">
 					<input type="text" class="form-control" name="total_workhours" value="0" placeholder="총 근무 시간" readonly> 
 					<input type="text" class="form-control" name="total_workhours_inMinutes" value="0" style="display: none;"> 
 						

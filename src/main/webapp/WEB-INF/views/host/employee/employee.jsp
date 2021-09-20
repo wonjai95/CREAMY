@@ -9,14 +9,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>INSPINIA | Data Tables</title>
+<title>employee</title>
 
-<link href="${path}/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link href="${path}/resources/bootstrap/css/font-awesome.css" rel="stylesheet">
-<link href="${path}/resources/bootstrap/css/table/datatables.min.css" rel="stylesheet">
-
-<link href="${path}/resources/bootstrap/css/animate.css" rel="stylesheet">
-<link href="${path}/resources/bootstrap/css/style.css" rel="stylesheet">
 <script type="text/javascript" src="${path}/resources/host/js/employee.js"></script>
 <script>
 function detail(){
