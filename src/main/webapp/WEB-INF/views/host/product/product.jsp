@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/views/setting.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,8 +14,12 @@
 <script type="text/javascript">
 	function addProduct() {
 		var url = "addProduct";
-		window.open(url, "상품추가",
-						"width=700, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
+		window.open(url, "상품추가","width=600, height=900, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
+	}
+	
+	function addProductGroup() {
+		var url = "addProductGroup";
+		window.open(url, "상품그룹추가","width=600, height=300, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
 	}
 </script>
 </head>
@@ -44,14 +47,10 @@
 					<div class="col-lg-12">
 						<div class="tabs-container">
 							<ul class="nav nav-tabs">
-								<li><a class="nav-link active" data-toggle="tab"
-									href="#tab-1">상품 관리</a></li>
-								<li><a class="nav-link" data-toggle="tab" href="#tab-2">재고
-										관리</a></li>
-								<li><a class="nav-link" data-toggle="tab" href="#tab-3">거래처
-										관리</a></li>
-								<li><a class="nav-link" data-toggle="tab" href="#tab-4">입출고
-										현황</a></li>
+								<li><a class="nav-link active" data-toggle="tab" href="#tab-1">상품 관리</a></li>
+								<li><a class="nav-link" data-toggle="tab" href="#tab-2">재고 관리</a></li>
+								<li><a class="nav-link" data-toggle="tab" href="#tab-3">거래처 관리</a></li>
+								<li><a class="nav-link" data-toggle="tab" href="#tab-4">입출 고현황</a></li>
 							</ul>
 							<div class="tab-content">
 								<div id="tab-1" class="tab-pane active">
@@ -100,7 +99,7 @@
 													<div class="col-lg-3">
 														<div id="p_group">
 															<div>
-																<button type="button" class="btn btn-primary dim">등록</button>
+																<button type="button" class="btn btn-primary dim" onclick="addProductGroup();">등록</button>
 															</div>
 															<div>
 																<button type="button" class="btn btn-primary dim">수정</button>
@@ -111,11 +110,10 @@
 														</div>
 
 														<div>
-															<h5></h5>
 															<form action="">
 																<table id="p_groupList">
 																	<tr>
-																		<td><input type="checkbox"></td>
+																		<td><input type="checkbox" class="checkbox m-r-xs"></td>
 																		<td>상품그룹</td>
 																	</tr>
 
@@ -195,42 +193,63 @@
 
 																		<th
 																			class="footable-visible footable-sortable footable-first-column">
+																			<span class="footable-sort-indicator">상품 이미지</span>
+																		</th>
+
+																		<th
+																			class="text-right footable-visible footable-last-column">
 																			<span class="footable-sort-indicator">상품명</span>
 																		</th>
 
 																		<th
 																			class="text-right footable-visible footable-last-column">
+																			<span class="footable-sort-indicator">판매형태</span>
+																		</th>
+																		
+																		<th
+																			class="text-right footable-visible footable-last-column">
 																			<span class="footable-sort-indicator">상품가격</span>
 																		</th>
-
+																		
+																		<th
+																			class="text-right footable-visible footable-last-column">
+																			<span class="footable-sort-indicator">상품기간</span>
+																		</th>
+																		
+																		<th
+																			class="text-right footable-visible footable-last-column">
+																			<span class="footable-sort-indicator">상품그룹</span>
+																		</th>
+																		
 																		<th
 																			class="text-right footable-visible footable-last-column">
 																			<span class="footable-sort-indicator">상품설명</span>
 																		</th>
+																		
 																	</tr>
 																</thead>
 																<tbody>
 																	<tr class="footable-odd" style="">
-																		<td class="footable-visible footable-first-column"><span
-																			class="footable-toggle"></span> Example product 2</td>
-																		<td class="footable-visible">Model 2</td>
-																		<td style="display: none;">It is a long
-																			established fact that a reader will be distracted by
-																			the readable content of a page when looking at its
-																			layout. The point of using Lorem Ipsum is that it has
-																			a more-or-less normal distribution of letters, as
-																			opposed to using 'Content here, content here', making
-																			it look like readable English.</td>
-																		<td class="footable-visible">$40.00</td>
-																		<td class="" style="display: none;">4300</td>
-																		<td class="footable-visible"><span
-																			class="label label-primary">Enable</span></td>
-																		<td
-																			class="text-right footable-visible footable-last-column">
-																			<div class="btn-group">
-																				<button class="btn-white btn btn-xs">View</button>
-																				<button class="btn-white btn btn-xs">Edit</button>
-																			</div>
+																		<td class="footable-visible footable-first-column">
+																			<input type="checkbox"><span>&nbsp;선택</span>
+																		</td>
+																		
+																		<td class="footable-visible">이미지</td>
+																		
+																		<td class="footable-visible">상품명</td>
+																		
+																		<td class="footable-visible">판매형태</td>
+
+																		<td class="footable-visible">상품가격</td>
+
+																		<td class="footable-visible">상품기간</td>
+
+																		<td class="footable-visible">
+																			<span class="label label-primary">상픔그룹</span>
+																		</td>
+																		
+																		<td class="text-right footable-visible footable-last-column">
+																		<span class="label label-primary">상품설명</span>
 																		</td>
 																	</tr>
 
@@ -264,6 +283,7 @@
 										</fieldset>
 									</div>
 								</div>
+								
 								<div id="tab-2" class="tab-pane">
 									<jsp:include page="stock.jsp" />
 								</div>

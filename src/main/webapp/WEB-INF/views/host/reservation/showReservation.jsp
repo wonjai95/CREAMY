@@ -7,24 +7,27 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title> 예약조회 </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title> 예약조회 </title>
 </head>
+
 <body>
-<!-- ------------------------------- 테이블표 시작 전 '예약조회' 설명란 시작 -->
+
 <div class="panel-body">
 <div class="wrapper wrapper-content animated fadeInRight">
 	<div class="row">
-		<div class="col-lg-12">
-		<div class="ibox ">
+		    <div class="col-lg-12">
+	    <div class="ibox ">
 	        <div class="ibox-title">
-				<h5>예약 상태가 완료된 회원의 목록을 보여줍니다.</h5>
-			</div>
-<!-- ------------------------------- 테이블표 시작 전 '예약조회' 설명란 끝 -->                    
+                    
+                        <h5>예약 상태가 완료된 회원의 목록을 보여줍니다.</h5>
+                    </div>
+                    
           
                     <div class="ibox-content">
                         <div class="table-responsive">
@@ -65,10 +68,15 @@
 
                     </div>
                 </div>
-			</div>		
-		</div>	
-	</div>
+            
+            
+										</div>		
+											</div>	
+												
+		
+
 </div>
+											</div>
 										
 								
 								
@@ -120,6 +128,11 @@
         });
 
     </script>
+
+
+
+
+
 
 
 

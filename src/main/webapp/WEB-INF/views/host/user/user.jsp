@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../../setting.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,24 +10,16 @@
 
 <title>INSPINIA | Data Tables</title>
 
-<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link href="../bootstrap/css/font-awesome.css" rel="stylesheet">
-<link href="../bootstrap/css/table/datatables.min.css" rel="stylesheet">
-
-<link href="../bootstrap/css/animate.css" rel="stylesheet">
-<link href="../bootstrap/css/style.css" rel="stylesheet">
-
-<script>
-function detail(){
+<script> 
+function user_detail() {
 	
-	var url = "Employee_testDetail"
-	window.open(url, "Employee_testDetail", "menubar=no, width=1300, height=800 ");
+	var url = "user_detail"
+	window.open(url, "user_detail", "menubar=no, width=1300, height=800 ");
 }
 </script>
-
 </head>
 <body>
-<div id="wrapper">
+<div id="wrapper">   
 
 	<!-- frame  -->
 	<jsp:include page="../Frame.jsp" />
@@ -58,70 +49,231 @@ function detail(){
 
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
-        <div class="col-lg-12">
-        <div class="ibox ">
-            <div class="ibox-title">
-                <h5>Basic Data Tables example with responsive plugin</h5>
-                <div class="ibox-tools">
-                    <a class="collapse-link">
-                        <i class="fa fa-chevron-up"></i>
-                    </a>
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-wrench"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#" class="dropdown-item">Config option 1</a>
-                        </li>
-                        <li><a href="#" class="dropdown-item">Config option 2</a>
-                        </li>
-                    </ul>
-                    <a class="close-link">
-                        <i class="fa fa-times"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="ibox-content">
+        <div class="col-lg-12"> 
+        
+        <table>
+			<tr>
+				<td><button type="button" class="btn btn-primary dim"
+							onclick="modify_user">회원 정보 수정</button></td>
+				<td><button type="button" class="btn btn-primary dim">회원 삭제 처리</button></td>
+				<td><button type="button" class="btn btn-primary dim">판매</button></td>
+				<td><button type="button" class="btn btn-primary dim">상담</button></td>
+				<td><button type="button" class="btn btn-primary dim">회원 본인 인증</button></td>
+			</tr>
+		</table>
+        
+        <div class="ibox-content m-b-sm border-bottom"> 
+			<div class="row">
+				<div class="col-sm-2">
+					<div class="form-group">
+					
+						<select name="" id="" class="form-control">
+							<option value="1" selected="">전체 회원</option>
+							<option value="2">등록 회원</option>
+							<option value="3">최근 한달 등록 </option>
+							<option value="4">최근 한달 판매 </option>
+							<option value="5">최근 한달 예약 </option>
+							<option value="6">최근 한달 등록 </option>
+						</select>
+					</div>
+				</div>
 
-            <div class="table-responsive">
-                
-            <table class="table table-striped table-bordered table-hover dataTables-example">
-            <thead>
-            <tr>
-            	<th>선택</th>
-                <th>회원 코드</th>
-                <th>이름</th>
-                <th>성별</th>
-                <th>나이</th>
-                <th>이메일</th>
-                <th>주소</th>
-                <th>전화번호</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr class="gradeX">
-            	<td> </td>
-                <td>U121212</td>
-                <td><a href="" onclick="detail();">정원제</a></td>
-                <td>남</td>
-                <td class="center">27</td>
-                <td class="center">jwj@gmail.com</td>
-                <td class="center">경기도 가평군 12로 냥멍 아파트 1동 1호</td>
-                <td class="center">010-2000-2000</td>
-            </tr>
-            </tbody>
-         
-            </table>
-                </div>
+				<div class="col-sm-2">
+					<div class="form-group">
+						<select name="" id="" class="form-control">
+							<option value="1" selected="">상품 선택</option>
+							<option value="2">[판매]염색 1회</option>
+							<option value="3">[기간]회원권 1개월</option>
+						</select>
+					</div>
+				</div>
+				
+				<div class="col-sm-2">
+					<div class="form-group">
+						<select name="" id="" class="form-control">
+							<option value="1" selected="">담당자 선택</option>
+							<option value="2">주수림</option>
+							<option value="3">정지은</option>
+							<option value="4">이시현</option>
+							
+						</select>
+					</div>
+				</div>
 
-            </div>
-        </div>
+				<div class="col-sm-2">
+					<div class="form-group">
+						<input type="text" id="" name="" value=""
+							placeholder="검색어" class="form-control">
+					</div>
+				</div>
+
+				<div class="col-sm-2">
+					<div class="form-group">
+						<button class="btn btn-primary dim" type="button">찾기</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<fieldset>
+			<div class="wrapper wrapper-content">
+				<div class="row">  
+					<div class="col-lg-3">
+
+						<div>
+							<h5></h5>
+							<form action="">
+								
+								<div class="ibox">
+				                    <div class="ibox-content">
+								
+								<div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 600px;">
+								<div class="scroll_content" style="overflow: hidden; width: auto; height: 600px;">
+				                <table class="footable table table-stripped toggle-arrow-tiny footable-loaded tablet breakpoint" data-page-size="15">
+								<thead>
+					            <tr>
+					                <th>회원코드</th>
+					                <th>회원명</th>
+					                <th>연락처</th>
+					            </tr>
+					            </thead>
+					            
+					            <tbody>
+					             
+						            <tr class="gradeX">
+						                <td id="empCode1">
+						                	<input type="text" name="employee1" value="E1"
+						                		style="display: none">U12323
+						               	</td>
+						                <td><a href="" onclick="user_detail();">회원1</a></td>
+						                <td class="center">010-2020-2020</td>
+						            </tr>
+					            	<tr class="employee1">
+						                <td id="empCode1">
+						                	<input type="text" name="employee1" value="E1"
+						                		style="display: none">U12323
+						               	</td>
+						                <td><a href="" onclick="user_detail();">회원2</a></td>
+						                <td class="center">010-2020-2020</td>
+						            </tr>
+						            <tr class="employee1">
+						                <td id="empCode1">
+						                	<input type="text" name="employee1" value="E1"
+						                		style="display: none">U12323
+						               	</td> 
+						                <td><a href="" onclick="user_detail();">회원3</a></td>
+						                <td class="center">010-2020-2020</td>
+						            </tr>
+						            <tr class="employee1">
+						                <td id="empCode1">
+						                	<input type="text" name="employee1" value="E1"
+						                		style="display: none">U12323
+						               	</td>
+						                <td><a href="" onclick="user_detail();">회원4</a></td>
+						                <td class="center">010-2020-2020</td>
+						            </tr>
+						            <tr class="employee1">
+						                <td id="empCode1">
+						                	<input type="text" name="employee1" value="E1"
+						                		style="display: none">U12323
+						               	</td>
+						                <td><a href="" onclick="user_detail();">회원4</a></td>
+						                <td class="center">010-2020-2020</td>
+						            </tr>
+						            <tr class="employee1">
+						                <td id="empCode1">
+						                	<input type="text" name="employee1" value="E1"
+						                		style="display: none">U12323
+						               	</td>
+						                <td><a href="" onclick="user_detail();">회원4</a></td>
+						                <td class="center">010-2020-2020</td>
+						            </tr>
+						            <tr class="employee1">
+						                <td id="empCode1">
+						                	<input type="text" name="employee1" value="E1"
+						                		style="display: none">U12323
+						               	</td>
+						                <td><a href="" onclick="user_detail();">회원4</a></td>
+						                <td class="center">010-2020-2020</td>
+						            </tr>
+						            <tr class="employee1">
+						                <td id="empCode1">
+						                	<input type="text" name="employee1" value="E1"
+						                		style="display: none">U12323
+						               	</td>
+						                <td><a href="" onclick="user_detail();">회원4</a></td>
+						                <td class="center">010-2020-2020</td>
+						            </tr>
+						            <tr class="employee1">
+						                <td id="empCode1">
+						                	<input type="text" name="employee1" value="E1"
+						                		style="display: none">U12323
+						               	</td>
+						                <td><a href="" onclick="user_detail();">회원4</a></td>
+						                <td class="center">010-2020-2020</td>
+						            </tr>
+						            <tr class="employee1">
+						                <td id="empCode1">
+						                	<input type="text" name="employee1" value="E1"
+						                		style="display: none">U12323
+						               	</td>
+						                <td><a href="" onclick="user_detail();">회원4</a></td>
+						                <td class="center">010-2020-2020</td> 
+						            </tr>
+						            <tr class="employee1">
+						                <td id="empCode1">
+						                	<input type="text" name="employee1" value="E1"
+						                		style="display: none">U12323
+						               	</td>
+						                <td><a href="" onclick="user_detail();">회원4</a></td>
+						                <td class="center">010-2020-2020</td>
+						            </tr>
+					            
+					            </tbody>
+					  
+					            
+								</table>
+								<div class="slimScrollBar" style="background: rgb(0, 0, 0); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 79.0514px;"></div>
+					            <div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div>
+				                </div>
+								</div>
+								</div>
+								</div>
+							</form>
+						</div>
+					</div>
+					
+					<div class="col-lg-9 animated fadeInRight">
+					
+					<div class="tabs-container">
+						<ul class="nav nav-tabs">
+							<li><a class="nav-link active" data-toggle="tab" href="#tab-1">판매</a></li>
+							<li><a class="nav-link" data-toggle="tab" href="#tab-2">예약</a></li>
+						</ul>
+						
+						
+						<div class="tab-content">
+						<div id="tab-1" class="tab-pane active">
+							<jsp:include page="user_sale.jsp"/>					
+						</div>
+						
+						<div id="tab-2" class="tab-pane">
+							<jsp:include page="user_reservation.jsp"/>					
+						</div> 
+						</div>
+						
+					</div>
+					</div> 
+			
+			
+			</div>
+		</div>
+		</fieldset>
     </div>
     </div>
 </div>
     
 </div>
-	<!-- footer  -->
-	<jsp:include page="../footer.jsp" />
 
 </div>
 

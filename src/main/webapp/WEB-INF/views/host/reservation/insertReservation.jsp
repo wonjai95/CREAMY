@@ -6,7 +6,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%-- <%@ include file="../../setting.jsp" %> --%>
-<%@ include file="/WEB-INF/views/setting.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,26 +14,11 @@
 
 <title> 예약등록 </title>
 
-<link href="${path}/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link href="${path}/resources/bootstrap/font-awesome/css/font-awesome.css" rel="stylesheet">
 <link href="${path}/resources/bootstrap/css/custom.css" rel="stylesheet">
-<link href="${path}/resources/bootstrap/css/animate.css" rel="stylesheet">
-<link href="${path}/resources/bootstrap/css/style.css" rel="stylesheet">
 <link href="${path}/resources/bootstrap/css/awesome-bootstrap-checkbox.css" rel="stylesheet">
-<link href="css/plugins/dataTables/datatables.min.css" rel="stylesheet">
 
 </head>
 <body>
-<div id="wrapper">
-
-	<!-- frame  -->
-	<jsp:include page="../Frame.jsp" />
-	
-<div id="page-wrapper" class="gray-bg">
-
-	<!-- nav bar  -->
-	<jsp:include page="../navbar.jsp" />
-
 <!-- ------------------------------- 중분류 '예약등록' 상단 흰색 표기란 시작 -->
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-8">
@@ -209,12 +193,6 @@
                                     </div>
 						</div>
 	                    
-	                    
-	                    
-	                    
-	                    
-	                    
-	                    
 	                </div>
 	                <div class="hr-line-dashed"></div>
 	                
@@ -256,13 +234,6 @@
 					    <div class="i-checks"><label> <input type="radio" disabled="" name="a"> <i></i> Option four disabled </label></div>
 					</div>
 
-
-
-
-
-
-
-
 	                </div>
 	                <div class="hr-line-dashed"></div>
 	                 
@@ -300,6 +271,7 @@
                 });
             });
         </script>
+
 
 
 
