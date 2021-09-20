@@ -101,12 +101,12 @@
 
                 <div class="col-lg-4 info mt-4 mt-lg-0">
                   <i class="bi bi-envelope"></i>
-                  <a><h4 style="padding-top: 10px;">결제수단 등록</h4></a>
+                  <a href="insertPaymentInfo" style="align-self: center;"><h4 style="padding-top: 10px;">결제수단 등록</h4></a>
                 </div>
 
                 <div class="col-lg-4 info mt-4 mt-lg-0">
                   <i class="bi bi-phone"></i>
-                  <a><h4 style="padding-top: 10px;">예약내역 확인</h4></a>
+                  <a href="showBookingDetail" style="align-self: center;"><h4 style="padding-top: 10px;">예약내역 확인</h4></a>
                 </div>
               </div>
             </div>
@@ -259,7 +259,7 @@
                		</div>
                		
                		<div class="text-center">
-		              <button type="submit">회원정보 수정</button>
+		              <button type="submit">회원정보 수정-여기이버튼은지워보기??</button>
 		              <button type="submit">탈퇴</button>
 		            </div>
               

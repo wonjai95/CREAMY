@@ -75,6 +75,13 @@ public class MainwebController {
 		
 		return "mainweb/mypage";
 	}
+	//회원 예약내역 확인
+	@RequestMapping("/showBookingDetail")
+	public String showBookingDetail(HttpServletRequest req, Model model) {
+		logger.info("url -> showBookingDetail");
+		
+		return "mainweb/showBookingDetail";
+	}
 	
 	//로그아웃 - 수정예정
 	@RequestMapping("/logout")
