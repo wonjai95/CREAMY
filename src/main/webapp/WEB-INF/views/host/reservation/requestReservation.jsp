@@ -14,25 +14,16 @@
 
 <title> 예약요청 </title>
 
-<style type="text/css">
-	a {
-	text-decoration: none;
-	color: black;
-	font-size: bold;
-	}
-
-</style>
-
 </head>
 <body>
+
 <!-- ------------------------------- 테이블표 시작 전 '예약요청' 설명란 시작 -->
-<div class="panel-body">
 <div class="wrapper wrapper-content animated fadeInRight">
 	<div class="row">
 	    <div class="col-lg-12">
 	    <div class="ibox ">
 	        <div class="ibox-title">
-	            <h5>예약요청 목록을 보여줍니다. 예약코드를 선택해 관리해보세요.</h5>	            
+	            <h5>예약요청 목록을 보여줍니다</h5>	            
 	        </div>
 <!-- ------------------------------- 테이블표 시작 전 '예약요청' 설명란 끝 -->
 
@@ -60,7 +51,7 @@
 		        <tr class="gradeX">
 		            <td>
 			            <!-- 상세페이지 -->
-						<a href="requestDetails">13579864</a>		            
+						<a href="test123">13579864</a>		            
 		            </td>
 		            <td>완료</td>
 		            <td>2021년 8월 15일</td>
@@ -141,7 +132,6 @@
 		</div>
 	    </div>
 		</div>
-	</div>
 	</div>
 </div>
 <!-- ------------------------------- 테이블표 끝 -->

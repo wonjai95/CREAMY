@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/views/setting.jsp"%>
+<%@ include file="../../setting.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,14 +9,20 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>employee</title>
+<title>INSPINIA | Data Tables</title>
 
+<link href="${path}/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="${path}/resources/bootstrap/css/font-awesome.css" rel="stylesheet">
+<link href="${path}/resources/bootstrap/css/table/datatables.min.css" rel="stylesheet">
+
+<link href="${path}/resources/bootstrap/css/animate.css" rel="stylesheet">
+<link href="${path}/resources/bootstrap/css/style.css" rel="stylesheet">
 <script type="text/javascript" src="${path}/resources/host/js/employee.js"></script>
 <script>
 function detail(){
 	
-	var url = "employee_detail"
-    window.open(url, "employee_detail", "menubar=no, width=1300, height=800 ");
+	var url = "Employee_testDetail"
+	window.open(url, "Employee_testDetail", "menubar=no, width=1300, height=800 ");
 }
 </script>
 
@@ -31,11 +37,7 @@ function detail(){
 
 	<!-- nav bar  -->
 	<jsp:include page="../navbar.jsp" />
-	
-<!-- 버튼 클릭시 전달할 직원 코드 -->	
-<input type="hidden" value="0" name="employee_code_hidden">
-<input type="hidden" value="0" name="employee_name_hidden">
-<input type="hidden" value="0" name="employee_depart_hidden">
+
 <!-- 직원 -->
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-8">
@@ -61,11 +63,11 @@ function detail(){
             <div class="ibox-title">
             	<!-- 직원 등록, 근태, 근무시간, 휴가, 급여계약 버튼 시작 -->
                 <div id="p_group" style="margin-bottom: 15px;">
-					<button type="button" class="btn btn-outline btn-primary" id="employee_enlist_btn">직원등록</button>
-					<button type="button" class="btn btn-outline btn-primary" id="employee_attend_btn">근태</button>
-					<button type="button" class="btn btn-outline btn-primary" id="employee_workhours_btn">근무시간</button>
-					<button type="button" class="btn btn-outline btn-primary" id="employee_leave_btn">휴가</button>
-					<button type="button" class="btn btn-outline btn-primary" id="employee_contract_btn">급여계약</button>
+					<button type="button" class="btn btn-outline btn-primary">직원등록</button>
+					<button type="button" class="btn btn-outline btn-primary">근태</button>
+					<button type="button" class="btn btn-outline btn-primary">근무시간</button>
+					<button type="button" class="btn btn-outline btn-primary">휴가</button>
+					<button type="button" class="btn btn-outline btn-primary">급여계약</button>
 						
 				</div>
                 <!-- 직원 등록, 근태, 근무시간, 휴가, 급여계약 버튼 끝 -->
@@ -91,12 +93,6 @@ function detail(){
 	                            <input type="text" id="department" name="department" value="" placeholder="부서명" class="form-control">
 	                        </div>
 	                    </div>
-	                   <div class="col-sm-2">
-							<div class="form-group">
-								<br>
-								<button class="btn btn-primary dim" type="button" style="width:100px;">검색</button>
-							</div>
-						</div>
 	                </div>
 	
 	            </div>
@@ -125,8 +121,8 @@ function detail(){
             <div class="ibox-content">
 
             <div class="table-responsive">
-            <!-- table table-striped table-bordered table-hover dataTables-example -->  
-            <table class="table table-bordered">
+                
+            <table class="table table-striped table-bordered table-hover dataTables-example">
             <thead>
             <tr>
                 <th>직원 코드</th>
@@ -142,11 +138,7 @@ function detail(){
                 	<input type="text" name="employee1" value="E1"
                 		style="display: none">E1
                	</td>
-                <td>
-                	<input type="text" name="employee_name1" value="정원제"
-                		style="display: none">
-                	<a href="" style="text-decoration: none; color:black;" onclick="detail();">정원제</a>
-                </td>
+                <td><a href="" onclick="detail();">정원제</a></td>
                 <td>회계</td>
                 <td class="center">신입</td>
                 <td class="center">2021-09-16</td>
@@ -156,10 +148,7 @@ function detail(){
                 	<input type="text" name="employee1" value="E2"
                 		style="display: none">E2
                 </td>
-                <td>
-                	<input type="text" name="employee_name2" value="주수림"
-                		style="display: none">주수림
-                </td>
+                <td>주수림</td>
                 <td>IT</td>
                 <td class="center">신입</td>
                 <td class="center">2021-09-16</td>
@@ -169,10 +158,7 @@ function detail(){
                 	<input type="text" name="employee1" value="E3"
                 		style="display: none">E3
                 </td>
-                <td>
-	       			<input type="text" name="employee_name3" value="정지은"
-	                		style="display: none">정지은    
-                </td>
+                <td>정지은</td>
                 <td>IT</td>
                 <td class="center">팀장</td>
                 <td class="center">2021-09-16</td>
@@ -209,7 +195,11 @@ function detail(){
     </div>
     </div>
 </div>
+    
 </div>
+	<!-- footer  -->
+	<jsp:include page="../footer.jsp" />
+
 </div>
 
 

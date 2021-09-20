@@ -11,35 +11,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class StaticsController {
 
 	private static final Logger logger = LoggerFactory.getLogger(StaticsController.class);
 	
-	// 회원통계
-	@RequestMapping("host/userStatics")
-	public String userStatics(HttpServletRequest req, Model model) {
-		logger.info("url -> userStatics");
-	  
-		return "host/statics/userStatics";
-	}
-	
-	// 판매통계
-	@RequestMapping("host/salesStatics")
-	public String salesStatics(HttpServletRequest req, Model model) {
-		logger.info("url -> salesStatics");
-		
-		return "host/statics/salesStatics";
-	}
-	
-	// 판매통계
-	@RequestMapping(value="host/salesTypeStatics", method=RequestMethod.GET)
-	public String salesTypeStatics(HttpServletRequest req, Model model) {
-		logger.info("url -> salesStatics");
-		
-		return "host/statics/salesTypeStatics";
-	}
 
 }

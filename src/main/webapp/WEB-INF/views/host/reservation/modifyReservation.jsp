@@ -6,7 +6,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%-- <%@ include file="../../setting.jsp" %> --%>
-<%@ include file="/WEB-INF/views/setting.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,17 +21,10 @@
 <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
-<div id="wrapper">
-
-	<!-- frame  -->
-	<jsp:include page="../Frame.jsp" />
-	
-<div id="page-wrapper" class="gray-bg">
-
-	<!-- nav bar  -->
-	<jsp:include page="../navbar.jsp" />
-
 <!-- ------------------------------- 중분류 '예약수정' 상단 흰색 표기란 시작 -->
+<div class="ibox-content" style="margin: 0px; padding: 0px;">
+
+
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-8">
         <h2>예약수정</h2>
@@ -74,6 +66,7 @@
 	<div class="ibox-content">
 	    <div class="tab-content">
 	        <div id="contact-1" class="tab-pane active">
+	        
 	            <div class="row m-b-lg">
 	                <div class="col-lg-4 text-center">
 	                    <h2>강수현</h2>
@@ -131,6 +124,7 @@
 	            </div><div class="slimScrollBar" style="background-color: rgb(0, 0, 0); width: 7px; position: absolute; top: 42px; opacity: 0.4; display: none; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; z-index: 99; right: 1px; height: 412.88936627282493px;"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; background-color: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div></div>
 	            </div>
 	        </div>
+	     
 	      </div>  
 	    </div>    
 	  </div>      
@@ -248,7 +242,6 @@
 			</div>    
 		</div>
 	</div>    
-</div>
 </div>
 </div>
 </body>

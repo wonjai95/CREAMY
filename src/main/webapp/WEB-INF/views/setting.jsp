@@ -18,7 +18,7 @@
 <link href="${path}/resources/bootstrap/css/datepicker3.css"  rel="stylesheet">
 <link href="${path}/resources/bootstrap/css/animate.css"  rel="stylesheet">
 <link href="${path}/resources/bootstrap/css/style.css" rel="stylesheet">
-
+<link href="${path}/resources/bootstrap/css/datatables.min.css" rel="stylesheet">
 
 <!-- js -->
 <!-- Mainly scripts -->

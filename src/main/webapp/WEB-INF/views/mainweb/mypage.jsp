@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../setting.jsp" %>
+<%@ include file="../setting_user.jsp" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,25 +11,6 @@
   <title>CRM</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
-
-  <!-- Favicons -->
-  <link href="images/main/favicon.png" rel="icon">
-  <link href="images/main/apple-touch-icon.png" rel="apple-touch-icon">
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
-  <!-- Vendor CSS Files -->
-  <link href="${path}/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="${path}/resources/bootstrap/css/bootstrap-icons.css" rel="stylesheet">
-  <link href="${path}/resources/bootstrap/css/boxicons.min.css" rel="stylesheet">
-  <link href="${path}/resources/bootstrap/css/glightbox.min.css" rel="stylesheet">
-  <link href="${path}/resources/bootstrap/css/remixicon.css" rel="stylesheet">
-  <link href="${path}/resources/bootstrap/css/swiper-bundle.min.css" rel="stylesheet">
-
-  <!-- Template Main CSS File -->
-  <link href="${path}/resources/bootstrap/css/user_style.css" rel="stylesheet">
-  
   
   <!-- 내가 쓴 js  -->
   <script src="${path}/resources/user/js/modifyUser.js"></script>
@@ -227,36 +208,6 @@
 	         	 		</div>
 						
                		</div>
-               		<div style="padding-bottom: 9px; display: flex;">
-	         	 		<div style="padding-left: 5px; padding-bottom: 8px; align-self: center; padding-right: 25px; width: 20%" align="right">이름</div>
-						<div class="form-group" style="width: 30%;">
-	                   		<input type="text" name="name" class="form-control" id="name" placeholder="name" >
-	               		</div>
-               		</div>
-               		
-               		<div style="padding-bottom: 9px; display: flex;">
-	         	 		<div style="padding-left: 5px; padding-bottom: 8px; align-self: center; padding-right: 25px; width: 20%" align="right">기존 비밀번호</div>
-						<div class="form-group" style="width: 30%;">
-	                   		<input type="password" name="name" class="form-control" id="name" placeholder="password" >
-	               		</div>
-               		</div>
-               		
-               		<div style="padding-bottom: 9px; display: flex;">
-	         	 		<div style="padding-left: 5px; padding-bottom: 8px; align-self: center; padding-right: 25px; width: 20%" align="right">새 비밀번호</div>
-						<div class="form-group" style="width: 60%; display: flex; ">
-	                   		<input type="password" name="name" class="form-control" id="name" placeholder="new_password" required style="margin-right: 3px;"> 
-	                   		<input type="password" name="name" class="form-control" id="name" placeholder="re_password" required style="margin-left: 3px;">
-	               		</div>
-               		</div>
-               		
-               		<div style="padding-bottom: 9px; display: flex;">
-	         	 		<div style="padding-left: 5px; padding-bottom: 8px; align-self: center; padding-right: 25px; width: 20%" align="right">주민등록번호</div>
-						<div class="form-group" style="width: 20%; display: flex; ">
-	                   		<input type="text" name="name" class="form-control" id="name" placeholder="990101" required style="margin-right: 3px;">
-							<span style="padding-bottom: 13px; font-size: 30px;">&nbsp;-&nbsp;</span>
-	                   		<input type="text" name="name" class="form-control" id="name" placeholder="1" required style="margin-left: 3px; width: 36px;">
-	               		</div>
-               		</div>
                		
                		<div class="text-center">
 		              <button type="submit">회원정보 수정-여기이버튼은지워보기??</button>
@@ -321,15 +272,6 @@
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-  <!-- Vendor JS Files -->
-  <script src="${path}/resources/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="${path}/resources/bootstrap/js/glightbox.min.js"></script>
-  <script src="${path}/resources/bootstrap/js/isotope.pkgd.min.js"></script>
-  <script src="${path}/resources/bootstrap/js/validate.js"></script>
-  <script src="${path}/resources/bootstrap/js/swiper-bundle.min.js"></script>
-
-  <!-- Template Main JS File -->
-  <script src=${path}/resources/bootstrap/js/user_main.js"></script>
 
 </body>
 
