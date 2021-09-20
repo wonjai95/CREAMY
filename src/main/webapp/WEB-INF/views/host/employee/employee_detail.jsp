@@ -120,7 +120,8 @@
                             <ul class="nav nav-tabs">
                                 <li><a class="nav-link active" data-toggle="tab" href="#tab-1"> 근태 </a></li>
                                 <li><a class="nav-link" data-toggle="tab" href="#tab-2"> 휴가 </a></li>
-                                <li><a class="nav-link" data-toggle="tab" href="#tab-3"> 급여 </a></li>
+                                <li><a class="nav-link" data-toggle="tab" href="#tab-3"> 급여 계약 </a></li>
+                                <li><a class="nav-link" data-toggle="tab" href="#tab-4"> 급여 지급 </a></li>
                             </ul>
                             <div class="tab-content">
                             
@@ -198,6 +199,7 @@
 							       </fieldset>
 							   </div>
 							</div>
+							<!-- 근태 탭 끝 -->
                                 
                                 <!-- 휴가탭 시작 -->
                                 <div id="tab-2" class="tab-pane">
@@ -266,12 +268,68 @@
 								       </fieldset>
                                     </div>
                                 </div>
+                                <!-- 휴가 탭 끝 -->
                                 
-                                <!-- 급여탭 시작 -->
+                                <!-- 급여 계약 시작 -->
                                 <div id="tab-3" class="tab-pane">
                                     <div class="panel-body">
 
-                                       <!-- 월선택 달력!!! -->
+                                        <!-- 월선택 달력!!! -->
+										<div class="round-btn" style="text-align:right; margin-bottom:10px;">
+											<a class="btn btn-default btn-rounded" href="#">수정</a>
+											<a class="btn btn-default btn-rounded" href="#">삭제</a>
+										</div>
+										
+								       <fieldset>
+								           <table class="table table-bordered" style="font-size:12px; text-align:center;">
+				                                <thead>
+				                                <tr>
+				                                	<!-- 여기 파트 보면 비타민에 사유가 있는데 기타메모에 합치는건 어떨까??? -->
+				                                    <th style="width:15%;">적용 기간</th>
+				                                    <th style="width:10%;">월급</th>
+				                                    <th style="width:15%;">연봉</th>
+				                                    <th style="width:10%;">지급일자</th>
+				                                    <th style="width:20%;">은행 / 계좌번호</th>
+				                                    <th style="width:30%;">기타메모</th>
+				                                </tr>
+				                                </thead>
+				                                <tbody>
+				                                <tr>
+				                                    <td>2021-11-01 ~ 2022-10-31</td>
+				                                    <td><fmt:formatNumber value="2000000" pattern="###,###,###"/></td>
+				                                    <td><fmt:formatNumber value="24000000" pattern="###,###,###"/></td>
+				                                    <td>매달 5일</td>
+				                                    <td>국민은행 / 111-111-1111111</td>
+				                                    <td>연봉 협상</td>
+				                                </tr>
+				                                <tr>
+				                                    <td>2020-11-01 ~ 2021-10-31</td>
+				                                    <td><fmt:formatNumber value="1500000" pattern="###,###,###"/></td>
+				                                    <td><fmt:formatNumber value="18000000" pattern="###,###,###"/></td>
+				                                    <td>매달 5일</td>
+				                                    <td>국민은행 / 111-111-1111111</td>
+				                                    <td>재계약</td>
+				                                </tr>
+				                                <tr>
+				                                    <td>2019-11-01 ~ 2020-10-31</td>
+				                                    <td><fmt:formatNumber value="1500000" pattern="###,###,###"/></td>
+				                                    <td><fmt:formatNumber value="18000000" pattern="###,###,###"/></td>
+				                                    <td>매달 5일</td>
+				                                    <td>국민은행 / 111-111-1111111</td>
+				                                    <td>신규</td>
+				                                </tr>
+				                                </tbody>
+				                            </table>
+								       </fieldset>
+                                    </div>
+                                </div>
+                                <!-- 급여 계약 끝  -->
+                                
+                                <!-- 급여 지급 시작 -->
+                                <div id="tab-4" class="tab-pane">
+                                    <div class="panel-body">
+
+                                        <!-- 월선택 달력!!! -->
 										<div class="form-group" id="data_4" style="width:13%; margin-bottom:10px; display:inline-block;">
 										    <div class="input-group date">
 										      <input type="month" class="form-control" style="width:auto;">
@@ -288,53 +346,45 @@
 				                                <thead>
 				                                <tr>
 				                                	<!-- 여기 파트 보면 비타민에 사유가 있는데 기타메모에 합치는건 어떨까??? -->
-				                                    <th style="width:7%;">구분</th>
-				                                    <th style="width:7%;">상태</th>
-				                                    <th style="width:9%;">시작일자</th>
-				                                    <th style="width:9%;">종료일자</th>
-				                                    <th style="width:6%">사용일수</th>
-				                                    <th style="width:10%;">비상연락망</th>
-				                                    <th>기타메모</th>
-				                                    <th style="width:9%;">신청일자</th>
+				                                    <th style="width:12%;">지급일자</th>
+				                                    <th style="width:12%;">월분</th>
+				                                    <th style="width:12%;">월급</th>
+				                                    <th style="width:12%;">공제합계</th>
+				                                    <th style="width:12%">차인지급액</th>
+				                                    <th style="width:40%;">기타메모</th>
 				                                </tr>
 				                                </thead>
 				                                <tbody>
 				                                <tr>
-				                                    <td>● 연차</td>
-				                                    <td>승인</td>
-				                                    <td>2021-09-21</td>
-				                                    <td>2020-09-25</td>
-				                                    <td>4</td>
-				                                    <td>010-1111-1111</td>
-				                                    <td>휴가</td>
-				                                    <td>2021-09-20</td>
+				                                    <td>2021-09-05</td>
+				                                    <td>2021년 08월분</td>
+				                                    <td><fmt:formatNumber value="2000000" pattern="###,###,###"/></td>
+				                                    <td><fmt:formatNumber value="200000" pattern="###,###,###"/></td>
+				                                    <td><fmt:formatNumber value="1800000" pattern="###,###,###"/></td>
+				                                    <td></td>
 				                                </tr>
 				                                <tr>
-				                                    <td>● 연차</td>
-				                                    <td>승인</td>
-				                                    <td>2021-09-13</td>
-				                                    <td>2020-09-14</td>
-				                                    <td>1</td>
-				                                    <td>010-1111-1111</td>
+				                                    <td>2021-08-05</td>
+				                                    <td>2021년 07월분</td>
+				                                    <td><fmt:formatNumber value="2000000" pattern="###,###,###"/></td>
+				                                    <td><fmt:formatNumber value="200000" pattern="###,###,###"/></td>
+				                                    <td><fmt:formatNumber value="1800000" pattern="###,###,###"/></td>
 				                                    <td></td>
-				                                    <td>2021-09-20</td>
 				                                </tr>
 				                                <tr>
-				                                    <td>● 연차</td>
-				                                    <td>승인</td>
-				                                    <td>2021-09-13</td>
-				                                    <td>2020-09-14</td>
-				                                    <td>1</td>
-				                                    <td>010-1111-1111</td>
+				                                    <td>2021-07-05</td>
+				                                    <td>2021년 06월분</td>
+				                                    <td><fmt:formatNumber value="2000000" pattern="###,###,###"/></td>
+				                                    <td><fmt:formatNumber value="200000" pattern="###,###,###"/></td>
+				                                    <td><fmt:formatNumber value="1800000" pattern="###,###,###"/></td>
 				                                    <td></td>
-				                                    <td>2021-09-20</td>
 				                                </tr>
 				                                </tbody>
 				                            </table>
 								       </fieldset>
                                     </div>
                                 </div>
-                                <!-- 급여 탭 끝 -->
+                                <!-- 급여 지급 끝 -->
                                 
                             </div>
 	                    </div>

@@ -54,6 +54,21 @@ body {
 				</div>
 			</div>
 			
+			<div class="hr-line-dashed"></div>
+			<div class="form-group  row">
+				<label class="col-sm-2 col-form-label">지급일자</label>
+				<div class="col-sm-5">
+					<input type="text" class="form-control" name="payment date" placeholder="매달 N일" required>
+				</div>
+			</div>
+			
+			<div class="hr-line-dashed"></div>
+			<div class="form-group  row">
+				<label class="col-sm-2 col-form-label">은행 / 계좌번호</label>
+				<div class="col-sm-5">
+					<input type="text" class="form-control" name="account" placeholder="ex) 국민은행 / 111-111-111111" required>
+				</div>
+			</div>
 			
 			<div class="hr-line-dashed"></div>
 			<div class="form-group row">
