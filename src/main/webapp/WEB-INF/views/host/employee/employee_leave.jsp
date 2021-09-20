@@ -5,18 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<link href="${path}/resources/bootstrap/css/bootstrap.min.css"
-	rel="stylesheet">
-<link href="${path}/resources/bootstrap/css/font-awesome.css"
-	rel="stylesheet">
-<link href="${path}/resources/bootstrap/css/summernote-bs4.css"
-	rel="stylesheet">
-<link href="${path}/resources/bootstrap/css/datepicker3.css"
-	rel="stylesheet">
-<link href="${path}/resources/bootstrap/css/animate.css"
-	rel="stylesheet">
-<link href="${path}/resources/bootstrap/css/style.css" rel="stylesheet">
+<title>employee_leave</title>
 <style type="text/css">
 body {
 	background-color: white;
@@ -26,6 +15,7 @@ body {
 	text-shadow: aqua;
 }
 </style>
+<script type="text/javascript" src="${path}/resources/host/js/employee_leave_contract.js"></script>
 </head>
 <body>
 	<div class="ibox-content">
@@ -34,7 +24,7 @@ body {
 				<label class="col-sm-2 col-form-label">직원코드</label>
 				<div class="col-sm-7">
 					<input type="text" class="form-control" name="employee_code" 
-						value="" placeholder="직원코드" required>
+						value="${employee_code}" placeholder="직원코드" required>
 				</div>
 			</div>
 			
@@ -42,114 +32,80 @@ body {
 			<div class="form-group  row">
 				<label class="col-sm-2 col-form-label">직원 이름</label>
 				<div class="col-sm-7">
-					<input type="text" class="form-control" name="employee_name" placeholder="직원 이름" required>
+					<input type="text" class="form-control" name="employee_name" 
+						value="${employee_name}" placeholder="직원 이름" required>
+				</div>
+			</div>
+			
+			<div class="hr-line-dashed"></div>
+			<div class="form-group  row">
+				<label class="col-sm-2 col-form-label">사용 연차</label>
+				<div class="col-sm-3" style="align-self: center;">
+					0 / 0 일
+				</div>
+			</div>
+			
+			<div class="hr-line-dashed"></div>
+			<div class="form-group  row">
+				<label class="col-sm-2 col-form-label">입사 일자</label>
+				<div class="col-sm-3" style="align-self: center;">
+					2019-09-20
 				</div>
 			</div>
 			
 			<div class="hr-line-dashed"></div>
 			<div class="form-group row">
-				<label class="col-sm-2 col-form-label">성별</label>
-				<div class="col-sm-3">
-					<select name="employee_gender" id="" class="form-control">
-						<option value="1" id="employee_gender" selected>상품 그룹 선택</option>
-						<option value="M">남성</option>
-						<option value="F">여성</option>
-					</select>
+				<label class="col-sm-2 col-form-label" style="margin-right: 12px;">구분</label>
+				<div class="col-sm-3" style="display: contents;">
+					<input type='date' value="0" name="leave_start" style="border: 1px solid #e5e6e7"/>&nbsp;&nbsp; ~ &nbsp;&nbsp;
+					<input type='date' value="0" name="leave_end" style="border: 1px solid #e5e6e7"/>&nbsp;&nbsp; 
+				</div>
+			</div>	
+			
+			<div class="hr-line-dashed"></div>
+			<div class="form-group row">
+				<label class="col-sm-2 col-form-label" style="margin-right: 12px;">사용</label>
+				<div class="col-sm-3" style="display: contents;">
+					<input type="number" name="leave_total_days" value="0" id="leave_total_days" 
+						readonly style="border: 1px solid #e5e6e7">
+						&nbsp;&nbsp; <span style="align-self: center">일간 사용</span>
 				</div>
 			</div>
 			
 			<div class="hr-line-dashed"></div>
 			<div class="form-group row">
-				<label class="col-sm-2 col-form-label">나이</label>
+				<label class="col-sm-2 col-form-label">사유</label>
 				<div class="col-sm-7">
-					<input type="text" class="form-control" name="employee_age" placeholder="나이">
+					<input type="text" class="form-control" name="leave_memo" placeholder="사유">
 				</div>
 			</div>
 			
 			<div class="hr-line-dashed"></div>
 			<div class="form-group row">
-				<label class="col-sm-2 col-form-label">이메일</label>
-				<div class="col-sm-3" style="display: flex;">
-					<input name="employee_email1" type="text" class="form-control" placeholder="email" style="width: auto">
-                   	<div style="width: 20px; align-self: center;">&nbsp;&nbsp;@&nbsp;&nbsp;</div>
-                   	<input name="employee_email2" type="text" class="form-control" placeholder="gmail.com" style="width: auto">
-				</div>
-			</div>
-			
-			<div class="hr-line-dashed"></div>
-			<div class="form-group row">
-				<label class="col-sm-2 col-form-label">주소</label>
+				<label class="col-sm-2 col-form-label">기타 메모</label>
 				<div class="col-sm-7">
-					<input name="sign_zipcode" id="postcode" type="text" class="form-control" placeholder="postcode">
-                   	<div style="width: 5px; align-self: center;"></div>
-                   	<input type="button" onclick="addressSearch()" class="btn btn-primary btn-xs" style="margin: 2px 4px;" value="주소검색">
+					<input type="text" class="form-control" name="etc_memo" placeholder="기타 메모">
 				</div>
 			</div>
 			
 			<div class="hr-line-dashed"></div>
 			<div class="form-group row">
-				<label class="col-sm-2 col-form-label">핸드폰</label>
-				<div class="col-sm-7" style="display: flex;">
-					<input type="text" class="form-control" name="employee_ph1" maxlength="3" placeholder="000"> &nbsp;&nbsp;-&nbsp;&nbsp;
-					<input type="text" class="form-control" name="employee_ph2" maxlength="4" placeholder="0000"> &nbsp;&nbsp;-&nbsp;&nbsp;
-					<input type="text" class="form-control" name="employee_ph3" maxlength="4" placeholder="0000"> 
-				</div>
-			</div>
-			
-			<div class="hr-line-dashed"></div>
-			<div class="form-group row">
-				<label class="col-sm-2 col-form-label">부서</label>
+				<label class="col-sm-2 col-form-label">신청일자</label>
 				<div class="col-sm-7">
-					<input type="text" class="form-control" name="department" placeholder="부서" required>
+					<input type='date' name="leave_register_date" class="register_date" readonly 
+						style="border: 1px solid #e5e6e7; align-self: center; height: 35.6px;"/>
 				</div>
 			</div>
 			
+			<!-- 등록 및 창 닫기 버튼 시작 -->
 			<div class="hr-line-dashed"></div>
-			<div class="form-group row">
-				<label class="col-sm-2 col-form-label">직책</label>
-				<div class="col-sm-7">
-					<input type="text" class="form-control" name="position" placeholder="직책">
+			<div class="col-sm-7">
+				<div class="form-group" style="text-align: right;">
+					<input type="submit" class="btn btn-primary dim" style="width:100px;" value="등록">
+					<input type="button" class="btn btn-primary dim" name="window_close" style="width:100px;" value="창닫기">
 				</div>
 			</div>
-			
-			<div class="hr-line-dashed"></div>
-			<div class="form-group row">
-				<label class="col-sm-2 col-form-label">직위</label>
-				<div class="col-sm-7">
-					<input type="text" class="form-control" name="duty" placeholder="직위">
-				</div>
-			</div>
-			
-			<div class="hr-line-dashed"></div>
-			<div class="form-group row">
-				<label class="col-sm-2 col-form-label">업무</label>
-				<div class="col-sm-7">
-					<input type="text" class="form-control" name="job" placeholder="업무">
-				</div>
-			</div>
-			
-			<div class="hr-line-dashed"></div>
-			<div class="form-group row">
-				<label class="col-sm-2 col-form-label">고용형태</label>
-				<div class="col-sm-3">
-					<select name="employee_type" id="" class="form-control">
-						<option value="1" id="employee_type" selected>고용형태 선택</option>
-						<option value="정규직">정규직</option>
-						<option value="비정규직">계약직</option>
-						<option value="인턴">인턴</option>
-						<option value="알바">알바</option>
-					</select>
-				</div>
-			</div>
-			
-			<div class="hr-line-dashed"></div>
-			<div class="form-group row">
-				<label class="col-sm-2 col-form-label">연차</label>
-				<div class="col-sm-7">
-					<input type="number" class="form-control" min="0" name="annual_leave_cnt" placeholder="연차">
-				</div>
-			</div>
-			
+			<!-- 등록 및 창 닫기 버튼 끝 -->
 		</form>
 	</div>
 

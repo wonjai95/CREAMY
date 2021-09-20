@@ -49,6 +49,7 @@ public class EmployeeController {
 		
 		model.addAttribute("employee_code", req.getParameter("employee_code"));
 		model.addAttribute("employee_name", req.getParameter("employee_name"));
+		
 		return "host/employee/employee_attendance";
 	}
 	
