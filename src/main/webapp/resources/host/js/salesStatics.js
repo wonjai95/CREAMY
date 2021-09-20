@@ -6,6 +6,8 @@ $("document").ready(function() {
 		var header = $("meta[name='_csrf_header]").attr("content");
 		var token = $("meta[name='_csrf']").attr("content");
 		
+		
+		// "Get" 으로 하면 먹기는 하는데... 왜 Post로 시큐리티가 안 뚫어지는 걸까ㅠ
 		$.ajax({
 			url : "salesTypeStatics",
 			type : "Post",

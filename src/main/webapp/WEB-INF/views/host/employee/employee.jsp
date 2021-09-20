@@ -53,7 +53,6 @@ function detail(){
         </ol>
     </div>
 </div>
-
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
@@ -126,84 +125,100 @@ function detail(){
 
             <div class="table-responsive">
             <!-- table table-striped table-bordered table-hover dataTables-example -->  
-            <table class="table table-bordered">
-            <thead>
-            <tr>
-                <th>직원 코드</th>
-                <th>이름</th>
-                <th>부서</th>
-                <th>직책</th>
-                <th>입사날짜</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr class="employee1">
-                <td id="empCode1">
-                	<input type="text" name="employee1" value="E1"
-                		style="display: none">E1
-               	</td>
-                <td>
-                	<input type="text" name="employee_name1" value="정원제"
-                		style="display: none">
-                	<a href="" style="text-decoration: none; color:black;" onclick="detail();">정원제</a>
-                </td>
-                <td>회계</td>
-                <td class="center">신입</td>
-                <td class="center">2021-09-16</td>
-            </tr>
-            <tr class="employee2">
-                <td id="empCode2">
-                	<input type="text" name="employee1" value="E2"
-                		style="display: none">E2
-                </td>
-                <td>
-                	<input type="text" name="employee_name2" value="주수림"
-                		style="display: none">주수림
-                </td>
-                <td>IT</td>
-                <td class="center">신입</td>
-                <td class="center">2021-09-16</td>
-            </tr>
-            <tr class="employee3">
-                <td id="empCode3">
-                	<input type="text" name="employee1" value="E3"
-                		style="display: none">E3
-                </td>
-                <td>
-	       			<input type="text" name="employee_name3" value="정지은"
-	                		style="display: none">정지은    
-                </td>
-                <td>IT</td>
-                <td class="center">팀장</td>
-                <td class="center">2021-09-16</td>
-            </tr>
-            <tr class="employee4">
-                <td id="empCode4">E4</td>
-                <td>이시현</td>
-                <td>IT</td>
-                <td class="center">신입</td>
-                <td class="center">2021-09-16</td>
-            </tr>
-            <tr class="employee5">
-                <td id="empCode5">E5</td>
-                <td>장현정</td>
-                <td>회계</td>
-                <td class="center">팀장</td>
-                <td class="center">2021-09-16</td>
-            </tr>
-            
-            <tr class="employee6">
-                <td>E6</td>
-                <td>한진원</td>
-                <td>IT</td>
-                <td class="center">신입</td>
-                <td class="center">2021-09-16</td>
-            </tr>
-            </tbody>
-         
-            </table>
+	            <table class="table table-bordered">
+		            <thead>
+		            <tr>
+		                <th>직원 코드</th>
+		                <th>이름</th>
+		                <th>부서</th>
+		                <th>직책</th>
+		                <th>입사날짜</th>
+		            </tr>
+		            </thead>
+		            <tbody>
+		            	<c:forEach var="dto" items="${dtos}" varStatus="status">
+		            		 <tr class="employee${status.index}">
+			            		  <td id="empCode${status.index}">
+				                	<input type="text" name="employee${status.index}" value="${dto.employee_code}"
+				                		style="display: none">${dto.employee_code}
+				               	</td>
+				                <td>
+				                	<input type="text" name="employee_name${status.index}" value="${dto.employee_name}"
+				                		style="display: none">
+				                	<a href="" style="text-decoration: none; color:black;" onclick="detail();">${dto.employee_name}</a>
+				                </td>
+				                <td>${dto.department}</td>
+				                <td class="center">${dto.position}</td>
+				                <td class="center">${dto.employee_hireDate}</td>
+				              </tr>
+		            	</c:forEach>
+		            
+			           <!--  <tr class="employee1">
+			                <td id="empCode1">
+			                	<input type="text" name="employee1" value="E1"
+			                		style="display: none">E1
+			               	</td>
+			                <td>
+			                	<input type="text" name="employee_name1" value="정원제"
+			                		style="display: none">
+			                	<a href="" style="text-decoration: none; color:black;" onclick="detail();">정원제</a>
+			                </td>
+			                <td>회계</td>
+			                <td class="center">신입</td>
+			                <td class="center">2021-09-16</td>
+			            </tr>
+			            <tr class="employee2">
+			                <td id="empCode2">
+			                	<input type="text" name="employee1" value="E2"
+			                		style="display: none">E2
+			                </td>
+			                <td>
+			                	<input type="text" name="employee_name2" value="주수림"
+			                		style="display: none">주수림
+			                </td>
+			                <td>IT</td>
+			                <td class="center">신입</td>
+			                <td class="center">2021-09-16</td>
+			            </tr>
+			            <tr class="employee3">
+			                <td id="empCode3">
+			                	<input type="text" name="employee1" value="E3"
+			                		style="display: none">E3
+			                </td>
+			                <td>
+				       			<input type="text" name="employee_name3" value="정지은"
+				                		style="display: none">정지은    
+			                </td>
+			                <td>IT</td>
+			                <td class="center">팀장</td>
+			                <td class="center">2021-09-16</td>
+			            </tr>
+			            <tr class="employee4">
+			                <td id="empCode4">E4</td>
+			                <td>이시현</td>
+			                <td>IT</td>
+			                <td class="center">신입</td>
+			                <td class="center">2021-09-16</td>
+			            </tr>
+			            <tr class="employee5">
+			                <td id="empCode5">E5</td>
+			                <td>장현정</td>
+			                <td>회계</td>
+			                <td class="center">팀장</td>
+			                <td class="center">2021-09-16</td>
+			            </tr>
+			            
+			            <tr class="employee6">
+			                <td>E6</td>
+			                <td>한진원</td>
+			                <td>IT</td>
+			                <td class="center">신입</td>
+			                <td class="center">2021-09-16</td>
+			            </tr> -->
+		            </tbody>
+	         
+	            </table>
                 </div>
-
             </div>
         </div>
     </div>

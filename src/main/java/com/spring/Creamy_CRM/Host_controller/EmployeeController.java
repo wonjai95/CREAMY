@@ -8,20 +8,26 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.spring.Creamy_CRM.Host_service.EmployeeServiceImpl;
 
 @Controller
 public class EmployeeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(EmployeeController.class);
 
+	@Autowired
+	EmployeeServiceImpl service;
 		
 	@RequestMapping("host/employee")
 	public String Employee(HttpServletRequest req, Model model) {
 		logger.info("url -> employee");
 	  
+		service.employeeList(req, model);
 		return "host/employee/employee";
 	}
 	   
@@ -38,6 +44,15 @@ public class EmployeeController {
 		logger.info("url -> employee_enlist");
 	  
 		return "host/employee/employee_enlist";
+	}
+	
+	// 직원 등록 처리
+	@RequestMapping("host/employee_enlistAction")
+	public String employee_enlistAction(HttpServletRequest req, Model model) {
+		logger.info("url -> employee_enlistAction");
+		
+		service.enlistEmployee(req, model);
+		return "host/employee/employee_enlistAction";
 	}
 	
 	// 근태
