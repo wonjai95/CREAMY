@@ -1,7 +1,7 @@
 <!-- 
 이름 : 이시현
 작성날짜 : 2021-09-16 ~ 2021-09-16 
-예약서비스를 확인할 수 있는 첫 페이지
+회원으로부터 예약 요청된 내용을 보게끔 이동 페이지
 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -48,15 +48,12 @@
 					<div class="col-lg-12">
 						<div class="tabs-container">
 							<ul class="nav nav-tabs">
-								<li><a class="nav-link active" data-toggle="tab" href="#tab-1">예약 요청</a></li>
-								<li><a class="nav-link" data-toggle="tab" href="#tab-2">예약 조회</a></li>
+								<li><a class="nav-link active" data-toggle="tab" href="#tab-1">상세 내용</a></li>
 							</ul>
 							<div class="tab-content">
 								<div id="tab-1" class="tab-pane active">
-									<jsp:include page="requestReservation.jsp" />
-								</div>
-								<div id="tab-2" class="tab-pane">
-									<jsp:include page="showReservation.jsp" />
+									<jsp:include page="requestDetail.jsp" />
+
 								</div>
 
 							</div>
