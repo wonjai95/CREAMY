@@ -23,7 +23,7 @@ body {
 </head>
 <body>
 	<div class="ibox-content">
-		<form method="get">
+		<form method="get" id="workHoursForm">
 			<input type="hidden" name="inout_time_setting" value="0">
 			<input type="hidden" name="late_early" value="0">
 			<div class="form-group  row">
@@ -70,8 +70,8 @@ body {
 						<input class="form-check-input" type="checkbox" value="mon" id="monChk" 
 							name="working_day_chk">월요일 &nbsp;&nbsp;
 					</div>
-					<input type='time' max='00:59' min='00:00' value="09:00" name="mon_in_time" />&nbsp;&nbsp; ~ &nbsp;&nbsp;
-					<input type='time' max='00:59' min='00:00' value="18:00" name="mon_out_time"/>&nbsp;&nbsp; 
+					<input type='time' value="09:00" name="mon_in_time" />&nbsp;&nbsp; ~ &nbsp;&nbsp;
+					<input type='time' value="18:00" name="mon_out_time"/>&nbsp;&nbsp; 
 					<input type="number" name="mon_total_hours" value="0" id="mon_total_hours" style="display: none;">
 				</div>
 			</div>	
@@ -83,8 +83,8 @@ body {
 						<input class="form-check-input" type="checkbox" value="tue" id="tueChk" 
 							name="working_day_chk">화요일 &nbsp;&nbsp;
 					</div>
-					<input type='time' max='00:59' min='00:00' value="09:00" name="tue_in_time"/>&nbsp;&nbsp; ~ &nbsp;&nbsp;
-					<input type='time' max='00:59' min='00:00' value="18:00" name="tue_out_time"/>&nbsp;&nbsp; 
+					<input type='time' value="09:00" name="tue_in_time"/>&nbsp;&nbsp; ~ &nbsp;&nbsp;
+					<input type='time' value="18:00" name="tue_out_time"/>&nbsp;&nbsp; 
 					<input type="number" name="tue_total_hours" value="0" id="tue_total_hours" style="display: none;">
 				</div>
 			</div>
@@ -96,8 +96,8 @@ body {
 						<input class="form-check-input" type="checkbox" value="wed" id="wedChk" 
 							name="working_day_chk">수요일 &nbsp;&nbsp;
 					</div>
-					<input type='time' max='00:59' min='00:00' value="09:00" name="wed_in_time"/>&nbsp;&nbsp; ~ &nbsp;&nbsp;
-					<input type='time' max='00:59' min='00:00' value="18:00" name="wed_out_time"/>&nbsp;&nbsp; 
+					<input type='time' value="09:00" name="wed_in_time"/>&nbsp;&nbsp; ~ &nbsp;&nbsp;
+					<input type='time' value="18:00" name="wed_out_time"/>&nbsp;&nbsp; 
 					<input type="number" name="wed_total_hours" value="0" id="wed_total_hours" style="display: none;">
 				</div>
 			</div>
@@ -109,8 +109,8 @@ body {
 						<input class="form-check-input" type="checkbox" value="thur" id="thurChk" 
 							name="working_day_chk">목요일 &nbsp;&nbsp;
 					</div>
-					<input type='time' max='00:59' min='00:00' value="09:00" name="thur_in_time"/>&nbsp;&nbsp; ~ &nbsp;&nbsp;
-					<input type='time' max='00:59' min='00:00' value="18:00" name="thur_out_time"/>&nbsp;&nbsp; 
+					<input type='time' value="09:00" name="thur_in_time"/>&nbsp;&nbsp; ~ &nbsp;&nbsp;
+					<input type='time' value="18:00" name="thur_out_time"/>&nbsp;&nbsp; 
 					<input type="number" name="thur_total_hours" value="0" id="thur_total_hours" style="display: none;">
 				</div>
 			</div>
@@ -122,8 +122,8 @@ body {
 						<input class="form-check-input" type="checkbox" value="fri" id="friChk" 
 							name="working_day_chk">금요일 &nbsp;&nbsp;
 					</div>
-					<input type='time' max='00:59' min='00:00' value="09:00" name="fri_in_time"/>&nbsp;&nbsp; ~ &nbsp;&nbsp;
-					<input type='time' max='00:59' min='00:00' value="18:00" name="fri_out_time"/>&nbsp;&nbsp; 
+					<input type='time' value="09:00" name="fri_in_time"/>&nbsp;&nbsp; ~ &nbsp;&nbsp;
+					<input type='time' value="18:00" name="fri_out_time"/>&nbsp;&nbsp; 
 					<input type="number" name="fri_total_hours" value="0" id="fri_total_hours" style="display: none;">
 				</div>
 			</div>
@@ -135,8 +135,8 @@ body {
 						<input class="form-check-input" type="checkbox" value="sat" id="satChk" 
 							name="working_day_chk">토요일 &nbsp;&nbsp;
 					</div>
-					<input type='time' max='00:59' min='00:00' value="09:00" name="sat_in_time"/>&nbsp;&nbsp; ~ &nbsp;&nbsp;
-					<input type='time' max='00:59' min='00:00' value="18:00" name="sat_out_time"/>&nbsp;&nbsp; 
+					<input type='time' value="09:00" name="sat_in_time"/>&nbsp;&nbsp; ~ &nbsp;&nbsp;
+					<input type='time' value="18:00" name="sat_out_time"/>&nbsp;&nbsp; 
 					<input type="number" name="sat_total_hours" value="0" id="sat_total_hours" style="display: none;">
 				</div>
 			</div>
@@ -148,8 +148,8 @@ body {
 						<input class="form-check-input" type="checkbox" value="sun" id="sunChk" 
 							name="working_day_chk">일요일 &nbsp;&nbsp;
 					</div>
-					<input type='time' max='00:59' min='00:00' value="09:00" name="sun_in_time"/>&nbsp;&nbsp; ~ &nbsp;&nbsp;
-					<input type='time' max='00:59' min='00:00' value="18:00" name="sun_out_time"/>&nbsp;&nbsp; 
+					<input type='time' value="09:00" name="sun_in_time"/>&nbsp;&nbsp; ~ &nbsp;&nbsp;
+					<input type='time' value="18:00" name="sun_out_time"/>&nbsp;&nbsp; 
 					<input type="number" name="sun_total_hours" value="0" id="sun_total_hours" style="display: none;">
 				</div>
 			</div>
@@ -171,7 +171,7 @@ body {
 			<div class="hr-line-dashed"></div>
 			<div class="col-sm-7">
 				<div class="form-group" style="text-align: right;">
-					<input type="submit" class="btn btn-primary dim" style="width:100px;" value="등록">
+					<input type="submit" class="btn btn-primary dim" name="submit" style="width:100px;" value="등록">
 					<input type="button" class="btn btn-primary dim" name="window_close" style="width:100px;" value="창닫기">
 				</div>
 			</div>
