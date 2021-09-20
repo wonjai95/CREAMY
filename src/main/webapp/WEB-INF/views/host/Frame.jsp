@@ -55,13 +55,7 @@
                 <a href="user"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">회원정보</span><span class="fa arrow"></span></a>
             </li>
             <li>
-                <a href=""><i class="fa fa-edit"></i> <span class="nav-label">예약</span><span class="fa arrow"></span></a>
-                  <ul class="nav nav-second-level collapse">
-                    <li><a href="showReservation">예약 조회</a></li>
-                    <li><a href="reservation">예약 요청</a></li>
-                    <li><a href="modifyReservation">예약 수정</a></li>
-                    <li><a href="insertReservation">예약 등록</a></li>
-                </ul>
+                <a href="reservation"><i class="fa fa-edit"></i> <span class="nav-label">예약</span><span class="fa arrow"></span></a>
             </li>
             <li>
                 <a href="#"><i class="fa fa-files-o"></i> <span class="nav-label">회계</span><span class="fa arrow"></span></a>
