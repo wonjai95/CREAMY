@@ -37,8 +37,6 @@ public class EmployeeController {
 	public String employee_enlist(HttpServletRequest req, Model model) {
 		logger.info("url -> employee_enlist");
 	  
-		System.out.println("employee_code : " + req.getParameter("employee_code"));
-		model.addAttribute("employee_code", req.getParameter("employee_code"));
 		return "host/employee/employee_enlist";
 	}
 	
