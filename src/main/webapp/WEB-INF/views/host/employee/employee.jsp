@@ -15,8 +15,8 @@
 <script>
 function detail(){
 	
-	var url = "Employee_testDetail"
-    window.open(url, "Employee_testDetail", "menubar=no, width=1300, height=800 ");
+	var url = "employee_detail"
+    window.open(url, "employee_detail", "menubar=no, width=1300, height=800 ");
 }
 </script>
 
@@ -145,7 +145,7 @@ function detail(){
                 <td>
                 	<input type="text" name="employee_name1" value="정원제"
                 		style="display: none">
-                	<a href="" onclick="detail();">정원제</a>
+                	<a href="" style="text-decoration: none; color:black;" onclick="detail();">정원제</a>
                 </td>
                 <td>회계</td>
                 <td class="center">신입</td>
