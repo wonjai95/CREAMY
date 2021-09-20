@@ -1,4 +1,12 @@
 $("document").ready(function() {
+	// 근무시간이 0 이면 submit 불가능
+	$("#workHoursForm").submit(function() {
+		if($("input[name=total_workhours_inMinutes]").val() == 0) {
+			alert("시간을 선택해주세요!");
+			return false;
+		}
+	});
+	
 // --------------------- 총 근무시간 계산 ---------------------
 	// 체크 박스 선택시 change 활성화 
 	// 월요일 체크박스 선택 시
