@@ -30,7 +30,7 @@ public class ProductServiceImpl implements ProductService {
 		}else {
 			String saveDir = req.getSession().getServletContext().getRealPath("/resources/images/productImage/");
 			// ↓ 경로조심 자신 프로젝트 경로
-			String realDir = "D:\\Dev88\\workspace\\Creamy\\Creamy_CRM\\src\\main\\webapp\\resources\\images\\productImage\\";
+			String realDir = "C:\\Dev88\\workspace\\Creamy_CRM_git_final\\src\\main\\webapp\\resources\\images\\productImage\\";
 			try {
 				file.transferTo(new File(saveDir + file.getOriginalFilename()));
 				FileInputStream fis = new FileInputStream(saveDir + file.getOriginalFilename());

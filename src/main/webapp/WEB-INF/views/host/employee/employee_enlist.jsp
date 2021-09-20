@@ -29,7 +29,8 @@ body {
 <script type="text/javascript" src="${path}/resources/host/js/employee.js"></script>
 </head>
 <body>
-<form action="" method="get">
+<form action="employee_enlistAction" method="post">
+	<sec:csrfInput/>
 	<div class="ibox-content">
 		<div class="hr-line-dashed"></div>
 		<div class="form-group  row">
