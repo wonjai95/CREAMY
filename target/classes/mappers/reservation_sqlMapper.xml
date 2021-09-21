@@ -4,12 +4,11 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <!--
-	작성자 : 
-	작성일 : 
-	 에서 사용하는 mapper
+	작성자 : 이시현
+	작성일 : 2021.09.15
+	 ReservationDAO에서 사용하는 mapper
 -->
-  
-  
+
   <mapper namespace="com.spring.Creamy_CRM.Host_dao.reservationDAO">
   
   	

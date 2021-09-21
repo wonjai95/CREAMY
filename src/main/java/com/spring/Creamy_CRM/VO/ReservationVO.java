@@ -7,7 +7,7 @@ package com.spring.Creamy_CRM.VO;
 
 import java.sql.Date;
 
-public class reservationVO {
+public class ReservationVO {
 	
 	private String res_code;				// 예약코드(시퀀스)
 	private String res_state;				// 예약상태

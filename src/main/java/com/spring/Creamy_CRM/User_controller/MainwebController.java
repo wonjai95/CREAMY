@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.spring.Creamy_CRM.Host_controller.MainController;
 import com.spring.Creamy_CRM.Host_service.LoginServiceImpl;
+import com.spring.Creamy_CRM.User_service.MainwebServiceImpl;
 
 @Controller
 public class MainwebController {
@@ -25,6 +26,9 @@ public class MainwebController {
 	
 	@Autowired
 	LoginServiceImpl service_login;
+	
+	@Autowired
+	MainwebServiceImpl service;
 	
 	//첫 홈화면
 	@RequestMapping("/home")
@@ -66,6 +70,16 @@ public class MainwebController {
 	      logger.info("url -> custBooking");
 	      
 	      return "mainweb/custBooking";
+	}
+	
+	//회원 예약 처리 페이지
+	@RequestMapping("/insertBooking")
+	   public String insertBooking(HttpServletRequest req, Model model) {
+	      logger.info("url -> insertBooking");
+	      
+	      service.insertBooking(req, model);
+	      logger.info("url -> insertBooking2");
+	      return "mainweb/insertBooking";
 	}	
 	
 	//회원 마이페이지
@@ -75,6 +89,15 @@ public class MainwebController {
 		
 		return "mainweb/mypage";
 	}
+	
+	//결제수단 등록
+	@RequestMapping("/insertPaymentInfo")
+	public String insertPaymentInfo(HttpServletRequest req, Model model) {
+		logger.info("url -> insertPaymentInfo");
+		
+		return "mainweb/insertPaymentInfo";
+	}
+	
 	//회원 예약내역 확인
 	@RequestMapping("/showBookingDetail")
 	public String showBookingDetail(HttpServletRequest req, Model model) {
