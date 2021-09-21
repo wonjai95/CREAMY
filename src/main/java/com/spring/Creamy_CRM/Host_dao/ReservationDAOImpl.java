@@ -1,14 +1,104 @@
 /*
- * 작성자 : 
- * 작성일 : 
+ * 작성자 : 이시현
+ * 작성일 : 2021-09-20 ~ 2021-09-20
  * 예약 관련 dao
  * 
 */
 package com.spring.Creamy_CRM.Host_dao;
 
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import com.spring.Creamy_CRM.VO.reservationVO;
 
 @Repository
 public class ReservationDAOImpl implements ReservationDAO {
 
+	// 커넥션풀 생성
+	@Autowired
+	private SqlSession sqlSession;
+	
+//======= 예약요청 탭 =======	
+	// 예약요청 목록 갯수 구하기
+	@Override
+	public int getRequestCnt() {
+		// 방법1. mapper를 호출하는 방식 | sqlSession.selectOne("패키지명.namespace명.getBoardCnt");
+		// int selectCnt = sqlSession.selectOne("spring.mvc.board_mybatis.board.dao.BoardDAO.getBoardCnt");
+		// return selectCnt;
+		
+		// 방법2. 메서드를 활용/호출하는 방식
+		ReservationDAO dao = sqlSession.getMapper(ReservationDAO.class);
+		return dao.getRequestCnt();
+	}
+
+	// 예약요청 목록 조회
+	@Override
+	public List<reservationVO> getRequestList(Map<String, Object> map) {
+		
+		//ArrayList<reservationVO> list = null;
+		
+		// 방법1. mapper를 호출하는 방식 | 리턴타입이 반드시 List<reservationVO> 이어야함
+		List<reservationVO> list = sqlSession.selectList("com.spring.Creamy_CRM.Host_dao.ReservationDAO.getRequestList", map);
+		return list;
+	}
+
+	// 예약요청 상세 페이지, 수정 상세 페이지
+	@Override
+	public reservationVO getRequestDetail(int num) {
+		
+		ReservationDAO dao = sqlSession.getMapper(ReservationDAO.class);
+		return dao.getRequestDetail(num);
+		
+		// 결과가 존재한다면,
+		// 1. 작은 바구니(BoardVO) 생성
+		// 2. 게시글 한 건을 읽어서 rs 결과를 작은 바구니에 담는다
+		//   rs 결과(= sql로부터 가져온 컬럼 값을 getter로 모두 가져옴)
+		// 3. 작은 바구니 리턴
+	}
+
+	// 예약요청 수정 처리 페이지
+	@Override
+	public int updateRequest(reservationVO vo) {
+
+		ReservationDAO dao = sqlSession.getMapper(ReservationDAO.class);
+		return dao.updateRequest(vo);
+	}
+
+	// 예약요청 삭제 처리 페이지
+	@Override
+	public int deleteRequest(int num) {
+		
+		ReservationDAO dao = sqlSession.getMapper(ReservationDAO.class);
+		int deleteCnt = dao.deleteRequest(num);
+		
+		return deleteCnt;
+	}
+
+//======= 예약조회 탭 =======
+	// 예약조회 목록 갯수 구하기
+	@Override
+	public int getCompleteCnt() {
+		// 방법2. 메서드를 활용/호출하는 방식
+		ReservationDAO dao = sqlSession.getMapper(ReservationDAO.class);
+		
+		return dao.getCompleteCnt();
+	}
+
+	// 예약요청 목록 조회
+	@Override
+	public List<reservationVO> getCompleteList(Map<String, Object> map) {
+
+		//ArrayList<reservationVO> list = null;
+		
+		// 방법1. mapper를 호출하는 방식 | 리턴타입이 반드시 List<reservationVO> 이어야함
+		List<reservationVO> list = sqlSession.selectList("com.spring.Creamy_CRM.Host_dao.ReservationDAO.getCompleteList", map);
+		return list;
+	}
+
+	
+	
 }
