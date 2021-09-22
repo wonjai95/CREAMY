@@ -86,8 +86,14 @@ body {
                   	 	<label> <input type="radio" value="O" name="covid_chk3"> 예 </label>
                         <label> <input type="radio" value="X" name="covid_chk3"> 아니오</label>
                       </div>
-                      
-                    
+				</div>
+			</div>
+			
+			<div class="hr-line-dashed"></div>
+			<div class="form-group row">
+				<label class="col-sm-2 col-form-label">메모</label>
+				<div class="col-sm-7" style="display: flex;" >
+					<input type="text" class="form-control" name="memo" placeholder="특이사항">
 				</div>
 			</div>
 			

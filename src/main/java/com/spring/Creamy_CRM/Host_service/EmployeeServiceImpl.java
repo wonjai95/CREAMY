@@ -7,7 +7,6 @@
 package com.spring.Creamy_CRM.Host_service;
 
 import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -54,9 +53,14 @@ public class EmployeeServiceImpl implements EmployeeService {
 		String employee_code = req.getParameter("employee_code");
 		System.out.println("employee_code : " + employee_code);
 		
+		// 직원 상세 정보 가져오기
 		EmployeeVO dtos = dao.getEmployeeDetail(employee_code);
 		
+		// 직원 근태 정보 가져오기
+		ArrayList<AttendanceVO> attList = dao.getAttendanceList(employee_code);
+		
 		model.addAttribute("dtos", dtos);
+		model.addAttribute("attList", attList);
 	}
 	
 	// 직원 등록시 해당 id 체크 
@@ -173,6 +177,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		String covid_chk1 = req.getParameter("covid_chk1");
 		String covid_chk2 = req.getParameter("covid_chk2");
 		String covid_chk3 = req.getParameter("covid_chk3");
+		String memo = req.getParameter("memo");
 		
 		if(late_early == null || late_early.equals("")) late_early = "0";
 		
@@ -197,6 +202,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		vo.setExamination_chk1(covid_chk1);
 		vo.setExamination_chk2(covid_chk2);
 		vo.setExamination_chk3(covid_chk3);
+		vo.setMemo(memo);
 		
 		int insertCnt = 0;
 		int inChk = 0;

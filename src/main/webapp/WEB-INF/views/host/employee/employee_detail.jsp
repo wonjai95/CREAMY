@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../../setting.jsp"%>
+<%@ include file="/WEB-INF/views/setting.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,16 +8,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>INSPINIA | Data Tables</title>
+<title>employee_detail</title>
 
-<link href="${path}/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link href="${path}/resources/bootstrap/css/font-awesome.css" rel="stylesheet">
-<link href="${path}/resources/bootstrap/css/summernote-bs4.css" rel="stylesheet">
-                            
-<link href="${path}/resources/bootstrap/css/datepicker3.css" rel="stylesheet">
-                            
-<link href="${path}/resources/bootstrap/css/animate.css" rel="stylesheet">
-<link href="${path}/resources/bootstrap/css/style.css" rel="stylesheet">
+<script type="text/javascript" src="${path}/resources/host/js/employee_detail.js"></script>
 
 </head>
 <body style="background-color:white;">
@@ -162,7 +155,7 @@
 							    	<!-- 월선택 달력!!! -->
 									<div class="form-group" id="data_4" style="width:13%; margin-bottom:10px; display:inline-block;">
 									    <div class="input-group date">
-									      <input type="month" class="form-control" value="07/01/2014" style="width:auto;">
+									      <input type="month" class="form-control" id="currentMonth" style="width:auto;">
 									    </div>
 									</div>
 									
@@ -176,8 +169,8 @@
 			                                <thead>
 			                                <tr>
 			                                    <th style="width:5%;">일자</th>
-			                                    <th style="width:9%;">시간</th>
-			                                    <th style="width:9%;">구분</th>
+			                                    <th style="width:9%;">출근시간</th>
+			                                    <th style="width:9%;">퇴근시간</th>
 			                                    <th style="width:9%;">기록</th>
 			                                    <th>메모</th>
 			                                    <th style="width:10%;">체온</th>
@@ -188,42 +181,57 @@
 			                                </tr>
 			                                </thead>
 			                                <tbody>
-			                                <tr>
-			                                    <td>21</td>
-			                                    <td>14:12</td>
-			                                    <td>출근</td>
-			                                    <td>지각</td>
-			                                    <td></td>
-			                                    <td></td>
-			                                    <td>O</td>
-			                                    <td>X</td>
-			                                    <td>X</td>
-			                                    <td>X</td>
-			                                </tr>
-			                                <tr>
-			                                    <td>21</td>
-			                                    <td>14:12</td>
-			                                    <td>출근</td>
-			                                    <td>지각</td>
-			                                    <td></td>
-			                                    <td></td>
-			                                    <td>O</td>
-			                                    <td>X</td>
-			                                    <td>X</td>
-			                                    <td>X</td>
-			                                </tr>
-			                                <tr>
-			                                    <td>21</td>
-			                                    <td>14:12</td>
-			                                    <td>출근</td>
-			                                    <td>지각</td>
-			                                    <td></td>
-			                                    <td></td>
-			                                    <td>O</td>
-			                                    <td>X</td>
-			                                    <td>X</td>
-			                                    <td>X</td>
-			                                </tr>
+				                                <c:forEach var="list" items="${attList}" varStatus="status">
+				                                	<tr>
+					                                    <td><fmt:formatDate value="${list.attendance_date}" pattern="dd" /></td>
+					                                    <td>${list.check_in_time}</td>
+					                                    <td>${list.check_out_time}</td>
+					                                    <td>${list.lateChk}</td>
+					                                    <td>${list.memo}</td>
+					                                    <td>${list.temperature}</td>
+					                                    <td>
+					                                    	<c:if test="${list.examination_chk1 != null || list.examination_chk2 != null || list.examination_chk3 != null}">
+					                                    		O
+					                                    	</c:if>
+					                                    	<c:if test="${list.examination_chk1 == null || list.examination_chk2 == null || list.examination_chk3 == null}">
+					                                    		X
+					                                    	</c:if>
+					                                    </td>
+					                                    <td>${list.examination_chk1}</td>
+					                                    <td>${list.examination_chk2}</td>
+					                                    <td>${list.examination_chk3}</td>
+					                                </tr>
+				                                <!-- 
+				                                	<c:if test="${list.check_in_time != null}">
+						                                <tr>
+						                                    <td><fmt:formatDate value="${list.attendance_date}" pattern="dd" /></td>
+						                                    <td>${list.check_in_time}</td>
+						                                    <td>출근</td>
+						                                    <td>지각</td>
+						                                    <td></td>
+						                                    <td></td>
+						                                    <td>O</td>
+						                                    <td>X</td>
+						                                    <td>X</td>
+						                                    <td>X</td>
+						                                </tr>
+						                                <c:if test="${list.check_out_time != '0'}">
+						                                	<tr>
+							                                    <td><fmt:formatDate value="${list.attendance_date}" pattern="dd" /></td>
+							                                    <td>${list.check_out_time}</td>
+							                                    <td>퇴근</td>
+							                                    <td>지각</td>
+							                                    <td></td>
+							                                    <td></td>
+							                                    <td>O</td>
+							                                    <td>X</td>
+							                                    <td>X</td>
+							                                    <td>X</td>
+						                               		 </tr>
+						                                </c:if>
+					                                </c:if>
+					                             -->
+				                                </c:forEach>
 			                                </tbody>
 			                            </table>
 							       </fieldset>
