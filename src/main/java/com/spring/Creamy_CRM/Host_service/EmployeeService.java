@@ -27,5 +27,8 @@ public interface EmployeeService {
 	// 근태 등록 처리
 	public void employeeAttendanceAction(HttpServletRequest req, Model model);
 	
+	// 근무시간 등록 처리
+	public void employeeWorkHoursAction(HttpServletRequest req, Model model);
+	
 	
 }

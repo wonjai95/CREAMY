@@ -15,6 +15,10 @@ $("document").ready(function() {
 		$(".form-check-label").html("지각");
 		$("input[name=late_early]").val("지각");
 		
+		// 출퇴근 값을 hidden에 담아서 service로 넘김
+		$("input[name=employee_in]").val("출근");
+		$("input[name=employee_out]").val("0");
+		
 	});
 	
 	// 퇴근 클릭
@@ -31,6 +35,10 @@ $("document").ready(function() {
 		$(".form-check-input").show();
 		$(".form-check-label").html("조퇴");
 		$("input[name=late_early]").val("조퇴");
+		
+		// 출퇴근 값을 hidden에 담아서 service로 넘김
+		$("input[name=employee_in]").val("0");
+		$("input[name=employee_out]").val("퇴근");
 	});
 	
 	// 지각, 조퇴 체크 

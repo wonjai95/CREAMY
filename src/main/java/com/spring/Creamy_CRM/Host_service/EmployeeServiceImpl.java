@@ -6,6 +6,8 @@
 */
 package com.spring.Creamy_CRM.Host_service;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -18,7 +20,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.spring.Creamy_CRM.Host_dao.EmployeeDAOImpl;
+import com.spring.Creamy_CRM.VO.AttendanceVO;
 import com.spring.Creamy_CRM.VO.EmployeeVO;
+import com.spring.Creamy_CRM.VO.WorkingHoursVO;
 import com.spring.Creamy_CRM.util.EmailChkHandler;
 
 @Service
@@ -161,18 +165,136 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public void employeeAttendanceAction(HttpServletRequest req, Model model) {
 		String employee_code = req.getParameter("employee_code");
-		String employee_name = req.getParameter("employee_name");
 		String employee_in = req.getParameter("employee_in");
 		String employee_out = req.getParameter("employee_out");
+		String inout_time = req.getParameter("inout_time");
 		String late_early = req.getParameter("late_early");
 		String temperature = req.getParameter("temperature");
 		String covid_chk1 = req.getParameter("covid_chk1");
 		String covid_chk2 = req.getParameter("covid_chk2");
 		String covid_chk3 = req.getParameter("covid_chk3");
 		
+		if(late_early == null || late_early.equals("")) late_early = "0";
+		
 		System.out.println("late_early : " + late_early);
+		System.out.println("employee_in : " + employee_in);
+		System.out.println("employee_out : " + employee_out);
+		
+		// 날짜와 시간 
+		Date attendance_date = new Date(System.currentTimeMillis());
+//		SimpleDateFormat dateFormat1 = new SimpleDateFormat("yyyy/MM/dd");
+//		SimpleDateFormat dateFormat2 = new SimpleDateFormat("HH:mm");
+//		String getDate = dateFormat1.format(attendance_date);
+//		String getTime = dateFormat2.format(attendance_date);
+//		System.out.println("getDate : " + getDate);
+//		System.out.println("getTime : " + getTime);
+//		System.out.println("inout_time : " + inout_time);
+		
+		AttendanceVO vo = new AttendanceVO();
+		vo.setEmployee_code(employee_code);
+		vo.setAttendance_date(attendance_date);
+		vo.setTemperature(temperature);
+		vo.setExamination_chk1(covid_chk1);
+		vo.setExamination_chk2(covid_chk2);
+		vo.setExamination_chk3(covid_chk3);
+		
+		int insertCnt = 0;
+		int inChk = 0;
+		int updateCnt = 0;
+		
+		// 출근일 경우 attendance_tbl에 바로 삽입
+		if(employee_in.equals("출근")) {
+			vo.setCheck_in_time(inout_time);
+			vo.setLateChk(late_early);
+			vo.setCheck_out_time("0");
+			
+			inChk = dao.chkIn(vo);
+			
+			if(inChk == 1) {
+				inChk = 3;
+			} else {
+				insertCnt = dao.insertAttendance(vo);
+				System.out.println("insertCnt : " + insertCnt);
+			}
+			
+		// 퇴근일 경우 
+		} else if(employee_out.equals("퇴근")){
+			// 출근을 찍었는지 먼저 체크
+			inChk = dao.chkIn(vo);
+			// 퇴근 처리 시 inserCnt = 9로 설정
+			insertCnt = 9;
+			
+			// attendance_tbl을 update - check_out_time만 삽입
+			if(inChk == 1) {
+				vo.setCheck_out_time(inout_time);
+				updateCnt = dao.updateAttendanceOut(vo);
+				System.out.println("updateCnt : " + updateCnt);
+			} else {
+				// 출근을 먼저 찍으라는 alert
+				inChk = 2;
+			}
+			
+		}
+		System.out.println("inChk : " + inChk);
+		
+		// 출근 insert
+		model.addAttribute("insertCnt",insertCnt);
+		// 퇴근 찍기 전에 출근 정보 있는지 확인, 중복 출근 체크
+		model.addAttribute("inChk",inChk);
+		// 퇴근 update
+		model.addAttribute("updateCnt",updateCnt);
+		
+	}
+
+	// 근무시간 등록 처리
+	@Override
+	public void employeeWorkHoursAction(HttpServletRequest req, Model model) {
+		String employee_code = req.getParameter("employee_code");
+		String mon_in = req.getParameter("mon_in_time");
+		String mon_out = req.getParameter("mon_out_time");
+		String tue_in = req.getParameter("tue_in_time");
+		String tue_out = req.getParameter("tue_out_time");
+		String wed_in = req.getParameter("wed_in_time");
+		String wed_out = req.getParameter("wed_out_time");
+		String thu_in = req.getParameter("thur_in_time");
+		String thu_out = req.getParameter("thur_out_time");
+		String fri_in = req.getParameter("fri_in_time");
+		String fri_out = req.getParameter("fri_out_time");
+		String sat_in = req.getParameter("sat_in_time");
+		String sat_out = req.getParameter("sat_out_time");
+		String sun_in = req.getParameter("sun_in_time");
+		String sun_out = req.getParameter("sun_out_time");
+		String late_criteria = req.getParameter("late_criteria");
+		String early_criteria = req.getParameter("early_criteria");
+		int weekly_hours = Integer.parseInt(req.getParameter("total_workhours_inMinutes"));
 		
 		
+		System.out.println("mon_in : " + mon_in);
+		System.out.println("mon_out : " + mon_out);
+		System.out.println("tue_in : " + tue_in);
+		System.out.println("tue_out : " + tue_out);
+		System.out.println("sun_in : " + sun_in);
+		System.out.println("sun_out : " + sun_out);
+		
+		WorkingHoursVO vo = new WorkingHoursVO();
+		vo.setEmployee_code(employee_code);
+		vo.setMon_in(mon_in);
+		vo.setMon_out(mon_out);
+		vo.setTue_in(tue_in);
+		vo.setTue_out(tue_out);
+		vo.setWed_in(wed_in);
+		vo.setWed_out(wed_out);
+		vo.setThu_in(thu_in);
+		vo.setThu_out(thu_out);
+		vo.setFri_in(fri_in);
+		vo.setFri_out(fri_out);
+		vo.setSat_in(sat_in);
+		vo.setSat_out(sat_out);
+		vo.setSun_in(sun_in);
+		vo.setSun_out(sun_out);
+		vo.setLate_criteria(late_criteria);
+		vo.setEarly_criteria(early_criteria);
+		vo.setWeekly_hours(weekly_hours);
 		
 		
 	}

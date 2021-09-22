@@ -23,7 +23,8 @@ body {
 </head>
 <body>
 	<div class="ibox-content">
-		<form method="get" id="workHoursForm">
+		<form action="employee_workhoursAction" method="post" id="workHoursForm">
+			<sec:csrfInput/>
 			<input type="hidden" name="inout_time_setting" value="0">
 			<input type="hidden" name="late_early" value="0">
 			<div class="form-group  row">
@@ -54,7 +55,7 @@ body {
 			
 			<div class="hr-line-dashed"></div>
 			<div class="form-group  row">
-				<label class="col-sm-2 col-form-label">지각 판단 기준(분)</label>
+				<label class="col-sm-2 col-form-label">조퇴 판단 기준(분)</label>
 				<div class="col-sm-3">
 					<input type="number" class="form-control" name="early_criteria"
 						value="30" step="5" min="0" required>

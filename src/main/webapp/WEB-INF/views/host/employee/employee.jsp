@@ -152,69 +152,6 @@
 				                <td class="center">${dto.employee_hireDate}</td>
 				              </tr>
 		            	</c:forEach>
-		            
-			           <!--  <tr class="employee1">
-			                <td id="empCode1">
-			                	<input type="text" name="employee1" value="E1"
-			                		style="display: none">E1
-			               	</td>
-			                <td>
-			                	<input type="text" name="employee_name1" value="정원제"
-			                		style="display: none">
-			                	<a href="" style="text-decoration: none; color:black;" onclick="detail();">정원제</a>
-			                </td>
-			                <td>회계</td>
-			                <td class="center">신입</td>
-			                <td class="center">2021-09-16</td>
-			            </tr>
-			            <tr class="employee2">
-			                <td id="empCode2">
-			                	<input type="text" name="employee1" value="E2"
-			                		style="display: none">E2
-			                </td>
-			                <td>
-			                	<input type="text" name="employee_name2" value="주수림"
-			                		style="display: none">주수림
-			                </td>
-			                <td>IT</td>
-			                <td class="center">신입</td>
-			                <td class="center">2021-09-16</td>
-			            </tr>
-			            <tr class="employee3">
-			                <td id="empCode3">
-			                	<input type="text" name="employee1" value="E3"
-			                		style="display: none">E3
-			                </td>
-			                <td>
-				       			<input type="text" name="employee_name3" value="정지은"
-				                		style="display: none">정지은    
-			                </td>
-			                <td>IT</td>
-			                <td class="center">팀장</td>
-			                <td class="center">2021-09-16</td>
-			            </tr>
-			            <tr class="employee4">
-			                <td id="empCode4">E4</td>
-			                <td>이시현</td>
-			                <td>IT</td>
-			                <td class="center">신입</td>
-			                <td class="center">2021-09-16</td>
-			            </tr>
-			            <tr class="employee5">
-			                <td id="empCode5">E5</td>
-			                <td>장현정</td>
-			                <td>회계</td>
-			                <td class="center">팀장</td>
-			                <td class="center">2021-09-16</td>
-			            </tr>
-			            
-			            <tr class="employee6">
-			                <td>E6</td>
-			                <td>한진원</td>
-			                <td>IT</td>
-			                <td class="center">신입</td>
-			                <td class="center">2021-09-16</td>
-			            </tr> -->
 		            </tbody>
 	         
 	            </table>

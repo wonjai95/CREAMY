@@ -50,7 +50,7 @@
 	<!-- 직원 id와 pwd를 Auth 테이블에 삽입 -->
 	<insert id="insertEmployeeAuth" parameterType="java.util.Map">
   		insert into Auth_tbl(ID, password, key, authority, enabled)
-  		values(#{ID}, #{password}, #{key}, 'ROLE_USER', 1)
+  		values(#{ID}, #{password}, #{key}, 'ROLE_EMP', 1)
   	</insert>
    
 	<!-- 직원 등록  -->
@@ -61,5 +61,26 @@
 		    			#{employee_ph}, SYSDATE, null, #{department}, #{position}, #{duty}, #{job}, #{employee_type}, #{annual_leave_cnt})
 	</insert>  	
   
+  	<!-- 근태 - 출근 insert -->
+  	<insert id="insertAttendance" parameterType="com.spring.Creamy_CRM.VO.AttendanceVO">
+  		INSERT INTO attendance_tbl (attendance_code, employee_code, attendance_date, check_in_time, check_out_time, lateChk, temperature, examination_chk1, examination_chk2, examination_chk3)
+		VALUES ('AT'||attendance_seq.nextval, #{employee_code}, SYSDATE, #{check_in_time}, #{check_out_time}, #{lateChk}, #{temperature}, #{examination_chk1}, #{examination_chk2}, #{examination_chk3})
+  	</insert>
   
+  	<!-- 근태 - 퇴근시 출근 기록 확인, 중복 출근 체크 -->
+  	<select id="chkIn" parameterType="com.spring.Creamy_CRM.VO.AttendanceVO" resultType="Integer">
+  		SELECT COUNT(*)
+  		  FROM attendance_tbl
+  		 WHERE employee_code = #{employee_code}
+  		   AND TO_CHAR(attendance_date, 'yyyy/MM/dd') = TO_CHAR(#{attendance_date}, 'yyyy/MM/dd')
+  	</select>
+  
+  	<!-- 근태 - 퇴근시 attendance_tbl 퇴근시간 update -->
+  	<update id="updateAttendanceOut" parameterType="com.spring.Creamy_CRM.VO.AttendanceVO">
+  		UPDATE attendance_tbl
+  		   SET check_out_time = #{check_out_time}
+  		 WHERE employee_code = #{employee_code}
+  		   AND TO_CHAR(attendance_date, 'yyyy/MM/dd') = TO_CHAR(#{attendance_date}, 'yyyy/MM/dd')
+  	</update>
+   
   </mapper>

@@ -9,6 +9,7 @@ package com.spring.Creamy_CRM.Host_dao;
 import java.util.ArrayList;
 import java.util.Map;
 
+import com.spring.Creamy_CRM.VO.AttendanceVO;
 import com.spring.Creamy_CRM.VO.EmployeeVO;
 
 public interface EmployeeDAO {
@@ -30,6 +31,15 @@ public interface EmployeeDAO {
 	
 	// 직원 등록 
 	public int insertEmployee(EmployeeVO vo);
+	
+	// 근태 - 출근 insert
+	public int insertAttendance(AttendanceVO vo);
+	
+	// 근태 - 퇴근시 출근 기록 확인
+	public int chkIn(AttendanceVO vo);
+	
+	// 근태 - 퇴근시 attendance_tbl 퇴근시간 update
+	public int updateAttendanceOut(AttendanceVO vo);
 	
 	
 	
