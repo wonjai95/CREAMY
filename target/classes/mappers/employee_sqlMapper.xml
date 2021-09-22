@@ -89,5 +89,37 @@
   		 WHERE employee_code = #{employee_code}
   		   AND TO_CHAR(attendance_date, 'yyyy/MM/dd') = TO_CHAR(#{attendance_date}, 'yyyy/MM/dd')
   	</update>
-   
+  	
+  	<!-- 근무시간 등록 여부 체크 -->
+  	<select id="chkWorkingHours" parameterType="String" resultType="Integer">
+  		SELECT COUNT(*) 
+  		  FROM working_hours_tbl
+  		 WHERE employee_code = #{employee_code}
+  	</select>
+  	
+  	<!-- 근무시간 등록  -->
+  	<insert id="insertWorkingHours" parameterType="com.spring.Creamy_CRM.VO.WorkingHoursVO">
+  		INSERT INTO working_hours_tbl (working_hours_code, employee_code, late_criteria, early_criteria, mon_in, mon_out, tue_in, tue_out, wed_in, wed_out, 
+  										thu_in, thu_out, fri_in, fri_out, sat_in, sat_out, sun_in, sun_out, weekly_hours)
+		VALUES ('WH'||working_hrs_seq.nextval, #{employee_code}, #{late_criteria}, #{early_criteria}, #{mon_in}, #{mon_out}, #{tue_in}, #{tue_out}, #{wed_in}, #{wed_out}, 
+				#{thu_in}, #{thu_in}, #{fri_in}, #{fri_out}, #{sat_in}, #{sat_out}, #{sun_in}, #{sun_out}, #{weekly_hours})
+  	</insert>
+     
+    <!-- 근무시간 update -->
+    <update id="updateWorkingHours" parameterType="com.spring.Creamy_CRM.VO.WorkingHoursVO">
+    	UPDATE working_hours_tbl
+    	   SET late_criteria = #{late_criteria}, early_criteria = #{early_criteria}, mon_in = #{mon_in}, mon_out = #{mon_out},
+    	   		tue_in = #{tue_in}, tue_out = #{tue_out}, wed_in = #{wed_in}, wed_out = #{wed_out}, thu_in = #{thu_in}, thu_out = #{thu_out},
+    	   		fri_in = #{fri_in}, fri_out = #{fri_out}, sat_in = #{sat_in}, sat_out = #{sat_out}, sun_in = #{sun_in}, sun_out = #{sun_out}, weekly_hours = #{weekly_hours}
+    	 WHERE employee_code = #{employee_code}
+    </update>
+     
+    <!-- 휴가 사용일 조회 --> 
+    <select id="getLeave_usage_cnt" parameterType="String" resultType="Integer">
+    	SELECT leave_usage_cnt
+    	  FROM leave_tbl
+    	 WHERE employee_code = #{employee_code}
+    </select>
+     
+     
   </mapper>

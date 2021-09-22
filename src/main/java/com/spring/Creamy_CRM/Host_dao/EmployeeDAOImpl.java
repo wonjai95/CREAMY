@@ -15,6 +15,7 @@ import org.springframework.stereotype.Repository;
 
 import com.spring.Creamy_CRM.VO.AttendanceVO;
 import com.spring.Creamy_CRM.VO.EmployeeVO;
+import com.spring.Creamy_CRM.VO.WorkingHoursVO;
 
 @Repository
 public class EmployeeDAOImpl implements EmployeeDAO {
@@ -89,6 +90,34 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	public int updateAttendanceOut(AttendanceVO vo) {
 		EmployeeDAO dao = sqlSession.getMapper(EmployeeDAO.class);
 		return dao.updateAttendanceOut(vo);
+	}
+
+	// 근무시간 등록 여부 체크
+	@Override
+	public int chkWorkingHours(String employee_code) {
+		EmployeeDAO dao = sqlSession.getMapper(EmployeeDAO.class);
+		return dao.chkWorkingHours(employee_code);
+	}
+
+	// 근무시간 등록 
+	@Override
+	public int insertWorkingHours(WorkingHoursVO vo) {
+		EmployeeDAO dao = sqlSession.getMapper(EmployeeDAO.class);
+		return dao.insertWorkingHours(vo);
+	}
+
+	// 근무시간 update
+	@Override
+	public int updateWorkingHours(WorkingHoursVO vo) {
+		EmployeeDAO dao = sqlSession.getMapper(EmployeeDAO.class);
+		return dao.updateWorkingHours(vo);
+	}
+
+	// 휴가 사용일 조회
+	@Override
+	public int getLeave_usage_cnt(String employee_code) {
+		EmployeeDAO dao = sqlSession.getMapper(EmployeeDAO.class);
+		return dao.getLeave_usage_cnt(employee_code);
 	}
 
 

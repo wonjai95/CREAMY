@@ -28,47 +28,34 @@ body {
 </style>
 </head>
 <body>
-<c:if test="${inChk == 2}">
+<c:if test="${insertCnt == 1}">
 	<script type="text/javascript">
-		alert("출근 등록을 먼저 진행하세요!");
+		alert("근무 시간이 정상적으로 등록되었습니다!");
+		window.self.close();
+	</script>
+</c:if>
+<c:if test="${insertCnt == 0}">
+	<script type="text/javascript">
+		alert("근무 시간 등록에 실패했습니다.");
 		history.back();
 	</script>
 </c:if>
-
-<c:if test="${inChk == 3}">
-	<script type="text/javascript">
-		alert("이미 출근 등록을 완료했습니다!");
-		history.back();
-	</script>
-</c:if>
-
-<c:if test="${inChk != 2 && inChk != 3}">
-	<c:if test="${insertCnt == 1}">
+<c:if test="${insertCnt == 2}">
+	<c:if test="${updateCnt == 0}">
 		<script type="text/javascript">
-			alert("출근 등록이 완료되었습니다.");
-			window.self.close();
-		</script>
-	</c:if>
-	<c:if test="${insertCnt == 0}">
-		<script type="text/javascript">
-			alert("출근 등록에 실패했습니다.");
+			alert("근무 시간 등록에 실패했습니다.");
 			history.back();
 		</script>
 	</c:if>
 	<c:if test="${updateCnt == 1}">
 		<script type="text/javascript">
-			alert("퇴근 등록에 성공했습니다.");
+			alert("근무 시간이 정상적으로 수정되었습니다!");
 			window.self.close();
 		</script>
 	</c:if>
-	<c:if test="${updateCnt == 0}">
-		<script type="text/javascript">
-			alert("퇴근 등록에 실패했습니다.");
-			history.back();
-		</script>
-	</c:if>
-	
+
 </c:if>
+	
 
 </body>
 </html>
