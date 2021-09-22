@@ -24,7 +24,7 @@ body {
 				<label class="col-sm-2 col-form-label">직원코드</label>
 				<div class="col-sm-7">
 					<input type="text" class="form-control" name="employee_code" 
-						value="${employee_code}" placeholder="직원코드" required>
+						value="${dto.employee_code}" placeholder="직원코드" required>
 				</div>
 			</div>
 			
@@ -33,7 +33,7 @@ body {
 				<label class="col-sm-2 col-form-label">직원 이름</label>
 				<div class="col-sm-7">
 					<input type="text" class="form-control" name="employee_name" 
-						value="${employee_name}" placeholder="직원 이름" required>
+						value="${dto.employee_name}" placeholder="직원 이름" required>
 				</div>
 			</div>
 			
@@ -41,7 +41,7 @@ body {
 			<div class="form-group  row">
 				<label class="col-sm-2 col-form-label">사용 연차</label>
 				<div class="col-sm-3" style="align-self: center;">
-					0 / 0 일
+					${leave_usage_cnt} / ${dto.annual_leave_cnt} 일
 				</div>
 			</div>
 			
@@ -49,7 +49,7 @@ body {
 			<div class="form-group  row">
 				<label class="col-sm-2 col-form-label">입사 일자</label>
 				<div class="col-sm-3" style="align-self: center;">
-					2019-09-20
+					${dto.employee_hireDate}
 				</div>
 			</div>
 			

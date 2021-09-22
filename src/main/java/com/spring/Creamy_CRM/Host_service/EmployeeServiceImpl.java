@@ -90,9 +90,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public void enlistEmployee(HttpServletRequest req, Model model) {
 		String employee_name = req.getParameter("employee_name");
 		String employee_id = req.getParameter("employee_id");
-		System.out.println("employee_id : " + employee_id);
 		String pwd = req.getParameter("password");
-		
+		// 비밀번호 암호화
 		String encryptPwd = encoder.encode(pwd);
 		
 		String employee_gender = req.getParameter("employee_gender");
@@ -102,13 +101,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 		String employee_email2 = req.getParameter("employee_email2");
 		String employee_email = employee_email1 + "@" + employee_email2;
 		
-		String employee_address = req.getParameter("employee_address");
-		
 		String employee_ph1 = req.getParameter("employee_ph1");
 		String employee_ph2 = req.getParameter("employee_ph2");
 		String employee_ph3 = req.getParameter("employee_ph3");
 		String employee_ph = employee_ph1 + "-" + employee_ph2 + "-" + employee_ph3;
 		
+		String employee_address = req.getParameter("employee_address");
 		String department = req.getParameter("department");
 		String position = req.getParameter("position");
 		String duty = req.getParameter("duty");
@@ -216,8 +214,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 			
 			inChk = dao.chkIn(vo);
 			
+			// 이미 출근을 등록한 경우
 			if(inChk == 1) {
 				inChk = 3;
+				
+			// 출근 정상 등록
 			} else {
 				insertCnt = dao.insertAttendance(vo);
 				System.out.println("insertCnt : " + insertCnt);
@@ -274,14 +275,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 		String early_criteria = req.getParameter("early_criteria");
 		int weekly_hours = Integer.parseInt(req.getParameter("total_workhours_inMinutes"));
 		
-		
-		System.out.println("mon_in : " + mon_in);
-		System.out.println("mon_out : " + mon_out);
-		System.out.println("tue_in : " + tue_in);
-		System.out.println("tue_out : " + tue_out);
-		System.out.println("sun_in : " + sun_in);
-		System.out.println("sun_out : " + sun_out);
-		
 		WorkingHoursVO vo = new WorkingHoursVO();
 		vo.setEmployee_code(employee_code);
 		vo.setMon_in(mon_in);
@@ -302,7 +295,39 @@ public class EmployeeServiceImpl implements EmployeeService {
 		vo.setEarly_criteria(early_criteria);
 		vo.setWeekly_hours(weekly_hours);
 		
+		int chkCnt = dao.chkWorkingHours(employee_code);
+		int insertCnt = 0;
+		int updateCnt = 0;
 		
+		// 해당 직원에 대한 근무시간이 등록되어있지 않을때 신규 insert
+		if(chkCnt == 0) {
+			insertCnt = dao.insertWorkingHours(vo);
+			System.out.println("insertCnt : " + insertCnt);
+			
+		// 해당 직원에 대한 근무시간이 등록되어있을 때 update
+		} else {
+			updateCnt = dao.updateWorkingHours(vo);
+			System.out.println("updateCnt : " + updateCnt);
+			
+			// update 진행시 insertCnt = 2로 설정
+			insertCnt = 2;
+		}
+		
+		model.addAttribute("insertCnt", insertCnt);
+		model.addAttribute("updateCnt", updateCnt);
+		
+	}
+
+	// 휴가 등록 페이지
+	@Override
+	public void regLeavePage(HttpServletRequest req, Model model) {
+		String employee_code = req.getParameter("employee_code");
+		
+		EmployeeVO dto = dao.getEmployeeDetail(employee_code);
+		int leave_usage_cnt = dao.getLeave_usage_cnt(employee_code);
+		
+		model.addAttribute("dto", dto);
+		model.addAttribute("leave_usage_cnt", leave_usage_cnt);
 	}
 
 	

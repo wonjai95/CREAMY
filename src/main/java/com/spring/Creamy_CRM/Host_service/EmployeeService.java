@@ -30,5 +30,8 @@ public interface EmployeeService {
 	// 근무시간 등록 처리
 	public void employeeWorkHoursAction(HttpServletRequest req, Model model);
 	
+	// 휴가 등록 페이지
+	public void regLeavePage(HttpServletRequest req, Model model);
+	
 	
 }

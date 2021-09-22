@@ -112,14 +112,12 @@ public class EmployeeController {
 	}
 	
 	
-	// 휴가
+	// 휴가 등록 페이지
 	@RequestMapping("host/employee_leave")
 	public String employee_leave(HttpServletRequest req, Model model) {
 		logger.info("url -> employee_leave");
 		
-		model.addAttribute("employee_code", req.getParameter("employee_code"));
-		model.addAttribute("employee_name", req.getParameter("employee_name"));
-
+		service.regLeavePage(req, model);
 		return "host/employee/employee_leave";
 	}
 	
