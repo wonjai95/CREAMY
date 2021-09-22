@@ -43,6 +43,18 @@ public class EmployeeServiceImpl implements EmployeeService {
 		
 	}
 	
+	// 직원 상세 정보
+	@Override
+	public void employeeDetail(HttpServletRequest req, Model model) {
+		
+		String employee_code = req.getParameter("employee_code");
+		System.out.println("employee_code : " + employee_code);
+		
+		EmployeeVO dtos = dao.getEmployeeDetail(employee_code);
+		
+		model.addAttribute("dtos", dtos);
+	}
+	
 	// 직원 등록시 해당 id 체크 
 	@Override
 	public void chkEmployeeIdAction(HttpServletRequest req, Model model) {

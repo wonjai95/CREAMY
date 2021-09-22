@@ -64,40 +64,70 @@
 				            <tbody>
 				            <tr class="" style="border-top:1px solid;">
 				                <td>직원코드</td>
-				                <td><input type="text" value="E1"></td>
+				                <td><input type="text" class="form-control" style="width:50%;" value="${dtos.employee_code}" readonly></td>
 				                <td>부서</td>
-				                <td><input type="text" value="회계"></td>
+				                <td><input type="text" class="form-control" name="department" style="width:50%;" value="${dtos.department}"></td>
 				            </tr>
 				            <tr class="">
 				                <td>직원ID</td>
-				                <td><input type="text" value="test"></td>
+				                <td><input type="text" class="form-control" name="employee_id" style="width:50%;" value="${dtos.employee_id}"></td>
 				                <td>직책</td>
-				                <td><input type="text" value="신입"></td>
+				                <td><input type="text" class="form-control" name="position" style="width:50%;" value="${dtos.position}"></td>
 				            </tr>
 				            <tr class="">
 				                <td>직원이름</td>
-				                <td><input type="text" value="정원제"></td>
+				                <td><input type="text" class="form-control" name="employee_name" style="width:50%;" value="${dtos.employee_name}"></td>
 				                <td>직위</td>
-				                <td><input type="text" value="신입"></td>
+				                <td><input type="text" class="form-control" name="duty" style="width:50%;" value="${dtos.duty}"></td>
 				            </tr>
 				            <tr class="">
 				                <td>성별</td>
-				                <td><input type="text" value="남"></td>
-				                <td>직무</td>
-				                <td><input type="text" value="잡일"></td>
+				                <td>
+				                	<c:if test="${dtos.employee_gender == 'M'}">
+				                		<input type="text" class="form-control" name="employee_gender" style="width:50%;" value="남성">
+				                	</c:if>
+				                	
+				                	<c:if test="${dtos.employee_gender == 'F'}">
+				                		<input type="text" class="form-control" name="employee_gender" style="width:50%;" value="여성">
+				                	</c:if>
+				                </td>
+				                <td>업무</td>
+				                <td><input type="text" class="form-control" name="job" style="width:50%;" value="${dtos.job}"></td>
 				            </tr>
 				            <tr class="">
 				                <td>나이</td>
-				                <td><input type="text" value="27"></td>
+				                <td><input type="text" class="form-control" name="employee_age" style="width:50%;" value="${dtos.employee_age}"></td>
 				                <td>고용형태</td>
-				                <td><input type="text" value="계약직"></td>
+				                <td><input type="text" class="form-control" name="employee_type" style="width:50%;" value="${dtos.employee_type}"></td>
+				            </tr>
+				            
+				            <tr>
+				            	<td>주소</td>
+				                <td><input type="text" class="form-control" name="employee_address" style="width:50%;" value="${dtos.employee_address}"></td>
+				                <td>입사날짜</td>
+				                <td><input type="date" class="form-control" style="width:50%;" value="${dtos.employee_hireDate}"></td>
+				            </tr>
+				            
+				            <tr>
+				            	<td>핸드폰</td>
+				                <td><input type="text" class="form-control" name="employee_ph" style="width:50%;" value="${dtos.employee_ph}"></td>
+				                <td>퇴사날짜</td>
+				                <td>
+				                	<c:if test="${dtos.employee_resignDate == null}">
+				                		<input type="date" class="form-control" style="width:50%;" value="">
+				                	</c:if>
+				                	
+				                	<c:if test="${dtos.employee_resignDate != null}">
+				                		<input type="date" class="form-control" style="width:50%;" value="${dtos.employee_resignDate}"> 
+				                	</c:if>
+				                </td>
 				            </tr>
 				            
 				            <tr class="">
-				                <td>입사날짜</td>
-				                <td><input type="date" value="2021-09-16"></td>
-				                <td class="center">퇴사날짜</td>
-				                <td><input type="date" value="27"></td>
+				                <td>이메일</td>
+				                <td><input type="text" class="form-control" name="employee_email" style="width:50%;" value="${dtos.employee_email}"></td>
+				                <td></td>
+				                <td></td>
 				            </tr>
 				            </tbody>
 				         

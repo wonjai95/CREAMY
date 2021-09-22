@@ -14,7 +14,7 @@ public class EmployeeVO {
 	private String employee_address;	// 직원 주소
 	private String employee_ph;			// 직원 연락처
 	private Date employee_hireDate;		// 직원 입사날짜
-	private Date employee_resginDate;	// 직원 퇴사날짜
+	private Date employee_resignDate;	// 직원 퇴사날짜
 	private String department;			// 부서
 	private String position;			// 직책
 	private String duty;				// 직위
@@ -84,11 +84,11 @@ public class EmployeeVO {
 	public void setEmployee_hireDate(Date employee_hireDate) {
 		this.employee_hireDate = employee_hireDate;
 	}
-	public Date getEmployee_resginDate() {
-		return employee_resginDate;
+	public Date getEmployee_resignDate() {
+		return employee_resignDate;
 	}
-	public void setEmployee_resginDate(Date employee_resginDate) {
-		this.employee_resginDate = employee_resginDate;
+	public void setEmployee_resginDate(Date employee_resignDate) {
+		this.employee_resignDate = employee_resignDate;
 	}
 	public String getDepartment() {
 		return department;

@@ -28,6 +28,13 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		return dao.employeeList(host_code);
 	}
 	
+	// 직원 상제 정보
+	@Override
+	public EmployeeVO getEmployeeDetail(String employee_code) {
+		EmployeeDAO dao = sqlSession.getMapper(EmployeeDAO.class);
+		return dao.getEmployeeDetail(employee_code);
+	}
+	
 	// 이미 직원 등록이 완료된 id인지 체크
 	@Override
 	public int chkEmployeeIdPreexisting(String employee_id) {
