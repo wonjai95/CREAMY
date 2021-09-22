@@ -4,7 +4,39 @@ $("document").ready(function() {
 		if($("input[name=total_workhours_inMinutes]").val() == 0) {
 			alert("시간을 선택해주세요!");
 			return false;
-		}
+		};
+		
+		// 체크되지 않은 요일의 시간들은 0으로 초기화
+		if(!$("#monChk").is(":checked")) {
+			$("input[name=mon_in_time]").val(0);
+			$("input[name=mon_out_time]").val(0);
+		} 
+		if(!$("#tueChk").is(":checked")) {
+			$("input[name=tue_in_time]").val("");
+			$("input[name=tue_out_time]").val("");
+		} 
+		if(!$("#wedChk").is(":checked")) {
+			$("input[name=wed_in_time]").val("");
+			$("input[name=wed_out_time]").val("");
+		} 
+		if(!$("#thurChk").is(":checked")) {
+			$("input[name=thur_in_time]").val("");
+			$("input[name=thur_out_time]").val("");
+		} 
+		if(!$("#friChk").is(":checked")) {
+			$("input[name=fri_in_time]").val("");
+			$("input[name=fri_out_time]").val("");
+		} 
+		if(!$("#satChk").is(":checked")) {
+			$("input[name=sat_in_time]").val("");
+			$("input[name=sat_out_time]").val("");
+		} 
+		if(!$("#sunChk").is(":checked")) {
+			$("input[name=sun_in_time]").val("");
+			$("input[name=sun_out_time]").val("");
+		};
+		
+		
 	});
 	
 // --------------------- 총 근무시간 계산 ---------------------

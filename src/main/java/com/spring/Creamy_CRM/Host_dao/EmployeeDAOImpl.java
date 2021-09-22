@@ -13,6 +13,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.spring.Creamy_CRM.VO.AttendanceVO;
 import com.spring.Creamy_CRM.VO.EmployeeVO;
 
 @Repository
@@ -61,6 +62,27 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	public int insertEmployee(EmployeeVO vo) {
 		EmployeeDAO dao = sqlSession.getMapper(EmployeeDAO.class);
 		return dao.insertEmployee(vo);
+	}
+
+	// 근태 - 출근 insert
+	@Override
+	public int insertAttendance(AttendanceVO vo) {
+		EmployeeDAO dao = sqlSession.getMapper(EmployeeDAO.class);
+		return dao.insertAttendance(vo);
+	}
+
+	// 근태 - 퇴근시 출근 기록 확인
+	@Override
+	public int chkIn(AttendanceVO vo) {
+		EmployeeDAO dao = sqlSession.getMapper(EmployeeDAO.class);
+		return dao.chkIn(vo);
+	}
+
+	// 근태 - 퇴근시 attendance_tbl 퇴근시간 update
+	@Override
+	public int updateAttendanceOut(AttendanceVO vo) {
+		EmployeeDAO dao = sqlSession.getMapper(EmployeeDAO.class);
+		return dao.updateAttendanceOut(vo);
 	}
 
 

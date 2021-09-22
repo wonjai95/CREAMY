@@ -19,8 +19,11 @@ body {
 </head>
 <body>
 	<div class="ibox-content">
-		<form action="" method="post">
+		<form action="employee_attendanceAction" method="post">
+			<sec:csrfInput/>
 			<input type="hidden" name="inout_time_setting" value="0">
+			<input type="hidden" name="employee_in" value="0">
+			<input type="hidden" name="employee_out" value="0">
 			<!-- <input type="hidden" name="late_early" value="0"> -->
 			<div class="form-group  row">
 				<label class="col-sm-2 col-form-label">직원코드</label>

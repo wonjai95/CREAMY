@@ -85,14 +85,13 @@ public class EmployeeController {
 	// 근태 등록 처리
 	@RequestMapping("host/employee_attendanceAction")
 	public String employee_attendanceAction(HttpServletRequest req, Model model) {
-		logger.info("url -> employee_attendance");
+		logger.info("url -> employee_attendanceAction");
 		
-		
+		service.employeeAttendanceAction(req, model);
 		return "host/employee/employee_attendanceAction";
 	}
 	
-	
-	// 근무시간 등록
+	// 근무시간
 	@RequestMapping("host/employee_workhours")
 	public String employee_workhours(HttpServletRequest req, Model model) {
 		logger.info("url -> employee_workhours");
@@ -103,7 +102,17 @@ public class EmployeeController {
 		return "host/employee/employee_workhours";
 	}
 	
-	// 휴가 등록
+	// 근무시간
+	@RequestMapping("host/employee_workhoursAction")
+	public String employee_workhoursAction(HttpServletRequest req, Model model) {
+		logger.info("url -> employee_workhoursAction");
+		
+		service.employeeWorkHoursAction(req, model);
+		return "host/employee/employee_workhoursAction";
+	}
+	
+	
+	// 휴가
 	@RequestMapping("host/employee_leave")
 	public String employee_leave(HttpServletRequest req, Model model) {
 		logger.info("url -> employee_leave");
