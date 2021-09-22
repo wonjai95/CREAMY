@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.spring.Creamy_CRM.Host_dao.ReservationDAO;
-import com.spring.Creamy_CRM.VO.reservationVO;
+import com.spring.Creamy_CRM.VO.ReservationVO;
 
 @Service
 public class ReservationServiceImpl implements ReservationService {
@@ -102,7 +102,7 @@ public class ReservationServiceImpl implements ReservationService {
 		
 		System.out.println("==============================");
 		
-		List<reservationVO> dtos = null;
+		List<ReservationVO> dtos = null;
 
 		if(cnt > 0) {
 			// 5-2단계. 게시글 목록 조회
@@ -137,7 +137,7 @@ public class ReservationServiceImpl implements ReservationService {
 		int number = Integer.parseInt(req.getParameter("number"));
 		
 		// 5단계. 게시글 갯수 조회
-		reservationVO vo = dao.getRequestDetail(num);
+		ReservationVO vo = dao.getRequestDetail(num);
 		
 		// 6단계. jsp로 전달하기 위해 request나 session에 처리결과를 저장
 		model.addAttribute("pageNum", pageNum);
@@ -153,7 +153,7 @@ public class ReservationServiceImpl implements ReservationService {
 		int pageNum = Integer.parseInt(req.getParameter("pageNum"));
 		
 		// reservationVO vo 바구니 생성
-		reservationVO vo = new reservationVO();
+		ReservationVO vo = new ReservationVO();
 		
 		// 화면으로부터 입력받은 값(= boardModifyDetail.jsp의 작성자, 비밀번호, 제목, 내용) 그리고 num을 받아온다.
 //		vo.setMng_pwd(req.getParameter("mng_pwd"));
@@ -269,7 +269,7 @@ public class ReservationServiceImpl implements ReservationService {
 		
 		System.out.println("==============================");
 		
-		List<reservationVO> dtos = null;
+		List<ReservationVO> dtos = null;
 
 		if(cnt > 0) {
 			// 5-2단계. 게시글 목록 조회
