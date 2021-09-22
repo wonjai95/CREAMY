@@ -95,6 +95,8 @@
                                           <!-- 시간 -->
                                           <div style="display:inline-block">
                                              <button type="button" class="btn btn-outline btn-primary" class="timeBtn" id="timeBtn1"
+                                                style="margin: 10px" value="09:00" disabled>09:00</button>
+                                             <button type="button" class="btn btn-outline btn-primary" class="timeBtn" id="timeBtn1"
                                                 style="margin: 10px" value="10:00" disabled>10:00</button>
                                              <button type="button" class="btn btn-outline btn-primary" class="timeBtn" id="timeBtn2"
                                                 style="margin: 10px" value="11:00" disabled>11:00</button>
@@ -106,6 +108,12 @@
                                                 style="margin: 10px" value="14:00">14:00</button>
                                              <button type="button" class="btn btn-outline btn-primary" class="timeBtn" id="timeBtn5"
                                                 style="margin: 10px" value="15">15:00</button>
+                                             <button type="button" class="btn btn-outline btn-primary" class="timeBtn" id="timeBtn5"
+                                                style="margin: 10px" value="16">16:00</button>
+                                             <button type="button" class="btn btn-outline btn-primary" class="timeBtn" id="timeBtn5"
+                                                style="margin: 10px" value="17">17:00</button>
+                                             <button type="button" class="btn btn-outline btn-primary" class="timeBtn" id="timeBtn5"
+                                                style="margin: 10px" value="18">18:00</button>
                                           </div>
                                      <div class="panel-heading" style="background-color: #e5e6e7; margin-top:15px; color: black">
                                         <input type="text" name="selectTime" id="selectTime" style="display: none">선택 시간 : <span class="timeSelectedInfo">예약시간</span>
@@ -225,7 +233,7 @@
                                        <table class="product-item" data-cat="group-0" style="width:100%; border:1px solid #ddd; padding:0px; margin-bottom:8px;">
                                           <tr>
                                              <td style="width:64px; padding:10px 0 0 0; background:#fafafa; text-align:center">
-                                                <input type="radio" class="checkbox" id="product_17806" name="ReserveProduct" value="23" />
+                                                <input type="radio" class="checkbox" id="product_17806" name="ReserveProduct" value="25" />
                                                 <label for="product_17806" class="input-label checkbox"></label>
                                                 <input type="hidden" id="price_17806" value="100" />
                                              </td>
@@ -242,7 +250,7 @@
                                        <table class="product-item" data-cat="group-0" style="width:100%; border:1px solid #ddd; padding:0px; margin-bottom:8px;">
                                           <tr>
                                              <td style="width:64px; padding:10px 0 0 0; background:#fafafa; text-align:center">
-                                                <input type="radio" class="checkbox" id="product_17807" name="ReserveProduct" value="17807" />
+                                                <input type="radio" class="checkbox" id="product_17807" name="ReserveProduct" value="61" />
                                                 <label for="product_17807" class="input-label checkbox"></label>
                                                 <input type="hidden" id="price_17807" value="800000" />
                                              </td>
@@ -257,7 +265,7 @@
                                     
                                        <table class="product-item" data-cat="group-2676" style="width:100%; border:1px solid #ddd; padding:0px; margin-bottom:8px;">
                                           <tr>
-                                             <td style="width:64px; padding:10px 0 0 0; background:#fafafa; text-align:center">
+                                             <td style="width:64px; padding:10px 0 0 0; background:#fafafa; text-align:center">62
                                                 <input type="radio" class="checkbox" id="product_17808" name="ReserveProduct" value="17808" />
                                                 <label for="product_17808" class="input-label checkbox"></label>
                                                 <input type="hidden" id="price_17808" value="100000" />

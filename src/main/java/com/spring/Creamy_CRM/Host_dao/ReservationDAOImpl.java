@@ -27,7 +27,7 @@ public class ReservationDAOImpl implements ReservationDAO {
 	@Override
 	public int getRequestCnt() {
 		// 방법1. mapper를 호출하는 방식 | sqlSession.selectOne("패키지명.namespace명.getBoardCnt");
-		// int selectCnt = sqlSession.selectOne("spring.mvc.board_mybatis.board.dao.BoardDAO.getBoardCnt");
+		// int selectCnt = sqlSession.selectOne("com.spring.Creamy_CRM.Host_dao.ReservationDAO.getRequestCnt");
 		// return selectCnt;
 		
 		// 방법2. 메서드를 활용/호출하는 방식

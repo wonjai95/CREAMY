@@ -28,6 +28,8 @@ public class ReservationController {
 	public String reservation(HttpServletRequest req, Model model) {
 		logger.info("url -> reservation");
 		
+		service.requestList(req, model);
+		
 		return "host/reservation/reservation";
 	}
 	//예약 요청
@@ -35,14 +37,14 @@ public class ReservationController {
 	public String requestReservation(HttpServletRequest req, Model model) {
 		logger.info("url -> requestReservation");
 		
-		service.requestList(req, model);
-		
 		return "host/reservation/requestReservation";
 	}
 	//예약 요청 이동
 	@RequestMapping("/host/requestDetails")
 	public String requestDetails(HttpServletRequest req, Model model) {
 		logger.info("url -> requestDetails");
+		
+		//service.requestDetailAction(req, model);
 		
 		return "host/reservation/requestDetails";
 	}

@@ -9,7 +9,7 @@
 	 ReservationDAO에서 사용하는 mapper
 -->
 
-  <mapper namespace="com.spring.Creamy_CRM.Host_dao.reservationDAO">
+  <mapper namespace="com.spring.Creamy_CRM.Host_dao.ReservationDAO">
   
 	<!-- 예약요청 갯수 조회 -->
 	<select id="getRequestCnt" resultType="int">
@@ -24,7 +24,7 @@
 			FROM (SELECT res_code, res_state, res_date, res_hour,
 					 employee_code, user_id, rowNum rNum
 					FROM ( SELECT * FROM reservation_tbl
-				ORDER BY res_code DESC )
+		ORDER BY res_code DESC )
 				)
 			WHERE rNum >= #{start} AND rNum <= #{end}
 			]]>
@@ -33,9 +33,8 @@
   	<!-- 예약요청 상세정보 조회 -->
   	<!-- <select id="getRequestDetail" parameterType="int" resultType="com.spring.Creamy_CRM.VO.ReservationVO">
 			SELECT *
-			FROM Profit
-			WHERE pf_num = #{pf_num}
+			FROM reservation_tbl
+			WHERE res_code = #{res_code}
 	</select> -->
-  	
   	
   </mapper>
