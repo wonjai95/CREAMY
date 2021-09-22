@@ -15,6 +15,9 @@ $("document").ready(function() {
 		$(".form-check-label").html("지각");
 		$("input[name=late_early]").val("지각");
 		
+		// 클릭시 체온 및 코로나 문진 숨기기
+		$("#out_display").css('display', 'block');
+		
 		// 출퇴근 값을 hidden에 담아서 service로 넘김
 		$("input[name=employee_in]").val("출근");
 		$("input[name=employee_out]").val("0");
@@ -35,6 +38,9 @@ $("document").ready(function() {
 		$(".form-check-input").show();
 		$(".form-check-label").html("조퇴");
 		$("input[name=late_early]").val("조퇴");
+		
+		// 클릭시 체온 및 코로나 문진 숨기기
+		$("#out_display").css('display', 'none');
 		
 		// 출퇴근 값을 hidden에 담아서 service로 넘김
 		$("input[name=employee_in]").val("0");
