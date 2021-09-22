@@ -33,5 +33,11 @@ public interface EmployeeService {
 	// 휴가 등록 페이지
 	public void regLeavePage(HttpServletRequest req, Model model);
 	
+	// 휴가 등록 처리
+	public void leaveAction(HttpServletRequest req, Model model);
+	
+	// 급여 계약 처리 
+	public void salaryContractAction(HttpServletRequest req, Model model);
+	
 	
 }

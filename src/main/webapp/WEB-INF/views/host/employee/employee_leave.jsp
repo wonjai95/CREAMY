@@ -19,7 +19,8 @@ body {
 </head>
 <body>
 	<div class="ibox-content">
-		<form method="get">
+		<form action="employee_leaveAction" method="post">
+			<sec:csrfInput/>
 			<div class="form-group  row">
 				<label class="col-sm-2 col-form-label">직원코드</label>
 				<div class="col-sm-7">
@@ -41,7 +42,7 @@ body {
 			<div class="form-group  row">
 				<label class="col-sm-2 col-form-label">사용 연차</label>
 				<div class="col-sm-3" style="align-self: center;">
-					${leave_usage_cnt} / ${dto.annual_leave_cnt} 일
+					${dto.annual_leave_usage} / ${dto.annual_leave_cnt} 일
 				</div>
 			</div>
 			
@@ -57,8 +58,8 @@ body {
 			<div class="form-group row">
 				<label class="col-sm-2 col-form-label" style="margin-right: 12px;">구분</label>
 				<div class="col-sm-3" style="display: contents;">
-					<input type='date' value="0" name="leave_start" style="border: 1px solid #e5e6e7"/>&nbsp;&nbsp; ~ &nbsp;&nbsp;
-					<input type='date' value="0" name="leave_end" style="border: 1px solid #e5e6e7"/>&nbsp;&nbsp; 
+					<input type='date' value="0" name="leave_start" style="border: 1px solid #e5e6e7" required/>&nbsp;&nbsp; ~ &nbsp;&nbsp;
+					<input type='date' value="0" name="leave_end" style="border: 1px solid #e5e6e7" required/>&nbsp;&nbsp; 
 				</div>
 			</div>	
 			
@@ -77,6 +78,16 @@ body {
 				<label class="col-sm-2 col-form-label">사유</label>
 				<div class="col-sm-7">
 					<input type="text" class="form-control" name="leave_memo" placeholder="사유">
+				</div>
+			</div>
+			
+			<div class="hr-line-dashed"></div>
+			<div class="form-group row">
+				<label class="col-sm-2 col-form-label">핸드폰</label>
+				<div class="col-sm-7" style="display: flex;">
+					<input type="text" class="form-control" name="employee_ph1" maxlength="3" placeholder="000"> &nbsp;&nbsp;-&nbsp;&nbsp;
+					<input type="text" class="form-control" name="employee_ph2" maxlength="4" placeholder="0000"> &nbsp;&nbsp;-&nbsp;&nbsp;
+					<input type="text" class="form-control" name="employee_ph3" maxlength="4" placeholder="0000"> 
 				</div>
 			</div>
 			

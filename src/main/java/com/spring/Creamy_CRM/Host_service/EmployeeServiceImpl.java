@@ -21,6 +21,7 @@ import org.springframework.ui.Model;
 import com.spring.Creamy_CRM.Host_dao.EmployeeDAOImpl;
 import com.spring.Creamy_CRM.VO.AttendanceVO;
 import com.spring.Creamy_CRM.VO.EmployeeVO;
+import com.spring.Creamy_CRM.VO.LeaveVO;
 import com.spring.Creamy_CRM.VO.WorkingHoursVO;
 import com.spring.Creamy_CRM.util.EmailChkHandler;
 
@@ -36,7 +37,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	// 직원 목록 조회
 	@Override
 	public void employeeList(HttpServletRequest req, Model model) {
-		String host_code = (String) req.getSession().getAttribute("id");
+		String host_code = (String) req.getSession().getAttribute("code");
 		System.out.println("host_code : " + host_code);
 		host_code = "H1";
 		
@@ -114,9 +115,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 		String employee_type = req.getParameter("employee_type");
 		int annual_leave_cnt = Integer.parseInt(req.getParameter("annual_leave_cnt"));
 		
-		String host_code = (String) req.getSession().getAttribute("id");
+		String host_code = (String) req.getSession().getAttribute("code");
 		System.out.println("host_code : " + host_code);
-		host_code = "H1";
 		
 		if(department == null || department.equals("")) department = "none";
 		if(position == null || position.equals("")) position = "none";
@@ -185,13 +185,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 		
 		// 날짜와 시간 
 		Date attendance_date = new Date(System.currentTimeMillis());
-//		SimpleDateFormat dateFormat1 = new SimpleDateFormat("yyyy/MM/dd");
-//		SimpleDateFormat dateFormat2 = new SimpleDateFormat("HH:mm");
-//		String getDate = dateFormat1.format(attendance_date);
-//		String getTime = dateFormat2.format(attendance_date);
-//		System.out.println("getDate : " + getDate);
-//		System.out.println("getTime : " + getTime);
-//		System.out.println("inout_time : " + inout_time);
 		
 		AttendanceVO vo = new AttendanceVO();
 		vo.setEmployee_code(employee_code);
@@ -324,11 +317,83 @@ public class EmployeeServiceImpl implements EmployeeService {
 		String employee_code = req.getParameter("employee_code");
 		
 		EmployeeVO dto = dao.getEmployeeDetail(employee_code);
-		int leave_usage_cnt = dao.getLeave_usage_cnt(employee_code);
 		
 		model.addAttribute("dto", dto);
-		model.addAttribute("leave_usage_cnt", leave_usage_cnt);
 	}
+
+	// 휴가 등록 처리
+	@Override
+	public void leaveAction(HttpServletRequest req, Model model) {
+		String employee_code = req.getParameter("employee_code");
+		String strStartDate = req.getParameter("leave_start");
+		String strEndDate = req.getParameter("leave_end");
+		int leave_total_days = Integer.parseInt(req.getParameter("leave_total_days"));
+		String leave_memo = req.getParameter("leave_memo");
+		String leave_reason = req.getParameter("leave_reason");
+		String employee_ph1 = req.getParameter("employee_ph1");
+		String employee_ph2 = req.getParameter("employee_ph2");
+		String employee_ph3 = req.getParameter("employee_ph3");
+		String emergency_contact = employee_ph1 + "-" + employee_ph2 + "-" + employee_ph3;
+		
+		Date leave_date = Date.valueOf(strStartDate);
+		Date leave_end = Date.valueOf(strEndDate);
+	
+		if(leave_memo == null || leave_memo.equals("")) leave_memo = "0";
+		if(leave_reason == null || leave_reason.equals("")) leave_reason = "0";
+		if(employee_ph1 == null || employee_ph1.equals("")) employee_ph1 = "0";
+		if(employee_ph2 == null || employee_ph2.equals("")) employee_ph2 = "0";
+		if(employee_ph3 == null || employee_ph3.equals("")) employee_ph3 = "0";
+		
+		
+		LeaveVO vo = new LeaveVO();
+		vo.setEmployee_code(employee_code);
+		vo.setLeave_date(leave_date);
+		vo.setLeave_end(leave_end);
+		vo.setLeave_usage_cnt(leave_total_days);
+		vo.setLeave_reason(leave_reason);
+		vo.setLeave_memo(leave_memo);
+		vo.setEmergency_contact(emergency_contact);
+		
+		// 휴가 신청 일수와 연차 비교
+		EmployeeVO dto = dao.getEmployeeDetail(employee_code);
+		int annual_leave_cnt = dto.getAnnual_leave_cnt();
+		int annual_leave_usage = dto.getAnnual_leave_usage();
+		int insertCnt = 0;
+		
+		// 해당 직원의 연차 일수 초과 확인
+		if(annual_leave_cnt - annual_leave_usage - leave_total_days < 0) {
+			insertCnt = 2;
+			
+		// 초과 X(정상 휴가 등록)
+		} else {
+			insertCnt = dao.insertLeave(vo);
+		}
+		System.out.println("insertCnt : " + insertCnt);
+		
+		model.addAttribute("insertCnt", insertCnt);
+	}
+
+	// 급여 계약 처리 
+	@Override
+	public void salaryContractAction(HttpServletRequest req, Model model) {
+		String employee_code = req.getParameter("employee_code");
+		int monthly_salary = Integer.parseInt(req.getParameter("mon_sal"));
+		int annual_salary = Integer.parseInt(req.getParameter("salary"));
+		String payment_date = req.getParameter("payment_date");
+		String bankInfo = req.getParameter("account");
+		String con_start = req.getParameter("contract_start");
+		String con_end = req.getParameter("contract_end");
+		String register_date = req.getParameter("register_date");
+		
+		String[] bankList = bankInfo.split("/");
+		System.out.println("은행  : " + bankList[0]);
+		System.out.println("계좌번호  : " + bankList[1]);
+		
+	}
+	
+	
+	
+	
 
 	
 
