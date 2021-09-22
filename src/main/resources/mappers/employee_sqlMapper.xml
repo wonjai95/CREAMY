@@ -26,6 +26,13 @@
 		 ORDER BY TO_NUMBER(SUBSTR(employee_code,2)) DESC
 	</select>
 	
+	<!-- 직원 상세 정보 조회 -->
+	<select id="getEmployeeDetail" parameterType="String" resultType="com.spring.Creamy_CRM.VO.EmployeeVO">
+		SELECT *
+		  FROM employee_tbl
+		 WHERE employee_code = #{employee_code}
+	</select>
+	
 	<!-- 이미 직원 등록이 완료된 id인지 체크 -->
 	<select id="chkEmployeeIdPreexisting" parameterType="String" resultType="Integer">
 		SELECT COUNT(*) 
@@ -49,7 +56,7 @@
 	<!-- 직원 등록  -->
 	<insert id="insertEmployee" parameterType="com.spring.Creamy_CRM.VO.EmployeeVO">
 		INSERT INTO employee_tbl(employee_code, employee_id, host_code, employee_name, employee_gender, employee_age, employee_email, employee_address, 
-		   				 employee_ph, employee_hireDate, employee_resginDate, department, position, duty, job, employee_type, annual_leave_cnt)
+		   				 employee_ph, employee_hireDate, employee_resignDate, department, position, duty, job, employee_type, annual_leave_cnt)
 		VALUES ('E'||emp_seq.nextval, #{employee_id}, #{host_code}, #{employee_name}, #{employee_gender}, #{employee_age}, #{employee_email}, #{employee_address}, 
 		    			#{employee_ph}, SYSDATE, null, #{department}, #{position}, #{duty}, #{job}, #{employee_type}, #{annual_leave_cnt})
 	</insert>  	

@@ -1,7 +1,9 @@
 $("document").ready(function() {
 	
+	
 	// 테이블에서 직원 선택시 직원 코드 hidden에 설정
 	$("tr[class^=employee]").click(function() {
+
 		$("tr[class^=employee]").css("background", "");
 		
 		var thisTr = $(this);
@@ -15,8 +17,23 @@ $("document").ready(function() {
 		$("input[name=employee_name_hidden]").val(empName);
 		$("input[name=employee_depart_hidden]").val(empDepart);
 		$(this).css("background", "#20c997");
+			
+	});
+	
+	
+	// 테이블에서 직원 더블 클릭시 상세 정보 페이지로 이동
+	$("tr[class^=employee]").dblclick(function(){
+		
+		console.log("doublic Click");
+		
+		var empCode = $("input[name=employee_code_hidden]").val();
+		console.log(empCode);
+		
+		var url = "employee_detail?employee_code=" + empCode;
+		window.open(url, "employee_detail", "menubar=no, width=1300, height=800");
 		
 	});
+	
 	
 	// 직원 등록 버튼 클릭
 	$("#employee_enlist_btn").click(function() {

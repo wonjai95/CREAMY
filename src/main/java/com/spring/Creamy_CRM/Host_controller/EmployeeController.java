@@ -22,19 +22,24 @@ public class EmployeeController {
 
 	@Autowired
 	EmployeeServiceImpl service;
-		
+	
+	// 직원 목록
 	@RequestMapping("host/employee")
 	public String Employee(HttpServletRequest req, Model model) {
 		logger.info("url -> employee");
 	  
 		service.employeeList(req, model);
+		
 		return "host/employee/employee";
 	}
-	   
+	
+	// 직원 상세 정보
 	@RequestMapping("host/employee_detail")
 	public String Employee_testDetail(HttpServletRequest req, Model model) {
 		logger.info("url -> employee_detail");
-	  
+	    
+		service.employeeDetail(req, model);
+		
 		return "host/employee/employee_detail";
 	}
 	   
@@ -52,6 +57,7 @@ public class EmployeeController {
 		logger.info("url -> employee_IdChkAction");
 		
 		service.chkEmployeeIdAction(req, model);
+		
 		return "host/employee/employee_IdChkAction";
 	}
 	
@@ -61,10 +67,11 @@ public class EmployeeController {
 		logger.info("url -> employee_enlistAction");
 		
 		service.enlistEmployee(req, model);
+		
 		return "host/employee/employee_enlistAction";
 	}
 	
-	// 근태
+	// 근태 등록
 	@RequestMapping("host/employee_attendance")
 	public String employee_attendance(HttpServletRequest req, Model model) {
 		logger.info("url -> employee_attendance");
@@ -85,7 +92,7 @@ public class EmployeeController {
 	}
 	
 	
-	// 근무시간
+	// 근무시간 등록
 	@RequestMapping("host/employee_workhours")
 	public String employee_workhours(HttpServletRequest req, Model model) {
 		logger.info("url -> employee_workhours");
@@ -96,7 +103,7 @@ public class EmployeeController {
 		return "host/employee/employee_workhours";
 	}
 	
-	// 휴가
+	// 휴가 등록
 	@RequestMapping("host/employee_leave")
 	public String employee_leave(HttpServletRequest req, Model model) {
 		logger.info("url -> employee_leave");
@@ -107,7 +114,7 @@ public class EmployeeController {
 		return "host/employee/employee_leave";
 	}
 	
-	// 급여 계약
+	// 급여 계약 등록
 	@RequestMapping("host/employee_contract")
 	public String employee_contract(HttpServletRequest req, Model model) {
 		logger.info("url -> employee_contract");

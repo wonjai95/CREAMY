@@ -16,6 +16,9 @@ public interface EmployeeDAO {
 	// 직원 목록 조회
 	public ArrayList<EmployeeVO> employeeList(String host_code);
 	
+	// 직원 상제 정보
+	public EmployeeVO getEmployeeDetail(String employee_code);
+	
 	// 이미 직원 등록이 완료된 id인지 체크
 	public int chkEmployeeIdPreexisting(String employee_id);
 	
