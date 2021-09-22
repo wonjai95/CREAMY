@@ -91,12 +91,7 @@ public class EmployeeController {
 		return "host/employee/employee_attendanceAction";
 	}
 	
-<<<<<<< Updated upstream
-	
-	// 근무시간 등록
-=======
 	// 근무시간
->>>>>>> Stashed changes
 	@RequestMapping("host/employee_workhours")
 	public String employee_workhours(HttpServletRequest req, Model model) {
 		logger.info("url -> employee_workhours");
@@ -107,9 +102,6 @@ public class EmployeeController {
 		return "host/employee/employee_workhours";
 	}
 	
-<<<<<<< Updated upstream
-	// 휴가 등록
-=======
 	// 근무시간
 	@RequestMapping("host/employee_workhoursAction")
 	public String employee_workhoursAction(HttpServletRequest req, Model model) {
@@ -121,7 +113,6 @@ public class EmployeeController {
 	
 	
 	// 휴가
->>>>>>> Stashed changes
 	@RequestMapping("host/employee_leave")
 	public String employee_leave(HttpServletRequest req, Model model) {
 		logger.info("url -> employee_leave");
