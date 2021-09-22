@@ -29,6 +29,7 @@ public class ReservationServiceImpl implements ReservationService {
 	// 예약요청 목록	
 	@Override
 	public void requestList(HttpServletRequest req, Model model) {
+		System.out.println("서비스 requestList시작합니다.");
 		// 3단계. 화면으로부터 입력받은 값을 받아온다.
 		// 페이징 (변수들)
 		int pageSize = 25;		// 한 페이지당 출력할 글의 갯수
@@ -132,16 +133,14 @@ public class ReservationServiceImpl implements ReservationService {
 	public void requestDetailAction(HttpServletRequest req, Model model) {
 		// 3단계. 화면으로부터 입력받은 값을 받아온다.
 		// http://localhost:8080/프로젝트명/boardDetail.bo?num=25&pageNum=2&number=25
-		int num = Integer.parseInt(req.getParameter("num"));
-		int pageNum = Integer.parseInt(req.getParameter("pageNum"));
-		int number = Integer.parseInt(req.getParameter("number"));
+		int num = Integer.parseInt(req.getParameter("res_code"));
 		
 		// 5단계. 게시글 갯수 조회
 		ReservationVO vo = dao.getRequestDetail(num);
 		
 		// 6단계. jsp로 전달하기 위해 request나 session에 처리결과를 저장
-		model.addAttribute("pageNum", pageNum);
-		model.addAttribute("number", number);
+		//model.addAttribute("pageNum", pageNum);
+		//model.addAttribute("number", number);
 		model.addAttribute("dto", vo);
 	}
 
