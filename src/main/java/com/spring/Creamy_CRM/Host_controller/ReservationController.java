@@ -8,15 +8,20 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.spring.Creamy_CRM.Host_service.ReservationServiceImpl;
 
 @Controller
 public class ReservationController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(ReservationController.class);
 	
+	@Autowired
+	ReservationServiceImpl service;
 	
 	//예약 첫 페이지
 	@RequestMapping("/host/reservation")
@@ -29,6 +34,8 @@ public class ReservationController {
 	@RequestMapping("/host/requestReservation")
 	public String requestReservation(HttpServletRequest req, Model model) {
 		logger.info("url -> requestReservation");
+		
+		service.requestList(req, model);
 		
 		return "host/reservation/requestReservation";
 	}
