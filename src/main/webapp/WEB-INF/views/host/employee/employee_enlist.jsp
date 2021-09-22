@@ -157,8 +157,8 @@ body {
 		<div class="form-group row">
 			<label class="col-sm-2 col-form-label">고용형태</label>
 			<div class="col-sm-3">
-				<select name="employee_type" id="" class="form-control">
-					<option value="1" id="employee_type" selected>고용형태 선택</option>
+				<select name="employee_type" id="employee_type" class="form-control">
+					<option value="1">고용형태 선택</option>
 					<option value="정규직">정규직</option>
 					<option value="비정규직">계약직</option>
 					<option value="인턴">인턴</option>

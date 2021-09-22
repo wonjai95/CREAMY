@@ -28,50 +28,20 @@ body {
 </style>
 </head>
 <body>
-<c:if test="${inChk == 2}">
+<c:if test="${insertCnt == 0}">
 	<script type="text/javascript">
-		alert("출근 등록을 먼저 진행하세요!");
+		alert("급여계약 등록에 실패했습니다!");
 		history.back();
 	</script>
 </c:if>
 
-<c:if test="${inChk == 3}">
+<c:if test="${insertCnt == 1}">
 	<script type="text/javascript">
-		alert("이미 출근 등록을 완료했습니다!");
-		history.back();
+		alert("급여계약이 등록됐습니다!");
+		window.self.close();
 	</script>
 </c:if>
 
-<c:if test="${inChk != 2 && inChk != 3}">
-	<c:if test="${insertCnt == 1}">
-		<script type="text/javascript">
-			alert("출근 등록이 완료되었습니다.");
-			window.self.close();
-		</script>
-	</c:if>
-	<c:if test="${insertCnt == 0}">
-		<script type="text/javascript">
-			alert("출근 등록에 실패했습니다.");
-			history.back();
-		</script>
-	</c:if>
-	
-	<c:if test="${insertCnt != 0 && insertCnt != 1}">
-		<c:if test="${updateCnt == 1}">
-			<script type="text/javascript">
-				alert("퇴근 등록에 성공했습니다.");
-				window.self.close();
-			</script>
-		</c:if>
-		<c:if test="${updateCnt == 0}">
-			<script type="text/javascript">
-				alert("퇴근 등록에 실패했습니다.");
-				history.back();
-			</script>
-		</c:if>
-	</c:if>
-	
-</c:if>
 
 </body>
 </html>

@@ -19,7 +19,8 @@ body {
 </head>
 <body>
 	<div class="ibox-content">
-		<form method="get">
+		<form action="employee_contractAction" method="post">
+			<sec:csrfInput/>
 			<div class="form-group  row">
 				<label class="col-sm-2 col-form-label">직원코드</label>
 				<div class="col-sm-7">
@@ -74,8 +75,8 @@ body {
 			<div class="form-group row">
 				<label class="col-sm-2 col-form-label" style="margin-right: 12px;">적용기간</label>
 				<div class="col-sm-3" style="display: contents;">
-					<input type='date' value="0" name="contract_start" style="border: 1px solid #e5e6e7"/>&nbsp;&nbsp; ~ &nbsp;&nbsp;
-					<input type='date' value="0" name="contract_end" style="border: 1px solid #e5e6e7"/>&nbsp;&nbsp; 
+					<input type='date' value="0" name="contract_start" style="border: 1px solid #e5e6e7" required/>&nbsp;&nbsp; ~ &nbsp;&nbsp;
+					<input type='date' value="0" name="contract_end" style="border: 1px solid #e5e6e7" required/>&nbsp;&nbsp; 
 				</div>
 			</div>	
 			
