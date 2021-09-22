@@ -11,7 +11,31 @@
 
   <mapper namespace="com.spring.Creamy_CRM.Host_dao.reservationDAO">
   
+	<!-- 예약요청 갯수 조회 -->
+	<select id="getRequestCnt" resultType="int">
+	 		SELECT COUNT(*)
+	 		  FROM reservation_tbl
+ 	</select>
+	
+	<!-- 예약요청 목록 조회 -->
+  	<select id="getRequestList" parameterType="java.util.Map" resultType="com.spring.Creamy_CRM.VO.ReservationVO">
+  		<![CDATA[		
+			SELECT *
+			FROM (SELECT res_code, res_state, res_date, res_hour,
+					 employee_code, user_id, rowNum rNum
+					FROM ( SELECT * FROM reservation_tbl
+				ORDER BY res_code DESC )
+				)
+			WHERE rNum >= #{start} AND rNum <= #{end}
+			]]>
+  	</select>
+  	
+  	<!-- 예약요청 상세정보 조회 -->
+  	<!-- <select id="getRequestDetail" parameterType="int" resultType="com.spring.Creamy_CRM.VO.ReservationVO">
+			SELECT *
+			FROM Profit
+			WHERE pf_num = #{pf_num}
+	</select> -->
   	
   	
-  
   </mapper>

@@ -15,6 +15,30 @@
 
     <title> 예약조회 </title>
 
+
+
+<script type="text/javascript">
+
+	$(function() {
+		$('#tab-1').css("visibility", "visible");  // 나타내기
+				
+				$.ajax({
+					url : '${pageContext.request.contextPath}/WEB-INF/views/host/reservation/requestReservation',  // '컨트롤러'/매핑주소
+					type : 'POST',
+					data : {},
+					success : function(result) {  // 콜백함수
+						$('#tab-1').html(result);
+					},
+					error : function() {
+						alert('오류');
+					}
+				});
+			});
+
+</script>
+
+
+
 </head>
 	<body>
 	<div id="wrapper">
@@ -52,9 +76,11 @@
 								<li><a class="nav-link" data-toggle="tab" href="#tab-2">예약 조회</a></li>
 							</ul>
 							<div class="tab-content">
+								<form action="requestReservation" method="post">
 								<div id="tab-1" class="tab-pane active">
 									<jsp:include page="requestReservation.jsp" />
 								</div>
+								</form>
 								<div id="tab-2" class="tab-pane">
 									<jsp:include page="showReservation.jsp" />
 								</div>
