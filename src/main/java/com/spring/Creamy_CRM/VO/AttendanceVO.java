@@ -14,6 +14,7 @@ public class AttendanceVO {
 	private String examination_chk1;	// 문진체크1
 	private String examination_chk2;	// 문진체크2
 	private String examination_chk3;	// 문진체크3
+	private String memo;				// 메모
 	
 	
 	public String getAttendance_code() {
@@ -75,6 +76,12 @@ public class AttendanceVO {
 	}
 	public void setExamination_chk3(String examination_chk3) {
 		this.examination_chk3 = examination_chk3;
+	}
+	public String getMemo() {
+		return memo;
+	}
+	public void setMemo(String memo) {
+		this.memo = memo;
 	}
 	
 	

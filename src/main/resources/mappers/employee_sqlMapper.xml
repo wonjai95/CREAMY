@@ -33,6 +33,13 @@
 		 WHERE employee_code = #{employee_code}
 	</select>
 	
+	<!--  -->
+	<select id="getAttendanceList" parameterType="String" resultType="com.spring.Creamy_CRM.VO.AttendanceVO">
+		SELECT *
+		  FROM attendance_tbl
+		 WHERE employee_code = #{employee_code}
+	</select>
+	
 	<!-- 이미 직원 등록이 완료된 id인지 체크 -->
 	<select id="chkEmployeeIdPreexisting" parameterType="String" resultType="Integer">
 		SELECT COUNT(*) 
@@ -63,8 +70,8 @@
   
   	<!-- 근태 - 출근 insert -->
   	<insert id="insertAttendance" parameterType="com.spring.Creamy_CRM.VO.AttendanceVO">
-  		INSERT INTO attendance_tbl (attendance_code, employee_code, attendance_date, check_in_time, check_out_time, lateChk, temperature, examination_chk1, examination_chk2, examination_chk3)
-		VALUES ('AT'||attendance_seq.nextval, #{employee_code}, SYSDATE, #{check_in_time}, #{check_out_time}, #{lateChk}, #{temperature}, #{examination_chk1}, #{examination_chk2}, #{examination_chk3})
+  		INSERT INTO attendance_tbl (attendance_code, employee_code, attendance_date, check_in_time, check_out_time, lateChk, temperature, examination_chk1, examination_chk2, examination_chk3, memo)
+		VALUES ('AT'||attendance_seq.nextval, #{employee_code}, SYSDATE, #{check_in_time}, #{check_out_time}, #{lateChk}, #{temperature}, #{examination_chk1}, #{examination_chk2}, #{examination_chk3}, #{memo})
   	</insert>
   
   	<!-- 근태 - 퇴근시 출근 기록 확인, 중복 출근 체크 -->

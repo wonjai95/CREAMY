@@ -12,13 +12,6 @@
 <title>employee</title>
 
 <script type="text/javascript" src="${path}/resources/host/js/employee.js"></script>
-<script>
-/* function detail(){
-	
-	var url = "employee_detail"
-    window.open(url, "employee_detail", "menubar=no, width=1300, height=800 ");
-} */
-</script>
 
 </head>
 <body>
@@ -145,7 +138,7 @@
 				                <td>
 				                	<input type="text" name="employee_name${status.index}" value="${dto.employee_name}"
 				                		style="display: none">
-				                	<a style="text-decoration: none; color:black;" onclick="detail();">${dto.employee_name}</a>
+				                	<span style="text-decoration: none; color:black;">${dto.employee_name}</span>
 				                </td>
 				                <td>${dto.department}</td>
 				                <td class="center">${dto.position}</td>
