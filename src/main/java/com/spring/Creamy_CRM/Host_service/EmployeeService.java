@@ -14,9 +14,15 @@ public interface EmployeeService {
 	
 	// 직원 목록 조회
 	public void employeeList(HttpServletRequest req, Model model);
+	
+	// 직원 등록시 해당 id가 있는지 체크 
+	public void chkEmployeeIdAction(HttpServletRequest req, Model model);
 
 	// 직원 등록
 	public void enlistEmployee(HttpServletRequest req, Model model);
+	
+	// 근태 등록 처리
+	public void employeeAttendanceAction(HttpServletRequest req, Model model);
 	
 	
 }

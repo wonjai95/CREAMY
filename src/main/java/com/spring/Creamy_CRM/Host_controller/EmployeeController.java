@@ -46,6 +46,15 @@ public class EmployeeController {
 		return "host/employee/employee_enlist";
 	}
 	
+	// 직원 등록시 id 체크
+	@RequestMapping("host/employee_IdChkAction")
+	public String employee_confrimIdChk(HttpServletRequest req, Model model) {
+		logger.info("url -> employee_IdChkAction");
+		
+		service.chkEmployeeIdAction(req, model);
+		return "host/employee/employee_IdChkAction";
+	}
+	
 	// 직원 등록 처리
 	@RequestMapping("host/employee_enlistAction")
 	public String employee_enlistAction(HttpServletRequest req, Model model) {
@@ -65,6 +74,16 @@ public class EmployeeController {
 		
 		return "host/employee/employee_attendance";
 	}
+	
+	// 근태 등록 처리
+	@RequestMapping("host/employee_attendanceAction")
+	public String employee_attendanceAction(HttpServletRequest req, Model model) {
+		logger.info("url -> employee_attendance");
+		
+		
+		return "host/employee/employee_attendanceAction";
+	}
+	
 	
 	// 근무시간
 	@RequestMapping("host/employee_workhours")

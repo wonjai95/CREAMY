@@ -27,9 +27,11 @@ body {
 }
 </style>
 <script type="text/javascript" src="${path}/resources/host/js/employee.js"></script>
+<script type="text/javascript" src="${path}/resources/host/js/employee_enlist.js"></script>
 </head>
 <body>
-<form action="employee_enlistAction" method="post">
+<form action="employee_enlistAction" method="post" id="employeeEnlistForm" name="employeeEnlistForm">
+	<input type="hidden" name="idChk" id="idChk" value="0">
 	<sec:csrfInput/>
 	<div class="ibox-content">
 		<div class="hr-line-dashed"></div>
@@ -41,10 +43,33 @@ body {
 		</div>
 		
 		<div class="hr-line-dashed"></div>
-		<div class="form-group  row">
-			<label class="col-sm-2 col-form-label">직원 아이디</label>
-			<div class="col-sm-7" style="border-right: dashed #e5e6e7">
-				<input type="text" class="form-control" name="employee_id" placeholder="아이디" required> 
+		<div class="form-group row">
+			<div class="row">
+				<label class="col-sm-2 col-form-label">직원 아이디</label>
+				<div class="col-sm-3">
+					<input type="text" class="form-control" name="employee_id" id="employee_id" placeholder="아이디" required> 
+				</div>
+				<div class="col-sm-2">
+					<button class="btn btn-primary dim" type="button" id="idChkBtn">확인</button>
+				</div>
+			</div>
+		</div>
+		
+		<div class="hr-line-dashed"></div>
+		<div class="form-group row">
+			<div class="row">
+				<label class="col-sm-2 col-form-label">직원 비밀번호</label>
+				<div class="col-sm-3">
+					<input type="password" class="form-control" name="password" id="password" placeholder="비밀번호" required> 
+				</div>
+				<div class="col-sm-3">
+					<input type="password" class="form-control" name="password_chk" id="password_chk" placeholder="비밀번호 확인" required> 
+				</div>
+				<div class="col-sm-3">
+					<br>
+					<span class="pwd_chkMsg" style="font-size: 10px; color: #CC3D3D"></span>
+					<input type="text" value="0" name="pwd_chkVal" style="display: none;">
+				</div>
 			</div>
 		</div>
 		
