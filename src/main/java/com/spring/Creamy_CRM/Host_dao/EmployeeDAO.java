@@ -12,6 +12,7 @@ import java.util.Map;
 import com.spring.Creamy_CRM.VO.AttendanceVO;
 import com.spring.Creamy_CRM.VO.EmployeeVO;
 import com.spring.Creamy_CRM.VO.LeaveVO;
+import com.spring.Creamy_CRM.VO.SalaryContractVO;
 import com.spring.Creamy_CRM.VO.WorkingHoursVO;
 
 public interface EmployeeDAO {
@@ -57,6 +58,15 @@ public interface EmployeeDAO {
 	
 	// 휴가 등록 insert
 	public int insertLeave(LeaveVO vo);
+	
+	// 계좌 등록
+	public int insertBankInfo(SalaryContractVO vo);
+	
+	// 은행코드 조회
+	public String getBankCode(Map<String, Object> map);
+	
+	// 급여 계약 등록 
+	public int insertSalaryContract(SalaryContractVO vo);
 	
 	
 }

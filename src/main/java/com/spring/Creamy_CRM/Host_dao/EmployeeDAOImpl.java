@@ -16,6 +16,7 @@ import org.springframework.stereotype.Repository;
 import com.spring.Creamy_CRM.VO.AttendanceVO;
 import com.spring.Creamy_CRM.VO.EmployeeVO;
 import com.spring.Creamy_CRM.VO.LeaveVO;
+import com.spring.Creamy_CRM.VO.SalaryContractVO;
 import com.spring.Creamy_CRM.VO.WorkingHoursVO;
 
 @Repository
@@ -120,6 +121,31 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		EmployeeDAO dao = sqlSession.getMapper(EmployeeDAO.class);
 		return dao.insertLeave(vo);
 	}
+
+	// 계좌 등록
+	@Override
+	public int insertBankInfo(SalaryContractVO vo) {
+		EmployeeDAO dao = sqlSession.getMapper(EmployeeDAO.class);
+		return dao.insertBankInfo(vo);
+	}
+	
+	// 은행코드 조회
+	@Override
+	public String getBankCode(Map<String, Object> map) {
+		EmployeeDAO dao = sqlSession.getMapper(EmployeeDAO.class);
+		return dao.getBankCode(map);
+	}
+	
+	// 급여 계약 등록
+	@Override
+	public int insertSalaryContract(SalaryContractVO vo) {
+		EmployeeDAO dao = sqlSession.getMapper(EmployeeDAO.class);
+		return dao.insertSalaryContract(vo);
+	}
+
+	
+
+	
 
 
 

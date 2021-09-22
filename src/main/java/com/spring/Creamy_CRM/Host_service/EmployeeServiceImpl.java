@@ -22,6 +22,7 @@ import com.spring.Creamy_CRM.Host_dao.EmployeeDAOImpl;
 import com.spring.Creamy_CRM.VO.AttendanceVO;
 import com.spring.Creamy_CRM.VO.EmployeeVO;
 import com.spring.Creamy_CRM.VO.LeaveVO;
+import com.spring.Creamy_CRM.VO.SalaryContractVO;
 import com.spring.Creamy_CRM.VO.WorkingHoursVO;
 import com.spring.Creamy_CRM.util.EmailChkHandler;
 
@@ -117,6 +118,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		
 		String host_code = (String) req.getSession().getAttribute("code");
 		System.out.println("host_code : " + host_code);
+		host_code = "H1";
 		
 		if(department == null || department.equals("")) department = "none";
 		if(position == null || position.equals("")) position = "none";
@@ -377,18 +379,53 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public void salaryContractAction(HttpServletRequest req, Model model) {
 		String employee_code = req.getParameter("employee_code");
+		String employee_name = req.getParameter("employee_name");
 		int monthly_salary = Integer.parseInt(req.getParameter("mon_sal"));
-		int annual_salary = Integer.parseInt(req.getParameter("salary"));
+		String annual_salary = req.getParameter("salary");
 		String payment_date = req.getParameter("payment_date");
 		String bankInfo = req.getParameter("account");
 		String con_start = req.getParameter("contract_start");
 		String con_end = req.getParameter("contract_end");
-		String register_date = req.getParameter("register_date");
+		
+		String annual_salary_int = annual_salary.replace(",", "");
 		
 		String[] bankList = bankInfo.split("/");
 		System.out.println("은행  : " + bankList[0]);
 		System.out.println("계좌번호  : " + bankList[1]);
 		
+		Date contract_start = Date.valueOf(con_start);
+		Date contract_end = Date.valueOf(con_end);
+		
+		SalaryContractVO vo = new SalaryContractVO();
+		vo.setEmployee_code(employee_code);
+		vo.setMonthly_salary(monthly_salary);
+		vo.setAnnual_salary(Integer.parseInt(annual_salary_int));
+		vo.setPayment_date(payment_date);
+		vo.setCon_start(contract_start);
+		vo.setCon_end(contract_end);
+		vo.setAccount_holder(employee_name);
+		vo.setBank_name(bankList[0]);
+		vo.setAccount_number(bankList[1]);
+		
+		// 은행 삽입
+		int insertBankCnt = dao.insertBankInfo(vo);
+		int insertCnt = 0;
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("account_holder", employee_name);
+		map.put("account_number", bankList[1]);
+		
+		// 은행 코드 가져오기
+		String bank_code = dao.getBankCode(map);
+		vo.setBank_code(bank_code);
+		
+		// 급여계약 insert
+		if(insertBankCnt != 0) {
+			insertCnt = dao.insertSalaryContract(vo);
+			System.out.println("insertCnt : " + insertCnt);
+		}
+		
+		model.addAttribute("insertCnt", insertCnt);
 	}
 	
 	

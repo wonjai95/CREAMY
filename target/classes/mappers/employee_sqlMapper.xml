@@ -120,5 +120,27 @@
     	VALUES ('L'||leave_seq.nextval, #{employee_code}, #{leave_date}, #{leave_end}, #{leave_usage_cnt}, #{leave_reason}, #{emergency_contact}, #{leave_memo}, SYSDATE)
     </insert>
      
+    <!-- 급여 계약 등록 -->
+    <insert id="insertBankInfo" parameterType="com.spring.Creamy_CRM.VO.SalaryContractVO">
+    	INSERT INTO bank_tbl (bank_code, bank_name, accountAs, account_number, account_holder)
+    	VALUES ('B'||bank_seq.nextval, #{bank_name}, null, #{account_number}, #{account_holder})
+    </insert>
+    
+    <!-- 은행코드 조회 -->
+     <select id="getBankCode" parameterType="java.util.Map" resultType="String">
+     	SELECT bank_code 
+     	  FROM bank_tbl
+     	 WHERE account_number = #{account_number}
+     	   AND account_holder = #{account_holder}
+     </select>
+      
      
+    <!-- 급여 계약 등록 -->
+    <insert id="insertSalaryContract" parameterType="com.spring.Creamy_CRM.VO.SalaryContractVO">
+    	INSERT INTO salary_contract_tbl (salary_contract_code, employee_code, monthly_salary, annual_salary, bank_code,
+    										payment_date, contract_date, con_start, con_end)
+    	VALUES ('SC'||sal_con_seq.nextval, #{employee_code}, #{monthly_salary}, #{annual_salary}, #{bank_code}, 
+    				#{payment_date}, SYSDATE, #{con_start}, #{con_end})
+    </insert>
+      
   </mapper>

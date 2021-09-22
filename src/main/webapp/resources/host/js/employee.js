@@ -54,8 +54,18 @@ $("document").ready(function() {
 			var empName = $("input[name=employee_name_hidden]").val();
 			console.log(empCode);
 			
+			// 팝업창 중앙에 띄우기 하고 싶은데 안됨....ㅠ
+			var popUpWidth = 800;
+			var popUpHeight = 800;
+			
+			var popupX = (window.screen.width/2) - (popUpWidth/2);
+			var popupY = (window.screen.height/2) - (popUpHeight/2);
+			console.log("popupX : " + popupX);
+			console.log("popupY : " + popupY);
+			
 			var url = "employee_attendance?employee_code=" + empCode + "&employee_name=" + empName;
-				window.open(url, "employee_attendance", "menubar=no, width=800, height=800");
+				window.open(url, "employee_attendance", "status=no, width=800, height=800, left="+ popupX + ", top="+ popupY);
+						
 		}
 	});
 	

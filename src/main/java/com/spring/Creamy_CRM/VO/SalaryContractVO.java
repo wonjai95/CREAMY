@@ -13,6 +13,9 @@ public class SalaryContractVO {
 	private Date contract_date;					// 계약일
 	private Date con_start;						// 계약 적용기간 시작
 	private Date con_end;						// 계약 적용기간 끝
+	private String bank_name;					// 은행명
+	private String account_number;				// 계좌번호
+	private String account_holder;				// 예금주
 	
 	
 	public String getSalary_contract_code() {
@@ -68,6 +71,24 @@ public class SalaryContractVO {
 	}
 	public void setCon_end(Date con_end) {
 		this.con_end = con_end;
+	}
+	public String getBank_name() {
+		return bank_name;
+	}
+	public void setBank_name(String bank_name) {
+		this.bank_name = bank_name;
+	}
+	public String getAccount_number() {
+		return account_number;
+	}
+	public void setAccount_number(String account_number) {
+		this.account_number = account_number;
+	}
+	public String getAccount_holder() {
+		return account_holder;
+	}
+	public void setAccount_holder(String account_holder) {
+		this.account_holder = account_holder;
 	}
 	
 	

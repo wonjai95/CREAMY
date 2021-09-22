@@ -7,14 +7,26 @@ $("document").ready(function() {
 		} else if($("input[name=pwd_chkVal]").val() == 0){
 			alert("직원 비밀번호 확인하세요!");
 			return false;
+		} else if($("select[name=employee_type] option:selected").val() == "1") {
+			alert("고용 형태를 선택하세요!");
+			return false;
 		}
 	});
 	
 	// 직원 아이디 확인 버튼 클릭
 	$("#idChkBtn").click(function() {
 		var id = $("input[name=employee_id]").val();
+		
+		var popUpWidth = 350;
+		var popUpHeight = 150;
+		
+		var popupX = (window.screen.width/2) - (popUpWidth/2);
+		var popupY = (window.screen.height/2) - (popUpHeight/2);
+		console.log("popupX : " + popupX);
+		console.log("popupY : " + popupY);
+		
 		var url ="employee_IdChkAction?employee_id=" + id;
-		    window.open(url, "employee_IdChkAction", "menubar=no, width=350, height=150 ");
+		    window.open(url, "employee_IdChkAction", "menubar=no, width=350, height=150 , left="+ popupX + ", top="+ popupY);
 	});
 	
 	// 팝업창에서 직원 아이디 확인 버튼 클릭
@@ -56,6 +68,7 @@ $("document").ready(function() {
 		opener.parent.location.reload();
 		
 	});
+	
 	
 });
 
