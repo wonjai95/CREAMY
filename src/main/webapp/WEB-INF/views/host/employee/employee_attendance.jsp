@@ -59,33 +59,35 @@ body {
 				</div>
 			</div>
 			
-			<div class="hr-line-dashed"></div>
-			<div class="form-group row">
-				<label class="col-sm-2 col-form-label">체온</label>
-				<div class="col-sm-3" style="display: flex;" >
-					<input type="text" class="form-control" name="temperature" placeholder="체온">&nbsp;&nbsp;°C
+			<div  id="out_display">
+				<div class="hr-line-dashed"></div>
+				<div class="form-group row">
+					<label class="col-sm-2 col-form-label">체온</label>
+					<div class="col-sm-3" style="display: flex;" >
+						<input type="text" class="form-control" name="temperature" placeholder="체온">&nbsp;&nbsp;°C
+					</div>
 				</div>
-			</div>
-			
-			<div class="hr-line-dashed"></div>
-			<div class="form-group row">
-				<label class="col-sm-2 col-form-label">코로나 문진 작성</label>
-				<div class="col-sm-7">
-                  	 <div class="i-checks">
-                  	 	<span>현재 가족 혹은 일상적 접촉이 잦은 지인 중에 코로나19(의심)환자,자가격리대상자가 있습니까?</span> <br><br>
-                  	 	<label> <input type="radio" value="O" name="covid_chk1"> 예 </label>
-                        <label> <input type="radio" value="X" name="covid_chk1"> 아니오</label> <br><br>
-                      </div>
-                  	 <div class="i-checks">
-                  	 	<span>  현재 발열로 인하여 해열제 성분의 약을 복용하였습니까?</span> <br><br>
-                  	 	<label> <input type="radio" value="O" name="covid_chk2"> 예 </label>
-                        <label> <input type="radio" value="X" name="covid_chk2"> 아니오</label> <br><br>
-                      </div>
-                  	 <div class="i-checks">
-                  	 	<span> 해외 방문 이력이 있으며 귀국 후 14일 이내에 발열 또는 호흡기 증상이 있습니까? </span> <br><br>
-                  	 	<label> <input type="radio" value="O" name="covid_chk3"> 예 </label>
-                        <label> <input type="radio" value="X" name="covid_chk3"> 아니오</label>
-                      </div>
+				
+				<div class="hr-line-dashed"></div>
+				<div class="form-group row">
+					<label class="col-sm-2 col-form-label">코로나 문진 작성</label>
+					<div class="col-sm-7">
+	                  	 <div class="i-checks">
+	                  	 	<span>현재 가족 혹은 일상적 접촉이 잦은 지인 중에 코로나19(의심)환자,자가격리대상자가 있습니까?</span> <br><br>
+	                  	 	<label> <input type="radio" value="O" name="covid_chk1"> 예 </label>
+	                        <label> <input type="radio" value="X" name="covid_chk1"> 아니오</label> <br><br>
+	                      </div>
+	                  	 <div class="i-checks">
+	                  	 	<span>  현재 발열로 인하여 해열제 성분의 약을 복용하였습니까?</span> <br><br>
+	                  	 	<label> <input type="radio" value="O" name="covid_chk2"> 예 </label>
+	                        <label> <input type="radio" value="X" name="covid_chk2"> 아니오</label> <br><br>
+	                      </div>
+	                  	 <div class="i-checks">
+	                  	 	<span> 해외 방문 이력이 있으며 귀국 후 14일 이내에 발열 또는 호흡기 증상이 있습니까? </span> <br><br>
+	                  	 	<label> <input type="radio" value="O" name="covid_chk3"> 예 </label>
+	                        <label> <input type="radio" value="X" name="covid_chk3"> 아니오</label>
+	                      </div>
+					</div>
 				</div>
 			</div>
 			

@@ -185,8 +185,24 @@
 				                                	<tr>
 					                                    <td><fmt:formatDate value="${list.attendance_date}" pattern="dd" /></td>
 					                                    <td>${list.check_in_time}</td>
-					                                    <td>${list.check_out_time}</td>
-					                                    <td>${list.lateChk}</td>
+					                                    <td>
+					                                    	<c:if test="${list.check_out_time == '0'}">
+					                                    		-
+					                                    	</c:if>
+					                                    	
+					                                    	<c:if test="${list.check_out_time != '0'}">
+					                                    		${list.check_out_time}
+					                                    	</c:if>
+					                                    </td>
+					                                    <td>
+					                                    	<c:if test="${list.lateChk == '0'}">
+					                                    		-
+					                                    	</c:if>
+					                                    	
+					                                    	<c:if test="${list.lateChk !=  '0'}">
+					                                    		${list.lateChk}
+					                                    	</c:if>
+					                                    </td>
 					                                    <td>${list.memo}</td>
 					                                    <td>${list.temperature}</td>
 					                                    <td>
