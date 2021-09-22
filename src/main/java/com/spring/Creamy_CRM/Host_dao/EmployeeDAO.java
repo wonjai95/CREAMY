@@ -11,6 +11,7 @@ import java.util.Map;
 
 import com.spring.Creamy_CRM.VO.AttendanceVO;
 import com.spring.Creamy_CRM.VO.EmployeeVO;
+import com.spring.Creamy_CRM.VO.LeaveVO;
 import com.spring.Creamy_CRM.VO.WorkingHoursVO;
 
 public interface EmployeeDAO {
@@ -54,9 +55,8 @@ public interface EmployeeDAO {
 	// 근무시간 update
 	public int updateWorkingHours(WorkingHoursVO vo);
 	
-	// 휴가 사용일 조회
-	public int getLeave_usage_cnt(String employee_code);
-	
+	// 휴가 등록 insert
+	public int insertLeave(LeaveVO vo);
 	
 	
 }

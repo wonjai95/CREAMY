@@ -58,7 +58,7 @@ body {
 			<div class="form-group  row">
 				<label class="col-sm-2 col-form-label">지급일자</label>
 				<div class="col-sm-5">
-					<input type="text" class="form-control" name="payment date" placeholder="매달 N일" required>
+					<input type="text" class="form-control" name="payment_date" placeholder="매달 N일" required>
 				</div>
 			</div>
 			

@@ -15,6 +15,7 @@ import org.springframework.stereotype.Repository;
 
 import com.spring.Creamy_CRM.VO.AttendanceVO;
 import com.spring.Creamy_CRM.VO.EmployeeVO;
+import com.spring.Creamy_CRM.VO.LeaveVO;
 import com.spring.Creamy_CRM.VO.WorkingHoursVO;
 
 @Repository
@@ -113,12 +114,13 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		return dao.updateWorkingHours(vo);
 	}
 
-	// 휴가 사용일 조회
+	// 휴가 등록 insert
 	@Override
-	public int getLeave_usage_cnt(String employee_code) {
+	public int insertLeave(LeaveVO vo) {
 		EmployeeDAO dao = sqlSession.getMapper(EmployeeDAO.class);
-		return dao.getLeave_usage_cnt(employee_code);
+		return dao.insertLeave(vo);
 	}
+
 
 
 

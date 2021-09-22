@@ -21,6 +21,7 @@ public class EmployeeVO {
 	private String job;					// 업무
 	private String employee_type;		// 고용 형태
 	private int annual_leave_cnt;		// 연차일수
+	private int annual_leave_usage;		// 연차 사용일수
 	
 	
 	// getter, setter
@@ -125,6 +126,15 @@ public class EmployeeVO {
 	}
 	public void setAnnual_leave_cnt(int annual_leave_cnt) {
 		this.annual_leave_cnt = annual_leave_cnt;
+	}
+	public int getAnnual_leave_usage() {
+		return annual_leave_usage;
+	}
+	public void setAnnual_leave_usage(int annual_leave_usage) {
+		this.annual_leave_usage = annual_leave_usage;
+	}
+	public void setEmployee_resignDate(Date employee_resignDate) {
+		this.employee_resignDate = employee_resignDate;
 	}
 	
 	

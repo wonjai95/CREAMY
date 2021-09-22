@@ -121,6 +121,15 @@ public class EmployeeController {
 		return "host/employee/employee_leave";
 	}
 	
+	// 휴가 등록 처리
+	@RequestMapping("host/employee_leaveAction")
+	public String employee_leaveAction(HttpServletRequest req, Model model) {
+		logger.info("url -> employee_leaveAction");
+		
+		service.leaveAction(req, model);
+		return "host/employee/employee_leaveAction";
+	}
+	
 	// 급여 계약 등록
 	@RequestMapping("host/employee_contract")
 	public String employee_contract(HttpServletRequest req, Model model) {
@@ -131,5 +140,16 @@ public class EmployeeController {
 
 		return "host/employee/employee_contract";
 	}
+	
+	// 급여 계약 처리
+	@RequestMapping("host/employee_contractAction")
+	public String employee_contractAction(HttpServletRequest req, Model model) {
+		logger.info("url -> employee_contractAction");
+		
+		service.salaryContractAction(req, model);
+		return "host/employee/employee_contractAction";
+	}
+	
+	
 	
 }

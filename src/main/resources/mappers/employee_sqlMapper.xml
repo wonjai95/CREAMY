@@ -113,13 +113,12 @@
     	   		fri_in = #{fri_in}, fri_out = #{fri_out}, sat_in = #{sat_in}, sat_out = #{sat_out}, sun_in = #{sun_in}, sun_out = #{sun_out}, weekly_hours = #{weekly_hours}
     	 WHERE employee_code = #{employee_code}
     </update>
-     
-    <!-- 휴가 사용일 조회 --> 
-    <select id="getLeave_usage_cnt" parameterType="String" resultType="Integer">
-    	SELECT leave_usage_cnt
-    	  FROM leave_tbl
-    	 WHERE employee_code = #{employee_code}
-    </select>
+    
+    <!-- 휴가 등록 insert (휴가등록시 직원테이블의 휴가사용일자 증가 트리거) -->
+    <insert id="insertLeave" parameterType="com.spring.Creamy_CRM.VO.LeaveVO">
+    	INSERT INTO leave_tbl (leave_code, employee_code, leave_date, leave_end, leave_usage_cnt, leave_reason, emergency_contact, leave_memo, leave_regDatae)
+    	VALUES ('L'||leave_seq.nextval, #{employee_code}, #{leave_date}, #{leave_end}, #{leave_usage_cnt}, #{leave_reason}, #{emergency_contact}, #{leave_memo}, SYSDATE)
+    </insert>
      
      
   </mapper>
