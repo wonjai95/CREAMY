@@ -70,6 +70,9 @@ public class ProductServiceImpl implements ProductService {
 		
 	}
 	
+	
+	
+	
 	// 상품
 		@Override
 		public void product(HttpServletRequest req, Model model) {
@@ -199,9 +202,13 @@ public class ProductServiceImpl implements ProductService {
 			String product_group_code = req.getParameter("product_group_code");
 			String product_group_name = req.getParameter("product_group_name");
 
-			int selectCnt = dao.chkProductGroupName(product_group_name);
+			ProductGroupVO vo = dao.getProductGroup(product_group_code);
+			int selectCnt = 0;
+			if(!product_group_name.equals(vo.getProduct_group_name())) {
+				selectCnt = dao.chkProductGroupName(product_group_name);
+			}
 
-			if (selectCnt != 1) {
+			if (selectCnt != 1 || product_group_name.equals(vo.getProduct_group_name())) {
 				Map<String, Object> map = new HashMap<String, Object>();
 				map.put("product_group_code", product_group_code);
 				map.put("product_group_name", product_group_name);
@@ -248,7 +255,7 @@ public class ProductServiceImpl implements ProductService {
 			} else {
 				String saveDir = req.getSession().getServletContext().getRealPath("/resources/images/productImage/");
 				// ↓ 경로조심 자신 프로젝트 경로
-				String realDir = "D:\\Dev88\\workspace3\\Creamy_CRM\\src\\main\\webapp\\resources\\images\\productImage\\";
+				String realDir = "D:\\Dev88\\workspace\\Creamy_CRM\\src\\main\\webapp\\resources\\images\\productImage\\";
 				try {
 					file.transferTo(new File(saveDir + file.getOriginalFilename()));
 					FileInputStream fis = new FileInputStream(saveDir + file.getOriginalFilename());
@@ -280,9 +287,14 @@ public class ProductServiceImpl implements ProductService {
 			vo.setProduct_status(product_status);
 			vo.setProduct_content(product_content);
 			vo.setProduct_group_code(product_group_code);
-			int insertCnt = dao.insertProduct(vo);
-
-			model.addAttribute("insertCnt", insertCnt);
+			
+			int selectCnt = dao.chkProductName(product_name);
+			if(selectCnt != 1) {
+				int insertCnt = dao.insertProduct(vo);
+				model.addAttribute("insertCnt", insertCnt);
+			}
+			
+			model.addAttribute("selectCnt", selectCnt);
 		}
 
 		// 상품상세(수정)
@@ -349,9 +361,17 @@ public class ProductServiceImpl implements ProductService {
 			vo.setProduct_content(product_content);
 			vo.setProduct_group_code(product_group_code);
 
-			int updateCnt = dao.updateProduct(vo);
-
-			model.addAttribute("updateCnt", updateCnt);
+			int selectCnt = 0;
+			ProductVO getVo = dao.getProduct(product_code);
+			if(!product_name.equals(getVo.getProduct_name())) {
+				selectCnt = dao.chkProductName(product_name);
+			}
+			
+			if(selectCnt != 1 || product_name.equals(getVo.getProduct_name())) {
+				int updateCnt = dao.updateProduct(vo);
+				model.addAttribute("updateCnt", updateCnt);
+			}
+			model.addAttribute("selectCnt", selectCnt);
 
 		}
 
@@ -397,15 +417,20 @@ public class ProductServiceImpl implements ProductService {
 		public void modifyTradeAction(HttpServletRequest req, Model model) {
 			String trade_code = req.getParameter("trade_code");
 			String trade_name = req.getParameter("trade_name");
-			int selectCnt = dao.chkTradeName(trade_name);
+			TradeVO vo = dao.getTrade(trade_code);
+			int selectCnt = 0;
+			if(!trade_name.equals(vo.getTrade_name())) {
+				selectCnt = dao.chkTradeName(trade_name);
+			}
 			
-			if (selectCnt != 1) {
+			if (selectCnt != 1 || trade_name.equals(vo.getTrade_name())) {
 				Map<String, Object> map = new HashMap<String, Object>();
 				map.put("trade_code", trade_code);
 				map.put("trade_name", trade_name);
 				int updateCnt = dao.updateTrade(map);
 				model.addAttribute("updateCnt", updateCnt);
 			}
+			
 			model.addAttribute("selectCnt", selectCnt);
 		}
 
@@ -485,10 +510,13 @@ public class ProductServiceImpl implements ProductService {
 			vo.setStock_status(stock_status);
 			vo.setTrade_code(trade_code);
 			
-			System.out.println("dd" + trade_code);
+			StockVO getVo = dao.getStock(stock_code);
+			int selectCnt = 0;
+			if(!stock_name.equals(getVo.getStock_name())) {
+				selectCnt = dao.chkStockName(stock_name);
+			}
 			
-			int selectCnt = dao.chkStockName(stock_name);
-			if(selectCnt != 1) {
+			if(selectCnt != 1 || stock_name.equals(getVo.getStock_name())) {
 				int updateCnt = dao.updateStock(vo);
 				model.addAttribute("updateCnt",updateCnt);
 			}

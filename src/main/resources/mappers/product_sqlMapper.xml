@@ -25,18 +25,11 @@
   		 WHERE user_code=#{user_code}
   	</select>
   	
+  	
   	<!-- 상품 그룹 개수  -->
   	<select id="productGroupCnt" resultType="int">
   		select count(*) from product_group_tbl
   	</select>
-  	<!--  
-  	<select id="productGroupCnt" parameterType="java.util.Map" resultType="int">
-  		select count(*) from product_group_tbl
-  		<if test="prac != null">
-  			where product_group_name = #{prac}
-  		</if>
-  	</select>
-  	-->
   	<!-- 상품 개수  -->
   	<select id="productCnt" resultType="int">
   		select count(*) from product_tbl
@@ -102,6 +95,11 @@
   	<!-- 상품 상세(수정) -->
   	<select id="getProduct" parameterType="String" resultType="com.spring.Creamy_CRM.VO.ProductVO">
   		select * from product_tbl where product_code = #{product_code}
+  	</select>
+  	
+  	<!-- 상품명 중복확인 -->
+  	<select id="chkProductName" parameterType="String" resultType="int">
+  		select count(*) from product_tbl where product_name = #{product_name}
   	</select>
   	
   	<!-- 상품 수정 -->
@@ -202,5 +200,5 @@
 	<delete id="deleteStock" parameterType="String">
 		delete from stock_tbl where stock_code = #{stock_code}	
 	</delete>
-  
+	
   </mapper>
