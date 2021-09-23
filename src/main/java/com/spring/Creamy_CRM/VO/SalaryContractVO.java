@@ -16,6 +16,7 @@ public class SalaryContractVO {
 	private String bank_name;					// 은행명
 	private String account_number;				// 계좌번호
 	private String account_holder;				// 예금주
+	private String contract_stat;				// 계약상태 - '계약 종료', '계약 중'
 	
 	
 	public String getSalary_contract_code() {
@@ -89,6 +90,12 @@ public class SalaryContractVO {
 	}
 	public void setAccount_holder(String account_holder) {
 		this.account_holder = account_holder;
+	}
+	public String getContract_stat() {
+		return contract_stat;
+	}
+	public void setContract_stat(String contract_stat) {
+		this.contract_stat = contract_stat;
 	}
 	
 	
