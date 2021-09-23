@@ -23,6 +23,9 @@ public interface EmployeeDAO {
 	// 직원 상제 정보
 	public EmployeeVO getEmployeeDetail(String employee_code);
 	
+	// 직원 수정 처리
+	public int updateEmployee(EmployeeVO vo);
+	
 	// 직원의 근태 정보
 	public ArrayList<AttendanceVO> getAttendanceList(String employee_code);
 	

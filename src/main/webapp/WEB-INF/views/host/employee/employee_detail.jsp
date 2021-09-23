@@ -51,19 +51,19 @@
 	            <!-- 직원 정보 -- 시작 -->
 	            <div class="ibox-content">
 	            	<!-- 1. form태그에 id 지정하기 -->
-	                <form method="get" id="modify">
+	                <form action="employee_updateAction" method="get" id="modify">
 	                	<table class="table">
 				           
 				            <tbody>
 				            <tr class="" style="border-top:1px solid;">
 				                <td>직원코드</td>
-				                <td><input type="text" class="form-control" style="width:50%;" value="${dtos.employee_code}" readonly></td>
+				                <td><input type="text" class="form-control" name="employee_code" style="width:50%;" value="${dtos.employee_code}" readonly></td>
 				                <td>부서</td>
 				                <td><input type="text" class="form-control" name="department" style="width:50%;" value="${dtos.department}"></td>
 				            </tr>
 				            <tr class="">
 				                <td>직원ID</td>
-				                <td><input type="text" class="form-control" name="employee_id" style="width:50%;" value="${dtos.employee_id}"></td>
+				                <td><input type="text" class="form-control" name="employee_id" style="width:50%;" value="${dtos.employee_id}" readonly></td>
 				                <td>직책</td>
 				                <td><input type="text" class="form-control" name="position" style="width:50%;" value="${dtos.position}"></td>
 				            </tr>
@@ -97,30 +97,32 @@
 				            <tr>
 				            	<td>주소</td>
 				                <td><input type="text" class="form-control" name="employee_address" style="width:50%;" value="${dtos.employee_address}"></td>
-				                <td>입사날짜</td>
-				                <td><input type="date" class="form-control" style="width:50%;" value="${dtos.employee_hireDate}"></td>
+				                <td>연차</td>
+				                <td><input type="text" class="form-control" name="annual_leave_cnt" style="width:25%" value="${dtos.annual_leave_cnt}"></td>
 				            </tr>
 				            
 				            <tr>
 				            	<td>핸드폰</td>
 				                <td><input type="text" class="form-control" name="employee_ph" style="width:50%;" value="${dtos.employee_ph}"></td>
-				                <td>퇴사날짜</td>
+				                <td>입사날짜</td>
 				                <td>
-				                	<c:if test="${dtos.employee_resignDate == null}">
-				                		<input type="date" class="form-control" style="width:50%;" value="">
-				                	</c:if>
-				                	
-				                	<c:if test="${dtos.employee_resignDate != null}">
-				                		<input type="date" class="form-control" style="width:50%;" value="${dtos.employee_resignDate}"> 
-				                	</c:if>
+				                	<input type="date" class="form-control" name="employee_hireDate" style="width:50%;" value="${dtos.employee_hireDate}">
 				                </td>
 				            </tr>
 				            
 				            <tr class="">
 				                <td>이메일</td>
 				                <td><input type="text" class="form-control" name="employee_email" style="width:50%;" value="${dtos.employee_email}"></td>
-				                <td></td>
-				                <td></td>
+				                <td>퇴사날짜</td>
+				                <td>
+				                	<c:if test="${dtos.employee_resignDate == null}">
+				                		<input type="date" class="form-control" name="employee_resignDate" style="width:50%;" value="null">
+				                	</c:if>
+				                	
+				                	<c:if test="${dtos.employee_resignDate != null}">
+				                		<input type="date" class="form-control" name="employee_resignDate" style="width:50%;" value="${dtos.employee_resignDate}"> 
+				                	</c:if>
+				                </td>
 				            </tr>
 				            </tbody>
 				         
