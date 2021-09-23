@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../setting.jsp" %>
-<%@ page session="false" %>
 <!DOCTYPE html>
 <html>
 
@@ -9,7 +8,8 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+	<meta name="_csrf" content="${_csrf.token}"/>
+	<meta name="_csrf_header" content="${_csrf.headerName}"/>
     <title>INSPINIA | Dashboard v.4</title>
 
    <link href="${path}/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -91,7 +91,7 @@
                                     <tr>
                                        <td class="dashed">
                                           <!-- 시간 -->
-                                          <div style="display:inline-block">
+                                          <div style="display:inline-block" id="timeTable">
                                              <button type="button" class="btn btn-outline btn-primary" class="timeBtn" id="timeBtn1"
                                                 style="margin: 10px" value="10:00" disabled>10:00</button>
                                              <button type="button" class="btn btn-outline btn-primary" class="timeBtn" id="timeBtn2"
