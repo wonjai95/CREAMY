@@ -51,5 +51,10 @@ public class UserReviewDAOImpl implements UserReviewDAO {
 	public List<ReviewVO> getStoreReviewList(String host_code) {
 		return sqlSession.selectList("com.spring.Creamy_CRM.User_dao.UserReviewDAO.getStoreReviewList",host_code);
 	}
+
+	@Override
+	public List<ReservationVO> getUserReservationlist(String user_code) {
+		return sqlSession.selectList("com.spring.Creamy_CRM.User_dao.UserReviewDAO.getUserReservationlist",user_code);
+	}
 	
 }

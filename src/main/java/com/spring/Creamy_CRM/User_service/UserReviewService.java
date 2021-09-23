@@ -23,4 +23,7 @@ public interface UserReviewService {
 	
 	//매장별 후기 보기
 	public void getStoreReviewList(HttpServletRequest req, Model model);
+	
+	//사장님이 고객별로 예약내역 받아오기
+	public void getUserReservationList(HttpServletRequest req, Model model);
 }
