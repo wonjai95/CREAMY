@@ -13,7 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class AccountController {
+public class AccountController { 
 	
 	private static final Logger logger = LoggerFactory.getLogger(AccountController.class);
 	
