@@ -42,11 +42,25 @@
 		 WHERE employee_code=#{employee_code}
 	</update>
 	
-	<!--  -->
+	<!-- 직원의 근태 정보 조회 -->
 	<select id="getAttendanceList" parameterType="String" resultType="com.spring.Creamy_CRM.VO.AttendanceVO">
 		SELECT *
 		  FROM attendance_tbl
 		 WHERE employee_code = #{employee_code}
+	</select>
+	
+	<!-- 직원의 휴가 정보 조회 -->
+	<select id="getLeaveList" parameterType="String" resultType="com.spring.Creamy_CRM.VO.LeaveVO">
+		SELECT *
+		  FROM leave_tbl
+		 WHERE employee_code=#{employee_code}
+	</select>
+	
+	<!-- 직원의 급여 계약 정보 조회 -->
+	<select id="getContractList" parameterType="String" resultType="com.spring.Creamy_CRM.VO.SalaryContractVO">
+		SELECT *
+		  FROM salary_contract_tbl
+		 WHERE employee_code=#{employee_code}
 	</select>
 	
 	<!-- 이미 직원 등록이 완료된 id인지 체크 -->

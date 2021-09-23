@@ -183,41 +183,41 @@
 			                                </tr>
 			                                </thead>
 			                                <tbody>
-				                                <c:forEach var="list" items="${attList}" varStatus="status">
+				                                <c:forEach var="list1" items="${attList}" varStatus="status">
 				                                	<tr>
-					                                    <td><fmt:formatDate value="${list.attendance_date}" pattern="dd" /></td>
-					                                    <td>${list.check_in_time}</td>
+					                                    <td><fmt:formatDate value="${list1.attendance_date}" pattern="dd" /></td>
+					                                    <td>${list1.check_in_time}</td>
 					                                    <td>
-					                                    	<c:if test="${list.check_out_time == '0'}">
+					                                    	<c:if test="${list1.check_out_time == '0'}">
 					                                    		-
 					                                    	</c:if>
 					                                    	
-					                                    	<c:if test="${list.check_out_time != '0'}">
-					                                    		${list.check_out_time}
+					                                    	<c:if test="${list1.check_out_time != '0'}">
+					                                    		${list1.check_out_time}
 					                                    	</c:if>
 					                                    </td>
 					                                    <td>
-					                                    	<c:if test="${list.lateChk == '0'}">
+					                                    	<c:if test="${list1.lateChk == '0'}">
 					                                    		-
 					                                    	</c:if>
 					                                    	
-					                                    	<c:if test="${list.lateChk !=  '0'}">
-					                                    		${list.lateChk}
+					                                    	<c:if test="${list1.lateChk !=  '0'}">
+					                                    		${list1.lateChk}
 					                                    	</c:if>
 					                                    </td>
-					                                    <td>${list.memo}</td>
-					                                    <td>${list.temperature}</td>
+					                                    <td>${list1.memo}</td>
+					                                    <td>${list1.temperature}</td>
 					                                    <td>
-					                                    	<c:if test="${list.examination_chk1 != null || list.examination_chk2 != null || list.examination_chk3 != null}">
+					                                    	<c:if test="${list1.examination_chk1 != null || list1.examination_chk2 != null || list.examination_chk3 != null}">
 					                                    		O
 					                                    	</c:if>
-					                                    	<c:if test="${list.examination_chk1 == null || list.examination_chk2 == null || list.examination_chk3 == null}">
+					                                    	<c:if test="${list1.examination_chk1 == null || list1.examination_chk2 == null || list.examination_chk3 == null}">
 					                                    		X
 					                                    	</c:if>
 					                                    </td>
-					                                    <td>${list.examination_chk1}</td>
-					                                    <td>${list.examination_chk2}</td>
-					                                    <td>${list.examination_chk3}</td>
+					                                    <td>${list1.examination_chk1}</td>
+					                                    <td>${list1.examination_chk2}</td>
+					                                    <td>${list1.examination_chk3}</td>
 					                                </tr>
 				                                <!-- 
 				                                	<c:if test="${list.check_in_time != null}">
@@ -289,14 +289,27 @@
 				                                </tr>
 				                                </thead>
 				                                <tbody>
+			                                	<c:forEach var="list2" items="${leaveList}">
+					                                <tr>
+					                                    <td>● 연차</td>
+					                                    <td>승인</td>
+					                                    <td>${list2.leave_date}</td>
+					                                    <td>${list2.leave_end}</td>
+					                                    <td>${list2.leave_usage_cnt}</td>
+					                                    <td>${list2.emergency_contact}</td>
+					                                    <td>${list2.leave_memo}</td>
+					                                    <td>${list2.leave_regDatae}</td>
+					                                </tr>
+				                                </c:forEach>
+				                                <!-- 
 				                                <tr>
 				                                    <td>● 연차</td>
 				                                    <td>승인</td>
-				                                    <td>2021-09-21</td>
-				                                    <td>2020-09-25</td>
-				                                    <td>4</td>
+				                                    <td>2021-09-13</td>
+				                                    <td>2020-09-14</td>
+				                                    <td>1</td>
 				                                    <td>010-1111-1111</td>
-				                                    <td>휴가</td>
+				                                    <td></td>
 				                                    <td>2021-09-20</td>
 				                                </tr>
 				                                <tr>
@@ -308,17 +321,8 @@
 				                                    <td>010-1111-1111</td>
 				                                    <td></td>
 				                                    <td>2021-09-20</td>
-				                                </tr>
-				                                <tr>
-				                                    <td>● 연차</td>
-				                                    <td>승인</td>
-				                                    <td>2021-09-13</td>
-				                                    <td>2020-09-14</td>
-				                                    <td>1</td>
-				                                    <td>010-1111-1111</td>
-				                                    <td></td>
-				                                    <td>2021-09-20</td>
-				                                </tr>
+				                                </tr> 
+				                                -->
 				                                </tbody>
 				                            </table>
 								       </fieldset>
@@ -350,14 +354,16 @@
 				                                </tr>
 				                                </thead>
 				                                <tbody>
-				                                <tr>
-				                                    <td>2021-11-01 ~ 2022-10-31</td>
-				                                    <td><fmt:formatNumber value="2000000" pattern="###,###,###"/></td>
-				                                    <td><fmt:formatNumber value="24000000" pattern="###,###,###"/></td>
-				                                    <td>매달 5일</td>
-				                                    <td>국민은행 / 111-111-1111111</td>
-				                                    <td>연봉 협상</td>
-				                                </tr>
+				                                <c:forEach var="list3" items="${contractList}">
+					                                <tr>
+					                                    <td>${list3.con_start} ~ ${list3.con_end}</td>
+					                                    <td><fmt:formatNumber value="${list3.monthly_salary}0000" pattern="###,###,###"/></td>
+					                                    <td><fmt:formatNumber value="${list3.annual_salary}0000" pattern="###,###,###"/></td>
+					                                    <td>매달 ${list3.payment_date}일</td>
+					                                    <td>국민은행 / 111-111-1111111</td>
+					                                    <td>연봉 협상</td>
+					                                </tr>
+				                                </c:forEach>
 				                                <tr>
 				                                    <td>2020-11-01 ~ 2021-10-31</td>
 				                                    <td><fmt:formatNumber value="1500000" pattern="###,###,###"/></td>

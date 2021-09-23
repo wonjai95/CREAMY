@@ -61,8 +61,16 @@ public class EmployeeServiceImpl implements EmployeeService {
 		// 직원 근태 정보 가져오기
 		ArrayList<AttendanceVO> attList = dao.getAttendanceList(employee_code);
 		
+		// 직원 휴가 정보 가져오기
+		ArrayList<LeaveVO> leaveList = dao.getLeaveList(employee_code);
+		
+		// 직원 급여 계약 정보 가져오기
+		ArrayList<SalaryContractVO> contractList = dao.getContractList(employee_code);
+		
 		model.addAttribute("dtos", dtos);
 		model.addAttribute("attList", attList);
+		model.addAttribute("leaveList", leaveList);
+		model.addAttribute("contractList", contractList);
 	}
 	
 	// 직원 상세 정보 수정 처리
