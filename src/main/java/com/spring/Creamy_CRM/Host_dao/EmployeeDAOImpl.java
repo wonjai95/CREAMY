@@ -163,6 +163,27 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		return dao.insertSalaryContract(vo);
 	}
 
+	// 은행 이미 등록되어있는지 확인
+	@Override
+	public int getBankCodeCnt(Map<String, Object> map) {
+		EmployeeDAO dao = sqlSession.getMapper(EmployeeDAO.class);
+		return dao.getBankCodeCnt(map);
+	}
+
+	// 등록된 급여 계약이 있는지 확인
+	@Override
+	public int chkSalaryContract(String employee_code) {
+		EmployeeDAO dao = sqlSession.getMapper(EmployeeDAO.class);
+		return dao.chkSalaryContract(employee_code);
+	}
+
+	// 해당 직원코드에 대해 이미 등록된 급여계약이 있을 경우 기존의 contract_stat = '계약 종료'로 update
+	@Override
+	public int updateSalaryContract(SalaryContractVO vo) {
+		EmployeeDAO dao = sqlSession.getMapper(EmployeeDAO.class);
+		return dao.updateSalaryContract(vo);
+	}
+
 	
 
 	

@@ -53,7 +53,7 @@ $("document").ready(function() {
 		// 연봉 입력시 월급 자동 계산
 		$("input[name=salary]").change(function() {
 			var sal = parseInt($(this).val());
-			var mon_sal = sal / 12;
+			var mon_sal = Math.floor(sal / 12);
 			
 			$(this).val(addComma(sal));
 			$("input[name=mon_sal]").val(addComma(mon_sal));
