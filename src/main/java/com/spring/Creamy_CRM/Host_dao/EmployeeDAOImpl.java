@@ -53,6 +53,18 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		return dao.getAttendanceList(employee_code);
 	}
 	
+	// 직원의 휴가 정보
+	public ArrayList<LeaveVO> getLeaveList(String employee_code){
+		EmployeeDAO dao = sqlSession.getMapper(EmployeeDAO.class);
+		return dao.getLeaveList(employee_code);
+	}
+	
+	// 직원의 급여 계약 정보
+	public ArrayList<SalaryContractVO> getContractList(String employee_code){
+		EmployeeDAO dao = sqlSession.getMapper(EmployeeDAO.class);
+		return dao.getContractList(employee_code);
+	}
+	
 	// 이미 직원 등록이 완료된 id인지 체크
 	@Override
 	public int chkEmployeeIdPreexisting(String employee_id) {
@@ -149,6 +161,27 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	public int insertSalaryContract(SalaryContractVO vo) {
 		EmployeeDAO dao = sqlSession.getMapper(EmployeeDAO.class);
 		return dao.insertSalaryContract(vo);
+	}
+
+	// 은행 이미 등록되어있는지 확인
+	@Override
+	public int getBankCodeCnt(Map<String, Object> map) {
+		EmployeeDAO dao = sqlSession.getMapper(EmployeeDAO.class);
+		return dao.getBankCodeCnt(map);
+	}
+
+	// 등록된 급여 계약이 있는지 확인
+	@Override
+	public int chkSalaryContract(String employee_code) {
+		EmployeeDAO dao = sqlSession.getMapper(EmployeeDAO.class);
+		return dao.chkSalaryContract(employee_code);
+	}
+
+	// 해당 직원코드에 대해 이미 등록된 급여계약이 있을 경우 기존의 contract_stat = '계약 종료'로 update
+	@Override
+	public int updateSalaryContract(SalaryContractVO vo) {
+		EmployeeDAO dao = sqlSession.getMapper(EmployeeDAO.class);
+		return dao.updateSalaryContract(vo);
 	}
 
 	
