@@ -230,13 +230,6 @@ public class MainwebController {
 	}	
 	
 	
-	
-	
-	
-	
-	
-	
-	
 	//-------------------------------- 관리자 화면 에약 페이지--------------------------------
 	//회원 예약 처리 페이지
 	@RequestMapping("/insertBooking")
@@ -245,6 +238,7 @@ public class MainwebController {
 	      
 	      service.insertBooking(req, model);
 	      logger.info("url -> insertBooking2");
+	      
 	      return "mainweb/insertBooking";
 	}	
 	
