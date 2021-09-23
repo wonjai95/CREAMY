@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/views/setting.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +14,7 @@
 				<div class="col-sm-2">
 					<div class="form-group">
 						<select name="" id="" class="form-control">
-							<option value="1" selected="">판매 여부</option>
+							<option value="1" selected="selected">판매 여부</option>
 							<option value="2">판매중</option>
 							<option value="3">판매중지</option>
 						</select>
@@ -23,7 +24,7 @@
 				<div class="col-sm-2">
 					<div class="form-group">
 						<select name="" id="" class="form-control">
-							<option value="1" selected="">판매 형태</option>
+							<option value="1" selected="selected">판매 형태</option>
 							<option value="2">기간제</option>
 							<option value="3">대여형</option>
 						</select>
@@ -49,85 +50,102 @@
 			<div class="wrapper wrapper-content">
 				<div class="row">
 					<div class="col-lg-9 animated fadeInRight">
-						<div id="p_group">
-							<div>
-								<button type="button" class="btn btn-primary dim"
-									onclick="addProduct()">상품등록</button>
-							</div>
-							<div>
-								<button type="button" class="btn btn-primary dim">상품수정</button>
-							</div>
-							<div>
-								<button type="button" class="btn btn-primary dim">상품삭제</button>
-							</div>
-						</div>
-
 						<div class="ibox-content" style="margin: 0px; padding: 0px;">
+							<form action="deleteProductAction" method="post"
+								onsubmit="return deleteProduct();">
+								<input type="hidden" name="${_csrf.parameterName}"
+									value="${_csrf.token}">
+								<div id="p_group">
+									<div>
+										<button type="button" class="btn btn-primary dim"
+											onclick="addProduct();">상품등록</button>
+									</div>
+									<div>
+										<button type="button" class="btn btn-primary dim"
+											onclick="detailProduct();">상품수정</button>
+									</div>
+									<div>
+										<button type="submit" class="btn btn-primary dim">상품삭제</button>
+									</div>
+								</div>
+								<table
+									class="footable table table-stripped toggle-arrow-tiny footable-loaded tablet breakpoint"
+									data-page-size="15">
+									<thead>
+										<tr>
+											<th class="text-right footable-visible footable-last-column">
+												<span class="footable-sort-indicator"
+												onclick="unselected();">선택</span>
+											</th>
 
-							<table
-								class="footable table table-stripped toggle-arrow-tiny footable-loaded tablet breakpoint"
-								data-page-size="15">
-								<thead>
-									<tr>
-										<th class="footable-visible footable-sortable"><input
-											type="checkbox"> <span
-											class="footable-sort-indicator">전체 선택</span></th>
+											<th class="text-right footable-visible footable-last-column">
+												<span class="footable-sort-indicator">구분</span>
+											</th>
 
-										<th
-											class="footable-visible footable-sortable footable-first-column">
-											<span class="footable-sort-indicator">상품 이미지</span>
-										</th>
+											<th class="text-right footable-visible footable-last-column">
+												<span class="footable-sort-indicator">상품 이미지</span>
+											</th>
 
-										<th class="text-right footable-visible footable-last-column">
-											<span class="footable-sort-indicator">상품명</span>
-										</th>
+											<th class="text-right footable-visible footable-last-column">
+												<span class="footable-sort-indicator">상품명</span>
+											</th>
 
-										<th class="text-right footable-visible footable-last-column">
-											<span class="footable-sort-indicator">판매형태</span>
-										</th>
+											<th class="text-right footable-visible footable-last-column">
+												<span class="footable-sort-indicator">상품가격</span>
+											</th>
 
-										<th class="text-right footable-visible footable-last-column">
-											<span class="footable-sort-indicator">상품가격</span>
-										</th>
+											<th class="text-right footable-visible footable-last-column">
+												<span class="footable-sort-indicator">상품기간</span>
+											</th>
 
-										<th class="text-right footable-visible footable-last-column">
-											<span class="footable-sort-indicator">상품기간</span>
-										</th>
+											<th class="text-right footable-visible footable-last-column">
+												<span class="footable-sort-indicator">상품설명</span>
+											</th>
 
-										<th class="text-right footable-visible footable-last-column">
-											<span class="footable-sort-indicator">상품그룹</span>
-										</th>
+											<th class="text-right footable-visible footable-last-column">
+												<span class="footable-sort-indicator">상품그룹</span>
+											</th>
 
-										<th class="text-right footable-visible footable-last-column">
-											<span class="footable-sort-indicator">상품설명</span>
-										</th>
+										</tr>
+									</thead>
 
-									</tr>
-								</thead>
-								<tbody>
-									<tr class="footable-odd" style="">
-										<td class="footable-visible footable-first-column"><input
-											type="checkbox"><span>&nbsp;선택</span></td>
+									<tbody>
 
-										<td class="footable-visible">이미지</td>
+										<c:forEach var="product" items="${productlist}">
+											<tr class="footable-odd">
+												<td class="footable-visible">&nbsp;&nbsp; <input
+													type="radio" name="product_code"
+													value="${product.product_code}">
+												</td>
 
-										<td class="footable-visible">상품명</td>
+												<td class="footable-visible"><span>${product.product_typeOfSales}</span>
+												</td>
 
-										<td class="footable-visible">판매형태</td>
+												<td class="footable-visible"><span>${product.product_img}</span>
+												</td>
 
-										<td class="footable-visible">상품가격</td>
+												<td class="footable-visible"><span>${product.product_name}</span>
+												</td>
 
-										<td class="footable-visible">상품기간</td>
+												<td class="footable-visible"><span>${product.product_price}</span>
+												</td>
 
-										<td class="footable-visible"><span
-											class="label label-primary">상픔그룹</span></td>
+												<td class="footable-visible"><span>${product.product_rentalPeriod}</span>
+												</td>
 
-										<td class="text-right footable-visible footable-last-column">
-											<span class="label label-primary">상품설명</span>
-										</td>
-									</tr>
+												<td class="text-right footable-visible footable-last-column">
+													<span class="label label-primary">${product.product_content}</span>
+												</td>
 
-								</tbody>
+												<td class="footable-visible"><span
+													class="label label-primary">${product.product_group_code}</span>
+												</td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+							</form>
+							<table>
 								<tfoot>
 									<tr>
 										<td colspan="6" class="footable-visible">
@@ -148,7 +166,6 @@
 									</tr>
 								</tfoot>
 							</table>
-
 						</div>
 					</div>
 				</div>

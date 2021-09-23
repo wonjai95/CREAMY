@@ -5,6 +5,7 @@
 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/views/setting.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -70,20 +71,25 @@
 	        </div>
 	        <div class="ibox-content">
 	            <form method="get" name="modifyUser">
+	            <c:forEach var="dto" items="${dto}">
 	                <div class="hr-line-dashed"></div>
-	                <div class="form-group row"><label class="col-lg-2 col-form-label">회원번호</label>
-	                    <div class="col-lg-10"><input type="text" value="U1234111" class="form-control"></div>
+	                <div class="form-group row">
+	                	<label class="col-lg-2 col-form-label">회원번호</label>
+	                    <div class="col-lg-10"><input type="text" name="user_code" value="${dto.user_code}" class="form-control"></div>
 	                </div>
 	                <div class="hr-line-dashed"></div>
 	                
-	                <div class="form-group row"><label class="col-sm-2 col-form-label">이름</label>
-	                    <div class="col-lg-10"><input type="text" value="장현정" class="form-control"></div>
+	                <div class="form-group row">
+	                	<label class="col-sm-2 col-form-label">이름</label>
+	                    <div class="col-lg-10"><input type="text" name="user_name" value="${dto.user_name}" class="form-control"></div>
 	                </div>
 	                <div class="hr-line-dashed"></div>
 	                
-	                <div class="form-group row"><label class="col-lg-2 col-form-label">성별</label>
+	                <div class="form-group row">
+	                	<label class="col-lg-2 col-form-label">성별</label>
 	
-	                    <div class="col-sm-4"><select class="form-control m-b" name="user_gender">
+	                    <div class="col-sm-4">
+	                    <select class="form-control m-b" name="user_gender">
 	                        <option>남</option>
 	                        <option>여</option>
 	                    </select></div>
@@ -93,9 +99,7 @@
 					<div class="form-group" style="display: flex;">
 	                	<label class="col-lg-2 col-form-label">생년월일 </label>
 	                    <div class="input-group date" style="width: 80%;">
-	                     	<input name="sign_birth1" type="text" class="form-control" placeholder="1999" maxlength="4">
-	                     	<input name="sign_birth2" type="text" class="form-control" placeholder="01" maxlength="2">
-	                     	<input name="sign_birth3" type="text" class="form-control" placeholder="01" maxlength="2">
+	                     	<input type="date" name="modify_birth" class="form-control" id="modify_birth" value="${dto.user_birth}" required style="margin-right: 3px;">
 	                    </div>
 	                </div>
 	                <div class="hr-line-dashed"></div>
@@ -120,7 +124,7 @@
 	             <div class="form-group" style="display: flex;">
                 	<label class="col-lg-2 col-form-label"> 주소 </label>
                     <div class="input-group date" style="width: 80%;">
-                     	<input name="sign_zipcode" id="postcode" type="text" class="form-control" placeholder="postcode">
+                     	<input name="modify_zipcode" value="${dto.modify_zipcode}" id="postcode" type="text" class="form-control" placeholder="postcode">
                      	<div style="width: 5px; align-self: center;"></div>
                      	<input type="button" onclick="addressSearch()" class="btn btn-primary btn-xs" style="margin: 2px 4px;" value="주소검색">
                     </div>
@@ -128,14 +132,15 @@
                  <div class="form-group" style="display: flex;">
                 	<label class="col-lg-2 col-form-label"></label>
                     <div class="input-group date" style="width: 80%;">
-                     	<input name="sign_sido" id="sido" type="text" class="form-control" placeholder="sido">
-                     	<input name="sign_gugun" id="sigungu" type="text" class="form-control" placeholder="gu/gun">
+                     	<input name="modify_sido" value="${dto.modify_sido}" id="sido" type="text" class="form-control" placeholder="sido">
+                     	<input name="modify_gugun" value="${dto.modify_gugun}" id="sigungu" type="text" class="form-control" placeholder="gu/gun">
                     </div>
                  </div>
                  <div class="form-group" style="display: flex; margin-bottom: 20px;">
                 	<label class="col-lg-2 col-form-label"></label>
                     <div class="input-group date" style="width: 80%;">
-                     	<input name="sign_address" id="detail_address" type="text" class="form-control" placeholder="address">
+                     	<input name="modify_address" value="${dto.modify_address}" id="detail_address" type="text" class="form-control" placeholder="address">
+                     	
                     </div>
                  </div>
 	                
@@ -145,11 +150,20 @@
                 <div class="hr-line-dashed"></div>
                 
                 <div class="form-group row"><label class="col-lg-2 col-form-label">전화번호</label>
-					<div class="col-lg-10"><input type="text" value="010-1111-1111" class="form-control"></div>
+					<div class="col-lg-10">
+					<input type="text" name="modifyp_hp1" class="form-control" id="modifyp_hp1" value="${hp[0]}" required style="margin-right: 3px;">
+					<span style="padding-bottom: 13px; font-size: 30px;">&nbsp;-&nbsp;</span>
+                  	<input type="text" name="modifyp_hp2" class="form-control" id="modifyp_hp2" value="${hp[1]}" required style="margin-left: 3px;">
+					<span style="padding-bottom: 13px; font-size: 30px;">&nbsp;-&nbsp;</span>
+					<input type="text" name="modifyp_hp3" class="form-control" id="modifyp_hp3" value="${hp[2]}" required style="margin-left: 3px;">
+					
+					</div>
 					
                 </div>
                 <div class="hr-line-dashed"></div>   
+	        	</c:forEach>
 	            </form>
+	        
 	        </div>
 	    </div>
 	</div>

@@ -1,5 +1,12 @@
+<!-- 
+이름 : 장현정
+작성날짜 : 2021-09-16 ~ 2021-09-19 
+회원 정보 클릭시 상세 정보 출력 창
+-->
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="../../setting.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,16 +16,15 @@
 
 <title>INSPINIA | Data Tables</title>
 
-
-</head>
+</head>  
 <body style="background-color:white;">
-	
+
 <!-- Main -->
 <div class="row">
     <div class="col-lg-12">
         <div class="ibox ">
             <div class="ibox-title">
-                <h5>회원정보<small>With custom checbox and radion elements.</small></h5>   
+                <h5>회원정보</h5>   
                 <div class="ibox-tools">
                     <a class="collapse-link">
                         <i class="fa fa-chevron-up"></i>

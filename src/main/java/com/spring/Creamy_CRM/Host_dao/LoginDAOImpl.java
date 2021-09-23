@@ -17,6 +17,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.mail.javamail.JavaMailSender;
 
+import com.spring.Creamy_CRM.VO.HostVO;
+import com.spring.Creamy_CRM.VO.ZipcodeVO;
 import com.spring.Creamy_CRM.VO.userVO;
 
 @Repository
@@ -82,6 +84,38 @@ public class LoginDAOImpl implements LoginDAO {
 		          e.printStackTrace();
 		}  
 		
+	}
+
+	@Override
+	public userVO getUserInfo(String id) {
+		return sqlSession.selectOne("com.spring.Creamy_CRM.Host_dao.loginDAO.getUserInfo",id);
+	}
+
+	@Override
+	public HostVO getHostInfo(String id) {
+		return sqlSession.selectOne("com.spring.Creamy_CRM.Host_dao.loginDAO.getHostInfo",id);
+	}
+
+	@Override
+	public ZipcodeVO selectzipcode(String zipcode) {
+		return sqlSession.selectOne("com.spring.Creamy_CRM.Host_dao.loginDAO.selectzipcode",zipcode);
+	}
+
+	@Override
+	public int modifyPw(Map<String, String> map) {
+		return sqlSession.update("com.spring.Creamy_CRM.Host_dao.loginDAO.modifyPw",map);
+	}
+
+	
+	@Override
+	public int updateUserInfo(userVO vo) {
+		return sqlSession.update("com.spring.Creamy_CRM.Host_dao.loginDAO.updateUserInfo",vo);
+	}
+
+	//사장님 회원가입 host_seq
+	@Override
+	public int insertHost(HostVO vo) {
+		return sqlSession.insert("com.spring.Creamy_CRM.Host_dao.loginDAO.insertHost",vo);
 	}
 	
 

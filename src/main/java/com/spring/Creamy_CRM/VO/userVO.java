@@ -19,7 +19,7 @@ public class userVO {
 	private String user_email;
 	private String zipcode;
 	private String user_address;
-	private String phoneNumber;
+	private String user_ph;
 	private Date join_date;
 	private Date expire_date;
 	private String bank_code;
@@ -27,7 +27,6 @@ public class userVO {
 	
 	
 	//나중에 조인할거..있으면추가
-	
 	
 	
 	
@@ -86,12 +85,6 @@ public class userVO {
 	public void setUser_address(String user_address) {
 		this.user_address = user_address;
 	}
-	public String getPhoneNumber() {
-		return phoneNumber;
-	}
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
 	public Date getJoin_date() {
 		return join_date;
 	}
@@ -115,6 +108,12 @@ public class userVO {
 	}
 	public void setUser_id(String user_id) {
 		this.user_id = user_id;
+	}
+	public String getUser_ph() {
+		return user_ph;
+	}
+	public void setUser_ph(String user_ph) {
+		this.user_ph = user_ph;
 	}
 
 	

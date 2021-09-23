@@ -16,17 +16,25 @@
   <link href="images/main/favicon.png" rel="icon">
   <link href="images/main/apple-touch-icon.png" rel="apple-touch-icon">
   
+  
+  
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
+  <link href="${path}/resources/bootstrap/css/font-awesome.css" rel="stylesheet">
   <link href="${path}/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="${path}/resources/bootstrap/css/bootstrap-icons.css" rel="stylesheet">
   <link href="${path}/resources/bootstrap/css/boxicons.min.css" rel="stylesheet">
   <link href="${path}/resources/bootstrap/css/glightbox.min.css" rel="stylesheet">
   <link href="${path}/resources/bootstrap/css/remixicon.css" rel="stylesheet">
   <link href="${path}/resources/bootstrap/css/swiper-bundle.min.css" rel="stylesheet">
+  <link href="${path}/resources/bootstrap/css/iCheck/custom.css" rel="stylesheet">
+  <link href="${path}/resources/bootstrap/css/animate.css" rel="stylesheet">
+  
+  <!--make  -->
+    <link href="${path}/resources/user/css/table_style.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
   <link href="${path}/resources/bootstrap/css/user_style.css" rel="stylesheet">
@@ -36,7 +44,6 @@
   <script src="${path}/resources/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="${path}/resources/bootstrap/js/glightbox.min.js"></script>
   <script src="${path}/resources/bootstrap/js/isotope.pkgd.min.js"></script>
-  <script src="${path}/resources/bootstrap/js/validate.js"></script>
   <script src="${path}/resources/bootstrap/js/swiper-bundle.min.js"></script>
 
   <!-- Template Main JS File -->

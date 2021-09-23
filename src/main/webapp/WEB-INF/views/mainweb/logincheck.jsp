@@ -11,13 +11,13 @@
 
 	<c:if test="${authority eq '[ROLE_USER]'}">
 		<script type="text/javascript">
-			window.location="home";
+			window.location="firsthome";
 		</script>
 	</c:if>
 	
 	<c:if test="${authority eq '[ROLE_HOST]'}">
 		<script type="text/javascript">
-			window.location="${path}/host/home";
+			window.location="${path}/host/firsthome";
 		</script>
 	</c:if>
 

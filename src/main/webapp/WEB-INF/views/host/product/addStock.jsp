@@ -14,7 +14,8 @@ body {
 </head>
 <body>
 	<div class="ibox-content">
-		<form method="get">
+		<form action="addStockAction" method="post">
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 			<div class="form-group  row">
 				<label class="col-sm-2 col-form-label">재고등록</label>
 			</div>
@@ -23,7 +24,7 @@ body {
 			<div class="form-group row">
 				<label class="col-sm-2 col-form-label">재고명</label>
 				<div class="col-sm-5">
-					<input type="text" class="form-control" name="">
+					<input type="text" class="form-control" name="stock_name" required>
 				</div>
 			</div>
 
@@ -31,7 +32,7 @@ body {
 			<div class="form-group row">
 				<label class="col-sm-2 col-form-label">매입가</label>
 				<div class="col-sm-5">
-					<input type="text" class="form-control" name="">
+					<input type="text" class="form-control" name="stock_price" required>
 				</div>
 			</div>
 
@@ -39,7 +40,7 @@ body {
 			<div class="form-group row">
 				<label class="col-sm-2 col-form-label">수량</label>
 				<div class="col-sm-2">
-					<input type="number" class="form-control" name="">
+					<input type="number" class="form-control" min="0" name="stock_count" required>
 				</div>
 			</div>
 
@@ -47,7 +48,7 @@ body {
 			<div class="form-group row">
 				<label class="col-sm-2 col-form-label">브랜드</label>
 				<div class="col-sm-5">
-					<input type="text" class="form-control" name="">
+					<input type="text" class="form-control" name="stock_brand" required>
 				</div>
 			</div>
 
@@ -57,10 +58,10 @@ body {
 			<div class="form-group  row">
 				<label class="col-sm-2 col-form-label">품절 여부</label>
 				<div class="col-sm-3">
-					<select name="" id="" class="form-control">
-						<option value="1" selected="" id="">품절 여부</option>
-						<option value="2">품절o</option>
-						<option value="3">품절x</option>
+					<select name="stock_status" class="form-control">
+						<option selected>품절 여부</option>
+						<option value="품절">품절</option>
+						<option value="재고">재고</option>
 					</select>
 				</div>
 			</div>
@@ -69,10 +70,11 @@ body {
 			<div class="form-group  row">
 				<label class="col-sm-2 col-form-label">거래처</label>
 				<div class="col-sm-3">
-					<select name="" id="" class="form-control">
-						<option value="1" selected="" id="">거래처 선택</option>
-						<option value="2">한진택배</option>
-						<option value="3">대한통운</option>
+					<select name="trade_code" class="form-control">
+						<option selected>거래처 선택</option>
+						<c:forEach var="trade" items="${list}">
+							<option value="${trade.trade_code}">${trade.trade_name}</option>
+						</c:forEach>
 					</select>
 				</div>
 			</div>

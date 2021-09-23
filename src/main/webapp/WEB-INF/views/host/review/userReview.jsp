@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -61,33 +62,22 @@
 									                                    <th>#</th>
 									                                    <th>글 제목</th>
 									                                    <th>작성자</th>
+									                                    <th>고객번호</th>
 									                                    <th>등록일</th>
 									                                    <th>조회수</th>
 									                                </tr>
 									                                </thead>
 					                                                <tbody>
-						                                                <tr style="border-bottom: #dee2e6 1px solid;">
-						                                                	<td>1</td>
-						                                                    <td><a href="#contact-1" class="client-link">가지마세요</a></td>
-						                                                    <td> 현정이네 두부 </td>
-						                                                    <td> 2021.09.10</td>
-						                                                    <td> &nbsp;&nbsp;&nbsp;15</td>
+					                                                <c:forEach var="vo" items="${list}">
+					                                                	<tr style="border-bottom: #dee2e6 1px solid;">
+						                                                	<td>${vo.review_code}</td>
+						                                                    <td><a href="#contact-1" class="client-link">${vo.title}</a></td>
+						                                                    <td> ${vo.user_name} </td>
+						                                                    <td> ${vo.user_code}</td>
+						                                                    <td> ${vo.regDate}</td>
+						                                                    <td> &nbsp;&nbsp;&nbsp;${vo.readCnt}</td>
 						                                                </tr>
-						                                                <tr style="border-bottom: #dee2e6 1px solid;">
-						                                                    <td>2</td>
-						                                                    <td><a href="#contact-2" class="client-link">추천합니다</a></td>
-						                                                    <td>수림이네 애용</td>
-						                                                    <td> 2021.09.01</td>
-						                                                   	<td> &nbsp;&nbsp;&nbsp;20</td>
-						                                                </tr>
-						                                                <tr style="border-bottom: #dee2e6 1px solid;">
-						                                                	<td>3</td>
-						                                                    <!-- <td class="client-avatar"><input type="checkbox" class="i-checks" name="input[]"></td> -->
-						                                                    <td><a href="#contact-4" class="client-link">좋았습니다</a></td>
-						                                                    <td>진원이네 애옹</td>
-						                                                    <td> 2021.06.19</td>
-						                                                   	<td>&nbsp;&nbsp;&nbsp;5</td>
-						                                                </tr>
+					                                                </c:forEach>
 					                                                </tbody>
 					                                            </table>
 					                                        </div>

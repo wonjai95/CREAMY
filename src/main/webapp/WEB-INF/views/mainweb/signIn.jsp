@@ -101,7 +101,7 @@
                 </div>
                 <button type="submit" class="btn btn-primary block full-width m-b">Register</button>
 
-				<a href=""><p class="text-muted text-center"><small>사장님 회원가입</small></p></a>
+				<a href="signIn_host"><p class="text-muted text-center"><small>사장님 회원가입</small></p></a>
 				
                 <a class="btn btn-sm btn-white btn-block" href="login">Login</a>
             </form>

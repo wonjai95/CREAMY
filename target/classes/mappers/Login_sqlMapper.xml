@@ -20,7 +20,7 @@
   	
   	<insert id="insertAuth" parameterType="java.util.Map">
   		insert into Auth_tbl(id,password,key,authority,enabled)
-  		values(#{id}, #{pw}, '-', 'ROLE_USER', 1)
+  		values(#{id}, #{pw}, '-', #{Auth}, 1)
   	</insert>
   	
   	<select id="confirmIdPwd" parameterType="java.util.Map"  resultType="Int">
@@ -38,8 +38,46 @@
   	</insert>
   	
   	<insert id="insertUserinfo" parameterType="com.spring.Creamy_CRM.VO.userVO">
-  		INSERT INTO user_tbl(user_code, user_password, user_name, user_birth, user_age, user_email, zipcode, user_address, phoneNumber, join_date, user_id)
-		VALUES ('U'||user_seq.NEXTVAL, #{user_password}, #{user_name}, #{user_birth}, #{user_age}, #{user_email}, #{zipcode}, #{user_address}, #{phoneNumber}, sysdate, #{user_id})
+  		INSERT INTO user_tbl(user_code, user_password, user_name, user_birth, user_age, user_email, zipcode, user_address, user_ph, join_date, user_id)
+		VALUES ('U'||user_seq.NEXTVAL, #{user_password}, #{user_name}, #{user_birth}, #{user_age}, #{user_email}, #{zipcode}, #{user_address}, #{user_ph}, sysdate, #{user_id})
+  	</insert>
+  	
+  	<select id="getUserInfo" parameterType="String" resultType="com.spring.Creamy_CRM.VO.userVO">
+  		SELECT * FROM user_tbl
+  		WHERE user_id = #{id}
+  	</select>
+  	
+  	<select id="getHostInfo" parameterType="String" resultType="com.spring.Creamy_CRM.VO.HostVO">
+  		SELECT * FROM host_tbl
+  		WHERE host_id = #{id}
+  	</select>
+  	
+  	<select id="selectzipcode" parameterType="String" resultType="com.spring.Creamy_CRM.VO.ZipcodeVO">
+  		SELECT * FROM zipcode_tbl
+  		WHERE zipcode = #{zipcode}
+  	</select>
+  	
+  	<update id="modifyPw" parameterType="java.util.Map">
+  		UPDATE Auth_tbl SET password = #{pw}
+  		WHERE id = #{id}
+  	</update>
+  	
+  	<update id="updateUserInfo" parameterType="com.spring.Creamy_CRM.VO.userVO">
+  		UPDATE user_tbl SET
+  		 user_password = #{user_password},
+  		 user_name = #{user_name},
+  		 user_age = #{user_age},
+  		 user_birth = #{user_birth},
+  		 user_email = #{user_email},
+  		 user_ph = #{user_ph},
+  		 zipcode = #{zipcode},
+  		 user_address = #{user_address}
+  		WHERE user_id = #{user_id}
+  	</update>
+  	
+  	<insert id="insertHost" parameterType="com.spring.Creamy_CRM.VO.HostVO">
+  		INSERT INTO host_tbl(host_code,host_id,host_pw,host_email,host_name,comp_name,host_ph)
+  		VALUES('U'||host_seq.NEXTVAL,#{host_id},#{host_pw},#{host_email},#{host_name},#{comp_name},#{host_ph})
   	</insert>
   	
   

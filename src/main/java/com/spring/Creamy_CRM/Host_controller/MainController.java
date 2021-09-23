@@ -33,6 +33,18 @@ public class MainController {
 		
 		return "host/home";
 	}
+	
+	//메인 홈 화면
+	@RequestMapping("/host/firsthome")
+	public String firsthome(HttpServletRequest req, Model model) {
+		logger.info("url -> firsthome");
+		
+		service_login.getHostCode(req, model);
+		
+		System.out.println(req.getSession().getAttribute("code"));
+		
+		return "host/home";
+	}
 
 
 }

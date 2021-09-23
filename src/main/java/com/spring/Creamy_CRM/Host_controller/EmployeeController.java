@@ -151,7 +151,7 @@ public class EmployeeController {
 		return "host/employee/employee_contract";
 	}
 	
-	// 급여 계약 신규 등록 및 갱신 처리
+	// 급여 계약 처리
 	@RequestMapping("host/employee_contractAction")
 	public String employee_contractAction(HttpServletRequest req, Model model) {
 		logger.info("url -> employee_contractAction");

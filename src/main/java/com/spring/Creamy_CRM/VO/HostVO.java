@@ -14,6 +14,8 @@ public class HostVO {
    private String host_email;      // 관리자 이메일  
    private String host_name;      // 관리자 이름
    private String comp_name;      // 회사명
+   private String host_ph;		 //사장님 전화번호
+   
    public String getHost_code() {
       return host_code;
    }
@@ -50,6 +52,14 @@ public class HostVO {
    public void setComp_name(String comp_name) {
       this.comp_name = comp_name;
    }
+	public String getHost_ph() {
+		return host_ph;
+	}
+	public void setHost_ph(String host_ph) {
+		this.host_ph = host_ph;
+	}
+   
+   
    
    
 }

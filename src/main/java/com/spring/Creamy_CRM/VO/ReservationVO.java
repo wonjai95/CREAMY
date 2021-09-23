@@ -21,6 +21,10 @@ public class ReservationVO {
 	private String product_code;			// 예약할 상품서비스
 	private String res_memo;				// 기타메모
 	private String res_room;				// 예약호실
+	private String res_review_chk;			//후기 작성여부 체크
+	
+	//고객 예약내역에서 사용할 변수
+	private String comp_name;			//회사명
 	
 	
 	public String getRes_code() {
@@ -105,6 +109,18 @@ public class ReservationVO {
 	}
 	public void setRes_room(String res_room) {
 		this.res_room = res_room;
+	}
+	public String getComp_name() {
+		return comp_name;
+	}
+	public void setComp_name(String comp_name) {
+		this.comp_name = comp_name;
+	}
+	public String getRes_review_chk() {
+		return res_review_chk;
+	}
+	public void setRes_review_chk(String res_review_chk) {
+		this.res_review_chk = res_review_chk;
 	}
 	
 	

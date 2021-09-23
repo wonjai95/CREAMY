@@ -13,7 +13,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.spring.Creamy_CRM.Host_service.CRMuserServiceImpl;
 import com.spring.Creamy_CRM.Host_service.LoginServiceImpl;
+import com.spring.Creamy_CRM.Host_service.ProductServiceImpl;
 
 @Controller
 public class UserInfoController {
@@ -22,11 +24,25 @@ private static final Logger logger = LoggerFactory.getLogger(UserInfoController.
 	
 	@Autowired
 	LoginServiceImpl service_login;
+	
+	@Autowired
+	CRMuserServiceImpl service_user;
+	
+	@Autowired
+	ProductServiceImpl service_product;
 
 	// 회원 정보
 	@RequestMapping("/host/user")
 	public String user(HttpServletRequest req, Model model) {
 		logger.info("url -> user");
+		
+		// 회원 목록 출력
+		service_user.printUsers(req, model);
+		
+		// 회원 선택 하면 해당 회원에 대한 판매 내역 출력(판매 탭) - user_sale
+		String user_code = req.getParameter("user_code");
+		System.out.println("user_code : " + user_code);
+		//service_product.getSaleInfo(req, model);
 		
 		return "host/user/user";
 	}
@@ -44,8 +60,21 @@ private static final Logger logger = LoggerFactory.getLogger(UserInfoController.
 	public String modify_user(HttpServletRequest req, Model model) {
 		logger.info("url -> modify_user");
 		
+		String user_code = req.getParameter("user_code");
+		System.out.println("user_code : " + user_code);
+		
+		//service_login.modifyUser(req, model);
+		
 		return "host/user/modify_user";
 	}
+	
+	// 마이페이지
+	@RequestMapping("/host/mypage")
+	public String mypage(HttpServletRequest req, Model model) {
+		logger.info("url -> mypage");
 		
+		return "host/user/mypage";
+	}
+	
 	
 }

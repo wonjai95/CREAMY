@@ -8,6 +8,8 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+     <link href="${path}/resources/host/css/move_disable_style.css" rel="stylesheet">
 
     <title>Creamy_home</title>
 </head>
@@ -40,24 +42,7 @@
         <div class="col-lg-9">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>Striped Table </h5>
-                    <div class="ibox-tools">
-                        <a class="collapse-link">
-                            <i class="fa fa-chevron-up"></i>
-                        </a>
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            <i class="fa fa-wrench"></i>
-                        </a>
-                        <ul class="dropdown-menu dropdown-user">
-                            <li><a href="#" class="dropdown-item">Config option 1</a>
-                            </li>
-                            <li><a href="#" class="dropdown-item">Config option 2</a>
-                            </li>
-                        </ul>
-                        <a class="close-link">
-                            <i class="fa fa-times"></i>
-                        </a>
-                    </div>
+                    <h5>캘린더 </h5>
                 </div>
                 <div class="ibox-content">
                     <div id="calendar"></div>
@@ -68,30 +53,13 @@
             <div class="ibox ">
                 <div class="ibox-title">
                     <h5>예약중 목록</h5>
-                    <div class="ibox-tools">
-                        <a class="collapse-link">
-                            <i class="fa fa-chevron-up"></i>
-                        </a>
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            <i class="fa fa-wrench"></i>
-                        </a>
-                        <ul class="dropdown-menu dropdown-user">
-                            <li><a href="#" class="dropdown-item">Config option 1</a>
-                            </li>
-                            <li><a href="#" class="dropdown-item">Config option 2</a>
-                            </li>
-                        </ul>
-                        <a class="close-link">
-                            <i class="fa fa-times"></i>
-                        </a>
-                    </div>
                 </div>
                 <div class="ibox-content">
                     <div id='external-events'>
                         <p>09/16 현황</p>
-                        
-                        <p class="m-t">
-                            <input type='checkbox' id='drop-remove' class="i-checks" checked /> <label for='drop-remove'>인원 : 0명</label>
+                        <div class='home_div navy-bg'>이름 : ${sessionScope.name}</div>
+                        <p class="m-t" style="border-top: 1px solid gray; padding-top: 5px;">
+                                               인원 : 0명
                         </p>
                     </div>
                 </div>
@@ -120,13 +88,13 @@
                 <div class="ibox-content">
                     <div id='external-events'>
                         <p>09/16 현황</p>
-                        <div class='external-event navy-bg'>Go to shop and buy some products.</div>
-                        <div class='external-event navy-bg'>Check the new CI from Corporation.</div>
-                        <div class='external-event navy-bg'>Send documents to John.</div>
-                        <div class='external-event navy-bg'>Phone to Sandra.</div>
-                        <div class='external-event navy-bg'>Chat with Michael.</div>
-                        <p class="m-t">
-                            <input type='checkbox' id='drop-remove' class="i-checks" checked /> <label for='drop-remove'>인원 : 0명</label>
+                        <div class='home_div navy-bg'>Go to shop and buy some products.</div>
+                        <div class='home_div navy-bg'>Check the new CI from Corporation.</div>
+                        <div class='home_div navy-bg'>Send documents to John.</div>
+                        <div class='home_div navy-bg'>Phone to Sandra.</div>
+                        <div class='home_div navy-bg'>Chat with Michael.</div>
+                        <p class="m-t" style="border-top: 1px solid gray; padding-top: 5px;">
+                           	인원 : 0명
                         </p>
                     </div>
                 </div>
@@ -160,8 +128,8 @@
                         <div class='external-event navy-bg'>Send documents to John.</div>
                         <div class='external-event navy-bg'>Phone to Sandra.</div>
                         <div class='external-event navy-bg'>Chat with Michael.</div>
-                        <p class="m-t">
-                            <input type='checkbox' id='drop-remove' class="i-checks" checked /> <label for='drop-remove'>합계 : 0원</label>
+                        <p class="m-t" style="border-top: 1px solid gray; padding-top: 5px;">
+                            합계 : 0원
                         </p>
                     </div>
                 </div>
@@ -171,9 +139,6 @@
     </div>
 </div>
 
-
-	<!-- footer  -->
-	<jsp:include page="footer.jsp" />
 
 </div>
 </div>

@@ -1,3 +1,9 @@
+<!-- 
+이름 : 장현정
+작성날짜 : 2021-09-16 ~ 2021-09-19 
+회원 정보 페이지에서 예약 관련 출력 탭
+-->
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>

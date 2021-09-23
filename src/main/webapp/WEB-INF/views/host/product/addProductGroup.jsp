@@ -14,7 +14,8 @@ body {
 </head>
 <body>
 	<div class="ibox-content">
-		<form method="get">
+		<form action="addProductGroupAction" method="post" >
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 			<div class="form-group  row">
 				<label class="col-sm-2 col-form-label">그룹 등록</label>
 			</div>
@@ -23,10 +24,9 @@ body {
 			<div class="form-group row">
 				<label class="col-sm-2 col-form-label">그룹명</label>
 				<div class="col-sm-5">
-					<input type="text" class="form-control" name="">
+					<input type="text" class="form-control" name="product_group_name" required>
 				</div>
 			</div>
-
 
 			<div class="hr-line-dashed"></div>
 			<div class="form-group row">
