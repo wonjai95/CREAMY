@@ -62,12 +62,36 @@ $(document).ready(function() {
               
               var getDay = new Date(m).getDay();
               var getTime = new Date().getHours();
-              alert("요일 : " + getDay + ", 시간 : " + getTime);
+              // 월 ~ 일 : 1~7
+              console.log("요일 : " + getDay + ", 시간 : " + getTime);
+              
+              var header = $("meta[name='_csrf_header']").attr("content");
+              var token = $("meta[name='_csrf']").attr("content");
+              console.log("header : " + header);
+              console.log("token : " + token);
+              
+              $.ajax({
+            	  url : "bookingTimeTable",
+            	  type : "Post",
+            	  data : "day=" + getDay + "&time=" + getTime,
+            	  beforeSend : function(jqXHR, settings) {
+            		  console.log("beforesend 진행");
+                      jqXHR.setRequestHeader(header, token);
+            	  },
+            	  success : function(result) {
+            		  $("#timeTable").html(result);
+            	  },
+            	  error : function(error) {
+            		  
+            	  }
+            	  
+              });
+              
 
             $('.res_date').html(m);
            }
         
-          }, 
+        }, 
     });
 
     
@@ -163,7 +187,7 @@ $(document).ready(function() {
      var geocoder = new kakao.maps.services.Geocoder();
    
      // 주소로 좌표를 검색합니다
- geocoder.addressSearch('서울 금천구 가산디지털2로 123 월드메르디앙벤처센터II', function(result, status) {
+     geocoder.addressSearch('서울 금천구 가산디지털2로 123 월드메르디앙벤처센터II', function(result, status) {
    
          // 정상적으로 검색이 완료됐으면 
           if (status === kakao.maps.services.Status.OK) {
