@@ -42,6 +42,16 @@ public class EmployeeController {
 		
 		return "host/employee/employee_detail";
 	}
+	
+	// 직원 수정
+	@RequestMapping("host/employee_updateAction")
+	public String employee_updateAction(HttpServletRequest req, Model model) {
+		logger.info("url -> employee_updateAction]");
+		
+		service.updateEmployeeAction(req, model);
+		
+		return "host/employee/employee_updateAction";
+	}
 	   
 	// 직원 등록
 	@RequestMapping("host/employee_enlist")

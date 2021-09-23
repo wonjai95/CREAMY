@@ -33,6 +33,15 @@
 		 WHERE employee_code = #{employee_code}
 	</select>
 	
+	<!-- 직원 정보 수정 -->
+	<!-- Oracle 부적합한 열유형 Null 처리 방법 : 해당 column에 데이터를 넣을때 jdbcType=VARCHAR 같이 적어준다. -->
+	<update id="updateEmployee" parameterType="com.spring.Creamy_CRM.VO.EmployeeVO">
+		UPDATE employee_tbl
+		   SET employee_name=#{employee_name}, employee_gender=#{employee_gender}, employee_email=#{employee_email}, employee_ph=#{employee_ph}, employee_address=#{employee_address},
+		       department=#{department}, position=#{position}, duty=#{duty}, job=#{job}, employee_type=#{employee_type}, annual_leave_cnt=#{annual_leave_cnt}, employee_hireDate=#{employee_hireDate}, employee_resignDate=#{employee_resignDate, jdbcType=VARCHAR}
+		 WHERE employee_code=#{employee_code}
+	</update>
+	
 	<!--  -->
 	<select id="getAttendanceList" parameterType="String" resultType="com.spring.Creamy_CRM.VO.AttendanceVO">
 		SELECT *

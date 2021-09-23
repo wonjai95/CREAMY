@@ -65,6 +65,65 @@ public class EmployeeServiceImpl implements EmployeeService {
 		model.addAttribute("attList", attList);
 	}
 	
+	// 직원 상세 정보 수정 처리
+	@Override
+	public void updateEmployeeAction(HttpServletRequest req, Model model) {
+		String employee_code = req.getParameter("employee_code");
+		String employee_name = req.getParameter("employee_name");
+		String gender = req.getParameter("employee_gender");
+		String employee_gender = "";
+		if(gender == "남성") {
+			employee_gender = "M";
+		} else {
+			employee_gender = "F";
+		}
+		String employee_email = req.getParameter("employee_email");
+		String employee_ph = req.getParameter("employee_ph");
+		String employee_address = req.getParameter("employee_address");
+		String department = req.getParameter("department");
+		String position = req.getParameter("position");
+		String duty = req.getParameter("duty");
+		String job = req.getParameter("job");
+		String employee_type = req.getParameter("employee_type");
+		int annual_leave_cnt = Integer.parseInt(req.getParameter("annual_leave_cnt"));
+		// String -> java.sql.Date 변환 방법
+		String hireDate = req.getParameter("employee_hireDate");
+		System.out.println("hireDate : " + hireDate);
+		Date employee_hireDate = Date.valueOf(hireDate);
+		
+		String resignDate = req.getParameter("employee_resignDate");
+		System.out.println("resignDate : " + resignDate);
+		Date employee_resignDate;
+		if(resignDate == null || resignDate.equals("")) {
+			employee_resignDate = null;
+		} else {
+			employee_resignDate = Date.valueOf(resignDate);
+		}
+		System.out.println("employee_resignDate : " + employee_resignDate);
+		
+		EmployeeVO vo = new EmployeeVO();
+		vo.setEmployee_code(employee_code);
+		vo.setEmployee_name(employee_name);
+		vo.setEmployee_gender(employee_gender);
+		vo.setEmployee_email(employee_email);
+		vo.setEmployee_ph(employee_ph);
+		vo.setEmployee_address(employee_address);
+		vo.setDepartment(department);
+		vo.setPosition(position);
+		vo.setDuty(duty);
+		vo.setJob(job);
+		vo.setEmployee_type(employee_type);
+		vo.setAnnual_leave_cnt(annual_leave_cnt);
+		vo.setEmployee_hireDate(employee_hireDate);
+		vo.setEmployee_resignDate(employee_resignDate);
+		
+		int updateCnt = dao.updateEmployee(vo);
+		
+		System.out.println("updateCnt : " + updateCnt);
+		
+		model.addAttribute("updateCnt", updateCnt);
+	}
+	
 	// 직원 등록시 해당 id 체크 
 	@Override
 	public void chkEmployeeIdAction(HttpServletRequest req, Model model) {

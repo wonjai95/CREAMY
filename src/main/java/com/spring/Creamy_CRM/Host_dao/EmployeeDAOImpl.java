@@ -39,7 +39,15 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		return dao.getEmployeeDetail(employee_code);
 	}
 	
+	// 직원 수정 처리
+	@Override
+	public int updateEmployee(EmployeeVO vo) {
+		EmployeeDAO dao = sqlSession.getMapper(EmployeeDAO.class);
+		return dao.updateEmployee(vo);
+	}
+	
 	// 직원의 근태 정보
+	@Override
 	public ArrayList<AttendanceVO> getAttendanceList(String employee_code){
 		EmployeeDAO dao = sqlSession.getMapper(EmployeeDAO.class);
 		return dao.getAttendanceList(employee_code);
