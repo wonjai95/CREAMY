@@ -53,6 +53,18 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		return dao.getAttendanceList(employee_code);
 	}
 	
+	// 직원의 휴가 정보
+	public ArrayList<LeaveVO> getLeaveList(String employee_code){
+		EmployeeDAO dao = sqlSession.getMapper(EmployeeDAO.class);
+		return dao.getLeaveList(employee_code);
+	}
+	
+	// 직원의 급여 계약 정보
+	public ArrayList<SalaryContractVO> getContractList(String employee_code){
+		EmployeeDAO dao = sqlSession.getMapper(EmployeeDAO.class);
+		return dao.getContractList(employee_code);
+	}
+	
 	// 이미 직원 등록이 완료된 id인지 체크
 	@Override
 	public int chkEmployeeIdPreexisting(String employee_id) {
