@@ -8,20 +8,32 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<c:if test="${updateCnt == 1}">
+
+	<c:if test="${selectCnt == 1}">
 		<script type="text/javascript">
-			alert("상품 수정 완료");
-			self.close();
-			opener.window.location = "product";
-		</script>
-	</c:if>
-	
-	<c:if test="${updateCnt != 1}">
-		<script type="text/javascript">
-			alert("상품 수정 실패 잠시후 다시 시도해 주세요.");
+			alert("상품명이 중복되었습니다.");
 			window.history.back();
 		</script>
 	</c:if>
+
+	<c:if test="${selectCnt != 1}">
+		<c:if test="${updateCnt == 1}">
+			<script type="text/javascript">
+				alert("상품 수정 완료");
+				self.close();
+				opener.window.location = "product";
+			</script>
+		</c:if>
+
+		<c:if test="${updateCnt != 1}">
+			<script type="text/javascript">
+				alert("상품 수정 실패 잠시후 다시 시도해 주세요.");
+				window.history.back();
+			</script>
+		</c:if>
+
+	</c:if>
+	
 	
 	
 </body>

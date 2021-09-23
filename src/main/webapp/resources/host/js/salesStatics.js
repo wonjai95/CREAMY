@@ -27,23 +27,3 @@ $("document").ready(function() {
    });
    
 });
-
-//
-//$.ajax({
-//  url : "salesTypeStatics",
-//  type : "Post",
-//  beforeSend : function(xhr) {
-//     console.log("beforesend 진행");
-//     xhr.setRequestHeader("${_csrf.headerName}","${_csrf.token}");
-//  },
-//  success : function(result, jqXHR) {
-//     $(".tab-content").html(result);
-//  },
-//  error : function(jqXHR, error) {
-//     alert("다시 시도해주세요.");
-//     window.history.back();
-//     alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-//  }
-//
-//});
-// "Get" 으로 하면 먹기는 하는데... 왜 Post로 시큐리티가 안 뚫어지는 걸까ㅠ

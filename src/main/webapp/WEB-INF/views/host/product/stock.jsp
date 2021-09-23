@@ -80,7 +80,7 @@
 		}
 	}
 
-	function getProductCode() {
+	function getStockCode() {
 		var names = document.getElementsByName("stock_code");
 		var stock_code = "";
 		for (var i = 0; i < names.length; i++) {
@@ -96,7 +96,7 @@
 	}
 
 	function detailStock() {
-		var stock_code = getProductCode();
+		var stock_code = getStockCode();
 		if (stock_code == null || stock_code == "") {
 			return;
 		}
@@ -107,7 +107,7 @@
 	}
 
 	function deleteStock() {
-		var stock_code = getProductCode();
+		var stock_code = getStockCode();
 		if (stock_code == null || stock_code == "") {
 			return false;
 		}
@@ -236,7 +236,7 @@
 						<div class="ibox-content" style="margin: 0px; padding: 0px;">
 
 							<form action="deleteStockAction" method="post"
-								onsubmit="return deleteProduct();">
+								onsubmit="return deleteStock();">
 								<input type="hidden" name="${_csrf.parameterName}"
 									value="${_csrf.token}">
 								<div id="p_group">
