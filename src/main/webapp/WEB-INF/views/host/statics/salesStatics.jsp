@@ -8,9 +8,6 @@
 <meta name="_csrf" content="${_csrf.token}"/>
 <meta name="_csrf_header" content="${_csrf.headerName}"/>
 <title>salesStatics</title>
-  	<link href="${path}/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="${path}/resources/bootstrap/css/font-awesome.css" rel="stylesheet">
-
     <!-- c3 Charts -->
     <link href="${path}/resources/bootstrap/css/c3/c3.min.css" rel="stylesheet">
 
@@ -23,9 +20,6 @@
 </style>
 
   <!-- Mainly scripts -->
-  <script src="${path}/resources/bootstrap/js/jquery-3.1.1.min.js"></script>
-  <script src="${path}/resources/bootstrap/js/popper.min.js"></script>
-  <script src="${path}/resources/bootstrap/js/bootstrap.js"></script>
   <script src="${path}/resources/bootstrap/js/plugins/metisMenu/jquery.metisMenu.js"></script>
   <script src="${path}/resources/bootstrap/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
@@ -37,7 +31,7 @@
   <script src="${path}/resources/bootstrap/js/plugins/d3/d3.min.js"></script>
   <script src="${path}/resources/bootstrap/js/plugins/c3/c3.min.js"></script>
   
-<script type="text/javascript" src="${path}/resources/host/js/salesStatics.js"></script>
+
 </head>
 <body>
 <div id="wrapper">
@@ -56,7 +50,7 @@
 
 		<div class="wrapper wrapper-content animated fadeInRight ecommerce">
 		<form action="" method="post">
-		  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+		  <sec:csrfInput/>
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="tabs-container">
@@ -221,6 +215,6 @@
  });
      
  </script>
-
+<script type="text/javascript" src="${path}/resources/host/js/salesStatics.js"></script>
 </body>
 </html>
