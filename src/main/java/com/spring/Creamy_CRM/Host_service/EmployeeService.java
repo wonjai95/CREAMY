@@ -39,7 +39,7 @@ public interface EmployeeService {
 	// 휴가 등록 처리
 	public void leaveAction(HttpServletRequest req, Model model);
 	
-	// 급여 계약 처리 
+	// 급여 계약과 갱신 처리
 	public void salaryContractAction(HttpServletRequest req, Model model);
 	
 	

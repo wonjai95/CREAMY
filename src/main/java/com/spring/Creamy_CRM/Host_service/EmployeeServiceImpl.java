@@ -61,8 +61,16 @@ public class EmployeeServiceImpl implements EmployeeService {
 		// 직원 근태 정보 가져오기
 		ArrayList<AttendanceVO> attList = dao.getAttendanceList(employee_code);
 		
+		// 직원 휴가 정보 가져오기
+		ArrayList<LeaveVO> leaveList = dao.getLeaveList(employee_code);
+		
+		// 직원 급여 계약 정보 가져오기
+		ArrayList<SalaryContractVO> contractList = dao.getContractList(employee_code);
+		
 		model.addAttribute("dtos", dtos);
 		model.addAttribute("attList", attList);
+		model.addAttribute("leaveList", leaveList);
+		model.addAttribute("contractList", contractList);
 	}
 	
 	// 직원 상세 정보 수정 처리
@@ -434,7 +442,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		model.addAttribute("insertCnt", insertCnt);
 	}
 
-	// 급여 계약 처리 
+	// 급여 계약과 갱신 처리
 	@Override
 	public void salaryContractAction(HttpServletRequest req, Model model) {
 		String employee_code = req.getParameter("employee_code");
@@ -466,26 +474,54 @@ public class EmployeeServiceImpl implements EmployeeService {
 		vo.setBank_name(bankList[0]);
 		vo.setAccount_number(bankList[1]);
 		
-		// 은행 삽입
-		int insertBankCnt = dao.insertBankInfo(vo);
-		int insertCnt = 0;
-		
+		// bank_tbl을 위한 map
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("account_holder", employee_name);
 		map.put("account_number", bankList[1]);
 		
-		// 은행 코드 가져오기
+		int chkBank = dao.getBankCodeCnt(map);
+		int insertBankCnt = 0;
+		int conCnt = 0;
+		int insertCnt = 0;
+		int updateCnt = 0;
+		
+		// 은행 이미 등록되어있는지 확인. 등록되어 있지 않으면 bank_tbl에 insert
+		if(chkBank == 0) {
+			insertBankCnt = dao.insertBankInfo(vo);
+		}
+		System.out.println("insertBankCnt : " + insertBankCnt);
+
 		String bank_code = dao.getBankCode(map);
 		vo.setBank_code(bank_code);
 		
-		// 급여계약 insert
-		if(insertBankCnt != 0) {
-			insertCnt = dao.insertSalaryContract(vo);
-			System.out.println("insertCnt : " + insertCnt);
-		}
+		// 해당 직원코드의 contract_stat = '계약중'인 컬럼이 있는지 확인
+		conCnt = dao.chkSalaryContract(employee_code);
+		System.out.println("conCnt : " + conCnt);
 		
+		// 정리 : 
+		// 1. 기존에 등록된 급여계약이 없을 경우 - 등록과 마찬가지로 insert
+		// 2. 기존에 등록된 급여계약이 있을 경우('계약중')
+		// - 기존의 계약을 '계약 종료'로 update
+		// - 신규 계약을 등록
+		
+		// 해당 직원코드에 대해 이미 등록된 급여계약이 있을 경우 기존의 contract_stat = '계약 종료'로 update
+ 		if(conCnt == 1) {
+			vo.setContract_stat("계약 종료");
+			updateCnt = dao.updateSalaryContract(vo);
+			System.out.println("updateCnt : " + updateCnt);
+		} 
+ 		vo.setContract_stat("계약중");
+		insertCnt = dao.insertSalaryContract(vo);
+		System.out.println("insertCnt : " + insertCnt);
+		
+		// updateCnt가 1이고 insertCnt가 1이면 계약 갱신 성공
+		// updateCnt가 0이고 insertCnt가 1이면 신규 계약 등록
+		// updateCnt가 0이고 insertCnt가 0이면 실패
 		model.addAttribute("insertCnt", insertCnt);
+		model.addAttribute("updateCnt", updateCnt);
+		
 	}
+	
 	
 	
 	
