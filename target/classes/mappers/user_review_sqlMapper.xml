@@ -59,6 +59,16 @@
 	and h.host_code = #{host_code}
 	  	order by review_code desc
   </select>
+  
+  <select id="getUserReservationlist" parameterType="String" resultType="com.spring.Creamy_CRM.VO.ReservationVO">
+  select res.*, de.product_code, p.product_name
+	from reservation_tbl res, user_tbl u, reservation_detail_tbl de, product_tbl p
+	where res.user_id = u.user_id
+	and res.res_detail_code = de.res_detail_code
+	and de.product_code = p.product_code
+	and u.user_code = #{user_code}
+	order by res.res_detail_code desc
+  </select>
   	
   
   </mapper>

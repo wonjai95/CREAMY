@@ -25,6 +25,7 @@ public class ReservationVO {
 	
 	//고객 예약내역에서 사용할 변수
 	private String comp_name;			//회사명
+	private String product_name;		//서비스(제품)명
 	
 	
 	public String getRes_code() {
@@ -122,6 +123,13 @@ public class ReservationVO {
 	public void setRes_review_chk(String res_review_chk) {
 		this.res_review_chk = res_review_chk;
 	}
+	public String getProduct_name() {
+		return product_name;
+	}
+	public void setProduct_name(String product_name) {
+		this.product_name = product_name;
+	}
+	
 	
 	
 	

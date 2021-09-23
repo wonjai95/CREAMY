@@ -1,8 +1,11 @@
 package com.spring.Creamy_CRM.User_service;
 
 import java.sql.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import javax.print.attribute.HashAttributeSet;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -117,7 +120,33 @@ public class UserReviewServiceImpl implements UserReviewService {
 		String host_code = (String) req.getSession().getAttribute("code");
 		
 		List<ReviewVO> list = dao_review.getStoreReviewList(host_code);
+		String user_code = "";
+		
+		for(ReviewVO vo : list) {
+			user_code += vo.getUser_code() + "-";
+		}
+		String[] user_codearr = user_code.split("-");
+		
+		Map<String, List<ReservationVO>> resmap = new HashMap<String, List<ReservationVO>>();
+		
+		for(String key : user_codearr) {
+			if(resmap.containsKey(key)) {
+			
+			}
+			else {
+				List<ReservationVO> res_list = dao_review.getUserReservationlist(key);
+				resmap.put(key, res_list);
+			}
+		}
+		
 		req.setAttribute("list", list);
+		req.setAttribute("resmap", resmap);
+		
+	}
+
+	@Override
+	public void getUserReservationList(HttpServletRequest req, Model model) {
+		   
 	}
 
 }
