@@ -213,6 +213,14 @@ public class MainwebController {
 	//-------------------------------- 고객 화면 예약 페이지 --------------------------------
 	// 고객 화면 예약 페이지
 	//회원 예약 페이지
+	@RequestMapping("/selectHost")
+	   public String selectHost(HttpServletRequest req, Model model) {
+	      logger.info("url -> selectHost");
+	      
+	      return "mainweb/selectHost";
+	}	
+	
+	//회원 예약 페이지
 	@RequestMapping("/custBooking")
 	   public String custBooking(HttpServletRequest req, Model model) {
 	      logger.info("url -> custBooking");

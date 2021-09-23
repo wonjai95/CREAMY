@@ -11,17 +11,6 @@
 
     <title>INSPINIA | Dashboard v.4</title>
 
-   <link href="${path}/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="${path}/resources/bootstrap/css/font-awesome.css" rel="stylesheet">
-
-    <link href="${path}/resources/bootstrap/css/iCheck/custom.css" rel="stylesheet">
-
-    <link href="${path}/resources/bootstrap/css/fullcalendar.css" rel="stylesheet">
-    <link href="${path}/resources/bootstrap/css/fullcalendar.print.css" rel='stylesheet' media='print'>
-
-    <link href="${path}/resources/bootstrap/css/animate.css" rel="stylesheet">
-    <link href="${path}/resources/bootstrap/css/style.css" rel="stylesheet">
-
    <style type="text/css">
       table {
          border-collapse: separate;

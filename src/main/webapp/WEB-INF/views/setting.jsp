@@ -7,7 +7,7 @@
 
 
 <script src="https://kit.fontawesome.com/47575b4bfd.js" crossorigin="anonymous"></script>
-<script	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script   src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 <c:set var="path" value="${pageContext.request.contextPath}" />
 
@@ -19,6 +19,9 @@
 <link href="${path}/resources/bootstrap/css/animate.css"  rel="stylesheet">
 <link href="${path}/resources/bootstrap/css/style.css" rel="stylesheet">
 <link href="${path}/resources/bootstrap/css/datatables.min.css" rel="stylesheet">
+<link href="${path}/resources/bootstrap/css/fullcalendar.css" rel="stylesheet">
+<link href="${path}/resources/bootstrap/css/fullcalendar.print.css" rel='stylesheet' media='print'>
+<link href="${path}/resources/bootstrap/css/iCheck/custom.css" rel="stylesheet">
 
 <!-- js -->
 <!-- Mainly scripts -->
@@ -90,4 +93,3 @@
  <!-- Dual Listbox -->
  <script src="${path}/resources/bootstrap/js/jquery.bootstrap-duallistbox.js"></script>
  
-
