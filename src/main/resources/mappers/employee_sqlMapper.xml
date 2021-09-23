@@ -38,30 +38,15 @@
 	<update id="updateEmployee" parameterType="com.spring.Creamy_CRM.VO.EmployeeVO">
 		UPDATE employee_tbl
 		   SET employee_name=#{employee_name}, employee_gender=#{employee_gender}, employee_email=#{employee_email}, employee_ph=#{employee_ph}, employee_address=#{employee_address},
-		       department=#{department}, position=#{position}, duty=#{duty}, job=#{job}, employee_type=#{employee_type}, annual_leave_cnt=#{annual_leave_cnt}, 
-		       			employee_hireDate=#{employee_hireDate}, employee_resignDate=#{employee_resignDate, jdbcType=VARCHAR}
+		       department=#{department}, position=#{position}, duty=#{duty}, job=#{job}, employee_type=#{employee_type}, annual_leave_cnt=#{annual_leave_cnt}, employee_hireDate=#{employee_hireDate}, employee_resignDate=#{employee_resignDate, jdbcType=VARCHAR}
 		 WHERE employee_code=#{employee_code}
 	</update>
 	
-	<!-- 직원의 근태 정보 조회 -->
+	<!--  -->
 	<select id="getAttendanceList" parameterType="String" resultType="com.spring.Creamy_CRM.VO.AttendanceVO">
 		SELECT *
 		  FROM attendance_tbl
 		 WHERE employee_code = #{employee_code}
-	</select>
-	
-	<!-- 직원의 휴가 정보 조회 -->
-	<select id="getLeaveList" parameterType="String" resultType="com.spring.Creamy_CRM.VO.LeaveVO">
-		SELECT *
-		  FROM leave_tbl
-		 WHERE employee_code=#{employee_code}
-	</select>
-	
-	<!-- 직원의 급여 계약 정보 조회 -->
-	<select id="getContractList" parameterType="String" resultType="com.spring.Creamy_CRM.VO.SalaryContractVO">
-		SELECT *
-		  FROM salary_contract_tbl
-		 WHERE employee_code=#{employee_code}
 	</select>
 	
 	<!-- 이미 직원 등록이 완료된 id인지 체크 -->
@@ -157,37 +142,14 @@
      	 WHERE account_number = #{account_number}
      	   AND account_holder = #{account_holder}
      </select>
-     
-    <!-- 은행 이미 등록되어있는지 확인 -->
-     <select id="getBankCodeCnt" parameterType="java.util.Map" resultType="Integer">
-     	SELECT COUNT(*) 
-     	  FROM bank_tbl
-     	 WHERE account_number = #{account_number}
-     	   AND account_holder = #{account_holder}
-     </select>
       
+     
     <!-- 급여 계약 등록 -->
     <insert id="insertSalaryContract" parameterType="com.spring.Creamy_CRM.VO.SalaryContractVO">
     	INSERT INTO salary_contract_tbl (salary_contract_code, employee_code, monthly_salary, annual_salary, bank_code,
-    										payment_date, contract_date, con_start, con_end, contract_stat)
+    										payment_date, contract_date, con_start, con_end)
     	VALUES ('SC'||sal_con_seq.nextval, #{employee_code}, #{monthly_salary}, #{annual_salary}, #{bank_code}, 
-    				#{payment_date}, SYSDATE, #{con_start}, #{con_end}, #{contract_stat})
+    				#{payment_date}, SYSDATE, #{con_start}, #{con_end})
     </insert>
       
-    <!-- 등록된 급여 계약이 있는지 확인 --> 
-    <select id="chkSalaryContract" parameterType="String" resultType="Integer">
-     	SELECT COUNT(*) 
-     	  FROM salary_contract_tbl
-     	 WHERE employee_code = #{employee_code}
-     	   AND contract_stat = '계약중'
-     </select>  
-      
-     <!-- 해당 직원코드에 대해 이미 등록된 급여계약이 있을 경우 기존의 contract_stat = '계약 종료'로 update -->
-     <update id="updateSalaryContract" parameterType="com.spring.Creamy_CRM.VO.SalaryContractVO">
-     	UPDATE salary_contract_tbl
-     	   SET contract_stat = #{contract_stat}
-     	 WHERE employee_code = #{employee_code}
-     	   AND contract_stat = '계약중'
-     </update>
-       
   </mapper>

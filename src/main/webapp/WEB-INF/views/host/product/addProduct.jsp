@@ -24,8 +24,9 @@ body {
 				<div class="col-sm-7">
 					<select name="product_group_code" class="form-control">
 						<option value="0" selected="selected">상품 그룹 선택</option>
-						<option value="커닝시티 헤어샵">커닝시티 헤어샵</option>
-						<option value="헤네시스 헤어샵">헤네시스 헤어샵</option>
+						<c:forEach var="item" items="${list}">
+							<option value="${item.product_group_code}">${item.product_group_name}</option>
+						</c:forEach>
 					</select>
 				</div>
 			</div>
@@ -42,11 +43,11 @@ body {
 			<div class="form-group row">
 				<label class="col-sm-2 col-form-label">판매형태</label>
 				<label class="col-sm-2 col-form-label"> 
-					<input type="radio" name="sale_type" value="1">
+					<input type="radio" name="product_typeOfSales" value="서비스">
 					<span>서비스</span>
 				</label>
 				<label class="col-sm-2 col-form-label"> 
-					<input type="radio" name="sale_type" value=0> 
+					<input type="radio" name="product_typeOfSales" value="기간"> 
 					<span>기간</span>
 				</label>
 
@@ -64,7 +65,7 @@ body {
 			<div class="form-group row">
 				<label class="col-sm-2 col-form-label">기간</label>
 				<div class="col-sm-2">
-					<input type="number" class="form-control" name="product_rentalPeriod" min="1" max="12"
+					<input type="number" class="form-control" name="product_rentalPeriod" min="0" max="12"
 						value="1">
 				</div>
 				<label class="col-sm-2 col-form-label">개월</label>
@@ -83,9 +84,9 @@ body {
 				<label class="col-sm-2 col-form-label">판매 여부</label>
 				<div class="col-sm-3">
 					<select class="form-control" name="product_status">
-						<option value="0" selected="selected">판매 여부</option>
-						<option value="1">판매중</option>
-						<option value="0">판매중지</option>
+						<option selected="selected">판매 여부</option>
+						<option value="판매중">판매중</option>
+						<option value="판매중지">판매중지</option>
 					</select>
 				</div>
 			</div>

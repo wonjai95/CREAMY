@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>employee_contractAction.jsp</title>
+<title>employee_attendanceAction.jsp</title>
 <link href="${path}/resources/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
 <link href="${path}/resources/bootstrap/css/font-awesome.css"
@@ -28,24 +28,17 @@ body {
 </style>
 </head>
 <body>
-<c:if test="${insertCnt == 1 && updateCnt == 1}">
+<c:if test="${insertCnt == 0}">
 	<script type="text/javascript">
-		alert("급여계약 갱신에 성공했습니다!");
-		window.self.close();
+		alert("급여계약 등록에 실패했습니다!");
+		history.back();
 	</script>
 </c:if>
 
-<c:if test="${insertCnt == 1 && updateCnt == 0}">
+<c:if test="${insertCnt == 1}">
 	<script type="text/javascript">
 		alert("급여계약이 등록됐습니다!");
 		window.self.close();
-	</script>
-</c:if>
-
-<c:if test="${insertCnt == 0 && updateCnt == 0}">
-	<script type="text/javascript">
-		alert("급여계약 등록에 실패했습니다.");
-		history.back();
 	</script>
 </c:if>
 

@@ -1,5 +1,12 @@
+<!-- 
+이름 : 장현정
+작성날짜 : 2021-09-16 ~ 2021-09-19 
+회원 정보 페이지에서 판매 관련 출력 탭
+-->
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="../../setting.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,10 +14,7 @@
 <title>Insert title here</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>INSPINIA | Data Tables</title>
-
-
 <script>
 function detail(){
 	
@@ -51,30 +55,20 @@ function detail(){
 				
 			</tr>
 		</thead>
+		<c:forEach var="dto" items="${dto}">
 		<tbody>
 			<tr class="footable-odd" style="">
-				<td class="footable-visible footable-first-column"><span
-					class="footable-toggle"></span> 판매</td>
-				<td class="footable-visible">회원권 1개월</td>
+				<%-- <td class="footable-visible"><input type="hidden" name="product_typeOfSales" value="${dto.product_typeOfSales}">${dto.product_typeOfSales}</td>
+				<td class="footable-visible"><input type="hidden" name=""></td> --%>
 				<td class="footable-visible">정액권</td>
 				<td class="footable-visible">100,000 원</td>
 				<td class="footable-visible">2021-09-19</td>
 				<td class="footable-visible">카카오페이</td>
 				<td class="footable-visible">카카오</td>
-			</tr>
+			</tr>   
 			
-			<tr class="footable-odd" style="">
-				<td class="footable-visible footable-first-column"><span
-					class="footable-toggle"></span> 기간</td>
-				<td class="footable-visible">염색 1회</td>
-				<td class="footable-visible">옵션</td>
-				<td class="footable-visible">200,000 원</td>
-				<td class="footable-visible">2021-09-19</td>
-				<td class="footable-visible">현금</td>
-				<td class="footable-visible">우리은행</td>
-			</tr>
-
 		</tbody>
+		</c:forEach>
 		<tfoot>
 			<tr>
 				<td colspan="6" class="footable-visible">

@@ -14,16 +14,17 @@ body {
 </head>
 <body>
 	<div class="ibox-content">
-		<form method="get">
+		<form action="addTradeAction" method="post" >
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 			<div class="form-group  row">
 				<label class="col-sm-2 col-form-label">거래처 등록</label>
 			</div>
 
 			<div class="hr-line-dashed"></div>
 			<div class="form-group row">
-				<label class="col-sm-2 col-form-label">거래처명</label>
+				<label class="col-sm-2 col-form-label">거래처 명</label>
 				<div class="col-sm-5">
-					<input type="text" class="form-control" name="">
+					<input type="text" class="form-control" name="trade_name" required>
 				</div>
 			</div>
 

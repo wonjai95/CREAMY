@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../setting.jsp" %>
+<%@ page session="false" %>
 <!DOCTYPE html>
 <html>
 
@@ -55,11 +56,8 @@
         </nav>
         </div>
         <div class="wrapper wrapper-content">
-           <form action="insertBooking" method="post">
+           <form action="#" method="post" name="custBookingForm">
            <sec:csrfInput/>
-           <input type="hidden" id="user_id" name="user_id">
-           <input type="hidden" id="res_date" name="res_date">   <!-- 다시 체크해 볼 것!  name="custBookingForm" -->
-           <input type="hidden" id="res_memo" name="res_memo">
                 <div class="row">
                    <!-- col-lg-8  시작 -->
                     <div class="col-lg-6 col-md-12">
@@ -95,8 +93,6 @@
                                           <!-- 시간 -->
                                           <div style="display:inline-block">
                                              <button type="button" class="btn btn-outline btn-primary" class="timeBtn" id="timeBtn1"
-                                                style="margin: 10px" value="09:00" disabled>09:00</button>
-                                             <button type="button" class="btn btn-outline btn-primary" class="timeBtn" id="timeBtn1"
                                                 style="margin: 10px" value="10:00" disabled>10:00</button>
                                              <button type="button" class="btn btn-outline btn-primary" class="timeBtn" id="timeBtn2"
                                                 style="margin: 10px" value="11:00" disabled>11:00</button>
@@ -107,13 +103,7 @@
                                              <button type="button" class="btn btn-outline btn-primary" class="timeBtn" id="timeBtn5"
                                                 style="margin: 10px" value="14:00">14:00</button>
                                              <button type="button" class="btn btn-outline btn-primary" class="timeBtn" id="timeBtn5"
-                                                style="margin: 10px" value="15">15:00</button>
-                                             <button type="button" class="btn btn-outline btn-primary" class="timeBtn" id="timeBtn5"
-                                                style="margin: 10px" value="16">16:00</button>
-                                             <button type="button" class="btn btn-outline btn-primary" class="timeBtn" id="timeBtn5"
-                                                style="margin: 10px" value="17">17:00</button>
-                                             <button type="button" class="btn btn-outline btn-primary" class="timeBtn" id="timeBtn5"
-                                                style="margin: 10px" value="18">18:00</button>
+                                                style="margin: 10px" value="15:00">15:00</button>
                                           </div>
                                      <div class="panel-heading" style="background-color: #e5e6e7; margin-top:15px; color: black">
                                         <input type="text" name="selectTime" id="selectTime" style="display: none">선택 시간 : <span class="timeSelectedInfo">예약시간</span>
@@ -150,13 +140,12 @@
                                        <td>
                                           <div style="display:inline-block">
                                              <button type="button" class="btn btn-outline btn-primary" class="roomBtn" id="roomBtn1"
-                                                value="1실" style="margin: 10px">1실</button>
+                                                value="1호실" style="margin: 10px">1호실</button>
                                              <button type="button" class="btn btn-outline btn-primary" class="roomBtn" id="roomBtn2"
-                                                 value="2실" style="margin: 10px">2실</button>
+                                                 value="2호실" style="margin: 10px">2호실</button>
                                              <button type="button" class="btn btn-outline btn-primary" class="roomBtn" id="roomBtn3"
-                                                 value="3실" style="margin: 10px">3실</button>
+                                                 value="3호실" style="margin: 10px">3호실</button>
                                           </div>
-   <!-- sql에서는 varchar(4)로 되어있어서 한글까지 넣으려면 sql을 다시 수정해야한다. -->
                                           <div class="panel-heading" style="background-color: #e5e6e7; margin-top:15px; color: black">
                                         <input type="text" name="selectRoom" id="selectRoom" style="display: none">호실 : <span class="roomSelectedInfo">호실</span>
                                      </div>
@@ -199,18 +188,14 @@
                                                 value="한진원" style="margin: 10px">한진원</button>
                                              <button type="button" class="btn btn-outline btn-primary" class="managerBtn" id="managerBtn3"
                                                 value="이시현" style="margin: 10px">이시현</button>
-                                             <button type="button" class="btn btn-outline btn-primary" class="managerBtn" id="managerBtn3"
-                                                value="E4" style="margin: 10px">장현정</button>
                                           </div>
                                           <div class="panel-heading" style="background-color: #e5e6e7; margin-top:15px; color: black">
                                               <input type="text" name="selectManager" id="selectManager" style="display: none">담당자 : <span class="managerSelectedInfo">담당자</span>
                                           </div>
                                           <div class="form-group" style="margin-top:30px;">
                                         <span><strong>추가 요청사항</strong></span>
-                                        <textarea class="form-control" placeholder="필요 시 내용을 입력하세요." rows="3"
-                                        			name="res_indiv_request"
-                                        			style="margin-top:10px;"></textarea>
-                   <!-- textarea 다시 체크해 볼 것! -->
+                                        <textarea class="form-control" placeholder="Your message" rows="3"
+                                           style="margin-top:10px;"></textarea>
                                     </div>
                                        </td>
                                     </tr>
@@ -233,7 +218,7 @@
                                        <table class="product-item" data-cat="group-0" style="width:100%; border:1px solid #ddd; padding:0px; margin-bottom:8px;">
                                           <tr>
                                              <td style="width:64px; padding:10px 0 0 0; background:#fafafa; text-align:center">
-                                                <input type="radio" class="checkbox" id="product_17806" name="ReserveProduct" value="25" />
+                                                <input type="radio" class="checkbox" id="product_17806" name="ReserveProduct" value="17806" />
                                                 <label for="product_17806" class="input-label checkbox"></label>
                                                 <input type="hidden" id="price_17806" value="100" />
                                              </td>
@@ -250,7 +235,7 @@
                                        <table class="product-item" data-cat="group-0" style="width:100%; border:1px solid #ddd; padding:0px; margin-bottom:8px;">
                                           <tr>
                                              <td style="width:64px; padding:10px 0 0 0; background:#fafafa; text-align:center">
-                                                <input type="radio" class="checkbox" id="product_17807" name="ReserveProduct" value="61" />
+                                                <input type="radio" class="checkbox" id="product_17807" name="ReserveProduct" value="17807" />
                                                 <label for="product_17807" class="input-label checkbox"></label>
                                                 <input type="hidden" id="price_17807" value="800000" />
                                              </td>
@@ -265,7 +250,7 @@
                                     
                                        <table class="product-item" data-cat="group-2676" style="width:100%; border:1px solid #ddd; padding:0px; margin-bottom:8px;">
                                           <tr>
-                                             <td style="width:64px; padding:10px 0 0 0; background:#fafafa; text-align:center">62
+                                             <td style="width:64px; padding:10px 0 0 0; background:#fafafa; text-align:center">
                                                 <input type="radio" class="checkbox" id="product_17808" name="ReserveProduct" value="17808" />
                                                 <label for="product_17808" class="input-label checkbox"></label>
                                                 <input type="hidden" id="price_17808" value="100000" />
@@ -282,7 +267,6 @@
                                              <div class="panel-heading" style="background-color: #e5e6e7; margin-top:15px; color: black">
                                               <input type="text" name="ReserveProductSum" id="ReserveProductSum" style="display: none">
                                                    	 결제금액 : <span class="productSelectedInfo">총액</span>
-          <!-- 결제금액도 예약테이블에 넣어야하는 부분인지 다시 체크해 볼 것! -->
                                              </div>
                                           </div>
                                        </table>

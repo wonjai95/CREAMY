@@ -1,5 +1,11 @@
+<!-- 
+이름 : 장현정
+작성날짜 : 2021-09-16 ~ 2021-09-19 
+회원 정보 출력 페이지
+-->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/views/setting.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,27 +15,122 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>INSPINIA | Data Tables</title>
+<script type="text/javascript" src="${path}/resources/host/js/user.js"></script>
+<script>
 
-<script> 
 function user_detail() {
 	
 	var url = "user_detail"
 	window.open(url, "user_detail", "menubar=no, width=1300, height=800 ");
 }
+
+
+$("document").ready(function() {
+
+   // 테이블에서 회원 선택시 회원 코드 hidden에 설정
+   $("tr[class^=user]").click(function() {
+      $("tr[class^=user]").css("background", "");
+      
+      var thisTr = $(this);
+      var thisTd = $(this).children();
+      var user_code = thisTd.eq(0).find("input[name^=user]").val();
+      var user_name = thisTd.eq(1).find("input[name^=user]").val();
+      var user_ph = thisTd.eq(2).find("input[name^=user]").val();
+      console.log("user_code : " + user_code);
+      
+      $("input[name=user_code_hidden]").val(user_code);
+      $("input[name=user_name_hidden]").val(user_name);
+      $("input[name=user_ph_hidden]").val(user_ph);
+      $(this).css("background", "#20c997");
+      
+   });
+   
+   // 회원 정보 수정 버튼 클릭
+   $("#user_modify_btn").click(function() {
+	   if($("input[name=user_code_hidden]").val() == 0) {
+         alert("회원을 선택하세요!");
+         return false;
+      } else {
+	 	  var user_code = $("input[name=user_code_hidden]").val();
+		  var user_name = $("input[name=user_name_hidden]").val();
+	      var user_ph = $("input[name=user_ph_hidden]").val();
+	      console.log(user_code);
+	      
+	      var url = "modify_user?user_code=" + user_code
+	      window.open(url, "modify_user", "menubar=no, width=800, height=800");
+      }
+   });
+   
+   // 회원 삭제 버튼 클릭
+   $("#user_del_btn").click(function() {
+      if($("input[name=user_code_hidden]").val() == 0) {
+         alert("회원을 선택하세요!");
+         return false;
+      } else {
+         var user_code = $("input[name=user_code_hidden]").val();
+         var user_name = $("input[name=user_name_hidden]").val();
+         var user_ph = $("input[name=user_ph_hidden]").val();
+         console.log(user_code);
+         
+         var url = "delete_user?user_code=" + user_code;
+            window.open(url, "delete_user", "menubar=no, width=800, height=800");
+      }
+   });
+   
+   // 판매 버튼 클릭
+   $("#selling_btn").click(function() {
+      if($("input[name=user_code_hidden]").val() == 0) {
+         alert("회원을 선택하세요!");
+         return false;
+      } else {
+         var user_code = $("input[name=user_code_hidden]").val();
+         var user_name = $("input[name=user_name_hidden]").val();
+         var user_ph = $("input[name=user_ph_hidden]").val();
+         console.log(user_code);
+         
+         var url = "selling?user_code=" + user_code;
+            window.open(url, "selling", "menubar=no, width=1500, height=800");
+      }
+   });
+   
+   // 창 닫기 클릭
+   $("input[name=window_close]").click(function() {
+      window.close();
+   });
+   
+   
+});
+
+
+
+
+
+
+
+
+
+
+
+
 </script>
 </head>
-<body>
+<body> 
 <div id="wrapper">   
 
 	<!-- frame  -->
 	<jsp:include page="../Frame.jsp" />
-	
+
 <div id="page-wrapper" class="gray-bg">
 
 	<!-- nav bar  -->
 	<jsp:include page="../navbar.jsp" />
+	
+<!-- 버튼 클릭시 전달할 직원 코드 -->   
+<input type="hidden" value="0" name="user_code_hidden">
+<input type="hidden" value="0" name="user_name_hidden">
+<input type="hidden" value="0" name="user_ph_hidden">
 
-<!-- 직원 -->
+<!-- 회원 -->
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-8">
         <h2>회원관리</h2>
@@ -49,14 +150,13 @@ function user_detail() {
 
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
-        <div class="col-lg-12"> 
+        <div class="col-lg-12">
         
         <table>
 			<tr>
-				<td><button type="button" class="btn btn-primary dim"
-							onclick="modify_user">회원 정보 수정</button></td>
-				<td><button type="button" class="btn btn-primary dim">회원 삭제 처리</button></td>
-				<td><button type="button" class="btn btn-primary dim">판매</button></td>
+				<td><button type="button" class="btn btn-primary dim" id="user_modify_btn">회원 정보 수정</button></td>
+				<td><button type="button" class="btn btn-primary dim" id="user_del_btn">회원 삭제 처리</button></td>
+				<td><button type="button" class="btn btn-primary dim" id="selling_btn">판매</button></td> 
 				<td><button type="button" class="btn btn-primary dim">상담</button></td>
 				<td><button type="button" class="btn btn-primary dim">회원 본인 인증</button></td>
 			</tr>
@@ -129,7 +229,7 @@ function user_detail() {
 								
 								<div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 600px;">
 								<div class="scroll_content" style="overflow: hidden; width: auto; height: 600px;">
-				                <table class="footable table table-stripped toggle-arrow-tiny footable-loaded tablet breakpoint" data-page-size="15">
+				                <table id="rowClick" class="table table-hover" data-page-size="15">
 								<thead>
 					            <tr>
 					                <th>회원코드</th>
@@ -139,100 +239,20 @@ function user_detail() {
 					            </thead>
 					            
 					            <tbody>
-					             
-						            <tr class="gradeX">
-						                <td id="empCode1">
-						                	<input type="text" name="employee1" value="E1"
-						                		style="display: none">U12323
-						               	</td>
-						                <td><a href="" onclick="user_detail();">회원1</a></td>
-						                <td class="center">010-2020-2020</td>
+					            <c:forEach var="dto" items="${dto}" varStatus="status">
+						            <tr class="user${status.index}">
+						                <td id="user_code${status.index}">${dto.user_code}<input type="hidden" name="user_code${status.index}" value="${dto.user_code}"></td>
+						                <td id="user_name${status.index}">${dto.user_name}<input type="hidden" name="user_name${status.index}" value="${dto.user_name}"></td>
+						                <td id="user_ph${status.index}">${dto.user_ph}<input type="hidden" name="user_ph${status.index}" value="${dto.user_ph}"></td>
 						            </tr>
-					            	<tr class="employee1">
-						                <td id="empCode1">
-						                	<input type="text" name="employee1" value="E1"
-						                		style="display: none">U12323
-						               	</td>
-						                <td><a href="" onclick="user_detail();">회원2</a></td>
-						                <td class="center">010-2020-2020</td>
-						            </tr>
-						            <tr class="employee1">
-						                <td id="empCode1">
-						                	<input type="text" name="employee1" value="E1"
-						                		style="display: none">U12323
-						               	</td> 
-						                <td><a href="" onclick="user_detail();">회원3</a></td>
-						                <td class="center">010-2020-2020</td>
-						            </tr>
-						            <tr class="employee1">
-						                <td id="empCode1">
-						                	<input type="text" name="employee1" value="E1"
-						                		style="display: none">U12323
-						               	</td>
-						                <td><a href="" onclick="user_detail();">회원4</a></td>
-						                <td class="center">010-2020-2020</td>
-						            </tr>
-						            <tr class="employee1">
-						                <td id="empCode1">
-						                	<input type="text" name="employee1" value="E1"
-						                		style="display: none">U12323
-						               	</td>
-						                <td><a href="" onclick="user_detail();">회원4</a></td>
-						                <td class="center">010-2020-2020</td>
-						            </tr>
-						            <tr class="employee1">
-						                <td id="empCode1">
-						                	<input type="text" name="employee1" value="E1"
-						                		style="display: none">U12323
-						               	</td>
-						                <td><a href="" onclick="user_detail();">회원4</a></td>
-						                <td class="center">010-2020-2020</td>
-						            </tr>
-						            <tr class="employee1">
-						                <td id="empCode1">
-						                	<input type="text" name="employee1" value="E1"
-						                		style="display: none">U12323
-						               	</td>
-						                <td><a href="" onclick="user_detail();">회원4</a></td>
-						                <td class="center">010-2020-2020</td>
-						            </tr>
-						            <tr class="employee1">
-						                <td id="empCode1">
-						                	<input type="text" name="employee1" value="E1"
-						                		style="display: none">U12323
-						               	</td>
-						                <td><a href="" onclick="user_detail();">회원4</a></td>
-						                <td class="center">010-2020-2020</td>
-						            </tr>
-						            <tr class="employee1">
-						                <td id="empCode1">
-						                	<input type="text" name="employee1" value="E1"
-						                		style="display: none">U12323
-						               	</td>
-						                <td><a href="" onclick="user_detail();">회원4</a></td>
-						                <td class="center">010-2020-2020</td>
-						            </tr>
-						            <tr class="employee1">
-						                <td id="empCode1">
-						                	<input type="text" name="employee1" value="E1"
-						                		style="display: none">U12323
-						               	</td>
-						                <td><a href="" onclick="user_detail();">회원4</a></td>
-						                <td class="center">010-2020-2020</td> 
-						            </tr>
-						            <tr class="employee1">
-						                <td id="empCode1">
-						                	<input type="text" name="employee1" value="E1"
-						                		style="display: none">U12323
-						               	</td>
-						                <td><a href="" onclick="user_detail();">회원4</a></td>
-						                <td class="center">010-2020-2020</td>
-						            </tr>
-					            
+						        </c:forEach>
 					            </tbody>
-					  
+					            
 					            
 								</table>
+								<div class="col-lg-12" id="ex1_Result1">결과1</div> 
+								<div class="col-lg-12" id="ex1_Result2">결과2</div> 
+								
 								<div class="slimScrollBar" style="background: rgb(0, 0, 0); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 79.0514px;"></div>
 					            <div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div>
 				                </div>
@@ -246,37 +266,31 @@ function user_detail() {
 					<div class="col-lg-9 animated fadeInRight">
 					
 					<div class="tabs-container">
-						<ul class="nav nav-tabs">
+						<ul class="nav nav-tabs">   
 							<li><a class="nav-link active" data-toggle="tab" href="#tab-1">판매</a></li>
 							<li><a class="nav-link" data-toggle="tab" href="#tab-2">예약</a></li>
 						</ul>
 						
-						
 						<div class="tab-content">
 						<div id="tab-1" class="tab-pane active">
-							<jsp:include page="user_sale.jsp"/>					
+							<jsp:include page="user_sale.jsp"/>
 						</div>
 						
 						<div id="tab-2" class="tab-pane">
-							<jsp:include page="user_reservation.jsp"/>					
+							<jsp:include page="user_reservation.jsp"/>
 						</div> 
 						</div>
 						
 					</div>
 					</div> 
-			
-			
 			</div>
 		</div>
 		</fieldset>
     </div>
     </div>
 </div>
-    
 </div>
-
 </div>
-
 
 <!-- Mainly scripts -->
 <script src="${path}/resources/bootstrap/js/moment.min.js"></script>

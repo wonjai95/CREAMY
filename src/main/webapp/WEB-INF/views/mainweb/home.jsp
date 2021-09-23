@@ -22,43 +22,8 @@
 
 <body>
 
-  <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top d-flex align-items-center header-transparent">
-    <div class="container d-flex align-items-center justify-content-between">
-
-      <div class="logo">
-        <h1><a href="home">Creamy</a></h1>
-        <!-- Uncomment below if you prefer to use an image logo -->
-        <!-- <a href="index.html"><img src="images/main/logo.png" alt="" class="img-fluid"></a>-->
-      </div>
-
-      <nav id="navbar" class="navbar">
-        <ul>
-	      <c:if test="${sessionScope.id != null}">
-          	<li><a href="mypage" class="nav-link scrollto">${sessionScope.id}</a></li>
-          </c:if>
-          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-          <li><a class="nav-link scrollto" href="#about">About</a></li>
-          <li><a class="nav-link scrollto" href="#services">Services</a></li>
-          <li><a class="nav-link scrollto" href="#team">Team</a></li>
-          <li><a class="nav-link scrollto " href="">review</a></li>
-          <li class="dropdown"><a href=""><span>Reservation</span> <i class="bi bi-chevron-down"></i></a>
-          	<ul>
-                  <li><a href="custBooking">고객 예약</a></li>
-          	</ul>
-          </li>
-          <c:if test="${sessionScope.id != null}">
-          <li><a class="nav-link scrollto" href="logout">logout</a></li>
-          </c:if>
-          <c:if test="${sessionScope.id == null}">
-          <li><a class="nav-link scrollto" href="login">login</a></li>
-          </c:if>
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
-
-    </div>
-  </header><!-- End Header -->
+  		<!-- header  -->
+		<jsp:include page="header.jsp" />
 
   <!-- ======= Hero Section ======= -->
   <section id="hero">

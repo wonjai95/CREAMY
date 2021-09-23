@@ -7,6 +7,7 @@
 package com.spring.Creamy_CRM.User_controller;
 
 import javax.servlet.http.HttpServletRequest;
+import java.sql.Date;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,9 +16,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 import com.spring.Creamy_CRM.Host_controller.MainController;
 import com.spring.Creamy_CRM.Host_service.LoginServiceImpl;
 import com.spring.Creamy_CRM.User_service.MainwebServiceImpl;
+import com.spring.Creamy_CRM.User_service.UserReviewServiceImpl;
 
 @Controller
 public class MainwebController {
@@ -28,9 +31,12 @@ public class MainwebController {
 	LoginServiceImpl service_login;
 	
 	@Autowired
+	UserReviewServiceImpl service_review;
+	
+	@Autowired
 	MainwebServiceImpl service;
 	
-	//첫 홈화면
+	//홈화면
 	@RequestMapping("/home")
 	public String home(HttpServletRequest req, Model model) {
 		logger.info("url -> home");
@@ -44,6 +50,16 @@ public class MainwebController {
 		logger.info("url => login");
 		
 		return "mainweb/login";
+	}
+	
+	//로그인 후 회원 이름 세션에 넣어주기 위한 메서드
+	@RequestMapping("/firsthome")
+	public String firsthome(HttpServletRequest req, Model model) {
+		logger.info("url -> first_home");
+		
+		service_login.getUserCode(req, model);
+		
+		return "mainweb/home";
 	}
 	
 	//회원가입
@@ -64,46 +80,111 @@ public class MainwebController {
 		return "mainweb/home";
 	}
 	
-	//회원 예약 페이지
-	@RequestMapping("/custBooking")
-	   public String custBooking(HttpServletRequest req, Model model) {
-	      logger.info("url -> custBooking");
-	      
-	      return "mainweb/custBooking";
+	//회원가입 - 사장님
+	@RequestMapping("/signIn_host")
+	public String signIn_host(HttpServletRequest req, Model model) {
+		logger.info("url -> signIn_host");
+		
+		return "mainweb/signIn_host";
 	}
 	
-	//회원 예약 처리 페이지
-	@RequestMapping("/insertBooking")
-	   public String insertBooking(HttpServletRequest req, Model model) {
-	      logger.info("url -> insertBooking");
-	      
-	      service.insertBooking(req, model);
-	      logger.info("url -> insertBooking2");
-	      return "mainweb/insertBooking";
-	}	
+	//회원가입 처리 - 끝나면 홈화면으로 return
+		@RequestMapping("/HostsignInAction")
+		public String HostsignInAction(HttpServletRequest req, Model model) {
+			logger.info("url -> HostsignInAction");
+			
+			service_login.HostsignInAction(req, model);
+			
+			return "mainweb/home";
+		}
+	
+	//---------------------------------------------------------------------
+	
+	
 	
 	//회원 마이페이지
 	@RequestMapping("/mypage")
 	public String mypage(HttpServletRequest req, Model model) {
 		logger.info("url -> mypage");
 		
-		return "mainweb/mypage";
+		service_login.modifyUserpage(req, model);
+		
+		return "mainweb/mypage/mypage";
 	}
 	
-	//결제수단 등록
-	@RequestMapping("/insertPaymentInfo")
-	public String insertPaymentInfo(HttpServletRequest req, Model model) {
-		logger.info("url -> insertPaymentInfo");
+	//마이페이지 - 수정전 비밀번호 체크
+	@RequestMapping("/infopwcheck")
+	public String infopwcheck(HttpServletRequest req, Model model) {
+		logger.info("url -> infopwcheck");
 		
-		return "mainweb/insertPaymentInfo";
+		service_login.InfopwCheck(req, model);
+		
+		return "mainweb/mypage/Infopwcheck";
 	}
 	
-	//회원 예약내역 확인
-	@RequestMapping("/showBookingDetail")
-	public String showBookingDetail(HttpServletRequest req, Model model) {
-		logger.info("url -> showBookingDetail");
+	//마이페이지 - 회원정보 수정
+	@RequestMapping("/modifyInfo")
+	public String modifyInfo(HttpServletRequest req, Model model) {
+		logger.info("url-> modifyInfo");
 		
-		return "mainweb/showBookingDetail";
+		service_login.InfoModifyAction(req, model);
+		
+		return "mainweb/mypage/modify_check";
+	}
+	
+	
+	//내가 쓴 후기관리
+	@RequestMapping("/my_review")
+	public String my_review(HttpServletRequest req, Model model) {
+		logger.info("url -> my_review");
+		
+		service_review.getMyReviewList(req, model);
+		
+		return "mainweb/review/review_mypage";
+	}
+	
+	//마이페이지 - 예약관리
+	@RequestMapping("/mypage_reservation")
+	public String mypage_reservation(HttpServletRequest req, Model model) {
+		logger.info("url -> mypage_review");
+		
+		service_review.getReservationList(req, model);
+		
+		return "mainweb/mypage/reservation_mypage";
+	}
+	
+	//리뷰 등록
+	@RequestMapping("/insertReview")
+	public String insertReview(HttpServletRequest req, Model model) {
+		logger.info("url -> insertReview");
+		
+		
+		service_review.getReservationdetail(req, model);
+		
+		return "mainweb/mypage/insertReview";
+	}
+	
+	//리뷰 쓰기 액션
+	@RequestMapping("/insertReviewAction")
+	public String insertReviewAction(HttpServletRequest req, Model model) {
+		logger.info("url -> insertReviewAction");
+		
+		service_review.insertReviewAction(req, model);
+		
+		return "mainweb/mypage/reservation_mypage";
+	}
+	
+	
+	//---------------------------------------------------------------------
+	
+	//리뷰 메인페이지
+	@RequestMapping("/review_main")
+	public String review_main(HttpServletRequest req, Model model) {
+		logger.info("url -> review_main");
+		
+		service_review.getReviewList(req, model);
+		
+		return "mainweb/review/review_main";
 	}
 	
 	//로그아웃 - 수정예정
@@ -122,6 +203,41 @@ public class MainwebController {
 		logger.info("url -> emailChk");
 		
 		return "mainweb/home";
+	}
+	
+	//---------------------------------------------------------------------
+	//회원 예약 페이지
+	@RequestMapping("/custBooking")
+	   public String custBooking(HttpServletRequest req, Model model) {
+	      logger.info("url -> custBooking");
+	      
+	      return "mainweb/custBooking";
+	}	
+	
+	//회원 예약 처리 페이지
+	@RequestMapping("/insertBooking")
+	   public String insertBooking(HttpServletRequest req, Model model) {
+	      logger.info("url -> insertBooking");
+	      
+	      service.insertBooking(req, model);
+	      logger.info("url -> insertBooking2");
+	      return "mainweb/insertBooking";
+	}	
+	
+	//결제수단 등록
+	@RequestMapping("/insertPaymentInfo")
+	public String insertPaymentInfo(HttpServletRequest req, Model model) {
+		logger.info("url -> insertPaymentInfo");
+		
+		return "mainweb/mypage/insertPaymentInfo";
+	}
+	
+	//회원 예약내역 확인
+	@RequestMapping("/showBookingDetail")
+	public String showBookingDetail(HttpServletRequest req, Model model) {
+		logger.info("url -> showBookingDetail");
+		
+		return "mainweb/mypage/showBookingDetail";
 	}
 
 }

@@ -29,12 +29,6 @@ public interface EmployeeDAO {
 	// 직원의 근태 정보
 	public ArrayList<AttendanceVO> getAttendanceList(String employee_code);
 	
-	// 직원의 휴가 정보
-	public ArrayList<LeaveVO> getLeaveList(String employee_code);
-	
-	// 직원의 급여 계약 정보
-	public ArrayList<SalaryContractVO> getContractList(String employee_code);
-	
 	// 이미 직원 등록이 완료된 id인지 체크
 	public int chkEmployeeIdPreexisting(String employee_id);
 	
@@ -74,16 +68,8 @@ public interface EmployeeDAO {
 	// 은행코드 조회
 	public String getBankCode(Map<String, Object> map);
 	
-	// 은행 이미 등록되어있는지 확인
-	public int getBankCodeCnt(Map<String, Object> map);
-	
 	// 급여 계약 등록 
 	public int insertSalaryContract(SalaryContractVO vo);
 	
-	// 등록된 급여 계약이 있는지 확인
-	public int chkSalaryContract(String employee_code);
-	
-	// 해당 직원코드에 대해 이미 등록된 급여계약이 있을 경우 기존의 contract_stat = '계약 종료'로 update
-	public int updateSalaryContract(SalaryContractVO vo);
 	
 }

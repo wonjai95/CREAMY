@@ -17,16 +17,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.spring.Creamy_CRM.Host_service.LoginService;
 import com.spring.Creamy_CRM.Host_service.LoginServiceImpl;
+import com.spring.Creamy_CRM.User_service.UserReviewServiceImpl;
 
 @Controller
 public class ReviewController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(ReviewController.class);
 
+	@Autowired
+	UserReviewServiceImpl service_review;
 
+	//리뷰 메인페이지
 	@RequestMapping("/host/review")
 	public String review(HttpServletRequest req, Model model) {
 		logger.info("url -> review");
+		
+		service_review.getStoreReviewList(req, model);
 		
 		return "host/review/userReview_main";
 	}
