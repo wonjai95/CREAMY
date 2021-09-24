@@ -22,7 +22,7 @@
   		<![CDATA[		
 			SELECT *
 			FROM (SELECT res_code, res_state, res_date, res_hour,
-					 employee_code, user_id, rowNum rNum
+					 employee_code, user_id, res_detail_code, rowNum rNum
 					FROM ( SELECT * FROM reservation_tbl
 		ORDER BY res_code DESC )
 				)
@@ -40,10 +40,12 @@
 			AND rt.res_detail_code = #{res_detail_code};
 	</select> -->
   	
-  	
-  	<select id="getRequestList" parameterType="java.util.Map" resultType="com.spring.Creamy_CRM.VO.ReservationVO">
-  	SELECT res_code, res_state, res_date, res_hour,
-					 employee_code, user_id, rowNum rNum
-					FROM ( SELECT * FROM reservation_tbl
+  	<!-- 아래 것으로 계속 이어가기 -->
+<!--   	<select id="getRequestDetail" parameterType="java.util.Map" resultType="com.spring.Creamy_CRM.VO.ReservationVO">
+  			SELECT res_code, res_state, res_date, res_hour, employee_code, user_id, res_cnt, res_indiv_request, product_code, res_memo, res_room
+			FROM reservation_tbl rt, reservation_detail_tbl rdt
+			WHERE res_code = #{res_code}
+			AND res_detail_code = #{res_detail_code};
+	</select> -->
   	
   </mapper>
