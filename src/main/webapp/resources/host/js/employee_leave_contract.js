@@ -1,4 +1,24 @@
 $("document").ready(function() {
+	// 등록시 확인/취소
+	$("#employee_leaveAction").submit(function() {
+		if(confirm("진행하시겠습니까?")) {
+			console.log("확인");
+		} else {
+			console.log("취소");
+			return false;
+		}
+	});
+	
+	// 등록 확인/취소
+	$("#employee_contractForm").submit(function() {
+		if(confirm("진행하시겠습니까?")) {
+			console.log("확인");
+		} else {
+			console.log("취소");
+			return false;
+		}
+	});
+	
 	// 현재 날짜 구하기
 	var sysdate = new Date();
 	console.log("현재 날짜 : " + sysdate);

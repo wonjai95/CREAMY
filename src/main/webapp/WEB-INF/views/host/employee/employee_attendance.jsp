@@ -19,7 +19,7 @@ body {
 </head>
 <body>
 	<div class="ibox-content">
-		<form action="employee_attendanceAction" method="post">
+		<form action="employee_attendanceAction" method="post" id="employee_attendanceForm">
 			<sec:csrfInput/>
 			<input type="hidden" name="inout_time_setting" value="0">
 			<input type="hidden" name="employee_in" value="0">

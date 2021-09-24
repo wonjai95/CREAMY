@@ -27,4 +27,6 @@ public interface UserReservationDAO {
 	// 해당 담당자의 예약 테이블 확인
 	public int getReservedManager(Map<String, Object> map);
 	
+	// 해당 사장님의 호실과 상품 정보 가져오기
+	
 }
