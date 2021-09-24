@@ -19,5 +19,5 @@ public interface CRMuserService {
 	public void printUsers(HttpServletRequest req, Model model);
 	
 	// 회원 정보 수정
-	//public void modifyUser(HttpServletRequest req, Model model);
+	public void modifyUser(HttpServletRequest req, Model model);
 }

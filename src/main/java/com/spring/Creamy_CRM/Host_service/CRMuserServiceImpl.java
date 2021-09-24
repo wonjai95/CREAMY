@@ -6,8 +6,11 @@
 */
 package com.spring.Creamy_CRM.Host_service;
 
+import java.sql.Date;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -16,6 +19,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.spring.Creamy_CRM.Host_dao.CRMuserDAOImpl;
+import com.spring.Creamy_CRM.Host_dao.LoginDAOImpl;
 import com.spring.Creamy_CRM.VO.userVO;
 
 @Service
@@ -23,6 +27,10 @@ public class CRMuserServiceImpl implements CRMuserService {
 
 	@Autowired
 	CRMuserDAOImpl dao_user;
+
+	@Autowired
+	LoginDAOImpl dao_login;
+	
 	
 	// 선택된 회원 정보 출력
 	@Override
@@ -39,7 +47,7 @@ public class CRMuserServiceImpl implements CRMuserService {
 		req.setAttribute("dto", vo); // 회원 정보 넘겨주기
 	}
 	
-	// 회원 정보 출력
+	// 회원 정보 리스트 출력
 	@Override
 	public void printUsers(HttpServletRequest req, Model model) {
 		System.out.println("service ==> printUsers");
@@ -53,31 +61,26 @@ public class CRMuserServiceImpl implements CRMuserService {
 		System.out.println("dto : " + list);
 		req.setAttribute("dto", list); // 상품 정보 넘겨주기
 	}
+	
 
 	// 회원 정보 수정
-	/*
+	
 	@Override
 	public void modifyUser(HttpServletRequest req, Model model) {
 		System.out.println("service => modifyUser");
 		
+		String user_code = req.getParameter("modify_code");
+		String user_name = req.getParameter("modify_name");
+		String user_gender = req.getParameter("modify_gender");
+		String userBirth = req.getParameter("modify_birth");
+		System.out.println("userBirth : " + userBirth);
+		Date user_birth = Date.valueOf(userBirth);
 		
-		String user_code = req.getParameter("user_code");
-		String name = req.getParameter("user_name");
+		String user_email = req.getParameter("email1") + "@" + req.getParameter("email2");
+		String user_phone = req.getParameter("modifyp_hp1") + "-" + req.getParameter("modifyp_hp2") + "-" + req.getParameter("modifyp_hp3");
 		
-		System.out.println("user_birth : " + user_birth); 
-		String modify_birth = req.getParameter("modify_birth");
-	    
-		java.sql.Date modifyBirth = java.sql.Date.valueOf(modify_birth);
 		
-	    System.out.println("생일 : " + modifyBirth);
-	    
-	    String[] years = modify_birth.split("-");
-	    int year = Integer.parseInt(years[0]);
-	    int age = 2021 - year;
-	    
-	    String email = req.getParameter("email1") + "@" + req.getParameter("email2");
-	    String phone = req.getParameter("modifyp_hp1") + "-" + req.getParameter("modifyp_hp2") + "-" + req.getParameter("modifyp_hp3");
-	    String zipcode = req.getParameter("modify_zipcode");
+		String zipcode = req.getParameter("modify_zipcode");
 	    String sido = req.getParameter("modify_sido");
 	    String gugun = req.getParameter("modify_gugun");
 	    String address= req.getParameter("modify_address");
@@ -100,25 +103,27 @@ public class CRMuserServiceImpl implements CRMuserService {
 		System.out.println("insertCnt : " + insertCnt);
 		
 		
-		//회원 테이블 update
+		
+		//회원 테이블 update   
 		userVO vo = new userVO();
 		vo.setUser_code(user_code);
-		vo.setUser_name(name);
+		vo.setUser_name(user_name);
 		vo.setUser_gender(user_gender);
-		vo.setUser_age(age);
-		vo.setUser_birth(modifyBirth);
-		vo.setUser_email(email);
-		vo.setUser_ph(phone);
+		vo.setUser_birth(user_birth);
+		vo.setUser_email(user_email);
 		vo.setZipcode(zipcode);
 		vo.setUser_address(address);
+		vo.setUser_ph(user_phone);
+		
 		
 		int updateCnt = dao_user.updateUser(vo);
 		System.out.println("updateCnt : " + updateCnt);
+		
 		
 		req.setAttribute("updateCnt", updateCnt);
 		req.setAttribute("dto", vo); // 회원 상세 정보
 		
 	}
-	*/
+
 
 }
