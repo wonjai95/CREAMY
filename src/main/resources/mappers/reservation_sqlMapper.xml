@@ -31,22 +31,30 @@
   	</select>
   	
   	<!-- 예약요청 상세정보 조회 -->
-<!--   	 <select id="getRequestDetail" parameterType="int" resultType="com.spring.Creamy_CRM.VO.ReservationVO">
-			
-			SELECT res_code, res_state, res_date, res_hour, res_review_chk, employee_code, user_id,
-					res_cnt, res_indiv_request, product_code, res_memo, res_room
-			FROM reservation_tbl as rt, reservation_detail_tbl as rdt
-			WHERE res_code = #{res_code}
-			AND rt.res_detail_code = #{res_detail_code};
-	</select> -->
-  	
-
-  	<!-- 아래 것으로 계속 이어가기 -->
-<!--   	<select id="getRequestDetail" parameterType="java.util.Map" resultType="com.spring.Creamy_CRM.VO.ReservationVO">
-  			SELECT res_code, res_state, res_date, res_hour, employee_code, user_id, res_cnt, res_indiv_request, product_code, res_memo, res_room
-			FROM reservation_tbl rt, reservation_detail_tbl rdt
-			WHERE res_code = #{res_code}
-			AND res_detail_code = #{res_detail_code};
-	</select> -->
+	<select id="getRequestDetail" parameterType="String" resultType="com.spring.Creamy_CRM.VO.ReservationVO">
+			SELECT *
+			  FROM reservation_tbl, reservation_detail_tbl rdt
+			 WHERE res_code = #{res_code}
+			   AND rdt.res_detail_code = #{res_detail_code}
+	</select>
+	
+	<!-- 예약요청 수정처리 -->
+	<update id="updateRequest1" parameterType="com.spring.Creamy_CRM.VO.ReservationVO">
+			UPDATE reservation_tbl
+			   SET res_state = #{res_state}
+			     , employee_code = #{employee_code}
+			 WHERE res_code = #{res_code}
+	</update>
+	
+	<update id="updateRequest2" parameterType="com.spring.Creamy_CRM.VO.ReservationVO">
+			UPDATE reservation_detail_tbl
+			   SET res_room = #{res_room}
+			   	 , res_cnt = #{res_cnt}
+			   	 , res_indiv_request = #{res_indiv_request}
+			   	 , res_memo = #{res_memo}
+			 WHERE res_detail_code = #{res_detail_code}
+	</update>
+	
+	
   	
   </mapper>
