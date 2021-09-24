@@ -46,7 +46,7 @@
   <select id="getAllReviewList" resultType="com.spring.Creamy_CRM.VO.ReviewVO">
   	select r.*, u.user_name from review_tbl r, user_tbl u
 	where r.user_code = u.user_code
-  	order by review_code desc
+  		order by r.regDate DESC
   </select>
   
   <select id="getStoreReviewList" parameterType="String" resultType="com.spring.Creamy_CRM.VO.ReviewVO">
@@ -57,7 +57,7 @@
 	and res.employee_code = e.employee_code
 	and e.host_code = h.host_code
 	and h.host_code = #{host_code}
-	  	order by review_code desc
+	  	order by r.regDate DESC
   </select>
   
   <select id="getUserReservationlist" parameterType="String" resultType="com.spring.Creamy_CRM.VO.ReservationVO">
@@ -69,6 +69,16 @@
 	and u.user_code = #{user_code}
 	order by res.res_detail_code desc
   </select>
+  
+  <select id="getReviewDetail" parameterType="String" resultType="com.spring.Creamy_CRM.VO.ReviewVO">
+  	SELECT * FROM review_tbl
+  	WHERE review_code = #{review_code}
+  </select>
+  
+  <update id="plusReadCnt" parameterType="java.util.Map">
+  	update review_tbl set readCnt = #{readcnt}
+  	where review_code = #{review_code}
+  </update>
   	
   
   </mapper>

@@ -1,6 +1,7 @@
 package com.spring.Creamy_CRM.User_dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,6 +56,16 @@ public class UserReviewDAOImpl implements UserReviewDAO {
 	@Override
 	public List<ReservationVO> getUserReservationlist(String user_code) {
 		return sqlSession.selectList("com.spring.Creamy_CRM.User_dao.UserReviewDAO.getUserReservationlist",user_code);
+	}
+
+	@Override
+	public ReviewVO getReviewDetail(String review_code) {
+		return sqlSession.selectOne("com.spring.Creamy_CRM.User_dao.UserReviewDAO.getReviewDetail",review_code);
+	}
+
+	@Override
+	public int plusReadCnt(Map<String, Object> map) {
+		return sqlSession.update("com.spring.Creamy_CRM.User_dao.UserReviewDAO.plusReadCnt",map);
 	}
 	
 }
