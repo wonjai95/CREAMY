@@ -40,7 +40,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public void employeeList(HttpServletRequest req, Model model) {
 		String host_code = (String) req.getSession().getAttribute("code");
 		System.out.println("host_code : " + host_code);
-		host_code = "H1";
 		
 		ArrayList<EmployeeVO> dtos = dao.employeeList(host_code);
 		
@@ -210,7 +209,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 		
 		String host_code = (String) req.getSession().getAttribute("code");
 		System.out.println("host_code : " + host_code);
-		host_code = "H1";
 		
 		if(department == null || department.equals("")) department = "none";
 		if(position == null || position.equals("")) position = "none";

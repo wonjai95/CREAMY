@@ -94,30 +94,10 @@
                                        </td>
                                     </tr>
                   
-                                    <!-- 예약 유형 -->
-                                    
-                                    <tr>
-                                       <td><strong>수업형태</strong></td>
-                                    </tr>
-                                    <tr>
-                                       <td>
-                                          <div style="display:inline-block">
-                                             <button type="button" class="btn btn-outline btn-primary" class="typeBtn" id="typeBtn1"
-                                                style="margin: 10px" value="방문예약">방문예약</button>
-                                             <button type="button" class="btn btn-outline btn-primary" class="typeBtn" id="typeBtn2"
-                                                style="margin: 10px" value="상담예약">상담예약</button>
-                                          </div>
-                                          <div class="panel-heading" style="background-color: #e5e6e7; margin-top:15px; color: black">
-                                        <input type="text" name="selectType" id="selectType" style="display: none">형태 : <span class="typeSelectedInfo">예약 형태</span>
-                                     </div>
-                                       </td>
-                                    </tr>
-                                    
-                  
                                     <!-- 호실 -->
                                     
                                     <tr>
-                                       <td><strong>강의실</strong></td>
+                                       <td><strong>호실</strong></td>
                                     </tr>
                                     <tr>
                                        <td>

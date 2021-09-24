@@ -1,5 +1,14 @@
 $("document").ready(function() {
 	
+	$("#employee_attendanceForm").submit(function() {
+		if(confirm("진행하시겠습니까?")) {
+			console.log("확인");
+		} else {
+			console.log("취소");
+			return false;
+		}
+	});
+	
 	// 출근 클릭
 	$("#employee_in").click(function() {
 		// 클릭시 체크박스 해제
