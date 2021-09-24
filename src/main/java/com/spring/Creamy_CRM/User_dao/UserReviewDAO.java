@@ -28,4 +28,7 @@ public interface UserReviewDAO {
 	//매장별 후기 출력
 	public List<ReviewVO> getStoreReviewList(String host_code);
 	
+	//관리자가 고객 후기에서 예약 목록 확인하는용도
+	public List<ReservationVO> getUserReservationlist(String user_code);
+	
 }

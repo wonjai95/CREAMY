@@ -21,6 +21,7 @@ import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 import com.spring.Creamy_CRM.Host_controller.MainController;
 import com.spring.Creamy_CRM.Host_service.LoginServiceImpl;
 import com.spring.Creamy_CRM.User_service.MainwebServiceImpl;
+import com.spring.Creamy_CRM.User_service.UserReservationServiceImpl;
 import com.spring.Creamy_CRM.User_service.UserReviewServiceImpl;
 
 @Controller
@@ -36,6 +37,9 @@ public class MainwebController {
 	
 	@Autowired
 	MainwebServiceImpl service;
+	
+	@Autowired
+	UserReservationServiceImpl service_custReserve;
 	
 	//홈화면
 	@RequestMapping("/home")
@@ -206,14 +210,44 @@ public class MainwebController {
 		return "mainweb/home";
 	}
 	
-	//---------------------------------------------------------------------
+	//-------------------------------- 고객 화면 예약 페이지 --------------------------------
+	// 고객 매장 선택 페이지
+	@RequestMapping("/selectHost")
+	   public String selectHost(HttpServletRequest req, Model model) {
+	      logger.info("url -> selectHost");
+	      
+	      service_custReserve.selectHost(req, model);
+	      return "mainweb/selectHost";
+	}	
+	
 	//회원 예약 페이지
 	@RequestMapping("/custBooking")
 	   public String custBooking(HttpServletRequest req, Model model) {
 	      logger.info("url -> custBooking");
 	      
+	      model.addAttribute("host_code", req.getParameter("host_code"));
+	      model.addAttribute("comp_address", req.getParameter("comp_address"));
 	      return "mainweb/custBooking";
 	}	
+	
+	// 회원 예약 가능 시간 표시
+	@RequestMapping("/bookingTimeTable")
+	public String bookingTimeTable(HttpServletRequest req, Model model) {
+		logger.info("url -> bookingTimeTable");
+		
+		service_custReserve.bookingTimeTable(req, model);
+		return "mainweb/bookingTimeTable";
+	}	
+	
+	// 회원 예약 가능한 담당자 표시
+	@RequestMapping("/bookingManager")
+	public String bookingManager(HttpServletRequest req, Model model) {
+		logger.info("url -> bookingManager");
+		
+		service_custReserve.bookingManagerTable(req, model);
+		return "mainweb/bookingManager";
+	}	
+	
 	
 	//회원 예약 처리 페이지
 	@RequestMapping("/insertBooking")
@@ -222,6 +256,7 @@ public class MainwebController {
 	      
 	      service.insertBooking(req, model);
 	      logger.info("url -> insertBooking2");
+	      
 	      return "mainweb/insertBooking";
 	}	
 	

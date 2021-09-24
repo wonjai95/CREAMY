@@ -53,21 +53,63 @@ $(document).ready(function() {
         },
         
        dayClick: function(date, allDay, jsEvent, view) {
-           
+    	  $("#timeTable").html("");
+    	   
           if (date.isBefore(moment())) {
               alert("과거 날짜로 예약할 수 없습니다!")
            } else {
               m = date.format()
-                alert('Clicked on: ' + m);
+              console.log('Clicked on: ' + m);
               
+              var host_code = $("input[name=host_code]").val();
               var getDay = new Date(m).getDay();
-              var getTime = new Date().getHours();
-              alert("요일 : " + getDay + ", 시간 : " + getTime);
+              $("#chkDay").val(getDay);
+              
+              var hours = new Date().getHours();
+              var min = new Date().getMinutes();
+              
+              // 30분이 지나면 2타임 이후부터 예약 가능
+              if(min > 30){
+            	  hours += 2;
+              } else {
+            	  hours += 1;
+              }
+              
+              // 시간 형식 hh:mm을 위한 0 삽입
+              hours = hours < 10 ? "0" + hours : hours;
+              
+              var getTime = hours + ":00";
+              // 일 ~ 토 : 0~6
+              console.log("요일 : " + getDay + ", 시간 : " + getTime);
+              
+              var header = $("meta[name='_csrf_header']").attr("content");
+              var token = $("meta[name='_csrf']").attr("content");
+              console.log("header : " + header);
+              console.log("token : " + token);
+              
+              $.ajax({
+            	  url : "bookingTimeTable",
+            	  type : "Post",
+            	  data : "day=" + getDay + "&time=" + getTime + "&host_code=" + host_code + "&selectDate=" + m,
+            	  beforeSend : function(jqXHR, settings) {
+            		  console.log("beforesend 진행");
+                      jqXHR.setRequestHeader(header, token);
+            	  },
+            	  success : function(result) {
+            		  $("#timeTable").html(result);
+            	  },
+            	  error : function(error) {
+            		console.log(error);  
+            		$("#timeTable").html("예약 가능한 시간이 없습니다.");
+            	  }
+            	  
+              });
+              
 
             $('.res_date').html(m);
            }
         
-          }, 
+        }, 
     });
 
     
@@ -163,7 +205,7 @@ $(document).ready(function() {
      var geocoder = new kakao.maps.services.Geocoder();
    
      // 주소로 좌표를 검색합니다
- geocoder.addressSearch('서울 금천구 가산디지털2로 123 월드메르디앙벤처센터II', function(result, status) {
+     geocoder.addressSearch('서울 금천구 가산디지털2로 123 월드메르디앙벤처센터II', function(result, status) {
    
          // 정상적으로 검색이 완료됐으면 
           if (status === kakao.maps.services.Status.OK) {

@@ -31,10 +31,13 @@
   	</select>
   	
   	<!-- 예약요청 상세정보 조회 -->
-  	<!-- <select id="getRequestDetail" parameterType="int" resultType="com.spring.Creamy_CRM.VO.ReservationVO">
-			SELECT *
-			FROM reservation_tbl
-			WHERE res_code = #{res_code}
-	</select> -->
+  	 <select id="getRequestDetail" parameterType="int" resultType="com.spring.Creamy_CRM.VO.ReservationVO">
+			
+			SELECT res_code, res_state, res_date, res_hour, res_review_chk, employee_code, user_id,
+					res_cnt, res_indiv_request, product_code, res_memo, res_room
+			FROM reservation_tbl as rt, reservation_detail_tbl as rdt
+			WHERE res_code = res_code
+			AND rt.res_detail_code = #{res_detail_code};
+	</select>
   	
   </mapper>

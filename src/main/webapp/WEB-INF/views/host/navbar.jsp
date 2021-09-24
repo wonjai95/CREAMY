@@ -21,7 +21,7 @@
         </div>
         <ul class="nav navbar-top-links navbar-right">
             <li>
-                <span class="m-r-sm text-muted welcome-message">마이페이지랑 환경설정자리</span>
+                <span class="m-r-sm text-muted welcome-message"><a href="hostPage">마이페이지</a></span>
             </li>
             <li class="dropdown">
                 <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">

@@ -50,7 +50,7 @@
 				                            </p>
 				                            <div class="clients-list">
 					                            <ul class="nav nav-tabs">
-					                                <li><a class="nav-link active" data-toggle="tab" href="#tab-1"><i class="fa fa-user"></i> Contacts</a></li>
+					                                <li><a class="nav-link active" data-toggle="tab" href="#tab-1"><i class="fa fa-user"></i> 후기목록</a></li>
 					                            </ul>
 					                            <div class="tab-content">
 					                                <div id="tab-1" class="tab-pane active">
@@ -71,7 +71,7 @@
 					                                                <c:forEach var="vo" items="${list}">
 					                                                	<tr style="border-bottom: #dee2e6 1px solid;">
 						                                                	<td>${vo.review_code}</td>
-						                                                    <td><a href="#contact-1" class="client-link">${vo.title}</a></td>
+						                                                    <td><a href="#${vo.review_code}" class="client-link">${vo.title}</a></td>
 						                                                    <td> ${vo.user_name} </td>
 						                                                    <td> ${vo.user_code}</td>
 						                                                    <td> ${vo.regDate}</td>
@@ -90,10 +90,15 @@
 				                </div>
 				                <div class="col-sm-4" style="width : 40%;">
 				                    <div class="ibox selected">
-				
 				                        <div class="ibox-content">
 				                            <div class="tab-content">
-				                                <div id="contact-1" class="tab-pane active">
+				                		<c:forEach var="vo2" items="${list}" varStatus="i">
+				                				<c:if test="${i.index == 0 }">
+				                                	<div id="${vo2.review_code}" class="tab-pane active">
+				                                </c:if>
+				                                <c:if test="${i.index != 0 }">
+				                               	 	<div id="${vo2.review_code}" class="tab-pane">
+				                                </c:if>
 				                                    <div class="row m-b-lg">
 				                                        <div class="col-lg-4 text-center">
 				                                            <h2>두부</h2>
@@ -108,7 +113,7 @@
 				                                                About me
 				                                            </strong>
 				                                            <p>
-				                                               		 여기에는 뭐 써야될지 도통 감이 안옵니다...지울까여
+				                                                ${vo2.user_code} - ${vo2.review_code}
 				                                            </p>
 				                                        </div>
 				                                    </div>
@@ -116,155 +121,32 @@
 				                                    <div class="full-height-scroll">
 														<strong>예약내역</strong>
 				                                            <ul class="list-group clear-list">
-				                                                <li class="list-group-item fist-item">
-				                                                    <span class="float-right"> 2021.09.09 </span>
-				                                                    	 &emsp;목욕서비스 - <span style="color: purple;">서비스 완료</span>
+				                                            <c:forEach var="res" items="${resmap.get(vo2.user_code)}">
+				                                            	<li class="list-group-item">
+				                                                    <span class="float-right"> ${res.res_date} </span>
+				                                                    	 &emsp;${res.product_name} - <span style="color: purple;">${res.res_state}</span>
 				                                                </li>
-				                                                <li class="list-group-item">
-				                                                    <span class="float-right"> 2021.08.29 </span>
-				                                                    	 &emsp;커트 - <span style="color: purple;">예약 부도</span>
-				                                                </li>
-				                                                <li class="list-group-item">
-				                                                    <span class="float-right"> 2021.08.09 </span>
-				                                                    	 &emsp;목욕서비스 - <span style="color: purple;">서비스 완료</span>
-				                                                </li>
-				                                                <li class="list-group-item">
-				                                                   <span class="float-right"> 2021.07.29 </span>
-				                                                    	 &emsp;목욕서비스 - <span style="color: purple;">서비스 완료</span>
-				                                                </li>
-				                                                <li class="list-group-item">
-				                                                    <span class="float-right"> 2021.07.19 </span>
-				                                                   &emsp;커트 - <span style="color: purple;">예약 취소</span>
-				                                                </li>
+				                                            </c:forEach>
 				                                            </ul>
 				                                            <br>
 				                                        <strong>후기 내용</strong>
 				                                        <p>
-				                                           	여기 개 별로임<br>
-				                                           	다음부터 다른데 갈거
+				                                           	${vo2.content}
 				                                        </p>
 				                                        <hr/>
 				                                        <strong>첨부 사진</strong>
 				                                        <br>
-				                                        <img alt="" src="../images/CRM/img/dog2.jpg" style="width: 200px; height: 200px;">
+				                                        <img alt="" src="../images/main/${vo2.review_img}" style="width: 200px; height: 200px;">
 				                                        <hr/>
 				                                    </div>
 				                                    </div>
 				                                </div>
-				                                <div id="contact-2" class="tab-pane">
-				                                    <div class="row m-b-lg">
-				                                        <div class="col-lg-4 text-center">
-				                                            <h2>Edan Randall</h2>
-				
-				                                            <div class="m-b-sm">
-				                                                <img alt="image" class="rounded-circle" src="../images/CRM/bootstrap/dog1.png"
-				                                                     style="width: 62px">
-				                                            </div>
-				                                        </div>
-				                                        <div class="col-lg-8">
-				                                            <strong>
-				                                                About me
-				                                            </strong>
-				
-				                                            <p>
-				                                                Many desktop publishing packages and web page editors now use Lorem Ipsum as their default tempor incididunt model text.
-				                                            </p>
-				                                        </div>
-				                                    </div>
-				                                    <div class="client-detail">
-				                                        <div class="full-height-scroll">
-															<strong>Last activity</strong>
-				                                            <ul class="list-group clear-list">
-				                                                <li class="list-group-item fist-item">
-				                                                    <span class="float-right"> 09:00 pm </span>
-				                                                    Lorem Ipsum available
-				                                                </li>
-				                                                <li class="list-group-item">
-				                                                    <span class="float-right"> 10:16 am </span>
-				                                                    Latin words, combined
-				                                                </li>
-				                                                <li class="list-group-item">
-				                                                    <span class="float-right"> 08:22 pm </span>
-				                                                    Open new shop
-				                                                </li>
-				                                                <li class="list-group-item">
-				                                                    <span class="float-right"> 11:06 pm </span>
-				                                                    The generated Lorem Ipsum
-				                                                </li>
-				                                                <li class="list-group-item">
-				                                                    <span class="float-right"> 12:00 am </span>
-				                                                    Content here, content here
-				                                                </li>
-				                                            </ul>
-				                                            <br>
-															
-				                                            <strong>Notes</strong>
-				                                            <p>
-				                                                There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words.
-				                                            </p>
-				                                            <hr/>
-				                                        </div>
-				                                    </div>
-				                                </div>
-				                                <div id="contact-4" class="tab-pane">
-				                                    <div class="row m-b-lg">
-				                                        <div class="col-lg-4 text-center">
-				                                            <h2>Reuben Pacheco</h2>
-				
-				                                            <div class="m-b-sm">
-				                                                 <img alt="image" class="rounded-circle" src="../images/CRM/bootstrap/dog1.png"
-				                                                     style="width: 62px">
-				                                            </div>
-				                                        </div>
-				                                        <div class="col-lg-8">
-				                                            <strong>
-				                                                About me
-				                                            </strong>
-										
-				                                            <p>
-				                                                Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero,written in 45 BC. This book is a treatise on.
-				                                            </p>
-				                                        </div>
-				                                    </div>
-				                                    <div class="client-detail">
-				                                        <div class="full-height-scroll">
-															<strong>Last activity</strong>
-				                                            <ul class="list-group clear-list">
-				                                                <li class="list-group-item fist-item">
-				                                                    <span class="float-right"> 09:00 pm </span>
-				                                                    Lorem Ipsum available
-				                                                </li>
-				                                                <li class="list-group-item">
-				                                                    <span class="float-right"> 10:16 am </span>
-				                                                    Latin words, combined
-				                                                </li>
-				                                                <li class="list-group-item">
-				                                                    <span class="float-right"> 08:22 pm </span>
-				                                                    Open new shop
-				                                                </li>
-				                                                <li class="list-group-item">
-				                                                    <span class="float-right"> 11:06 pm </span>
-				                                                    The generated Lorem Ipsum
-				                                                </li>
-				                                                <li class="list-group-item">
-				                                                    <span class="float-right"> 12:00 am </span>
-				                                                    Content here, content here
-				                                                </li>
-				                                            </ul>
-				                                            <br>
-															
-				                                            <strong>Notes</strong>
-				                                            <p>
-				                                                Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.
-				                                            </p>
-				                                            <hr/>
-				                                        </div>
-				                                    </div>
-				                                </div>
+				                                 </c:forEach>
 				                            </div>
 				                        </div>
 				                    </div>
 				                </div>
+				                
 				            </div>
        					 </div>
 					</div>
