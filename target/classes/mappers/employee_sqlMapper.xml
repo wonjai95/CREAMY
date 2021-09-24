@@ -48,6 +48,7 @@
 		SELECT *
 		  FROM attendance_tbl
 		 WHERE employee_code = #{employee_code}
+		ORDER BY attendance_date DESC
 	</select>
 	
 	<!-- 직원의 휴가 정보 조회 -->
@@ -55,6 +56,7 @@
 		SELECT *
 		  FROM leave_tbl
 		 WHERE employee_code=#{employee_code}
+		ORDER BY leave_regDatae DESC
 	</select>
 	
 	<!-- 직원의 급여 계약 정보 조회 -->
@@ -62,7 +64,14 @@
 		SELECT *
 		  FROM salary_contract_tbl
 		 WHERE employee_code=#{employee_code}
+		ORDER BY contract_date DESC
 	</select>
+	
+	<!-- 직원의 급여 계약 삭제 -->
+	<delete id="deleteContract" parameterType="String">
+		DELETE FROM salary_contract_tbl
+		 WHERE salary_contract_code = #{salary_contract_code} 	
+	</delete>
 	
 	<!-- 직원 급여 지급 등록 -->
 	<insert id="insertPayment" parameterType="com.spring.Creamy_CRM.VO.SalaryVO">

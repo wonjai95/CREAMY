@@ -66,6 +66,12 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		return dao.getContractList(employee_code);
 	}
 	
+	// 직원의 급여 계약 삭제
+	public int deleteContract(String salary_contract_code) {
+		EmployeeDAO dao = sqlSession.getMapper(EmployeeDAO.class);
+		return dao.deleteContract(salary_contract_code);
+	}
+	
 	// 직원 급여 지급 등록
 	public int insertPayment(SalaryVO vo) {
 		EmployeeDAO dao = sqlSession.getMapper(EmployeeDAO.class);
