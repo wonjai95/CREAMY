@@ -55,7 +55,7 @@ private static final Logger logger = LoggerFactory.getLogger(UserInfoController.
 		return "host/user/user_detail";
 	}
 	
-	// 회원 수정 버튼
+	// 회원 수정 페이지
 	@RequestMapping("/host/modify_user")
 	public String modify_user(HttpServletRequest req, Model model) {
 		logger.info("url -> modify_user");
@@ -63,10 +63,21 @@ private static final Logger logger = LoggerFactory.getLogger(UserInfoController.
 		String user_code = req.getParameter("user_code");
 		System.out.println("user_code : " + user_code);
 		
-		//service_login.modifyUser(req, model);
+		service_user.getUserInfo(req, model);
 		
 		return "host/user/modify_user";
 	}
+	
+	// 회원 수정 액션
+	@RequestMapping("/host/modify_user_action")
+	public String modify_user_action(HttpServletRequest req, Model model) {
+		logger.info("url -> modify_user_action");
+		
+		service_user.modifyUser(req, model);
+		
+		return "host/user/modify_user_action";
+	}
+	
 	
 	// 마이페이지
 	@RequestMapping("/host/mypage")

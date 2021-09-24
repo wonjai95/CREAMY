@@ -81,19 +81,19 @@ function selectEmailChk() {
 
 //다음 주소입력 API
 function addressSearch() {
-      new daum.Postcode({
-          oncomplete: function(data) {
-          	
-          	//우편번호
-              document.getElementById('postcode').value = data.zonecode;
-             
-              //시도
-              document.getElementById('sido').value = data.sido;
-           
-              //구군
-              document.getElementById('sigungu').value = data.sigungu;
-        
-          }
-      }).open();
+	 new daum.Postcode({
+         oncomplete: function(data) {
+         	
+         	//우편번호
+             document.getElementById('postcode').value = data.zonecode;
+            
+             //시도
+             document.getElementById('sido').value = data.sido;
+          
+             //구군
+             document.getElementById('sigungu').value = data.sigungu;
+       
+         }
+     }).open();
   }
 

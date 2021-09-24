@@ -27,7 +27,7 @@
   	<!-- 회원 정보 수정 -->
   	<update id="updateUser" parameterType="com.spring.Creamy_CRM.VO.userVO">
   		UPDATE user_tbl
-		   SET user_name=#{user_name}, user_gender=#{user_gender}, user_birth=#{user_birth}, user_age=#{user_age}, user_email=#{user_email}, zipcode=#{zipcode}, user_address=#{user_address}, user_ph=#{user_ph}, join_date=#{join_date}, expire_date=#{expire_date}
+		   SET user_name=#{user_name}, user_gender=#{user_gender}, user_birth=#{user_birth}, user_age=#{user_age}, user_email=#{user_email}, zipcode=#{zipcode}, user_address=#{user_address}, user_ph=#{user_ph}
 		 WHERE user_code=#{user_code}
   	</update>
   	
