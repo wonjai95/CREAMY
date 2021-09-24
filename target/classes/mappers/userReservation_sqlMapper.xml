@@ -68,5 +68,14 @@
    		AND host_code = #{host_code}
    	</select>
    	
+   	<!-- 회원 예약 가능한 담당자 표시 -->
+   	<select id="getReservedManager" parameterType="java.util.Map" resultType="Integer">
+   		SELECT COUNT(*)
+   		  FROM reservation_tbl
+   		 WHERE employee_code = #{employee_code}
+   		   AND #{selectDate} = TO_CHAR(res_date, 'YYYY-MM-dd')
+   		   AND res_hour = #{res_hour}
+   	</select>
+   	
   	
   </mapper>

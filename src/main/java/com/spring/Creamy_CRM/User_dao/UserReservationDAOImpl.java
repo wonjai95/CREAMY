@@ -43,4 +43,11 @@ public class UserReservationDAOImpl implements UserReservationDAO {
 		return dao.getAvailableManager(map);
 	}
 
+	// 해당 담당자의 예약 테이블 확인
+	@Override
+	public int getReservedManager(Map<String, Object> map) {
+		UserReservationDAO dao = sqlSession.getMapper(UserReservationDAO.class);
+		return dao.getReservedManager(map);
+	}
+
 }

@@ -7,6 +7,7 @@ $(document).ready(function() {
        $('.timeSelectedInfo').html(timeClick);
        
        // 선택한 시간과 요일
+       var selectDate = $("input[name=selectDate]").val();
        var selectTime =  $('#selectTime').val();
        var selectDay =  $("#chkDay").val();
        console.log("selectDay : " + selectDay + ", selectTime : " + selectTime);
@@ -18,9 +19,10 @@ $(document).ready(function() {
        console.log("token : " + token);
        
        $.ajax({
-     	  url : "bookingManager",
+     	  url : "managerTimeTable",
      	  type : "Post",
-     	  data : "selectDay=" + selectDay + "&selectTime=" + selectTime + "&host_code=" + host_code,
+     	  data : "selectDay=" + selectDay + "&selectTime=" + selectTime + "&host_code=" + host_code
+     	  			+ "&selectDate=" + selectDate,
      	  beforeSend : function(jqXHR, settings) {
      		  console.log("beforesend 진행");
                jqXHR.setRequestHeader(header, token);

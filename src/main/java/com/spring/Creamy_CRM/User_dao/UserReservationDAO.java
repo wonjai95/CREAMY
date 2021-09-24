@@ -24,4 +24,7 @@ public interface UserReservationDAO {
 	// 회원 예약 가능한 담당자 표시
 	public List<HostVO> getAvailableManager(Map<String, Object> map);
 	
+	// 해당 담당자의 예약 테이블 확인
+	public int getReservedManager(Map<String, Object> map);
+	
 }

@@ -114,12 +114,14 @@ public class UserReservationServiceImpl implements UserReservationService {
 		} while(!timeSche.equals(endTime));
 		
 		model.addAttribute("dtos", dtos);
+		model.addAttribute("selectDate", selectDate);
 		
 	}
 
 	// 회원 예약 가능한 담당자 표시
 	@Override
 	public void bookingManagerTable(HttpServletRequest req, Model model) {
+		String selectDate = req.getParameter("selectDate");
 		String selectDay = req.getParameter("selectDay");
 		String selectTime = req.getParameter("selectTime");
 		int chkTime = Integer.parseInt(selectTime.split(":")[0]);
@@ -130,12 +132,29 @@ public class UserReservationServiceImpl implements UserReservationService {
 		System.out.println("chkTime : " + chkTime);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("selectDate", selectDate);
 		map.put("selectDay", selectDay);
 		map.put("host_code", host_code);
 		map.put("selectTime", selectTime);
+		// reservation_tbl에 res_hour가 number로 들어가있기 때문에 split한 값을 사용
+		map.put("res_hour", chkTime);
 		
 		List<HostVO> dtos = dao.getAvailableManager(map);
-		System.out.println("직원 : " + dtos.get(0).getEmployee_code());
+		for(int i=0; i<dtos.size(); i++) {
+			map.put("employee_code", dtos.get(i).getEmployee_code());
+			System.out.println("직원 : " + dtos.get(i).getEmployee_code());
+			
+			// 해당 날짜와 시간에 예약이 잡혀있는 담당자 count
+			int getCnt = dao.getReservedManager(map);
+			System.out.println("getCnt : " + getCnt);
+			
+			if(getCnt != 0) {
+				System.out.println(dtos.get(i).getEmployee_code() + " 삭제");
+				// 해당 날짜와 시간에 예약이 잡혀있는 담당자를 map에서 삭제
+				dtos.remove(i);
+			}
+		}
+		
 		model.addAttribute("dtos", dtos);
 		
 	}
