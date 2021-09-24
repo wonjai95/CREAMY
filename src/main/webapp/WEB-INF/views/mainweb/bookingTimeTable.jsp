@@ -25,7 +25,8 @@
    </style>
 <script type="text/javascript" src="${path}/resources/host/js/bookingTimeTable.js"></script>
 </head>
-
+<sec:csrfInput/>
+<input type="hidden" name="selectDate" value="${selectDate}">
 <body class="top-navigation">
 	<div style="display:inline-block" id="timeTable">
 		<c:forEach var="dto" items="${dtos}" varStatus="status">

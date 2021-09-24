@@ -1,14 +1,12 @@
 $(document).ready(function() {
 	
-    // 시간 선택
+    // 담당자 선택
     $("button[id^=managerBtn]").click(function() {
+       console.log("managerBtn click");
        var employeeBtn = $(this).attr('value');
-       $('#selectManager').val(timeClick);
-       $('.managerSelectedInfo').html(timeClick);
-       
-       
+       $('#selectManager').val(employeeBtn);
+       $('.managerSelectedInfo').html(employeeBtn);
     });
-    
     
     
 });

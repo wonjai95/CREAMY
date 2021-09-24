@@ -240,12 +240,12 @@ public class MainwebController {
 	}	
 	
 	// 회원 예약 가능한 담당자 표시
-	@RequestMapping("/bookingManager")
-	public String bookingManager(HttpServletRequest req, Model model) {
-		logger.info("url -> bookingManager");
+	@RequestMapping("/managerTimeTable")
+	public String managerTimeTable(HttpServletRequest req, Model model) {
+		logger.info("url -> managerTimeTable");
 		
 		service_custReserve.bookingManagerTable(req, model);
-		return "mainweb/bookingManager";
+		return "mainweb/managerTimeTable";
 	}	
 	
 	
