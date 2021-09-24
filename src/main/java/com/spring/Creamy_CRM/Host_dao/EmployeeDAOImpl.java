@@ -17,6 +17,7 @@ import com.spring.Creamy_CRM.VO.AttendanceVO;
 import com.spring.Creamy_CRM.VO.EmployeeVO;
 import com.spring.Creamy_CRM.VO.LeaveVO;
 import com.spring.Creamy_CRM.VO.SalaryContractVO;
+import com.spring.Creamy_CRM.VO.SalaryVO;
 import com.spring.Creamy_CRM.VO.WorkingHoursVO;
 
 @Repository
@@ -63,6 +64,12 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	public ArrayList<SalaryContractVO> getContractList(String employee_code){
 		EmployeeDAO dao = sqlSession.getMapper(EmployeeDAO.class);
 		return dao.getContractList(employee_code);
+	}
+	
+	// 직원 급여 지급 등록
+	public int insertPayment(SalaryVO vo) {
+		EmployeeDAO dao = sqlSession.getMapper(EmployeeDAO.class);
+		return dao.insertPayment(vo);
 	}
 	
 	// 이미 직원 등록이 완료된 id인지 체크

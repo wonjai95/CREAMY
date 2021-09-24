@@ -5,8 +5,6 @@
 */
 package com.spring.Creamy_CRM.Host_controller;
 
-import java.util.List; 
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
@@ -198,10 +196,6 @@ public class ProductController {
 		}
 	
 	
-	
-	
-	
-	
 	// 판매 페이지
 	@RequestMapping("/host/product_selling")
 	public String product_selling(HttpServletRequest req, Model model) {
@@ -211,7 +205,7 @@ public class ProductController {
 		service_user.getUserInfo(req, model);
 		model.addAttribute("dto", req.getAttribute("dto")); // 회원 정보 넘겨주기
 
-		// 상품 목록 출력  
+		// 상품 목록 출력
 		service.printProducts(req, model);
 		model.addAttribute("dto2", req.getAttribute("dto2")); // 상품 정보 넘겨주기
 		

@@ -32,7 +32,10 @@ public class MainwebServiceImpl implements MainwebService {
 		
 		String user_id = (String) req.getSession().getAttribute("id");
 		String res_state = req.getParameter("selectType");
-		int res_hour = Integer.parseInt(req.getParameter("selectTime"));
+		String str_hour = req.getParameter("selectTime");
+		String[] hours = str_hour.split(":");
+		
+		int res_hour = Integer.parseInt(hours[0]);
 		String employee_code = req.getParameter("selectManager");
 		int res_cnt = Integer.parseInt(req.getParameter("GuestCount"));
 		String res_indiv_request = req.getParameter("res_indiv_request");

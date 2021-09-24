@@ -44,7 +44,7 @@ public class ReservationController {
 	public String requestDetails(HttpServletRequest req, Model model) {
 		logger.info("url -> requestDetails");
 		
-		//service.requestDetailAction(req, model);
+		service.requestDetailAction(req, model);
 		
 		return "host/reservation/requestDetails";
 	}
@@ -52,6 +52,8 @@ public class ReservationController {
 	@RequestMapping("/host/requestDetail")
 	public String requestDetail(HttpServletRequest req, Model model) {
 		logger.info("url -> requestDetail");
+		
+		//service.requestDetailAction(req, model);
 		
 		return "host/reservation/requestDetail";
 	}

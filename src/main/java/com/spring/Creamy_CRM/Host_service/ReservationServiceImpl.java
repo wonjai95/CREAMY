@@ -133,8 +133,14 @@ public class ReservationServiceImpl implements ReservationService {
 	public void requestDetailAction(HttpServletRequest req, Model model) {
 		// 3단계. 화면으로부터 입력받은 값을 받아온다.
 		// http://localhost:8080/프로젝트명/boardDetail.bo?num=25&pageNum=2&number=25
-		int num = Integer.parseInt(req.getParameter("res_code"));
+		System.out.println("예약요청 상세페이지 시작합니다");
 		
+		String str1 = req.getParameter("res_code");
+		System.out.println("str1 : " + str1);
+		
+		int num = Integer.parseInt(req.getParameter("res_code"));
+		System.out.println("예약요청 상세페이지 res_code 시작합니다");
+		System.out.println("num : " + num);
 		// 5단계. 게시글 갯수 조회
 		ReservationVO vo = dao.getRequestDetail(num);
 		
