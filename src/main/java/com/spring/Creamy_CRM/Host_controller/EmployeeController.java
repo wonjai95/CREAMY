@@ -73,6 +73,26 @@ public class EmployeeController {
 		return "host/employee/employee_leaveList";
 	}
 	
+	// 직원 급여 계약 목록 조회
+	@RequestMapping("host/employee_contractList")
+	public String employee_contractList(HttpServletRequest req, Model model) {
+		logger.info("url -> employee_contractList");
+		
+		service.contractList(req, model);
+		
+		return "host/employee/employee_contractList";
+	}
+	
+	// 직원 급여 계약 삭제
+	@RequestMapping("host/employee_contractDelete")
+	public String employee_contractDelete(HttpServletRequest req, Model model) {
+		logger.info("url -> employee_contractDelete");
+		
+		service.deleteContract(req, model);
+		
+		return "host/employee/employee_contractDelete";
+	}
+	
 	// 급여 지급 조회
 	@RequestMapping("host/employee_payment")
 	public String employee_payment(HttpServletRequest req, Model model) {
@@ -87,6 +107,7 @@ public class EmployeeController {
 		
 		return "host/employee/employee_paymentAction";
 	}
+	
 	   
 	// 직원 등록
 	@RequestMapping("host/employee_enlist")

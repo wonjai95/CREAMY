@@ -143,10 +143,26 @@ public class MainwebController {
 	public String my_review(HttpServletRequest req, Model model) {
 		logger.info("url -> my_review");
 		
-		service_review.getMyReviewList(req, model);
-		
-		return "mainweb/review/review_mypage";
+		if(req.getSession().getAttribute("id") != null) {
+			
+			service_review.getMyReviewList(req, model);
+			return "mainweb/review/review_mypage";
+			
+		}else {
+			return "mainweb/login";
+		}
 	}
+	
+	//후기 상세 페이지
+	@RequestMapping("/ReviewDetail")
+	public String ReviewDetail(HttpServletRequest req, Model model) {
+		logger.info("url-> ReviewDetail");
+		
+		service_review.ReviewDetail(req, model);
+		
+		return "mainweb/review/review_detail";
+	}
+	
 	
 	//마이페이지 - 예약관리
 	@RequestMapping("/mypage_reservation")
@@ -175,6 +191,7 @@ public class MainwebController {
 		logger.info("url -> insertReviewAction");
 		
 		service_review.insertReviewAction(req, model);
+		service_review.getReservationList(req, model);
 		
 		return "mainweb/mypage/reservation_mypage";
 	}

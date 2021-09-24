@@ -144,9 +144,29 @@ public class UserReviewServiceImpl implements UserReviewService {
 		
 	}
 
+	//후기 디테일
 	@Override
-	public void getUserReservationList(HttpServletRequest req, Model model) {
-		   
+	public void ReviewDetail(HttpServletRequest req, Model model) {
+		String review_code = req.getParameter("review_code");
+		System.out.println("후기번호 : "+review_code);
+		String check_page = req.getParameter("check_page");
+		System.out.println("페이지 ? "+check_page);
+		
+		ReviewVO vo = dao_review.getReviewDetail(review_code);
+		
+		int readcnt = vo.getReadCnt() + 1;
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("review_code", review_code);
+		map.put("readcnt",readcnt);
+		
+		//조회수 증가
+		dao_review.plusReadCnt(map);
+		
+		req.setAttribute("vo", vo);
+		req.setAttribute("check_page", check_page);
+		
 	}
+
 
 }

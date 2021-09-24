@@ -134,6 +134,10 @@
 				                                           	${vo2.content}
 				                                        </p>
 				                                        <hr/>
+				                                        <strong>별점</strong>
+				                                        <br>
+				                                        	<img alt="" src="../images/main/star${vo2.star}.png" style="width: 130px; height: 40px;">
+				                                        <hr/>
 				                                        <strong>첨부 사진</strong>
 				                                        <br>
 				                                        <img alt="" src="../images/main/${vo2.review_img}" style="width: 200px; height: 200px;">

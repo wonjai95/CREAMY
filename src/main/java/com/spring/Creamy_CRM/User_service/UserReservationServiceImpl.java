@@ -41,6 +41,11 @@ public class UserReservationServiceImpl implements UserReservationService {
 	// 고객 예약 페이지
 	@Override
 	public void custBooking(HttpServletRequest req, Model model) {
+		String host_code = req.getParameter("host_code");
+		System.out.println("host_code : " + host_code);
+		
+		// 해당 사장님의 호실과 상품 정보 가져오기
+		
 		
 	}
 

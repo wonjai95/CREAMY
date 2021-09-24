@@ -36,6 +36,9 @@ public interface EmployeeDAO {
 	// 직원의 급여 계약 정보
 	public ArrayList<SalaryContractVO> getContractList(String employee_code);
 	
+	// 직원의 급여 계약 삭제
+	public int deleteContract(String salary_contract_code);
+	
 	// 직원 급여 지급 등록
 	public int insertPayment(SalaryVO vo);
 	

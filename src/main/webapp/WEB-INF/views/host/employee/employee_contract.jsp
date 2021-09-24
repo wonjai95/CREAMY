@@ -19,7 +19,7 @@ body {
 </head>
 <body>
 	<div class="ibox-content">
-		<form action="employee_contractAction" method="post">
+		<form action="employee_contractAction" method="post" id="employee_contractForm">
 			<sec:csrfInput/>
 			<div class="form-group  row">
 				<label class="col-sm-2 col-form-label">직원코드</label>

@@ -16,12 +16,6 @@
   
   <!-- 내가 쓴 js  -->
 
-  <!-- =======================================================
-  * Template Name: Vlava - v4.3.0
-  * Template URL: https://bootstrapmade.com/vlava-free-bootstrap-one-page-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body>
@@ -60,7 +54,7 @@
          			<c:forEach var="vo" items="${list}">
 	         			<tr style="border-bottom: #dee2e6 1px solid;">
 	                     	<td>${vo.review_code}</td>
-	                         <td><a href="#contact-1" class="client-link">${vo.title}</a></td>
+	                         <td><a href="ReviewDetail?review_code=${vo.review_code}&check_page=my" class="client-link">${vo.title}</a></td>
 	                         <td> ${vo.regDate}</td>
 	                         <td> &nbsp;&nbsp;&nbsp;${vo.readCnt}</td>
 	                     </tr>

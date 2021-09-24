@@ -1,9 +1,20 @@
 $("document").ready(function() {
 	
+	$("#employee_attendanceForm").submit(function() {
+		if(confirm("진행하시겠습니까?")) {
+			console.log("확인");
+		} else {
+			console.log("취소");
+			return false;
+		}
+	});
+	
 	// 출근 클릭
 	$("#employee_in").click(function() {
 		// 클릭시 체크박스 해제
 		$("input[type=checkbox]").prop("checked", false);
+		
+		$("input[type=radio]").prop("required", true);
 		
 		// 클릭시 버튼 색깔 지정
 		$("#employee_out").css("background", "");
@@ -28,6 +39,8 @@ $("document").ready(function() {
 	$("#employee_out").click(function() {
 		// 클릭시 체크박스 해제
 		$("input[type=checkbox]").prop("checked", false);
+		
+		$("input[type=radio]").prop("required", false);
 		
 		// 클릭시 버튼 색깔 지정
 		$("#employee_in").css("background", "");

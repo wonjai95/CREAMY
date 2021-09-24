@@ -40,7 +40,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public void employeeList(HttpServletRequest req, Model model) {
 		String host_code = (String) req.getSession().getAttribute("code");
 		System.out.println("host_code : " + host_code);
-		host_code = "H1";
 		
 		ArrayList<EmployeeVO> dtos = dao.employeeList(host_code);
 		
@@ -58,19 +57,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		// 직원 상세 정보 가져오기
 		EmployeeVO dtos = dao.getEmployeeDetail(employee_code);
 		
-		// 직원 근태 정보 가져오기
-		// ArrayList<AttendanceVO> attList = dao.getAttendanceList(employee_code);
-		
-		// 직원 휴가 정보 가져오기
-		// ArrayList<LeaveVO> leaveList = dao.getLeaveList(employee_code);
-		
-		// 직원 급여 계약 정보 가져오기
-		ArrayList<SalaryContractVO> contractList = dao.getContractList(employee_code);
-		
 		model.addAttribute("dtos", dtos);
-		// model.addAttribute("attList", attList);
-		// model.addAttribute("leaveList", leaveList);
-		model.addAttribute("contractList", contractList);
 	}
 	
 	// 직원 상세 정보 수정 처리
@@ -137,6 +124,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		String employee_code = req.getParameter("employee_code");
 		System.out.println("근태 목록 서비스");
 		
+		// 직원 근태 정보 가져오기
 		ArrayList<AttendanceVO> attList = dao.getAttendanceList(employee_code);
 		
 		model.addAttribute("attList", attList);
@@ -147,9 +135,31 @@ public class EmployeeServiceImpl implements EmployeeService {
 		String employee_code = req.getParameter("employee_code");
 		System.out.println("휴가 목록 서비스");
 		
+		// 직원 휴가 정보 가져오기
 		ArrayList<LeaveVO> leaveList = dao.getLeaveList(employee_code);
 		
 		model.addAttribute("leaveList", leaveList);
+	}
+	
+	// 직원 급여 계약 목록 조회
+	public void contractList(HttpServletRequest req, Model model) {
+		String employee_code = req.getParameter("employee_code");
+		System.out.println("급여 계약 목록 서비스");
+		
+		// 직원 급여 계약 정보 가져오기
+		ArrayList<SalaryContractVO> contractList = dao.getContractList(employee_code);
+		
+		model.addAttribute("contractList", contractList);
+		model.addAttribute("employee_code", employee_code);
+	}
+	
+	// 직원 급여 계약 삭제
+	public void deleteContract(HttpServletRequest req, Model model) {
+		String salary_contract_code = req.getParameter("salary_contract_code");
+		
+		int deleteCnt = dao.deleteContract(salary_contract_code);
+		
+		model.addAttribute("deleteCnt", deleteCnt);
 	}
 	
 	// 직원 급여 지급 등록
@@ -210,7 +220,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 		
 		String host_code = (String) req.getSession().getAttribute("code");
 		System.out.println("host_code : " + host_code);
-		host_code = "H1";
 		
 		if(department == null || department.equals("")) department = "none";
 		if(position == null || position.equals("")) position = "none";
@@ -288,6 +297,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		vo.setExamination_chk2(covid_chk2);
 		vo.setExamination_chk3(covid_chk3);
 		vo.setMemo(memo);
+		vo.setLateChk(late_early);
 		
 		int insertCnt = 0;
 		int inChk = 0;
@@ -296,7 +306,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 		// 출근일 경우 attendance_tbl에 바로 삽입
 		if(employee_in.equals("출근")) {
 			vo.setCheck_in_time(inout_time);
-			vo.setLateChk(late_early);
 			vo.setCheck_out_time("0");
 			
 			inChk = dao.chkIn(vo);

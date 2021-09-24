@@ -10,6 +10,13 @@ $("document").ready(function() {
 		} else if($("select[name=employee_type] option:selected").val() == "1") {
 			alert("고용 형태를 선택하세요!");
 			return false;
+			
+		// 확인/취소
+		} else if(confirm("진행하시겠습니까?")) {
+			console.log("확인");
+		} else {
+			console.log("취소");
+			return false;
 		}
 	});
 	

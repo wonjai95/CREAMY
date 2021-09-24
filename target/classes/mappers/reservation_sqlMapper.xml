@@ -40,6 +40,7 @@
 			AND rt.res_detail_code = #{res_detail_code};
 	</select> -->
   	
+
   	<!-- 아래 것으로 계속 이어가기 -->
 <!--   	<select id="getRequestDetail" parameterType="java.util.Map" resultType="com.spring.Creamy_CRM.VO.ReservationVO">
   			SELECT res_code, res_state, res_date, res_hour, employee_code, user_id, res_cnt, res_indiv_request, product_code, res_memo, res_room
