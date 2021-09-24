@@ -211,12 +211,12 @@ public class MainwebController {
 	}
 	
 	//-------------------------------- 고객 화면 예약 페이지 --------------------------------
-	// 고객 화면 예약 페이지
-	//회원 예약 페이지
+	// 고객 매장 선택 페이지
 	@RequestMapping("/selectHost")
 	   public String selectHost(HttpServletRequest req, Model model) {
 	      logger.info("url -> selectHost");
 	      
+	      service_custReserve.selectHost(req, model);
 	      return "mainweb/selectHost";
 	}	
 	
@@ -225,10 +225,12 @@ public class MainwebController {
 	   public String custBooking(HttpServletRequest req, Model model) {
 	      logger.info("url -> custBooking");
 	      
+	      model.addAttribute("host_code", req.getParameter("host_code"));
+	      model.addAttribute("comp_address", req.getParameter("comp_address"));
 	      return "mainweb/custBooking";
 	}	
 	
-	//회원 예약 가능 시간 표시
+	// 회원 예약 가능 시간 표시
 	@RequestMapping("/bookingTimeTable")
 	public String bookingTimeTable(HttpServletRequest req, Model model) {
 		logger.info("url -> bookingTimeTable");
@@ -237,8 +239,16 @@ public class MainwebController {
 		return "mainweb/bookingTimeTable";
 	}	
 	
+	// 회원 예약 가능한 담당자 표시
+	@RequestMapping("/bookingManager")
+	public String bookingManager(HttpServletRequest req, Model model) {
+		logger.info("url -> bookingManager");
+		
+		service_custReserve.bookingManagerTable(req, model);
+		return "mainweb/bookingManager";
+	}	
 	
-	//-------------------------------- 관리자 화면 에약 페이지--------------------------------
+	
 	//회원 예약 처리 페이지
 	@RequestMapping("/insertBooking")
 	   public String insertBooking(HttpServletRequest req, Model model) {

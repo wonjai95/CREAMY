@@ -16,6 +16,23 @@ public class HostVO {
    private String comp_name;      // 회사명
    private String host_ph;		 //사장님 전화번호
    
+   // 사업자 테이블
+   private String comp_no;			// 사업자 등록 번호
+   private String comp_address;		// 주소
+   private String comp_condition;	// 업태
+   private String comp_type;		// 업종
+   private String zipcode;			// 우편번호
+   
+   // 영업시간 설정
+   private String operating_sche_code;	// 영업 시간 설정 코드
+   private String operating_day;		// 영업 요일
+   private String open_sche;			// 영업 시작 시간
+   private String close_sche;			// 영업 종료 시간
+   
+   // 직원 정보
+   private String employee_code;		// 직원코드
+   private String employee_name;		// 직원이름
+   
    public String getHost_code() {
       return host_code;
    }
@@ -57,6 +74,72 @@ public class HostVO {
 	}
 	public void setHost_ph(String host_ph) {
 		this.host_ph = host_ph;
+	}
+	public String getComp_no() {
+		return comp_no;
+	}
+	public void setComp_no(String comp_no) {
+		this.comp_no = comp_no;
+	}
+	public String getComp_address() {
+		return comp_address;
+	}
+	public void setComp_address(String comp_address) {
+		this.comp_address = comp_address;
+	}
+	public String getComp_condition() {
+		return comp_condition;
+	}
+	public void setComp_condition(String comp_condition) {
+		this.comp_condition = comp_condition;
+	}
+	public String getComp_type() {
+		return comp_type;
+	}
+	public void setComp_type(String comp_type) {
+		this.comp_type = comp_type;
+	}
+	public String getZipcode() {
+		return zipcode;
+	}
+	public void setZipcode(String zipcode) {
+		this.zipcode = zipcode;
+	}
+	public String getOperating_sche_code() {
+		return operating_sche_code;
+	}
+	public void setOperating_sche_code(String operating_sche_code) {
+		this.operating_sche_code = operating_sche_code;
+	}
+	public String getOperating_day() {
+		return operating_day;
+	}
+	public void setOperating_day(String operating_day) {
+		this.operating_day = operating_day;
+	}
+	public String getOpen_sche() {
+		return open_sche;
+	}
+	public void setOpen_sche(String open_sche) {
+		this.open_sche = open_sche;
+	}
+	public String getClose_sche() {
+		return close_sche;
+	}
+	public void setClose_sche(String close_sche) {
+		this.close_sche = close_sche;
+	}
+	public String getEmployee_code() {
+		return employee_code;
+	}
+	public void setEmployee_code(String employee_code) {
+		this.employee_code = employee_code;
+	}
+	public String getEmployee_name() {
+		return employee_name;
+	}
+	public void setEmployee_name(String employee_name) {
+		this.employee_name = employee_name;
 	}
    
    

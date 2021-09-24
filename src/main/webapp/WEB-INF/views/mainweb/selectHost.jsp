@@ -4,11 +4,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="_csrf" content="${_csrf.token}"/>
-	<meta name="_csrf_header" content="${_csrf.headerName}"/>
-    <title>INSPINIA | Dashboard v.4</title>    
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="_csrf" content="${_csrf.token}"/>
+<meta name="_csrf_header" content="${_csrf.headerName}"/>
+<title>INSPINIA | Dashboard v.4</title>    
     
 <style type="text/css">
 	@font-face {
@@ -45,7 +45,7 @@
                     <span class="m-r-sm text-muted welcome-message">Welcome to Creamy</span>
                 </li>
                 <li>
-                    <a href="login.html">
+                    <a href="home">
                         <i class="fa fa-sign-out"></i> Home
                     </a>
                 </li>
@@ -70,22 +70,23 @@
         <!-- 본문 리스트 시작 -->
         <div class="wrapper wrapper-content animated fadeInRight" style="margin: 30px;">
 	        <div class="row">
-	            <div class="col-lg-4">
-	                <div class="contact-box">
-	                    <a class="row" href="profile.html" style="justify-content: center;">
-		                    <div class="col-8">
-		                        <h3><strong>John Smith</strong></h3>
-		                        <p><i class="fa fa-map-marker"></i> Riviera State 32/106</p>
-		                        <address>
-		                            <strong>Twitter, Inc.</strong><br>
-		                            795 Folsom Ave, Suite 600<br>
-		                            San Francisco, CA 94107<br>
-		                            <abbr title="Phone">P:</abbr> (123) 456-7890
-		                        </address>
-		                    </div>
-	                    </a>
-	                </div>
-	            </div>
+	        	<c:forEach var="dto" items="${dtos}">
+		            <div class="col-lg-4">
+		                <div class="contact-box">
+		                    <a class="row" href="custBooking?host_code=${dto.host_code}&comp_address=${dto.comp_address}" style="justify-content: center;">
+			                    <div class="col-8" style="text-align: center;">
+			                        <h3><strong>${dto.comp_name}</strong></h3>
+			                        <p>${dto.host_name}</p>
+			                        <address>
+			                           <i class="fa fa-map-marker"></i> <strong>${dto.comp_address}</strong><br>
+			                                                                      우편번호 : ${dto.zipcode}<br>
+			                            	전화 : ${dto.host_ph}<br>
+			                        </address>
+			                    </div>
+		                    </a>
+		                </div>
+		            </div>
+	            </c:forEach>
   			</div>
   		</div>
   	</div>

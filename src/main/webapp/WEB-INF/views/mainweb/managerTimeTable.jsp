@@ -23,14 +23,14 @@
       }
    
    </style>
-<script type="text/javascript" src="${path}/resources/host/js/bookingTimeTable.js"></script>
+<script type="text/javascript" src="${path}/resources/host/js/managerTimeTable.js"></script>
 </head>
 
 <body class="top-navigation">
-	<div style="display:inline-block" id="timeTable">
+	<div style="display:inline-block" id="managerTable">
 		<c:forEach var="dto" items="${dtos}" varStatus="status">
-			<button type="button" class="btn btn-outline btn-primary" class="timeBtn" id="timeBtn${status.index}"
-           		style="margin: 10px" value="${dto}">${dto}</button>
+			<button type="button" class="btn btn-outline btn-primary" class="managerBtn" id="managerBtn${status.index}" 
+                 style="margin: 10px" value="${dto.employee_code}">${dto.employee_name}</button>
 		</c:forEach>
 	</div>
 </body>
