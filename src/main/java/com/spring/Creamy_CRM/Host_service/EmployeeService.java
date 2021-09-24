@@ -27,6 +27,12 @@ public interface EmployeeService {
 	// 직원 휴가 목록 조회
 	public void leaveList(HttpServletRequest req, Model model);
 	
+	// 직원 급여 계약 목록 조회
+	public void contractList(HttpServletRequest req, Model model);
+	
+	// 직원 급여 계약 삭제
+	public void deleteContract(HttpServletRequest req, Model model);
+	
 	// 직원 급여 지급 등록
 	public void insertPaymentAction(HttpServletRequest req, Model model);
 	
