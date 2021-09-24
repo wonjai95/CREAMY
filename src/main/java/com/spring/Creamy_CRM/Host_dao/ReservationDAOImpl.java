@@ -48,10 +48,10 @@ public class ReservationDAOImpl implements ReservationDAO {
 
 	// 예약요청 상세 페이지, 수정 상세 페이지
 	@Override
-	public ReservationVO getRequestDetail(int num) {
+	public ReservationVO getRequestDetail(Map<String, Object> map) {
 		
 		ReservationDAO dao = sqlSession.getMapper(ReservationDAO.class);
-		return dao.getRequestDetail(num);
+		return dao.getRequestDetail(map);
 		
 		// 결과가 존재한다면,
 		// 1. 작은 바구니(BoardVO) 생성

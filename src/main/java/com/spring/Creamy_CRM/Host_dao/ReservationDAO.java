@@ -22,7 +22,7 @@ public interface ReservationDAO {
 	public List<ReservationVO> getRequestList(Map<String, Object> map);
 	
 	// 예약요청 상세 페이지, 수정 상세 페이지
-	public ReservationVO getRequestDetail(int num);
+	public ReservationVO getRequestDetail(Map<String, Object> map);
 	
 	// 예약요청 수정 처리 페이지
 	public int updateRequest(ReservationVO vo);

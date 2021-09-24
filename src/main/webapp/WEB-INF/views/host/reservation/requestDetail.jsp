@@ -203,6 +203,11 @@
 		            <th style="text-align:center">상태</th>
 		            <th style="text-align:center">시간</th>
 		            <th style="text-align:center">날짜</th>
+		            <th style="text-align:center">인원수</th>
+		            <th style="text-align:center">특별요청</th>
+		            <th style="text-align:center">상품</th>
+		            <th style="text-align:center">담당자메모</th>
+		            <th style="text-align:center">호실</th>
 		               
 		        </tr>
 		        </thead>
@@ -223,6 +228,17 @@
 							<td style="text-align:center">${dto.res_hour}시</td>
 							
 							<td style="text-align:center">${dto.res_date}</td>
+							
+									<!-- 아래부터는 예약상세 테이블 -->
+							<td style="text-align:center">${dto.res_cnt}</td>
+							
+							<td style="text-align:center">${dto.res_indiv_request}</td>
+							
+							<td style="text-align:center">${dto.product_code}</td>
+							
+							<td style="text-align:center">${dto.res_memo}시</td>
+							
+							<td style="text-align:center">${dto.res_room}</td>
 						</tr>
 				
 		        
@@ -235,6 +251,11 @@
 		            <th style="text-align:center">상태</th>
 		            <th style="text-align:center">시간</th>
 		            <th style="text-align:center">날짜</th>
+		            <th style="text-align:center">인원수</th>
+		            <th style="text-align:center">특별요청</th>
+		            <th style="text-align:center">상품</th>
+		            <th style="text-align:center">담당자메모</th>
+		            <th style="text-align:center">호실</th>
 		        </tr>
 		        </tfoot>
 	        </table>
