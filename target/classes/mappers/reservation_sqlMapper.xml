@@ -41,9 +41,11 @@
 	</select> -->
   	
   	
-  	<select id="getRequestList" parameterType="java.util.Map" resultType="com.spring.Creamy_CRM.VO.ReservationVO">
-  	SELECT res_code, res_state, res_date, res_hour,
-					 employee_code, user_id, rowNum rNum
-					FROM ( SELECT * FROM reservation_tbl
+<!--   	<select id="getRequestList" parameterType="java.util.Map" resultType="com.spring.Creamy_CRM.VO.ReservationVO">
+	  	SELECT res_code, res_state, res_date, res_hour,
+						 employee_code, user_id, rowNum rNum
+						FROM ( SELECT * FROM reservation_tbl
+					
+	</select> -->
   	
   </mapper>
