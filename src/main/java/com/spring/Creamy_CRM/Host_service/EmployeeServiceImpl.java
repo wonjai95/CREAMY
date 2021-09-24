@@ -288,6 +288,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		vo.setExamination_chk2(covid_chk2);
 		vo.setExamination_chk3(covid_chk3);
 		vo.setMemo(memo);
+		vo.setLateChk(late_early);
 		
 		int insertCnt = 0;
 		int inChk = 0;
@@ -296,7 +297,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 		// 출근일 경우 attendance_tbl에 바로 삽입
 		if(employee_in.equals("출근")) {
 			vo.setCheck_in_time(inout_time);
-			vo.setLateChk(late_early);
 			vo.setCheck_out_time("0");
 			
 			inChk = dao.chkIn(vo);

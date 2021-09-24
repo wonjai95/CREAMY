@@ -5,6 +5,8 @@ $("document").ready(function() {
 		// 클릭시 체크박스 해제
 		$("input[type=checkbox]").prop("checked", false);
 		
+		$("input[type=radio]").prop("required", true);
+		
 		// 클릭시 버튼 색깔 지정
 		$("#employee_out").css("background", "");
 		$("#employee_in").css("background", "#20c997");
@@ -28,6 +30,8 @@ $("document").ready(function() {
 	$("#employee_out").click(function() {
 		// 클릭시 체크박스 해제
 		$("input[type=checkbox]").prop("checked", false);
+		
+		$("input[type=radio]").prop("required", false);
 		
 		// 클릭시 버튼 색깔 지정
 		$("#employee_in").css("background", "");
