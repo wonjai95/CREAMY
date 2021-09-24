@@ -41,9 +41,9 @@
 					<div class="form-group" style="font-size: 20px;">
 						 <input type="checkbox" name="day" value="${i.count}">
 						 <label>${day}</label>
-						 <input type="time" name="open" disabled="disabled">
+						 <input type="time" name="open" disabled="disabled" required="required">
 						  ~ 
-						 <input type="time" name="close" disabled="disabled">
+						 <input type="time" name="close" disabled="disabled" required="required">
 					</div>
 					<br/>
 				</c:forEach>
