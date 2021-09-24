@@ -47,6 +47,7 @@ public class HostServiceImpl implements HostService {
 		}
 		
 		System.out.println(count +" 개 항목 등록 및 수정");
+		model.addAttribute("count",count);
 		
 	}
 	
