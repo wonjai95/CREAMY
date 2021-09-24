@@ -210,7 +210,7 @@
 				
 						<tr class="gradeX">
 							<td style="text-align:center">
-							<input type="hidden" id="res_code" name="res_code" value="${dto.res_code}">
+							<input type="text" id="res_code" name="res_code" value="${dto.res_code}">
 							
 							${dto.res_code}</td>
 							

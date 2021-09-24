@@ -135,7 +135,7 @@ public class ReservationServiceImpl implements ReservationService {
 		// http://localhost:8080/프로젝트명/boardDetail.bo?num=25&pageNum=2&number=25
 		System.out.println("예약요청 상세페이지 시작합니다");
 		
-		String str1 = req.getParameter("user_id");
+		String str1 = req.getParameter("res_code");
 		System.out.println("str1 : " + str1);
 		
 		int num = Integer.parseInt(req.getParameter("res_code"));
