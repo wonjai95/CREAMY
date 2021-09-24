@@ -6,6 +6,8 @@
 <head>
 <title>Insert title here</title>
 <meta charset="utf-8">
+<meta name="_csrf" content="${_csrf.token}"/>
+<meta name="_csrf_header" content="${_csrf.headerName}"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>employee_detail</title>
@@ -143,7 +145,7 @@
                 <div class="col-lg-12">
                     <div class="tabs-container">
                             <ul class="nav nav-tabs">
-                                <li><a class="nav-link active" data-toggle="tab" href="#tab-1"> 근태 </a></li>
+                                <li><a class="nav-link  active" data-toggle="tab" href="#tab-1"> 근태 </a></li>
                                 <li><a class="nav-link" data-toggle="tab" href="#tab-2"> 휴가 </a></li>
                                 <li><a class="nav-link" data-toggle="tab" href="#tab-3"> 급여 계약 </a></li>
                                 <li><a class="nav-link" data-toggle="tab" href="#tab-4"> 급여 지급 </a></li>
@@ -151,7 +153,7 @@
                             <div class="tab-content">
                             
                             <!-- 근태 시작 -->
-							<div id="tab-1" class="tab-pane active">
+							<%-- <div id="tab-1" class="tab-pane active">
 							   <div class="panel-body">
 							   
 							    	<!-- 월선택 달력!!! -->
@@ -208,10 +210,10 @@
 					                                    <td>${list1.memo}</td>
 					                                    <td>${list1.temperature}</td>
 					                                    <td>
-					                                    	<c:if test="${list1.examination_chk1 != null || list1.examination_chk2 != null || list.examination_chk3 != null}">
+					                                    	<c:if test="${list1.examination_chk1 != null || list1.examination_chk2 != null || list1.examination_chk3 != null}">
 					                                    		O
 					                                    	</c:if>
-					                                    	<c:if test="${list1.examination_chk1 == null || list1.examination_chk2 == null || list.examination_chk3 == null}">
+					                                    	<c:if test="${list1.examination_chk1 == null || list1.examination_chk2 == null || list1.examination_chk3 == null}">
 					                                    		X
 					                                    	</c:if>
 					                                    </td>
@@ -254,11 +256,11 @@
 			                            </table>
 							       </fieldset>
 							   </div>
-							</div>
+							</div> --%>
 							<!-- 근태 탭 끝 -->
                                 
                                 <!-- 휴가탭 시작 -->
-                                <div id="tab-2" class="tab-pane">
+                                <%-- <div id="tab-2" class="tab-pane">
                                     <div class="panel-body">
                                     
                                         <!-- 월선택 달력!!! -->
@@ -327,7 +329,7 @@
 				                            </table>
 								       </fieldset>
                                     </div>
-                                </div>
+                                </div> --%>
                                 <!-- 휴가 탭 끝 -->
                                 
                                 <!-- 급여 계약 시작 -->
@@ -336,7 +338,7 @@
 
                                         <!-- 월선택 달력!!! -->
 										<div class="round-btn" style="text-align:right; margin-bottom:10px;">
-											<a class="btn btn-default btn-rounded" href="#">수정</a>
+											<a class="btn btn-default btn-rounded" id="">지급</a>
 											<a class="btn btn-default btn-rounded" href="#">삭제</a>
 										</div>
 										
@@ -354,8 +356,8 @@
 				                                </tr>
 				                                </thead>
 				                                <tbody>
-				                                <c:forEach var="list3" items="${contractList}">
-					                                <tr>
+				                                <c:forEach var="list3" items="${contractList}"  varStatus="status">
+					                                <tr class="contract${status.index}">
 					                                    <td>${list3.con_start} ~ ${list3.con_end}</td>
 					                                    <td><fmt:formatNumber value="${list3.monthly_salary}0000" pattern="###,###,###"/></td>
 					                                    <td><fmt:formatNumber value="${list3.annual_salary}0000" pattern="###,###,###"/></td>

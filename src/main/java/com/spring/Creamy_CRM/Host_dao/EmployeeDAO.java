@@ -13,6 +13,7 @@ import com.spring.Creamy_CRM.VO.AttendanceVO;
 import com.spring.Creamy_CRM.VO.EmployeeVO;
 import com.spring.Creamy_CRM.VO.LeaveVO;
 import com.spring.Creamy_CRM.VO.SalaryContractVO;
+import com.spring.Creamy_CRM.VO.SalaryVO;
 import com.spring.Creamy_CRM.VO.WorkingHoursVO;
 
 public interface EmployeeDAO {
@@ -34,6 +35,9 @@ public interface EmployeeDAO {
 	
 	// 직원의 급여 계약 정보
 	public ArrayList<SalaryContractVO> getContractList(String employee_code);
+	
+	// 직원 급여 지급 등록
+	public int insertPayment(SalaryVO vo);
 	
 	// 이미 직원 등록이 완료된 id인지 체크
 	public int chkEmployeeIdPreexisting(String employee_id);
