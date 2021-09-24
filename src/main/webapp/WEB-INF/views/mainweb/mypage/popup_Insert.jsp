@@ -6,6 +6,9 @@
 <head>
 </head>
 
+ <!--make  -->
+    <link href="${path}/resources/user/css/table_style.css" rel="stylesheet">
+
 <body>
 
   <div class="modal-dialog">
@@ -88,11 +91,11 @@
 					
       		         		<!-- ======= 추가입력 ======= -->
       		         		<div class="member-info" style="padding-left: 5px;"><span style="font-size: 20px;"><b>파일추가 &nbsp;&nbsp;</b></span>
-               		<span style="font-size: 10px;">선택입력사항 - 최대 1장의 이미지 등록 가능</span><br>		<br></div>
- 		        			<div style="padding-bottom: 9px; displa		y: flex;">
+               		<span style="font-size: 10px;">선택입력사항 - 최대 1장의 이미지 등록 가능</span><br><br></div>
+ 		        			<div style="padding-bottom: 9px; display: flex;">
 	         	 		<div style="padding-left: 5px; padding-bottom: 8px; align-self: center; padding-right: 25px; width: 15%" align="right"		>이미지</div>
 	         	 		<div style="width: 30%;  displa		y: flex;">
-	         	 			<div class="form-group" style="width: 50%; align-items:		 center;">
+	         	 			<div class="form-group" style="width: 50%; align-items:	center;">
 	                   			<input name="file_name" class="fileinput" type="file" accept="image/*" onchange="insertImg(this);">
 	                   			<img id="stock_img" alt="사진" src="images/main/background.png" style="width: 400px; height : 400px;">
 	                  		 		</div>	

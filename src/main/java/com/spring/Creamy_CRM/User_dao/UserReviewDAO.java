@@ -1,6 +1,7 @@
 package com.spring.Creamy_CRM.User_dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.spring.Creamy_CRM.VO.ReservationVO;
 import com.spring.Creamy_CRM.VO.ReviewVO;
@@ -30,5 +31,11 @@ public interface UserReviewDAO {
 	
 	//관리자가 고객 후기에서 예약 목록 확인하는용도
 	public List<ReservationVO> getUserReservationlist(String user_code);
+	
+	//리뷰 상세 받아오기
+	public ReviewVO getReviewDetail(String review_code);
+	
+	//조회수 증가
+	public int plusReadCnt(Map<String, Object> map);
 	
 }

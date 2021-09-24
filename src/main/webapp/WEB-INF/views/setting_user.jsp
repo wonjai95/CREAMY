@@ -33,9 +33,6 @@
   <link href="${path}/resources/bootstrap/css/iCheck/custom.css" rel="stylesheet">
   <link href="${path}/resources/bootstrap/css/animate.css" rel="stylesheet">
   
-  <!--make  -->
-    <link href="${path}/resources/user/css/table_style.css" rel="stylesheet">
-
   <!-- Template Main CSS File -->
   <link href="${path}/resources/bootstrap/css/user_style.css" rel="stylesheet">
   
