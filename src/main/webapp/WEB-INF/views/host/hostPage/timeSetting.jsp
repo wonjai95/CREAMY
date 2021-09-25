@@ -18,13 +18,6 @@
 		});
 	});
 	
-	function chkTime(){
-		
-		$("")
-		
-		return false;
-	}
-
 </script>
 </head>
 <body>

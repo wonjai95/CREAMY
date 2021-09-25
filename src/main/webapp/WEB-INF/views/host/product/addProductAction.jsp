@@ -9,14 +9,15 @@
 </head>
 <body>
 
-	<c:if test="${selectCnt == 1}">
+	<c:if test="${selectCnt != null}">
 		<script type="text/javascript">
 			alert("상품명 중복");
 			window.history.back();
+			
 		</script>
 	</c:if>
 
-	<c:if test="${selectCnt != 1}">
+	<c:if test="${selectCnt == null}">
 		<c:if test="${insertCnt == 1}">
 			<script type="text/javascript">
 				alert("등록 성공");
