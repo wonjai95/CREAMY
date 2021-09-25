@@ -48,6 +48,7 @@
            <form action="insertBooking" method="post" id="custBookingForm">
            <sec:csrfInput/>
            <input type="hidden" id="user_id" name="user_id" value="${sessionScope.id}">
+           <input type="hidden" id="res_state" name="res_state"> <!-- custRoomBooking.jsp에도 hidden으로 res_state를 넣기??? -->
            <input type="hidden" id="res_date" name="res_date">   <!-- 다시 체크해 볼 것!  name="custBookingForm" -->
            <input type="hidden" id="res_memo" name="res_memo">
            <input type="hidden" id="host_code" name="host_code" value="${host_code}">

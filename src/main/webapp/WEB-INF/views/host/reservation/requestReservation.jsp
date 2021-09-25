@@ -15,7 +15,7 @@
 <title> 예약요청 </title>
 
 <script type="text/javascript">
-
+	/* requestReservation페이지를 보여주는 기본함수 */
 	$(function() {
 		$.ajax({
 			url : '${pageContext.request.contextPath}/requestReservation',  // 전송페이지 => 컨트롤러/basic1_next
@@ -29,6 +29,32 @@
 			}
 		});
 	});
+	
+	
+	/* 검색어 search 기능 함수 */
+	$(function() {
+		$('#res_code').keyup(function() {
+			var res_code = $('#res_code').val();  // input태그에서 입력한 키워드
+			
+			$.ajax({
+				url : '${pageContext.request.contextPath}/requestReservation',  // '컨트롤러'/매핑주소
+				type : 'POST',
+				data : 'res_code=' + res_code,
+				success : function(result) {  // 콜백함수
+					$('#requestList').html(result);
+				},
+				error : function() {
+					alert('오류');
+				}
+			});
+	});
+});
+	
+	
+	
+	
+	
+	
 </script>
 
 <style type="text/css">
@@ -47,16 +73,60 @@
 <div class="wrapper wrapper-content animated fadeInRight">
 	<div class="row">
 	    <div class="col-lg-12">
-	    <div class="ibox ">
 	        <div class="ibox-title">
 	            <h5>예약요청 목록을 보여줍니다. 예약코드를 선택해 관리해보세요.</h5>	            
 	        </div>
+	    </div>
 <!-- ------------------------------- 테이블표 시작 전 '예약요청' 설명란 끝 -->
 
-<!-- ------------------------------- 테이블표 시작 -->
+<!-- ------------------------------- 테이블표 시작 전 '예약요청' 검색창 시작 -->
+		<div class="col-sm-2">
+			<div class="form-group">
+				<select name="" id="" class="form-control">
+					<option value="1" selected="">예약상태</option>
+					<option value="2">글제목</option>
+					<option value="3">작성자</option>
+					<option value="4">등록일</option>
+				</select>
+			</div>
+		</div>
+		
 		<form action="requestReservation" method="post">
-           <sec:csrfInput/>
-           <input type="hidden" id="user_id" name="user_id">
+		   <sec:csrfInput/>
+           <input type="hidden" id="pageNum" name="pageNum" value="${pageNum}">
+           <%-- <input type="hidden" id="user_id" name="user_id" value="${dto.user_id}"> --%>
+		
+		
+		<div class="col-sm-2">
+			<div class="form-group">
+				<input type="text" id="res_code" name="res_code" value="${dto.res_code}" placeholder="검색어"
+					class="form-control">
+			</div>
+		</div>
+
+		<!-- <div class="col-sm-2">
+			<div class="form-group">
+				<button class="btn btn-primary dim" type="button">찾기</button>
+				
+				<button type="submit" class="btn btn-primary dim"
+	            		formaction="completeAction" form="requestDetail">
+	            </button>
+				
+				
+				
+			</div>
+		</div> -->
+<!-- ------------------------------- 테이블표 시작 전 '예약요청' 검색창 끝 -->
+
+<!-- ------------------------------- 테이블표 시작 -->
+		<div class="col-lg-12">
+	    <div class="ibox ">
+		
+		
+		<%-- <form action="requestReservation" method="post">
+		   <sec:csrfInput/>
+           <input type="hidden" id="pageNum" name="pageNum" value="${pageNum}">
+           <input type="hidden" id="user_id" name="user_id" value="${dto.user_id}"> --%>
 		<div class="ibox-content">
 			<div class="table-responsive">
 	        <table class="table table-striped table-bordered table-hover dataTables-example">
@@ -118,7 +188,7 @@
 	        </table>
 	        
 	        <!-- 페이지 컨트롤 -->
-			<table style="width:1000px; display:block; margin:0px 0px 0px 300px;">
+			<table style="width:1000px; display:block; margin:0px 0px 0px 500px;">
 				<tr>
 					<th id="arrow" align="center" style="font-size:18px">
 						<!-- 게시글이 있다면, -->

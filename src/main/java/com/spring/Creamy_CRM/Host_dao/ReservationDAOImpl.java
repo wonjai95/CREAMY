@@ -47,7 +47,17 @@ public class ReservationDAOImpl implements ReservationDAO {
 		return list;
 	}
 
+	
+	// 예약요청 검색목록
+	@Override
+	public List<ReservationVO> requestSearch(String res_code) {
+		
+		return sqlSession.selectList("com.spring.Creamy_CRM.Host_dao.ReservationDAO.requestSearch", res_code);
+	}
+	
+	
 	// 예약요청 상세 페이지 내 회원정보
+	@Override
 	public userVO getUserInfo(String user_id) {
 		
 		return sqlSession.selectOne("com.spring.Creamy_CRM.Host_dao.ReservationDAO.getUserInfo", user_id);
@@ -83,18 +93,18 @@ public class ReservationDAOImpl implements ReservationDAO {
 
 	// 예약요청 삭제 처리 페이지
 	@Override
-	public int deleteRequest1(int num) {
+	public int deleteRequest1(String res_code) {
 		
 		ReservationDAO dao = sqlSession.getMapper(ReservationDAO.class);
-		int deleteCnt = dao.deleteRequest2(num) + dao.deleteRequest1(num);
+		int deleteCnt = dao.deleteRequest1(res_code);
 		
 		return deleteCnt;
 	}
 	@Override
-	public int deleteRequest2(int num) {
+	public int deleteRequest2(String res_detail_code) {
 		
 		ReservationDAO dao = sqlSession.getMapper(ReservationDAO.class);
-		int deleteCnt = dao.deleteRequest2(num);
+		int deleteCnt = dao.deleteRequest2(res_detail_code);
 		
 		return deleteCnt;
 	}
