@@ -90,7 +90,17 @@ public class EmployeeController {
 		
 		service.deleteContract(req, model);
 		
-		return "host/employee/employee_contractDelete";
+		return "host/employee/employee_contractAction";
+	}
+	
+	// 급여 지급 등록
+	@RequestMapping("host/employee_paymentAction")
+	public String employee_paymentAction(HttpServletRequest req, Model model) {
+		logger.info("url -> employee_paymentAction");
+		
+		service.insertPaymentAction(req, model);
+		
+		return "host/employee/employee_paymentAction";
 	}
 	
 	// 급여 지급 조회
@@ -99,15 +109,6 @@ public class EmployeeController {
 		
 		return "host/employee/employee_payment";
 	}
-	
-	// 급여 지급 등록
-	@RequestMapping("host/employee_paymentAction")
-	public String employee_paymentAction(HttpServletRequest req, Model model) {
-		logger.info("url -> employee_paymentAction");
-		
-		return "host/employee/employee_paymentAction";
-	}
-	
 	   
 	// 직원 등록
 	@RequestMapping("host/employee_enlist")

@@ -6,17 +6,15 @@ public class SalaryVO {
 
 	private String salary_code;					// 급여 코드
 	private String employee_code;				// 직원 코드
-	private String salary_contract_code;		// 급여계약코드
-	private int salary;							// 급여(월급)
-	private int total_payment;					// 지급합계
-	private int income_tax;						// 소득세
-	private int loan_payment_amount;			// 차인지급액
-	private int national_pension;				// 국민연금
-	private int health_insurance;				// 건강보험
-	private int employment_insurance;			// 고용보험
-	private int lt_care_insurance;				// 장기요양보험
 	private Date salary_payDate;				// 급여지급일자
 	private String pay_month;					// 급여 지급 월분(9월분)
+	private int salary;							// 급여(월급)
+	private int income_tax;						// 소득세
+	private int national_pension;				// 국민연금
+	private int health_insurance;				// 건강보험
+	private int lt_care_insurance;				// 장기요양보험
+	private int employment_insurance;			// 고용보험
+	private int loan_payment_amount;			// 차인지급액
 	public String getSalary_code() {
 		return salary_code;
 	}
@@ -29,23 +27,11 @@ public class SalaryVO {
 	public void setEmployee_code(String employee_code) {
 		this.employee_code = employee_code;
 	}
-	public String getSalary_contract_code() {
-		return salary_contract_code;
-	}
-	public void setSalary_contract_code(String salary_contract_code) {
-		this.salary_contract_code = salary_contract_code;
-	}
 	public int getSalary() {
 		return salary;
 	}
 	public void setSalary(int salary) {
 		this.salary = salary;
-	}
-	public int getTotal_payment() {
-		return total_payment;
-	}
-	public void setTotal_payment(int total_payment) {
-		this.total_payment = total_payment;
 	}
 	public int getIncome_tax() {
 		return income_tax;
