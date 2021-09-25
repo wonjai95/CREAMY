@@ -53,8 +53,6 @@ public class ReservationController {
 	public String requestDetail(HttpServletRequest req, Model model) {
 		logger.info("url -> requestDetail");
 		
-		//service.requestDetailAction(req, model);
-		
 		return "host/reservation/requestDetail";
 	}
 	//예약 등록
@@ -68,6 +66,8 @@ public class ReservationController {
 	@RequestMapping("/host/modifyAction")
 	public String modifyAction(HttpServletRequest req, Model model) {
 		logger.info("url -> modifyAction");
+		
+		service.modifyAction(req, model);
 		
 		return "host/reservation/modifyAction";
 	}
