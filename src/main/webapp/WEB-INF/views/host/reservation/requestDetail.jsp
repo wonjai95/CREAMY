@@ -48,19 +48,21 @@
 		var isTrue = confirm("해당 요청을 수정하시겠습니까?");
 		
 		if(isTrue==true){
-			window.location = 'modifyAction?res_code=${dto.res_code}&res_detail_code=${dto.res_detail_code}';
+			return true;
+			//window.location = 'modifyAction?res_code=${dto.res_code}&res_detail_code=${dto.res_detail_code}&res_state=${dto.res_state}&res_hour=${dto.res_hour}&res_room=${dto.res_room}&res_cnt=${dto.res_cnt}&employee_code=${dto.employee_code}&res_indiv_request=${dto.res_indiv_request}&res_memo=${dto.res_memo}';
 		} else {
-			window.location = 'requestDetail';
+			return false;
+			//window.location = 'requestDetail';
 		}
 	}
 	
-	function insertReservation(){		
+	function deleteReservation(){		
 		var isTrue = confirm("해당 요청을 취소하시겠습니까?");
 		
 		if(isTrue==true){
-			window.location = 'deleteAction';
+			return true;
 		} else {
-			window.location = 'requestDetail';
+			return false;
 		}
 	}
 	
@@ -84,7 +86,7 @@
 	});
 </script>
 
-<script type="text/javascript" src="${path}/resources/host/js/custBooking.js"></script>
+<script type="text/javascript" src="${path}/resources/host/js/reservationDetail.js"></script>
 </head>
 <body>
 
@@ -102,12 +104,13 @@
 	            		formaction="insertAction">예약 등록
 	            </button>
 	            &nbsp;&nbsp;&nbsp;
-	            <button type="button" class="btn btn-primary btn-lg"
-	            		formaction="modifyAction" onclick="modifyReservation();">예약 수정
+	            <!-- onclick="modifyReservation();" -->
+	            <button type="submit" class="btn btn-primary btn-lg"
+	            		formaction="modifyAction" form="requestDetail" onclick="return modifyReservation();">예약 수정
 	            </button>
 	            &nbsp;&nbsp;&nbsp;
 	            <button type="submit" class="btn btn-primary btn-lg"
-	            		formaction="deleteAction">예약 취소
+	            		formaction="deleteAction" form="requestDetail" onclick="return deleteReservation();">예약 취소
 	            </button>
 	            &nbsp;&nbsp;&nbsp;
 	            <button type="button" class="btn btn-primary btn-lg"
@@ -125,11 +128,7 @@
 	        <div id="contact-1" class="tab-pane active">
 	            <div class="row m-b-lg">
 	                <div class="col-lg-4 text-center">
-	                    <h2>강수현</h2>
-	
-	                    <div class="m-b-sm">
-	                        <img alt="image" class="rounded-circle" src="team-2" style="width: 62px">
-	                    </div>
+	                    <h2>${udto.user_name}</h2>
 	                </div>
 	                <div class="col-lg-8">
 	                    <strong>
@@ -137,44 +136,42 @@
 	                    </strong>
 	
 	                    <p>
+	                        <%-- ${udto.user_memo} --%>
 	                        안녕하세요. 서울 신림동에 사는 강수현입니다. 사장님이 헤어 펌 잘하신다고 여기저기 소문이 많이 나서 가입합니다.
 	                        잘 부탁드려요~!
 	                    </p>
 	                </div>
 	            </div>
+	            
+	            <div class="hr-line-dashed"></div>
+	            
 	            <div class="client-detail">
 	            <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 100%;"><div class="full-height-scroll" style="overflow: hidden; width: auto; height: 100%;">
-	
-	                <strong>기본정보</strong>
-	
+	            	<form action="" id="userDetail">
+	            	<strong>기본정보</strong>
+	                
 	                <ul class="list-group clear-list">
 	                    <li class="list-group-item fist-item">
-	                        <span class="float-right"> 회원번호 : </span>
-	                        A379647
+	                        <span class="float-right"> 회원코드 : </span>
+	                        ${udto.user_code}
 	                    </li>
 	                    <li class="list-group-item">
-	                        <span class="float-right"> 이름 : </span>
-	                        강수현
+	                        <span class="float-right"> 회원아이디 : </span>
+	                        ${udto.user_id}
 	                    </li>
 	                    <li class="list-group-item">
-	                        <span class="float-right"> 담당자 : </span>
-	                        차희선
+	                        <span class="float-right"> 성별 : </span>
+	                        ${udto.user_gender}
 	                    </li>
 	                    <li class="list-group-item">
 	                        <span class="float-right"> 휴대폰 : </span>
-	                        010-3355-9876
-	                    </li>
-	                    <li class="list-group-item">
-	                        <span class="float-right"> 총 예약 : </span>
-	                        1건
+	                        ${udto.user_ph}
 	                    </li>
 	                </ul>
-	                <strong>Notes</strong>
-	                <p>
-	                    만성 두피건조증이 있습니다. 무쪼록 잘 부탁드려요.
-	                </p>
-	                <hr>
 	                
+	                
+	                </form>
+	                <hr>
 	            </div><div class="slimScrollBar" style="background-color: rgb(0, 0, 0); width: 7px; position: absolute; top: 42px; opacity: 0.4; display: none; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; z-index: 99; right: 1px; height: 412.88936627282493px;"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; background-color: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div></div>
 	            </div>
 	        </div>
@@ -208,16 +205,16 @@
                      <tr>
                         <td>
                            <div style="display:inline-block">
-                              <button type="button" class="btn btn-outline btn-primary" class="typeBtn" id="typeBtn2"
-                                 style="margin: 10px" value="예약신청">예약신청</button>
                               <button type="button" class="btn btn-outline btn-primary" class="typeBtn" id="typeBtn1"
-                                 style="margin: 10px" value="예약중">예약중</button>
+                                 style="margin: 10px" value="예약신청">예약신청</button>
                               <button type="button" class="btn btn-outline btn-primary" class="typeBtn" id="typeBtn2"
+                                 style="margin: 10px" value="예약중">예약중</button>
+                              <button type="button" class="btn btn-outline btn-primary" class="typeBtn" id="typeBtn3"
                                  style="margin: 10px" value="서비스 완료">서비스 완료</button>
                            </div>
                            <div class="panel-heading" style="background-color: #e5e6e7; margin-top:15px; color: black">
                          <%-- <input type="text" name="selectType" id="selectType" style="display: none">형태 : <span class="typeSelectedInfo">${dto.res_state}</span> --%>
-                         <input type="text" name="selectType" id="selectType" value="${dto.res_state}">
+                         <input type="text" name="res_state" id="selectType" value="${dto.res_state}">
                       </div>
                       <div class="hr-line-dashed"></div>
                         </td>
@@ -268,7 +265,7 @@
                            </div>
                       <div class="panel-heading" style="background-color: #e5e6e7; margin-top:15px; color: black">
                          <%-- <input type="text" name="selectTime" id="selectTime" value="${dto.res_hour}" style="display: none">선택 시간 : <span class="timeSelectedInfo">${dto.res_hour}</span> --%>
-			         	 <input type="text" name="selectTime" id="selectTime" value="${dto.res_hour}">
+			         	 <input type="text" name="res_hour" id="selectTime" value="${dto.res_hour}">
                       </div>
                       <div class="hr-line-dashed"></div>
                         </td>
@@ -276,7 +273,7 @@
                      
                      
    
-                     <!-- 호실 -->
+                     <%-- <!-- 호실 -->
                      <tr>
                         <td><strong>호실</strong></td>
                      </tr>
@@ -292,8 +289,8 @@
                            </div>
 <!-- sql에서는 varchar(4)로 되어있어서 한글까지 넣으려면 sql을 다시 수정해야한다. -->
                            <div class="panel-heading" style="background-color: #e5e6e7; margin-top:15px; color: black">
-                         <%-- <input type="text" name="selectRoom" id="selectRoom" style="display: none">호실 : <span class="roomSelectedInfo">${dto.res_room}호실</span> --%>
-                         <input type="text" name="selectRoom" id="selectRoom" value="${dto.res_room}">
+                         <input type="text" name="selectRoom" id="selectRoom" style="display: none">호실 : <span class="roomSelectedInfo">${dto.res_room}호실</span>
+                         <input type="text" name="res_room" id="selectRoom" value="${dto.res_room}">
                       </div>
                       
                       <div class="form-group row"><label class="col-lg-2 col-form-label">호실</label>
@@ -311,7 +308,7 @@
   				
   						<div class="hr-line-dashed"></div> 
                         </td>
-                     </tr>
+                     </tr> --%>
    
                      <!-- 인원 -->
                      <tr>
@@ -325,7 +322,7 @@
                               </div>
                               <div class="col-4">
                                  <!-- <input type="text" id="GuestCount" name="GuestCount" maxlength="4" class="form-control text-center" value="0" readonly /> -->
-                                 <input type="text" id="GuestCount" name="GuestCount" maxlength="4" class="form-control text-center" value="${dto.res_cnt}" >
+                                 <input type="text" id="GuestCount" name="res_cnt" maxlength="4" class="form-control text-center" value="${dto.res_cnt}" >
                               </div>
                               <div class="col-3">
                                  <input type="button" id="GuestCountPlus" name="GuestCountPlus" class="btn btn-primary" value="＋" />
@@ -354,15 +351,16 @@
                            </div>
                            <div class="panel-heading" style="background-color: #e5e6e7; margin-top:15px; color: black">
                                <%-- <input type="text" name="selectManager" id="selectManager" style="display: none">담당자 : <span class="managerSelectedInfo">${dto.employee_code}</span> --%>
-                               <input type="text" name="selectManager" id="selectManager" value="${dto.employee_code}">
+                               <input type="text" name="employee_code" id="selectManager" value="${dto.employee_code}">
                            </div>
                            
                            <!-- 고객의 추가 요청사항 -->
                            <div class="form-group" style="margin-top:30px;">
                          <span><strong>추가 요청사항</strong></span>
                          <textarea class="form-control" rows="3"
-                         			name="res_indiv_request" value="${dto.res_indiv_request}"
-                         			style="margin-top:10px;"></textarea>
+                         			name="res_indiv_request" style="margin-top:10px;">
+                         			${dto.res_indiv_request}
+                         </textarea>
     <!-- textarea 다시 체크해 볼 것! -->
                      </div>
                      <div class="hr-line-dashed"></div>   
@@ -379,7 +377,8 @@
                         <td>
                      
 			         <div class="col-lg-12">
-			         	<input type="text" id="res_memo" name="res_memo" class="form-control">
+			         	<input type="text" id="res_memo" name="res_memo"
+			         			value="${dto.res_memo}" class="form-control">
 			         </div>
 			  				<div class="hr-line-dashed"></div>  
 			                     </td>

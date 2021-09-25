@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.spring.Creamy_CRM.VO.ReservationVO;
+import com.spring.Creamy_CRM.VO.userVO;
 
 
 public interface ReservationDAO {
@@ -21,6 +22,9 @@ public interface ReservationDAO {
 	// 예약요청 목록 조회
 	public List<ReservationVO> getRequestList(Map<String, Object> map);
 	
+	// 예약요청 상세 페이지 내 회원정보
+	public userVO getUserInfo(String user_id);
+		
 	// 예약요청 상세 페이지, 수정 상세 페이지
 	public ReservationVO getRequestDetail(String num);
 	
@@ -29,7 +33,8 @@ public interface ReservationDAO {
 	public int updateRequest2(ReservationVO vo);
 	
 	// 예약요청 삭제 처리 페이지
-	public int deleteRequest(int num);
+	public int deleteRequest1(int num);
+	public int deleteRequest2(int num);
 	
 //======= 예약조회 탭 =======
 	// 예약조회 목록 갯수 구하기
