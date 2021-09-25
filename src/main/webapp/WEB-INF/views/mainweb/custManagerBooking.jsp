@@ -45,13 +45,14 @@
         </nav>
         </div>
         <div class="wrapper wrapper-content">
-           <form action="insertBooking" method="post">
+           <form action="insertBooking" method="post" id="custBookingForm">
            <sec:csrfInput/>
-           <input type="hidden" id="user_id" name="user_id">
+           <input type="hidden" id="user_id" name="user_id" value="${sessionScope.id}">
            <input type="hidden" id="res_date" name="res_date">   <!-- 다시 체크해 볼 것!  name="custBookingForm" -->
            <input type="hidden" id="res_memo" name="res_memo">
            <input type="hidden" id="host_code" name="host_code" value="${host_code}">
            <input type="hidden" id="chkDay">
+           <input type="hidden" id="com_res" value="${com_res}">
                 <div class="row">
                    <!-- col-lg-8  시작 -->
                     <div class="col-lg-6 col-md-12">
@@ -93,31 +94,8 @@
 	                                     </div>
                                        </td>
                                     </tr>
-                  
-                                    <!-- 호실 -->
                                     
-                                    <tr>
-                                       <td><strong>호실</strong></td>
-                                    </tr>
-                                    <tr>
-                                       <td>
-                                          <div style="display:inline-block">
-                                             <button type="button" class="btn btn-outline btn-primary" class="roomBtn" id="roomBtn1"
-                                                value="1실" style="margin: 10px">1실</button>
-                                             <button type="button" class="btn btn-outline btn-primary" class="roomBtn" id="roomBtn2"
-                                                 value="2실" style="margin: 10px">2실</button>
-                                             <button type="button" class="btn btn-outline btn-primary" class="roomBtn" id="roomBtn3"
-                                                 value="3실" style="margin: 10px">3실</button>
-                                          </div>
-   <!-- sql에서는 varchar(4)로 되어있어서 한글까지 넣으려면 sql을 다시 수정해야한다. -->
-                                          <div class="panel-heading" style="background-color: #e5e6e7; margin-top:15px; color: black">
-                                        <input type="text" name="selectRoom" id="selectRoom" style="display: none">호실 : <span class="roomSelectedInfo">호실</span>
-                                     </div>
-                                       </td>
-                                    </tr>
-                                    
-                  
-                                    <!-- 인원 -->
+                                     <!-- 인원 -->
                                     
                                     <tr>
                                        <td><strong>인원</strong><br><small>방문하시는 인원을 선택하세요.<br><br></small></td>
@@ -139,7 +117,7 @@
                                        </td>
                                     </tr>
                                     
-                                    <!-- 담당자 -->
+                                     <!-- 담당자 -->
                                     <tr>
                                        <td><strong>담당자</strong></td>
                                     </tr>
@@ -161,8 +139,7 @@
                                     		</div>
                                        </td>
                                     </tr>
-                                 </table>                             
-                                   <!-- 예약 테이블 끝 -->
+                  					</table>
                                    <!-- 상품 테이블 시작 -->
                                    <table class="box">
 		                                   <!-- 상품 -->
@@ -225,7 +202,6 @@
 		                                             <div class="panel-heading" style="background-color: #e5e6e7; margin-top:15px; color: black">
 			                                              <input type="text" name="ReserveProductSum" id="ReserveProductSum" style="display: none">
 			                                                   	 결제금액 : <span class="productSelectedInfo">총액</span>
-		          <!-- 결제금액도 예약테이블에 넣어야하는 부분인지 다시 체크해 볼 것! -->
 		                                             </div>
 		                                          </div>
 		                                       </table>
@@ -245,6 +221,7 @@
         </div>
       
      </div>
+     
 
 </body>
 

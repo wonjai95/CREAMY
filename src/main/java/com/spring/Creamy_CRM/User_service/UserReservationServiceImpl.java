@@ -8,10 +8,11 @@
 package com.spring.Creamy_CRM.User_service;
 
 import java.text.SimpleDateFormat;
+
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,8 +23,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import com.spring.Creamy_CRM.User_dao.UserReservationDAO;
 import com.spring.Creamy_CRM.User_dao.UserReservationDAOImpl;
 import com.spring.Creamy_CRM.VO.HostVO;
+import com.spring.Creamy_CRM.VO.ReservationVO;
 
 @Service
 public class UserReservationServiceImpl implements UserReservationService {
@@ -170,6 +173,100 @@ public class UserReservationServiceImpl implements UserReservationService {
 		model.addAttribute("dtos", dtos);
 		
 	}
+
+	// 회원 예약 가능한 호실 표시
+	@Override
+	public void bookingRoomTable(HttpServletRequest req, Model model) {
+		String host_code = req.getParameter("host_code");
+		String selectDate = req.getParameter("selectDate");
+		List<ReservationVO> dtos = dao.getAvailableRoom(host_code);
+		model.addAttribute("dtos", dtos);
+		model.addAttribute("selectDate", selectDate);
+		
+	}
+
+	// 호실 클릭시 영업시간과 예약 현황 표시
+	@Override
+	public void bookingRoomTimeTable(HttpServletRequest req, Model model) {
+		String selectDate = req.getParameter("selectDate");
+		String selectDay = req.getParameter("selectDay");
+		String selectRoom = req.getParameter("selectRoom");
+		String host_code = req.getParameter("host_code");
+		
+		System.out.println("selectDate : " + selectDate);
+		System.out.println("room_setting_code : " + selectRoom);
+		System.out.println("selectDay : " + selectDay);
+		
+		// 해당 사장님의 해당 요일 영업시간 = 호실 사용 가능 시간
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("host_code", host_code);
+		map.put("operating_day", selectDay); 	// 일 ~ 토 : 0~6
+		
+		HostVO vo = dao.getOperatingInfo(map);
+		
+		// 해당 날짜에 해당 호실 예약 현황
+		map.put("res_date", selectDate);
+		map.put("room_setting_code", selectRoom);
+		List<ReservationVO> resVO = dao.getBookedRoomTime(map);
+		
+		model.addAttribute("open_sche", vo.getOpen_sche());
+		model.addAttribute("close_sche", vo.getClose_sche());
+		model.addAttribute("selectDate", selectDate);
+		model.addAttribute("dtos", resVO);
+	}
+
+	// 호실 예약 처리
+	@Override
+	public void insertRoomBookingAction(HttpServletRequest req, Model model) {
+		String res_start = req.getParameter("res_start");
+		String res_end = req.getParameter("res_end");
+		int guestCount = Integer.parseInt(req.getParameter("GuestCount"));
+		String priceTotal = req.getParameter("priceTotal");
+		String room_setting_code = req.getParameter("selectRoom");
+		String res_indiv_request = req.getParameter("res_indiv_request");
+		String user_id = req.getParameter("user_id");
+		String str_res_date = req.getParameter("selectDate");
+		System.out.println("str_res_date : " + str_res_date);
+		Date res_date = Date.valueOf(str_res_date);
+		
+		System.out.println("res_start : " + res_start);
+		System.out.println("res_end : " + res_end);
+		System.out.println("guestCount : " + guestCount);
+		System.out.println("priceTotal : " + priceTotal);
+		System.out.println("room_setting_code : " + room_setting_code);
+		System.out.println("res_indiv_request : " + res_indiv_request);
+		System.out.println("res_date : " + res_date);
+		
+		ReservationVO vo = new ReservationVO();
+		vo.setRes_start(res_start);
+		vo.setRes_end(res_end);
+		vo.setRes_cnt(guestCount);
+		vo.setRoom_setting_code(room_setting_code);
+		vo.setRes_indiv_request(res_indiv_request);
+		vo.setUser_id(user_id);
+		vo.setRes_date(res_date);
+		
+		// 예약 신청 시간 가능 여부 체크
+		int chk = dao.chkRoomBooking(vo);
+		int insertCnt = 0;
+		
+		// chk !=0 이면 예약 불가능 => insertCnt = 3 
+		// 예약 가능
+		if(chk == 0) {
+			System.out.println("예약 가능");
+			
+		
+		} else {
+			System.out.println("예약 불가능");
+			insertCnt = 3;
+		}
+		
+		model.addAttribute("insertCnt", insertCnt);
+		
+	}
+	
+	
+	
 
 	
 

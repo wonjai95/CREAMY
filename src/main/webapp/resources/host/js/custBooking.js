@@ -1,5 +1,5 @@
 $(document).ready(function() {
-
+	
         $('.i-checks').iCheck({
             checkboxClass: 'icheckbox_square-green',
             radioClass: 'iradio_square-green'
@@ -54,6 +54,8 @@ $(document).ready(function() {
         
        dayClick: function(date, allDay, jsEvent, view) {
     	  $("#timeTable").html("");
+    	  $("#roomTable").html("");
+    	  $("#roomDetail").html("");
     	   
           if (date.isBefore(moment())) {
               alert("과거 날짜로 예약할 수 없습니다!")
@@ -90,23 +92,52 @@ $(document).ready(function() {
               console.log("header : " + header);
               console.log("token : " + token);
               
-              $.ajax({
-            	  url : "bookingTimeTable",
-            	  type : "Post",
-            	  data : "day=" + getDay + "&time=" + getTime + "&host_code=" + host_code + "&selectDate=" + m,
-            	  beforeSend : function(jqXHR, settings) {
-            		  console.log("beforesend 진행");
-                      jqXHR.setRequestHeader(header, token);
-            	  },
-            	  success : function(result) {
-            		  $("#timeTable").html(result);
-            	  },
-            	  error : function(error) {
-            		console.log(error);  
-            		$("#timeTable").html("예약 가능한 시간이 없습니다.");
-            	  }
+              var com_res = $("#com_res").val();
+              console.log("com_res : " + com_res);
+              
+              // 달력에 날짜 클릭시 com_res가 "담당자"일 경우 bookingTimeTable 내용을 보여줌
+              if(com_res == "담당자") {
+            	  $.ajax({
+                	  url : "bookingTimeTable",
+                	  type : "Post",
+                	  data : "day=" + getDay + "&time=" + getTime + "&host_code=" + host_code + "&selectDate=" + m,
+                	  beforeSend : function(jqXHR, settings) {
+                		  console.log("beforesend 진행");
+                          jqXHR.setRequestHeader(header, token);
+                	  },
+                	  success : function(result) {
+                		  $("#timeTable").html(result);
+                	  },
+                	  error : function(error) {
+                		console.log(error);  
+                		$("#timeTable").html("예약 가능한 시간이 없습니다.");
+                	  }
+                	  
+                  });
             	  
-              });
+              // 달력에 날짜 클릭시 com_res가 "호실"일 경우 bookingRoomTable 내용을 보여줌
+              } else if (com_res == "호실") {
+            	  $.ajax({
+                	  url : "bookingRoomTable",
+                	  type : "Post",
+                	  data : "day=" + getDay + "&time=" + getTime + "&host_code=" + host_code + "&selectDate=" + m,
+                	  beforeSend : function(jqXHR, settings) {
+                		  console.log("beforesend 진행");
+                          jqXHR.setRequestHeader(header, token);
+                	  },
+                	  success : function(result) {
+                		  $("#roomTable").html(result);
+                	  },
+                	  error : function(error) {
+                		console.log(error);  
+                		$("#roomTable").html("예약 가능한 시간이 없습니다.");
+                	  }
+                	  
+                  });
+              } else {
+            	  alert("다시 시도해주세요.");
+            	  window.history.back();
+              }
               
 
             $('.res_date').html(m);
@@ -115,6 +146,30 @@ $(document).ready(function() {
         }, 
     });
 
+    // 최대, 최소 인원수 체크
+    function chkCnt (newCnt) {
+    	 var max_cnt = $("#max_cnt").val();
+         var min_cnt = $("#min_cnt").val();
+         
+         if(newCnt > max_cnt) {
+  	   		alert("최대 인원수를 초과했습니다.");
+  	   		$("#GuestCount").val(max_cnt);
+  	   	} else if(newCnt < min_cnt) {
+  	   		alert("최소 인원수를 맞춰주세요.");
+  	   		$("#GuestCount").val(min_cnt);
+  	   	} else {
+  	   		$("#GuestCount").val(newCnt);
+  	   	}
+    };
+    
+    // 인원수에 따른 총액 산출
+    function calTotalPrice() {
+    	var cnt = $("#GuestCount").val();
+    	var per_price = $("#per_price").val();
+    	
+    	var priceTotal = parseInt(cnt) * parseInt(per_price);
+    	$("#priceTotal").val(addComma(priceTotal));
+    };
     
     // 인원수 감소
     $("#GuestCountMinus").click(function(){
@@ -125,17 +180,22 @@ $(document).ready(function() {
        } else {
           newCnt = parseInt(cnt) - 1;
        }
-       $("#GuestCount").val(newCnt);
        
+       chkCnt(newCnt);
+       calTotalPrice()
     });
+    
     
     // 인원수 증가
     $("#GuestCountPlus").click(function(){
        var newCnt;
        var cnt = $("#GuestCount").val();
-         newCnt = parseInt(cnt) + 1;
-       $("#GuestCount").val(newCnt);
+       newCnt = parseInt(cnt) + 1;
+       var max_cnt = $("#max_cnt").val();
+       var min_cnt = $("#min_cnt").val();
        
+       chkCnt(newCnt);
+       calTotalPrice()
     });
     
     // 시간 선택
@@ -180,6 +240,8 @@ $(document).ready(function() {
        
     });
     
+    
+    
   //천단위 콤마 함수
   function addComma(value){
        value = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -191,6 +253,15 @@ $(document).ready(function() {
        value = value.toString().replace(/[^\d]+/g, "");
        return value; 
   };
+  
+	// 예약하기 버튼 클릭 시 로그인이 되어있지 않으며 alert및 이전페이지로 이동
+	$("#custBookingForm").submit(function() {
+		if($("#user_id").val() == "") {
+			alert("로그인 후 예약을 진행하세요!");
+			window.location="home";
+			return false;
+		}
+	});
   
   
   // -------------- 지도 api --------------
