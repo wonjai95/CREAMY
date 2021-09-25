@@ -16,7 +16,7 @@
 
 <title>INSPINIA | Data Tables</title>
 <script type="text/javascript" src="${path}/resources/host/js/user.js"></script>
-<script>
+<script type="text/javascript">
 
 function user_detail() {
 	
@@ -88,10 +88,26 @@ $("document").ready(function() {
          var user_ph = $("input[name=user_ph_hidden]").val();
          console.log(user_code);
          
-         var url = "selling?user_code=" + user_code;
-            window.open(url, "selling", "menubar=no, width=1500, height=800");
+         var url = "product_selling?user_code=" + user_code;
+            window.open(url, "product_selling", "menubar=no, width=1500, height=800");
       }
    });
+   
+   
+	// 회원별 판매내역 출력
+   $("#user_sale").onclick(function() {
+	   if($("input[name=user_code_hidden]").val() == 0) {
+         alert("회원을 선택하세요!");
+         return false;
+      } else {
+	 	  var user_code = $("input[name=user_code_hidden]").val();
+	      console.log(user_code);
+	      
+	      var url = "user_sale?user_code=" + user_code
+	      window.open(url, "user_sale", "menubar=no, width=800, height=800");
+      }
+   }); 
+   
    
    // 창 닫기 클릭
    $("input[name=window_close]").click(function() {
@@ -100,12 +116,6 @@ $("document").ready(function() {
    
    
 });
-
-
-
-
-
-
 
 
 
@@ -157,7 +167,6 @@ $("document").ready(function() {
 				<td><button type="button" class="btn btn-primary dim" id="user_modify_btn">회원 정보 수정</button></td>
 				<td><button type="button" class="btn btn-primary dim" id="user_del_btn">회원 삭제 처리</button></td>
 				<td><button type="button" class="btn btn-primary dim" id="selling_btn">판매</button></td> 
-				<td><button type="button" class="btn btn-primary dim">상담</button></td>
 				<td><button type="button" class="btn btn-primary dim">회원 본인 인증</button></td>
 			</tr>
 		</table>
@@ -222,7 +231,7 @@ $("document").ready(function() {
 
 						<div>
 							<h5></h5>
-							<form action="">
+							<form action="" name="">
 								
 								<div class="ibox">
 				                    <div class="ibox-content">
@@ -247,12 +256,8 @@ $("document").ready(function() {
 						            </tr>
 						        </c:forEach>
 					            </tbody>
-					            
-					            
 								</table>
-								<div class="col-lg-12" id="ex1_Result1">결과1</div> 
-								<div class="col-lg-12" id="ex1_Result2">결과2</div> 
-								
+ 									
 								<div class="slimScrollBar" style="background: rgb(0, 0, 0); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 79.0514px;"></div>
 					            <div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div>
 				                </div>
@@ -267,8 +272,8 @@ $("document").ready(function() {
 					
 					<div class="tabs-container">
 						<ul class="nav nav-tabs">   
-							<li><a class="nav-link active" data-toggle="tab" href="#tab-1">판매</a></li>
-							<li><a class="nav-link" data-toggle="tab" href="#tab-2">예약</a></li>
+							<li><a id="user_sale" class="nav-link active" data-toggle="tab" href="#tab-1">판매</a></li>
+							<li><a id="user_reservation" class="nav-link" data-toggle="tab" href="#tab-2">예약</a></li>
 						</ul>
 						
 						<div class="tab-content">

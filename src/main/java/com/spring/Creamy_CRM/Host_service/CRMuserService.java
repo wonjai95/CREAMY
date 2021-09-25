@@ -20,4 +20,7 @@ public interface CRMuserService {
 	
 	// 회원 정보 수정
 	public void modifyUser(HttpServletRequest req, Model model);
+	
+	// 회원별 판매 내역 출력
+	public void userSale(HttpServletRequest req, Model model);
 }
