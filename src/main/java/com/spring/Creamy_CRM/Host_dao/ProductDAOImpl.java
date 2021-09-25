@@ -13,6 +13,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.spring.Creamy_CRM.VO.P_pgVO;
 import com.spring.Creamy_CRM.VO.ProductGroupVO;
 import com.spring.Creamy_CRM.VO.ProductVO;
 import com.spring.Creamy_CRM.VO.SaleVO;
@@ -41,14 +42,14 @@ public class ProductDAOImpl implements ProductDAO {
 
 	// 그룹 개수
 	@Override
-	public int productGroupCnt() {
-		return sqlSession.selectOne("com.spring.Creamy_CRM.Host_dao.productDAO.productGroupCnt");
+	public int productGroupCnt(String host_code) {
+		return sqlSession.selectOne("com.spring.Creamy_CRM.Host_dao.productDAO.productGroupCnt", host_code);
 	}
 
 	// 상품 개수
 	@Override
-	public int productCnt() {
-		return sqlSession.selectOne("com.spring.Creamy_CRM.Host_dao.productDAO.productCnt");
+	public int productCnt(String host_code) {
+		return sqlSession.selectOne("com.spring.Creamy_CRM.Host_dao.productDAO.productCnt", host_code);
 	}
 
 	// 그룹 리스트(페이징)
@@ -59,15 +60,14 @@ public class ProductDAOImpl implements ProductDAO {
 
 	// 상품 리스트(페이징)
 	@Override
-	public List<ProductVO> selectProductList(Map<String, Object> map) {
+	public List<P_pgVO> selectProductList(Map<String, Object> map) {
 		return sqlSession.selectList("com.spring.Creamy_CRM.Host_dao.productDAO.selectProductList", map);
 	}
 
 	// 상품그룹명 중복 확인
 	@Override
-	public int chkProductGroupName(String product_group_name) {
-		return sqlSession.selectOne("com.spring.Creamy_CRM.Host_dao.productDAO.chkProductGroupName",
-				product_group_name);
+	public int chkProductGroupName(Map<String, Object> map) {
+		return sqlSession.selectOne("com.spring.Creamy_CRM.Host_dao.productDAO.chkProductGroupName",map);
 	}
 
 	// 상품그룹 등록
@@ -78,8 +78,8 @@ public class ProductDAOImpl implements ProductDAO {
 
 	// 상품 그룹 리스트
 	@Override
-	public List<ProductGroupVO> getProductGroupList() {
-		return sqlSession.selectList("com.spring.Creamy_CRM.Host_dao.productDAO.getProductGroupList");
+	public List<ProductGroupVO> getProductGroupList(String host_code) {
+		return sqlSession.selectList("com.spring.Creamy_CRM.Host_dao.productDAO.getProductGroupList",host_code);
 	}
 
 	// 상품 등록
@@ -120,8 +120,8 @@ public class ProductDAOImpl implements ProductDAO {
 
 	// 상품명 중복확인
 	@Override
-	public int chkProductName(String product_name) {
-		return sqlSession.selectOne("com.spring.Creamy_CRM.Host_dao.productDAO.chkProductName", product_name);
+	public int chkProductName(Map<String, Object> map) {
+		return sqlSession.selectOne("com.spring.Creamy_CRM.Host_dao.productDAO.chkProductName", map);
 	}
 
 	// 상품 삭제
@@ -132,8 +132,8 @@ public class ProductDAOImpl implements ProductDAO {
 
 	// 거래처명 중복 확인
 	@Override
-	public int chkTradeName(String trade_name) {
-		return sqlSession.selectOne("com.spring.Creamy_CRM.Host_dao.productDAO.chkTradeName", trade_name);
+	public int chkTradeName(Map<String, Object> map) {
+		return sqlSession.selectOne("com.spring.Creamy_CRM.Host_dao.productDAO.chkTradeName", map);
 	}
 
 	// 거래처등록
@@ -144,8 +144,8 @@ public class ProductDAOImpl implements ProductDAO {
 
 	// 거래처 개수
 	@Override
-	public int tradeCnt() {
-		return sqlSession.selectOne("com.spring.Creamy_CRM.Host_dao.productDAO.tradeCnt");
+	public int tradeCnt(String host_code) {
+		return sqlSession.selectOne("com.spring.Creamy_CRM.Host_dao.productDAO.tradeCnt",host_code);
 	}
 
 	// 거래처 리스트
@@ -174,14 +174,14 @@ public class ProductDAOImpl implements ProductDAO {
 
 	// 재고추가 페이지(거래처리스트)
 	@Override
-	public List<TradeVO> getTradeList() {
-		return sqlSession.selectList("com.spring.Creamy_CRM.Host_dao.productDAO.getTradeList");
+	public List<TradeVO> getTradeList(String host_code) {
+		return sqlSession.selectList("com.spring.Creamy_CRM.Host_dao.productDAO.getTradeList",host_code);
 	}
 
 	// 재고명 중복확인
 	@Override
-	public int chkStockName(String stock_name) {
-		return sqlSession.selectOne("com.spring.Creamy_CRM.Host_dao.productDAO.chkStockName", stock_name);
+	public int chkStockName(Map<String, Object> map) {
+		return sqlSession.selectOne("com.spring.Creamy_CRM.Host_dao.productDAO.chkStockName", map);
 	}
 
 	// 재고 등록
@@ -192,8 +192,8 @@ public class ProductDAOImpl implements ProductDAO {
 
 	// 재고 개수
 	@Override
-	public int stockCnt() {
-		return sqlSession.selectOne("com.spring.Creamy_CRM.Host_dao.productDAO.stockCnt");
+	public int stockCnt(String host_code) {
+		return sqlSession.selectOne("com.spring.Creamy_CRM.Host_dao.productDAO.stockCnt",host_code);
 	}
 
 	// 재고 리스트

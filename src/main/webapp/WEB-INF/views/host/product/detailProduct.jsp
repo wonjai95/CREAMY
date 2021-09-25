@@ -11,11 +11,41 @@ body {
 	background-color: white;
 }
 </style>
+<script type="text/javascript">
+	$(document).ready(function(){
+		var radio = $("input[name='product_typeOfSales']:checked");
+		if(radio.val() == "서비스"){
+			$("#product_rentalPeriod").attr("disabled", "disabled");
+		}
+	});
+	
+	$(function(){
+		$("input[type=radio]").click(function(){
+			var radioName = $(this).val();
+			if(radioName == "서비스"){
+				$("#product_rentalPeriod").attr("disabled", "disabled");
+			}else{
+				$("#product_rentalPeriod").removeAttr("disabled");
+			}
+		});
+	});
+	
+	function chkfrom(){
+		if(document.getElementById("product_group_code").value == "0"){
+			alert("그룹을 선택하세요");
+			return false;
+		}else if(document.getElementById("product_status").value == "0"){
+			alert("판매여부를 선택하세요");
+			return false;
+		}
+	}
+</script>
 </head>
 <body>
 	<div class="ibox-content">
 		<form
-			action="modifyProductAction?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
+			action="modifyProductAction?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data"
+			onsubmit="return chkfrom();">
 			<input type="hidden" name="hiddenImg" value="${vo.product_img}">
 			<input type="hidden" name="product_code" value="${vo.product_code}">
 			<div class="form-group  row">
@@ -25,7 +55,7 @@ body {
 			<div class="form-group  row">
 				<label class="col-sm-2 col-form-label">상품 그룹</label>
 				<div class="col-sm-7">
-					<select name="product_group_code" class="form-control">
+					<select name="product_group_code" id="product_group_code" class="form-control">
 						<option value="0">상품 그룹 선택</option>
 						<c:forEach var="item" items="${list}">
 							<c:if test="${item.product_group_code == vo.product_group_code}">
@@ -45,7 +75,7 @@ body {
 				<label class="col-sm-2 col-form-label">상품명</label>
 				<div class="col-sm-7">
 					<input type="text" class="form-control" name="product_name"
-						value="${vo.product_name}">
+						value="${vo.product_name}" required>
 				</div>
 			</div>
 
@@ -84,7 +114,7 @@ body {
 			<div class="form-group row">
 				<label class="col-sm-2 col-form-label">상품가격</label>
 				<div class="col-sm-7">
-					<input type="text" class="form-control" name="product_price"
+					<input type="text" class="form-control" name="product_price" required placeholder="숫자입력"
 						value="${vo.product_price}">
 				</div>
 			</div>
@@ -93,8 +123,8 @@ body {
 			<div class="form-group row">
 				<label class="col-sm-2 col-form-label">기간</label>
 				<div class="col-sm-2">
-					<input type="number" class="form-control"
-						name="product_rentalPeriod" min="0" max="12"
+					<input type="number" class="form-control" id ="product_rentalPeriod"
+						name="product_rentalPeriod" min="1" max="12" required
 						value="${vo.product_rentalPeriod}">
 				</div>
 				<label class="col-sm-2 col-form-label">개월</label>
@@ -113,8 +143,8 @@ body {
 			<div class="form-group  row">
 				<label class="col-sm-2 col-form-label">판매 여부</label>
 				<div class="col-sm-3">
-					<select class="form-control" name="product_status">
-						<option>판매 여부</option>
+					<select class="form-control" name="product_status" id="product_status">
+						<option value="0">판매 여부</option>
 						<c:if test="${vo.product_status == '판매중'}">
 							<option value="판매중" selected>판매중</option>
 						</c:if>
