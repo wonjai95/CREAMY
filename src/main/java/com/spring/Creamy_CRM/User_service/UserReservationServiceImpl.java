@@ -72,6 +72,13 @@ public class UserReservationServiceImpl implements UserReservationService {
 		System.out.println("open_sche : " + open_sche);
 		System.out.println("close_sche : " + close_sche);
 		
+		// 몇 시간 이용 : ex. 3(시간 이용)
+//		String hrs = req.getParameter("hrs");
+		// 이용 시작 시간 start_hrs --> ex. 10:00
+		// 이용 종료 시간 LocalTime.parse(start_hrs).plus(hrs, ChronoUnit.HOURS) --> 13:00
+		// db를 가서, 1건의 예약에 대한 해당 날짜에 시작시간과 종료시간 설정
+		
+		
 		// 현재 날짜
 		Date today = new Date(System.currentTimeMillis());
 		SimpleDateFormat dateFmt = new SimpleDateFormat("yyyy-MM-dd");

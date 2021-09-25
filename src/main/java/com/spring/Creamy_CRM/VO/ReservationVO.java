@@ -21,11 +21,18 @@ public class ReservationVO {
 	private String product_code;			// 예약할 상품서비스
 	private String res_memo;				// 기타메모
 	private String res_room;				// 예약호실
-	private String res_review_chk;			//후기 작성여부 체크
+	private String res_review_chk;			// 후기 작성여부 체크
+	private String res_start;				// 예약 시작 시간
+	private String res_end;					// 예약 종료 시간
 	
 	//고객 예약내역에서 사용할 변수
 	private String comp_name;			//회사명
 	private String product_name;		//서비스(제품)명
+	
+	// 호실 테이블
+	private String room_setting_code;	// 호실 코드
+	private String room_name;			// 호실 이름
+	private String room_stat;			// 호실 상태('사용가능', '사용불가능')
 	
 	
 	public String getRes_code() {
@@ -129,6 +136,36 @@ public class ReservationVO {
 	public void setProduct_name(String product_name) {
 		this.product_name = product_name;
 	}
+	public String getRes_start() {
+		return res_start;
+	}
+	public void setRes_start(String res_start) {
+		this.res_start = res_start;
+	}
+	public String getRes_end() {
+		return res_end;
+	}
+	public void setRes_end(String res_end) {
+		this.res_end = res_end;
+	}
+	public String getRoom_setting_code() {
+		return room_setting_code;
+	}
+	public void setRoom_setting_code(String room_setting_code) {
+		this.room_setting_code = room_setting_code;
+	}
+	public String getRoom_name() {
+		return room_name;
+	}
+	public void setRoom_name(String room_name) {
+		this.room_name = room_name;
+	}
+	public String getRoom_stat() {
+		return room_stat;
+	}
+	public void setRoom_stat(String room_stat) {
+		this.room_stat = room_stat;
+	}
 	
 	
 	
@@ -137,37 +174,3 @@ public class ReservationVO {
 }
 
 
-/* 
--- 예약 테이블
-CREATE TABLE reservation_tbl(
-    res_code                VARCHAR2(10),                                   -- 예약코드(시퀀스)
-    res_state               VARCHAR2(50)    NOT NULL,                       -- 예약상태   
-    res_date                DATE            DEFAULT SYSDATE,                -- 예약일   
-    res_hour                NUMBER(2)       NOT NULL,                       -- 예약시각
-    employee_code           VARCHAR2(10)    NOT NULL,                       -- 예약담당자(= employee_code)
-    user_id                 VARCHAR2(20)    NOT NULL,                       -- 회원아이디
-    res_detail_code         VARCHAR2(10),                                   -- 예약 상세코드
-    
-    CONSTRAINT res_code_pk PRIMARY KEY(res_code),                           -- 예약 코드 PK
-    CONSTRAINT reservation_employee_code_fk FOREIGN KEY(employee_code)
-     REFERENCES employee_tbl(employee_code) ON DELETE CASCADE,              -- 예약담당자 FK (직원테이블 employee_code)
-    CONSTRAINT reservation_user_id_fk FOREIGN KEY(user_id)
-     REFERENCES Auth_tbl(id) ON DELETE CASCADE,                             -- 회원아이디 FK (인증테이블 id)
-    CONSTRAINT reservation_detail_code_fk FOREIGN KEY(res_detail_code)
-     REFERENCES reservation_detail_tbl(res_detail_code) ON DELETE CASCADE   -- 예약상세코드 FK (예약상세테이블 res_detail_code)
-);
-
-
--- 예약상세정보 테이블
-CREATE TABLE reservation_detail_tbl(
-    res_detail_code        VARCHAR2(10),                                    -- 예약상세코드(시퀀스)
-    res_cnt                NUMBER(2),                                       -- 인원수
-    res_indiv_request      VARCHAR2(1000),                                  -- 별도 요청
-    product_code           VARCHAR2(10),                                    -- 예약할 상품서비스   
-    res_memo               VARCHAR2(500),                                   -- 기타메모  
-    res_room               VARCHAR2(4),                                     -- 예약호실
-    
-    CONSTRAINT res_detail_code_pk PRIMARY KEY(res_detail_code),             -- 예약상세코드 PK
-    CONSTRAINT product_code_res_fk FOREIGN KEY(product_code)
-     REFERENCES product_tbl(product_code) ON DELETE CASCADE                 -- 상품코드 FK
- */
