@@ -18,12 +18,15 @@ import org.springframework.ui.Model;
 
 import com.spring.Creamy_CRM.Host_dao.ReservationDAO;
 import com.spring.Creamy_CRM.VO.ReservationVO;
+import com.spring.Creamy_CRM.VO.userVO;
 
 @Service
 public class ReservationServiceImpl implements ReservationService {
 
 	@Autowired
 	private ReservationDAO dao;
+	
+	
 	
 //======= 예약요청 탭 =======	
 	// 예약요청 목록	
@@ -132,7 +135,14 @@ public class ReservationServiceImpl implements ReservationService {
 	@Override
 	public void requestDetailAction(HttpServletRequest req, Model model) {
 		// http://localhost:8080/Creamy_CRM/host/requestDetails?res_code=RSD123&res_detail_code=RSD123
-		System.out.println("예약요청 상세페이지 시작합니다");
+		System.out.println("===== 예약요청 상세페이지 시작합니다 =====");
+		System.out.println("===== 예약요청에 따른 회원정보 =====");
+		String user_id = req.getParameter("user_id");
+		System.out.println("user_id : " + user_id);
+		
+		userVO uservo = dao.getUserInfo(user_id);
+		
+		System.out.println("===== 예약요청 상세정보 =====");
 		String res_code = req.getParameter("res_code");
 		String res_detail_code = req.getParameter("res_detail_code");
 		System.out.println("res_code : " + res_code);
@@ -140,6 +150,7 @@ public class ReservationServiceImpl implements ReservationService {
 		
 		ReservationVO vo = dao.getRequestDetail(res_code);
 		
+		model.addAttribute("udto", uservo);
 		model.addAttribute("dto", vo);
 	}
 
@@ -149,10 +160,8 @@ public class ReservationServiceImpl implements ReservationService {
 		System.out.println("modifyAction 시작합니다.");
 		// 3단계. 화면으로부터 입력받은 값(= hidden값)을 받아온다.
 		String res_state = req.getParameter("res_state");
-		System.out.println("res_state : " + res_state);
 		//int res_hour = Integer.parseInt(req.getParameter("res_hour"));
-		String res_room = req.getParameter("res_room");
-		System.out.println("res_room : " + res_room);
+		//String res_room = req.getParameter("res_room");
 		int res_cnt = Integer.parseInt(req.getParameter("res_cnt"));
 		String employee_code = req.getParameter("employee_code");
 		String res_indiv_request = req.getParameter("res_indiv_request");
@@ -165,17 +174,17 @@ public class ReservationServiceImpl implements ReservationService {
 		
 		vo.setRes_state(res_state);
 		//vo.setRes_hour(res_hour);
-		vo.setRes_room(res_room);
+		//vo.setRes_room(res_room);
 		vo.setRes_cnt(res_cnt);
 		vo.setEmployee_code(employee_code);
 		vo.setRes_indiv_request(res_indiv_request);
 		vo.setRes_memo(res_memo);
 		vo.setRes_code(res_code);  // update시, WHERE절에서 key를 비교하기 위해서.
-		vo.setRes_detail_code(res_detail_code);
+		vo.setRes_detail_code(res_detail_code);  // update시, WHERE절에서 key를 비교하기 위해서.
 		
 		System.out.println("res_state : " + res_state);
 		//System.out.println("res_hour : " + res_hour);
-		System.out.println("res_room : " + res_room);
+		//System.out.println("res_room : " + res_room);
 		System.out.println("res_cnt : " + res_cnt);
 		System.out.println("employee_code : " + employee_code);
 		System.out.println("res_indiv_request : " + res_indiv_request);
@@ -186,31 +195,24 @@ public class ReservationServiceImpl implements ReservationService {
 		int updateCnt = dao.updateRequest1(vo);
 		System.out.println("updateCnt : " + updateCnt);
 		
-		// 5-2단계. 상세 페이지 조회
-		//이거 필요가 있을까??vo = dao.getProfitDetail(num);
-		
-		// 6단계. jsp로 전달하기 위해 request나 session에 처리결과를 저장		
-//		model.addAttribute("num", num);
-//		model.addAttribute("pageNum", pageNum);
-		model.addAttribute("updateCnt", updateCnt);
-		//model.addAttribute("dto", vo);
-		
+		model.addAttribute("updateCnt", updateCnt);  // updateCnt = 2
 	}
 
 	// 예약요청 삭제처리 페이지
 	@Override
 	public void deleteAction(HttpServletRequest req, Model model) {
 		// 3단계. 화면으로부터 입력받은 값(= hidden값, input(비밀번호)값)을 받아온다.
-		int num = Integer.parseInt(req.getParameter("num"));
-		int pageNum = Integer.parseInt(req.getParameter("pageNum"));
+		int res_code = Integer.parseInt(req.getParameter("res_code"));
+		int res_detail_code = Integer.parseInt(req.getParameter("res_detail_code"));
+		System.out.println("res_code : " + res_code);
+		System.out.println("res_detail_code : " + res_detail_code);
 		
 		// 5단계. 게시글 삭제 처리
-		int deleteCnt = dao.deleteRequest(num);
+		int deleteCnt = dao.deleteRequest2(res_detail_code) + dao.deleteRequest1(res_code);
 		System.out.println("deleteCnt : " + deleteCnt);
-		model.addAttribute("deleteCnt", deleteCnt);
 	
 		// 6단계. jsp로 전달하기 위해 request나 session에 처리결과를 저장
-		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("deleteCnt", deleteCnt);  // deleteCnt = 2
 	}
 
 //======= 예약조회 탭 =======

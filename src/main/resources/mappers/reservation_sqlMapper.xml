@@ -30,6 +30,13 @@
 			]]>
   	</select>
   	
+  	<!-- 선택된 회원 정보 출력 -->
+  	<select id="getUserInfo" parameterType="String" resultType="com.spring.Creamy_CRM.VO.userVO">
+  		SELECT *
+  		  FROM user_tbl
+  		 WHERE user_id=#{user_id}
+  	</select>
+  	
   	<!-- 예약요청 상세정보 조회 -->
 	<select id="getRequestDetail" parameterType="String" resultType="com.spring.Creamy_CRM.VO.ReservationVO">
 			SELECT *
@@ -48,12 +55,22 @@
 	
 	<update id="updateRequest2" parameterType="com.spring.Creamy_CRM.VO.ReservationVO">
 			UPDATE reservation_detail_tbl
-			   SET res_room = #{res_room}
-			   	 , res_cnt = #{res_cnt}
+			   SET res_cnt = #{res_cnt}
 			   	 , res_indiv_request = #{res_indiv_request}
 			   	 , res_memo = #{res_memo}
 			 WHERE res_detail_code = #{res_detail_code}
 	</update>
+	
+	<!-- 예약요청 삭제(취소)처리 -->
+	<delete id="deleteRequest1" parameterType="com.spring.Creamy_CRM.VO.ReservationVO">
+		DELETE FROM reservation_tbl
+		 WHERE res_code = #{res_code} 	
+	</delete>
+	
+	<delete id="deleteRequest2" parameterType="com.spring.Creamy_CRM.VO.ReservationVO">
+		DELETE FROM reservation_detail_tbl
+		 WHERE res_detail_code = #{res_detail_code} 	
+	</delete>
 	
 	
   	

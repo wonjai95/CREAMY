@@ -76,6 +76,8 @@ public class ReservationController {
 	public String deleteAction(HttpServletRequest req, Model model) {
 		logger.info("url -> deleteAction");
 		
+		service.deleteAction(req, model);
+		
 		return "host/reservation/deleteAction";
 	}
 	//예약 조회
