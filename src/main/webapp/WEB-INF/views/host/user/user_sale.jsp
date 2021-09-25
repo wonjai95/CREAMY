@@ -6,7 +6,7 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../../setting.jsp" %>
+<%@ include file="/WEB-INF/views/setting.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,11 +16,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>INSPINIA | Data Tables</title>
 <script>
-function detail(){
-	
-	var url = "Employee_testDetail"
-	window.open(url, "Employee_testDetail", "menubar=no, width=1300, height=800 ");
-}
 </script>
 
 </head>
@@ -58,12 +53,12 @@ function detail(){
 		<c:forEach var="dto" items="${dto}">
 		<tbody>
 			<tr class="footable-odd" style="">
-				<%-- <td class="footable-visible"><input type="hidden" name="product_typeOfSales" value="${dto.product_typeOfSales}">${dto.product_typeOfSales}</td>
-				<td class="footable-visible"><input type="hidden" name=""></td> --%>
-				<td class="footable-visible">정액권</td>
-				<td class="footable-visible">100,000 원</td>
-				<td class="footable-visible">2021-09-19</td>
-				<td class="footable-visible">카카오페이</td>
+				<td class="footable-visible"><input type="hidden" name="product_typeOfSales" value="${dto.product_typeOfSales}">${dto.product_typeOfSales}</td>
+				<td class="footable-visible"><input type="hidden" name="product_name" value="${dto.product_name}">${dto.product_name}</td>
+				<td class="footable-visible"><input type="hidden" name="product_group_name" value="${dto.product_group_name}">${dto.product_group_name}</td>
+				<td class="footable-visible"><input type="hidden" name="product_price" value="${dto.product_price}">${dto.product_price}</td>
+				<td class="footable-visible"><input type="hidden" name="sale_date" value="${dto.sale_date}">${dto.sale_date}</td>
+				<td class="footable-visible"><input type="hidden" name="payment_option" value="${dto.payment_option}">${dto.payment_option}</td>
 				<td class="footable-visible">카카오</td>
 			</tr>   
 			

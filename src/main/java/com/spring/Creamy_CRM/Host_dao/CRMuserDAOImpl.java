@@ -42,4 +42,11 @@ public class CRMuserDAOImpl implements CRMuserDAO {
 		return sqlSession.update("com.spring.Creamy_CRM.Host_dao.CRMuserDAO.updateUser", vo);
 	}
 
+	// 회원별 판매 내역 출력
+	@Override
+	public List<userVO> userSale(String user_code) {
+		
+		return sqlSession.selectList("com.spring.Creamy_CRM.Host_dao.CRMuserDAO.userSale", user_code);
+	}
+
 }

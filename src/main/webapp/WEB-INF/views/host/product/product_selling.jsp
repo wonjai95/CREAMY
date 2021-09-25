@@ -5,45 +5,27 @@
 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../../setting.jsp" %>
+<%@ include file="/WEB-INF/views/setting.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title> 상품 판매 </title>
-<script>     
-
-$("document").ready(function() {
-	
-	// 결제 방법 - 현금 버튼 클릭시
-   $("#cash_btn").click(function() {
-		window.alert("탄다~~");
-		
-	   if($("input[name=total_payment]").val() == 0) {
-         alert("결제할 상품을 장바구니에 담아주세요!");
-         return false;
-      } else {
-    	  
-    	  // 금융기관을 클릭할 수 없게 하기
-    	  $("#banking").on("click"){
-    		  return false;
-    	  }
-      }
-   });
-	
-	
-	
-}
-
-
-</script>
+<script type="text/javascript" src="${path}/resources/host/js/product_selling.js"></script>
 </head>
 <body>
 <div id="wrapper">
 
-<!-- ------------------------------- 결제 시작 시작 -->
+<!-- 버튼 클릭시 전달할 상품정보 코드 -->   
+<input type="hidden" value="0" name="product_typeOfSales_hidden">
+<input type="hidden" value="0" name="product_name_hidden">
+<input type="hidden" value="0" name="product_price_hidden">
+<input type="hidden" value="0" name="product_rentalPeriod_hidden">
+
+
+<!-- ------------------------------- 판매 정보 시작 -->
 <div class="wrapper wrapper-content animated fadeInRight">
 	<div class="row">
 	    <div class="col-lg-12">
@@ -57,7 +39,7 @@ $("document").ready(function() {
 	            </button>
 	            
 	        </div>
-<!-- ------------------------------- 결제 시작 끝 -->
+<!-- ------------------------------- 판매 정보 끝 -->
 
 <!-- ------------------------------- 회원정보 시작 -->
 <div class="row">
@@ -65,11 +47,11 @@ $("document").ready(function() {
 <div class="ibox selected">
 	<div class="ibox-content">
 	    <div class="tab-content">
-	        <div id="contact-1" class="tab-pane active">
+	        <div id="contact-1" class="tab-pane active">    
 	            
 	            <div class="row m-b-lg">
 	                <div class="col-lg-4 text-center">     
-	                    <h2><input type="hidden" name="user_name" value="${dto.user_name}">${dto.user_name}</h2>    
+	                    <h2><input type="hidden" name="user_name" value="${dto_user.user_name}">${dto_user.user_name}</h2>    
 	
 	                    <div class="m-b-sm">
 	                        <img alt="image" class="rounded-circle" src="img/a2.jpg" style="width: 62px">
@@ -77,12 +59,11 @@ $("document").ready(function() {
 	                </div>              
 	                <div class="col-lg-8">
 	                    <strong>
-	                        자기소개
+	                        	자기소개
 	                    </strong>
 	
 	                    <p>
-	                        안녕하세요. 서울 신림동에 사는 강수현입니다. 사장님이 헤어 펌 잘하신다고 여기저기 소문이 많이 나서 가입합니다.
-	                        잘 부탁드려요~!
+	                       <input type="hidden" name="user_memo" value="${dto_user.user_memo}">${dto_user.user_memo}
 	                    </p>
 	                    <button type="button" class="btn btn-primary btn-sm btn-block"><i class="fa fa-envelope"></i> Send Message
 	                    </button>
@@ -96,30 +77,34 @@ $("document").ready(function() {
 	                <ul class="list-group clear-list">
 	                    <li class="list-group-item fist-item">
 	                        <span class="float-right"> 회원번호 : </span>
-	                        <input type="hidden" name="user_code" value="${dto.user_code}">${dto.user_code}
+	                        <input type="hidden" name="user_code" value="${dto_user.user_code}">${dto_user.user_code}
 	                    </li>
 	                    <li class="list-group-item">
 	                        <span class="float-right"> 이름 : </span>
-	                        <input type="hidden" name="user_name" value="${dto.user_name}">${dto.user_name}
+	                        <input type="hidden" name="user_name" value="${dto_user.user_name}">${dto_user.user_name}
 	                    </li>
 	                    <li class="list-group-item">
 	                        <span class="float-right"> 담당자 : </span>
 	                      	<input type="hidden" name="employ_name" value="employ_name조인해야함">employ_name조인해야함
-	                      	
 	                    </li>
 	                    <li class="list-group-item">
 	                        <span class="float-right"> 휴대폰 : </span>
-	                        <input type="hidden" name="user_ph" value="${dto.user_ph}">${dto.user_ph}
+	                        <input type="hidden" name="user_ph" value="${dto_user.user_ph}">${dto_user.user_ph}
 	                    </li>
+	                    <li class="list-group-item">
+	                        <span class="float-right"> 주소 : </span>
+	                        <input type="hidden" name="user_address" value="(${dto_user.zipcode})${dto_user.user_address}">(${dto_user.zipcode})${dto_user.user_address}
+	                    </li>
+	                    
 	                    <hr>
 	                    <li class="list-group-item">
 	                        <span class="float-right"> 총 구매 : </span>
 	                        <input type="hidden" name="" value="">
 	                    </li>
-	                    <li class="list-group-item">
+	                    <li class="list-group-item">  
 	                        <span class="float-right"> 총 금액 : </span>
 	                        <input type="hidden" name="" value="">
-	                    </li>
+	                    </li>         
 	                </ul>
 	                <strong>Notes</strong>
 	                <p>
@@ -145,7 +130,8 @@ $("document").ready(function() {
 	        </div>
 	        
 	        <div class="ibox-content m-b-sm border-bottom">  
-	            <form method="get">
+	            <form action="" name="">
+	            
 	            <div class="col-sm-5" style="display: flex">
 					<div class="form-group">    
 						<select name="" id="" class="form-control">
@@ -166,7 +152,12 @@ $("document").ready(function() {
 						</select>
 					</div>
 				</div>
-	            <table class="footable table table-stripped toggle-arrow-tiny footable-loaded tablet breakpoint" data-page-size="15">
+				<div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 300px;">
+	            <div class="scroll_content" style="overflow: hidden; width: auto; height: 300px;">
+
+
+				<fieldset>
+	            <table class="table table-hover" data-page-size="15">
 					<thead>
 		            <tr>
 		                <th>판매유형</th>
@@ -175,18 +166,21 @@ $("document").ready(function() {
 		                <th>이용기간</th>
 		            </tr>
 		            </thead>
-		            <c:forEach var="dto2" items="${dto2}">
+		            <c:forEach var="dto_product" items="${dto_product}" varStatus="status">
 		            <tbody>
-			            <tr class="gradeX">
-			                <td class="center">${dto2.product_typeOfSales}<input type="hidden" value="${dto2.product_typeOfSales}"></td>
-			                <td class="center">${dto2.product_name}<input type="hidden" value="${dto2.product_name}"></td>
-			                <td class="center">${dto2.product_price}<input type="hidden" value="${dto2.product_price}"></td>
-			                <td class="center">${dto2.product_rentalPeriod}<input type="hidden" value="${dto2.product_rentalPeriod}"></td>
+			            <tr class="product${status.index}" id="product${status.index}">
+			                <td id="product_typeOfSales${status.index}">${dto_product.product_typeOfSales}<input type="hidden" name="product_typeOfSales${status.index}" value="${dto_product.product_typeOfSales}"></td>
+			                <td id="product_name${status.index}">${dto_product.product_name}<input type="hidden" name="product_name${status.index}" value="${dto_product.product_name}"></td>
+			                <td id="product_price${status.index}">${dto_product.product_price}<input type="hidden" name="product_price${status.index}" value="${dto_product.product_price}"></td>
+			                <td id="product_rentalPeriod${status.index}">${dto_product.product_rentalPeriod}<input type="hidden" name="product_rentalPeriod${status.index}" value="${dto_product.product_rentalPeriod}"></td>
 			            </tr>
 		            </tbody>
 		            </c:forEach>
 		           
 				</table>
+				</fieldset>
+				</div>
+				</div>
 	                
 	                <div class="hr-line-dashed"></div>
 	            </form>
@@ -202,11 +196,8 @@ $("document").ready(function() {
 	        
 	            <form method="get">
 	                <div class="col-sm-10">
-	                    <button type="button" class="btn btn-outline btn-primary">추가</button>
-	                    <button type="button" class="btn btn-outline btn-primary">삭제</button>
-	                    <button type="button" class="btn btn-outline btn-primary">수량 및 옵션 변경</button>
-	                    <button type="button" class="btn btn-outline btn-primary">+</button>
-	                    <button type="button" class="btn btn-outline btn-primary">-</button>
+	                    <button type="button" id="add_btn" class="btn btn-outline btn-primary">추가</button>
+	                    <button type="button" id="del_btn" class="btn btn-outline btn-primary">삭제</button>
 	                 </div>
                 
 	            <table class="footable table table-stripped toggle-arrow-tiny footable-loaded tablet breakpoint" data-page-size="15">
@@ -217,16 +208,14 @@ $("document").ready(function() {
 		                <th>가격</th>
 		            </tr>
 		            </thead>
-		            <c:forEach var="dto2" items="${dto2}">
 		            <tbody>
-			            <tr class="gradeX">
-			                <td class="center">${dto2.product_name}<input type="hidden" value="${dto2.product_name}"></td>
-			                <td class="center">${dto2.product_price}<input type="hidden" value="${dto2.product_price}"></td>
-			                <td class="center">${dto2.product_rentalPeriod}<input type="hidden" value="${dto2.product_rentalPeriod}"></td>
+			            <tr class="cartList">
+			                <td id="cart_product_name"><input type="hidden" name="" value=""></td>
+			                <td id="cart_product_typeOfSales"><input type="hidden" name="" value=""></td>
+			                <td id="cart_product_price"><input type="hidden" name="" value=""></td>    
 			            </tr>
 			            
 		            </tbody>
-		            </c:forEach>
 				</table>
 	                
 	                <div class="hr-line-dashed"></div>
@@ -247,7 +236,7 @@ $("document").ready(function() {
 	            <form method="get">
 	                <div class="form-group row">
 	                <label class="col-sm-3 col-form-label">결제 금액</label>
-	                    <div class="col-lg-8"><input type="text" name="total_payment" value="10" class="form-control"></div>
+	                    <div class="col-lg-8" id="total_payment"></div>
 	                </div>
 	                <hr>
 	                <div class="hr-line-dashed"></div>
@@ -270,9 +259,11 @@ $("document").ready(function() {
 	                
 	                <div class="form-group row">
 	                <label class="col-sm-3 col-form-label">금융 기관</label>
-		                <div id="banking" class="col-sm-8" style="display:flex;">
-		                     <div class="col-sm-6"> 
-		                     <select name="" id="banking" class="form-control">
+
+						<div id="cash">현금이다.</div>
+	                	<div id="banking" class="col-sm-8" style="display:flex;">
+		                     <div class="col-sm-6">
+		                     <select name="" id="banking_credit" class="form-control">
 								<option value="1" selected="">카드 선택</option>
 	                             <option>삼성카드</option> 
 	                             <option>우리카드</option>
@@ -281,7 +272,7 @@ $("document").ready(function() {
                         	 </select>
                         	 </div> 
                         	 <div class="col-sm-6">
-		                     <select name="" id="banking" class="form-control">
+		                     <select name="" id="banking_installment" class="form-control">
 								<option value="1" selected="">일시불</option>
 	                             <option>1개월</option> 
 	                             <option>2개월</option>
@@ -290,6 +281,11 @@ $("document").ready(function() {
                         	 </select>
                         	 </div> 
 		                </div> 
+	                
+	                
+	                
+	                
+		                
 		            </div> 
 	                <div class="hr-line-dashed"></div> 
 	                

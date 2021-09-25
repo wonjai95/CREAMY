@@ -203,11 +203,15 @@ public class ProductController {
 		
 		// 회원 정보 출력(이전 페이지에서 클릭한 회원 값 넘기기) 
 		service_user.getUserInfo(req, model);
-		model.addAttribute("dto", req.getAttribute("dto")); // 회원 정보 넘겨주기
+		System.out.println("dto_user : " + req.getAttribute("dto"));
+		model.addAttribute("dto_user", req.getAttribute("dto")); // 회원 정보 넘겨주기
 
-		// 상품 목록 출력
+		// 상품 목록 출력  
 		service.printProducts(req, model);
-		model.addAttribute("dto2", req.getAttribute("dto2")); // 상품 정보 넘겨주기
+		model.addAttribute("dto_product", req.getAttribute("dto2")); // 상품 정보 넘겨주기
+		
+		// 상품 장바구니에 담기
+		
 		
 		return "host/product/product_selling";
 	}

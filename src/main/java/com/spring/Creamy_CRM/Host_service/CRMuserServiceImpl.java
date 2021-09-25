@@ -37,13 +37,15 @@ public class CRMuserServiceImpl implements CRMuserService {
 	public void getUserInfo(HttpServletRequest req, Model model) {
 		System.out.println("service ==> getUserInfo");
 		
-		// 선택한 user_name 넘겨서 값 출력
+		// 선택한 user_code 넘겨서 값 출력
 		String user_code = req.getParameter("user_code");
-		System.out.println("user_name : " + user_code);
+		System.out.println("user_code : " + user_code);
 		
 		userVO vo = dao_user.getUserInfo(user_code);
 		
 		System.out.println("dto : " + vo);
+		System.out.println("user_code : " + vo.getUser_code());
+		model.addAttribute("user_code", vo.getUser_code());
 		req.setAttribute("dto", vo); // 회원 정보 넘겨주기
 	}
 	
@@ -59,18 +61,18 @@ public class CRMuserServiceImpl implements CRMuserService {
 		list = dao_user.printUsers();
 		
 		System.out.println("dto : " + list);
-		req.setAttribute("dto", list); // 상품 정보 넘겨주기
+		model.addAttribute("dto", list); // 상품 정보 넘겨주기
 	}
 	
 
 	// 회원 정보 수정
-	
 	@Override
 	public void modifyUser(HttpServletRequest req, Model model) {
 		System.out.println("service => modifyUser");
 		
 		String user_code = req.getParameter("modify_code");
 		String user_name = req.getParameter("modify_name");
+		String user_memo = req.getParameter("modify_memo");
 		String user_gender = req.getParameter("modify_gender");
 		String userBirth = req.getParameter("modify_birth");
 		System.out.println("userBirth : " + userBirth);
@@ -108,6 +110,7 @@ public class CRMuserServiceImpl implements CRMuserService {
 		userVO vo = new userVO();
 		vo.setUser_code(user_code);
 		vo.setUser_name(user_name);
+		vo.setUser_memo(user_memo);
 		vo.setUser_gender(user_gender);
 		vo.setUser_birth(user_birth);
 		vo.setUser_email(user_email);
@@ -120,8 +123,25 @@ public class CRMuserServiceImpl implements CRMuserService {
 		System.out.println("updateCnt : " + updateCnt);
 		
 		
-		req.setAttribute("updateCnt", updateCnt);
-		req.setAttribute("dto", vo); // 회원 상세 정보
+		model.addAttribute("updateCnt", updateCnt);
+		model.addAttribute("dto", vo); // 회원 상세 정보
+		
+	}
+
+	// 회원별 판매 내역 출력
+	@Override
+	public void userSale(HttpServletRequest req, Model model) {
+		System.out.println("service => userSale");
+		
+		// 선택한 user_name 넘겨서 값 출력
+		String user_code = req.getParameter("user_code");
+		System.out.println("user_name : " + user_code);
+		
+		List<userVO> list = new ArrayList<userVO>();
+		
+		list = dao_user.userSale(user_code);
+		
+		model.addAttribute("dto", list);
 		
 	}
 
