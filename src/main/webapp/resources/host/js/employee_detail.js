@@ -1,5 +1,16 @@
 $("document").ready(function(){
 	
+	// 수정 버튼 클릭시 확인
+	$("#modify").submit(function(){
+		var result = confirm("수정하시겠습니까?");
+		
+		if(result){
+			return true;
+		} else {
+			return false;
+		}
+	});
+	
 	// 근태 월달력의 default value 지정하기
 	var currentMonth = new Date().toISOString().slice(0, 7);
 	console.log("currentMonth : " + currentMonth);

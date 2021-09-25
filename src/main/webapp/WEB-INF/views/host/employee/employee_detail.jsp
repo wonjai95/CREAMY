@@ -153,7 +153,8 @@
                             <div class="tab-content">
                             
                             <!-- 근태 시작 -->
-							<%-- <div id="tab-1" class="tab-pane active">
+							<div id="tab-1" class="tab-pane active">
+							<%-- 
 							   <div class="panel-body">
 							   
 							    	<!-- 월선택 달력!!! -->
@@ -256,7 +257,8 @@
 			                            </table>
 							       </fieldset>
 							   </div>
-							</div> --%>
+							    --%>
+							</div>
 							<!-- 근태 탭 끝 -->
                                 
                                 <!-- 휴가탭 시작 -->
