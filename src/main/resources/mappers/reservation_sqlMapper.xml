@@ -30,6 +30,12 @@
 			]]>
   	</select>
   	
+  	<!-- 예약요청 검색목록 출력 -->
+  	<select id="requestSearch" parameterType="String" resultType="com.spring.Creamy_CRM.VO.ReservationVO">
+		SELECT * FROM reservation_tbl
+		WHERE res_code LIKE '%' || #{res_code, jdbcType=VARCHAR} || '%'
+	</select>
+  	
   	<!-- 선택된 회원 정보 출력 -->
   	<select id="getUserInfo" parameterType="String" resultType="com.spring.Creamy_CRM.VO.userVO">
   		SELECT *
@@ -62,12 +68,12 @@
 	</update>
 	
 	<!-- 예약요청 삭제(취소)처리 -->
-	<delete id="deleteRequest1" parameterType="com.spring.Creamy_CRM.VO.ReservationVO">
+	<delete id="deleteRequest1" parameterType="String">
 		DELETE FROM reservation_tbl
 		 WHERE res_code = #{res_code} 	
 	</delete>
 	
-	<delete id="deleteRequest2" parameterType="com.spring.Creamy_CRM.VO.ReservationVO">
+	<delete id="deleteRequest2" parameterType="String">
 		DELETE FROM reservation_detail_tbl
 		 WHERE res_detail_code = #{res_detail_code} 	
 	</delete>

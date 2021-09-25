@@ -29,6 +29,7 @@ public class ReservationController {
 		logger.info("url -> reservation");
 		
 		service.requestList(req, model);
+		service.requestSearch(req, model);
 		
 		return "host/reservation/reservation";
 	}
