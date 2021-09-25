@@ -10,6 +10,7 @@ $(document).ready(function() {
        var selectDate = $("input[name=selectDate]").val();
        var selectTime =  $('#selectTime').val();
        var selectDay =  $("#chkDay").val();
+       console.log("selectDate : " + selectDate);
        console.log("selectDay : " + selectDay + ", selectTime : " + selectTime);
        var host_code = $("input[name=host_code]").val();
        

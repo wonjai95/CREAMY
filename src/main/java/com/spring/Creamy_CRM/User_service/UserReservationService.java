@@ -25,5 +25,12 @@ public interface UserReservationService {
 	// 회원 예약 가능한 담당자 표시
 	public void bookingManagerTable(HttpServletRequest req, Model model);
 	
+	// 회원 예약 가능한 호실 표시
+	public void bookingRoomTable(HttpServletRequest req, Model model);
 	
+	// 호실 클릭시 영업시간과 예약 현황 표시
+	public void bookingRoomTimeTable(HttpServletRequest req, Model model);
+	
+	// 호실 예약 처리
+	public void insertRoomBookingAction(HttpServletRequest req, Model model);
 }

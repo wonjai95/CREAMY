@@ -33,7 +33,11 @@ public class ReservationVO {
 	private String room_setting_code;	// 호실 코드
 	private String room_name;			// 호실 이름
 	private String room_stat;			// 호실 상태('사용가능', '사용불가능')
+	private int per_price;				// 1인당 가격
+	private int min_cnt;				// 최소 인원수
+	private int max_cnt;				// 최대 인원수
 	
+	private String host_code;			// 사장님 코드
 	
 	public String getRes_code() {
 		return res_code;
@@ -165,6 +169,30 @@ public class ReservationVO {
 	}
 	public void setRoom_stat(String room_stat) {
 		this.room_stat = room_stat;
+	}
+	public String getHost_code() {
+		return host_code;
+	}
+	public void setHost_code(String host_code) {
+		this.host_code = host_code;
+	}
+	public int getPer_price() {
+		return per_price;
+	}
+	public void setPer_price(int per_price) {
+		this.per_price = per_price;
+	}
+	public int getMin_cnt() {
+		return min_cnt;
+	}
+	public void setMin_cnt(int min_cnt) {
+		this.min_cnt = min_cnt;
+	}
+	public int getMax_cnt() {
+		return max_cnt;
+	}
+	public void setMax_cnt(int max_cnt) {
+		this.max_cnt = max_cnt;
 	}
 	
 	

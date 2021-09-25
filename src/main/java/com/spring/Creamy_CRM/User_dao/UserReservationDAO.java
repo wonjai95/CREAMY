@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.spring.Creamy_CRM.VO.HostVO;
+import com.spring.Creamy_CRM.VO.ReservationVO;
 
 public interface UserReservationDAO {
 
@@ -27,6 +28,16 @@ public interface UserReservationDAO {
 	// 해당 담당자의 예약 테이블 확인
 	public int getReservedManager(Map<String, Object> map);
 	
-	// 해당 사장님의 호실과 상품 정보 가져오기
+	// 회원 예약 가능한 호실 표시
+	public List<ReservationVO> getAvailableRoom(String host_code);
+
+	// 해당 날짜에 해당 호실 예약 현황
+	public List<ReservationVO> getBookedRoomTime(Map<String, Object> map);
+	
+	// 호실 예약 처리
+	public int insertRoomBooking(ReservationVO vo);
+	
+	// 예약 신청 시간 가능 여부 체크
+	public int chkRoomBooking(ReservationVO vo);
 	
 }
