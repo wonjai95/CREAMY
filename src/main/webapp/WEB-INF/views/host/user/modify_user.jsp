@@ -43,6 +43,14 @@ body {
 			
 			<div class="hr-line-dashed"></div>
 			<div class="form-group row">
+				<label class="col-sm-2 col-form-label">자기소개</label>
+				<div class="col-sm-7">
+					<input type="text" class="form-control" name="modify_memo" value="${dto.user_memo}">
+				</div>
+			</div>
+			
+			<div class="hr-line-dashed"></div>
+			<div class="form-group row">
 				<label class="col-sm-2 col-form-label">성별</label>
 				<div class="col-sm-7">
 					<c:if test="${dto.user_gender == 'M'}">

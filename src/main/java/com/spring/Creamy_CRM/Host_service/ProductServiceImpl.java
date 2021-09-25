@@ -45,9 +45,6 @@ public class ProductServiceImpl implements ProductService {
 		System.out.println("service ==> printProducts");
 		List<ProductVO> list = new ArrayList<ProductVO>();
 
-		String product_code = req.getParameter("product_code");
-		System.out.println("product_code : " + product_code);
-
 		list = dao.printProducts();
 
 		System.out.println("dto2 : " + list);

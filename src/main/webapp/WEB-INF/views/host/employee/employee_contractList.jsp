@@ -12,8 +12,11 @@
 <!-- 급여 계약 시작 -->
 <div id="tab-3" class="tab-pane active">
     <div class="panel-body">
+    
     <input type="hidden" name="employee_code" value="${employee_code}">
     <input type="hidden" name="salary_contract_code" value="0">
+    <input type="hidden" name="monthly_salary" value="0">
+    <input type="hidden" name="salary_payDate" value=sysdate>
 
         <!-- 월선택 달력!!! -->
 		<div class="round-btn" style="text-align:right; margin-bottom:10px;">
@@ -37,14 +40,18 @@
 				
 				<tbody>
 					<c:forEach var="list3" items="${contractList}"  varStatus="status">
-					<tr class="contract${status.index}">
-						<td>${list3.con_start} ~ ${list3.con_end}</td>
-						<td><fmt:formatNumber value="${list3.monthly_salary}0000" pattern="###,###,###"/></td>
-						<td><fmt:formatNumber value="${list3.annual_salary}0000" pattern="###,###,###"/></td>
-						<td>매달 ${list3.payment_date}일</td>
-						<td>국민은행 / 111-111-1111111</td>
-						<td>연봉 협상<input type="hidden" name="contract_code${status.index}" value="${list3.salary_contract_code}"></td>
-				     </tr>
+						<input type="hidden" name="contract_code${status.index}" value="${list3.salary_contract_code}">
+						<tr class="contract${status.index}">
+							<td>${list3.con_start} ~ ${list3.con_end}</td>
+							<td><fmt:formatNumber value="${list3.monthly_salary}" pattern="###,###,###"/></td>
+							<td>
+								<fmt:formatNumber value="${list3.annual_salary}" pattern="###,###,###"/>
+								<input type="hidden" name="monthly_sal${status.index})" value="${list3.monthly_salary}">
+							</td>
+							<td>매달 ${list3.payment_date}일</td>
+							<td>국민은행 / 111-111-1111111</td>
+							<td>연봉 협상</td>
+					     </tr>
 				    </c:forEach>
 			    </tbody>
 			</table>

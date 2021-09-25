@@ -85,7 +85,7 @@
 		<!-- 예약 수정이 실패라면, -->
 		<c:if test="${updateCnt == 0}">
 			<script type="text/javascript">
-				errorAlert(updateError);
+				alert("예약수정에 실패했습니다. 다시 한번 시도해주세요.");
 			</script>
 		</c:if>
 		

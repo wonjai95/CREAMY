@@ -55,24 +55,28 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	}
 	
 	// 직원의 휴가 정보
+	@Override
 	public ArrayList<LeaveVO> getLeaveList(String employee_code){
 		EmployeeDAO dao = sqlSession.getMapper(EmployeeDAO.class);
 		return dao.getLeaveList(employee_code);
 	}
 	
 	// 직원의 급여 계약 정보
+	@Override
 	public ArrayList<SalaryContractVO> getContractList(String employee_code){
 		EmployeeDAO dao = sqlSession.getMapper(EmployeeDAO.class);
 		return dao.getContractList(employee_code);
 	}
 	
 	// 직원의 급여 계약 삭제
+	@Override
 	public int deleteContract(String salary_contract_code) {
 		EmployeeDAO dao = sqlSession.getMapper(EmployeeDAO.class);
 		return dao.deleteContract(salary_contract_code);
 	}
 	
 	// 직원 급여 지급 등록
+	@Override
 	public int insertPayment(SalaryVO vo) {
 		EmployeeDAO dao = sqlSession.getMapper(EmployeeDAO.class);
 		return dao.insertPayment(vo);

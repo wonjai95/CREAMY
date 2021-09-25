@@ -53,8 +53,6 @@ public class ReservationController {
 	public String requestDetail(HttpServletRequest req, Model model) {
 		logger.info("url -> requestDetail");
 		
-		//service.requestDetailAction(req, model);
-		
 		return "host/reservation/requestDetail";
 	}
 	//예약 등록
@@ -69,12 +67,16 @@ public class ReservationController {
 	public String modifyAction(HttpServletRequest req, Model model) {
 		logger.info("url -> modifyAction");
 		
+		service.modifyAction(req, model);
+		
 		return "host/reservation/modifyAction";
 	}
 	//예약 취소
 	@RequestMapping("/host/deleteAction")
 	public String deleteAction(HttpServletRequest req, Model model) {
 		logger.info("url -> deleteAction");
+		
+		service.deleteAction(req, model);
 		
 		return "host/reservation/deleteAction";
 	}

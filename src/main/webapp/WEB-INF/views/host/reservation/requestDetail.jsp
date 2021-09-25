@@ -11,6 +11,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="_csrf" content="${_csrf.token}"/>
+<meta name="_csrf_header" content="${_csrf.headerName}"/>
 
 <title> 예약상세정보 </title>
 
@@ -42,23 +44,25 @@
 		}
 	}
 	
-	function insertReservation(){		
+	function modifyReservation(){		
 		var isTrue = confirm("해당 요청을 수정하시겠습니까?");
 		
 		if(isTrue==true){
-			window.location = 'modifyAction';
+			return true;
+			//window.location = 'modifyAction?res_code=${dto.res_code}&res_detail_code=${dto.res_detail_code}&res_state=${dto.res_state}&res_hour=${dto.res_hour}&res_room=${dto.res_room}&res_cnt=${dto.res_cnt}&employee_code=${dto.employee_code}&res_indiv_request=${dto.res_indiv_request}&res_memo=${dto.res_memo}';
 		} else {
-			window.location = 'requestDetail';
+			return false;
+			//window.location = 'requestDetail';
 		}
 	}
 	
-	function insertReservation(){		
+	function deleteReservation(){		
 		var isTrue = confirm("해당 요청을 취소하시겠습니까?");
 		
 		if(isTrue==true){
-			window.location = 'deleteAction';
+			return true;
 		} else {
-			window.location = 'requestDetail';
+			return false;
 		}
 	}
 	
@@ -82,7 +86,7 @@
 	});
 </script>
 
-<script type="text/javascript" src="${path}/resources/host/js/custBooking.js"></script>
+<script type="text/javascript" src="${path}/resources/host/js/reservationDetail.js"></script>
 </head>
 <body>
 
@@ -97,15 +101,16 @@
 	            
 	            &nbsp;&nbsp;&nbsp;
 	            <button type="submit" class="btn btn-primary btn-lg"
-	            		formaction="insertAction" onclick="insertReservation();">예약 등록
+	            		formaction="insertAction">예약 등록
 	            </button>
 	            &nbsp;&nbsp;&nbsp;
-	            <button type="button" class="btn btn-primary btn-lg"
-	            		formaction="modifyAction" onclick="modifyReservation();">예약 수정
+	            <!-- onclick="modifyReservation();" -->
+	            <button type="submit" class="btn btn-primary btn-lg"
+	            		formaction="modifyAction" form="requestDetail" onclick="return modifyReservation();">예약 수정
 	            </button>
 	            &nbsp;&nbsp;&nbsp;
-	            <button type="button" class="btn btn-primary btn-lg"
-	            		formaction="deleteAction" onclick="deleteReservation();">예약 취소
+	            <button type="submit" class="btn btn-primary btn-lg"
+	            		formaction="deleteAction" form="requestDetail" onclick="return deleteReservation();">예약 취소
 	            </button>
 	            &nbsp;&nbsp;&nbsp;
 	            <button type="button" class="btn btn-primary btn-lg"
@@ -123,11 +128,7 @@
 	        <div id="contact-1" class="tab-pane active">
 	            <div class="row m-b-lg">
 	                <div class="col-lg-4 text-center">
-	                    <h2>강수현</h2>
-	
-	                    <div class="m-b-sm">
-	                        <img alt="image" class="rounded-circle" src="team-2" style="width: 62px">
-	                    </div>
+	                    <h2>${udto.user_name}</h2>
 	                </div>
 	                <div class="col-lg-8">
 	                    <strong>
@@ -135,44 +136,42 @@
 	                    </strong>
 	
 	                    <p>
+	                        <%-- ${udto.user_memo} --%>
 	                        안녕하세요. 서울 신림동에 사는 강수현입니다. 사장님이 헤어 펌 잘하신다고 여기저기 소문이 많이 나서 가입합니다.
 	                        잘 부탁드려요~!
 	                    </p>
 	                </div>
 	            </div>
+	            
+	            <div class="hr-line-dashed"></div>
+	            
 	            <div class="client-detail">
 	            <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 100%;"><div class="full-height-scroll" style="overflow: hidden; width: auto; height: 100%;">
-	
-	                <strong>기본정보</strong>
-	
+	            	<form action="" id="userDetail">
+	            	<strong>기본정보</strong>
+	                
 	                <ul class="list-group clear-list">
 	                    <li class="list-group-item fist-item">
-	                        <span class="float-right"> 회원번호 : </span>
-	                        A379647
+	                        <span class="float-right"> 회원코드 : </span>
+	                        ${udto.user_code}
 	                    </li>
 	                    <li class="list-group-item">
-	                        <span class="float-right"> 이름 : </span>
-	                        강수현
+	                        <span class="float-right"> 회원아이디 : </span>
+	                        ${udto.user_id}
 	                    </li>
 	                    <li class="list-group-item">
-	                        <span class="float-right"> 담당자 : </span>
-	                        차희선
+	                        <span class="float-right"> 성별 : </span>
+	                        ${udto.user_gender}
 	                    </li>
 	                    <li class="list-group-item">
 	                        <span class="float-right"> 휴대폰 : </span>
-	                        010-3355-9876
-	                    </li>
-	                    <li class="list-group-item">
-	                        <span class="float-right"> 총 예약 : </span>
-	                        1건
+	                        ${udto.user_ph}
 	                    </li>
 	                </ul>
-	                <strong>Notes</strong>
-	                <p>
-	                    만성 두피건조증이 있습니다. 무쪼록 잘 부탁드려요.
-	                </p>
-	                <hr>
 	                
+	                
+	                </form>
+	                <hr>
 	            </div><div class="slimScrollBar" style="background-color: rgb(0, 0, 0); width: 7px; position: absolute; top: 42px; opacity: 0.4; display: none; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; z-index: 99; right: 1px; height: 412.88936627282493px;"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; background-color: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div></div>
 	            </div>
 	        </div>
@@ -189,69 +188,216 @@
 	            <h3>예약 상세</h3>
 	        </div>
 	        <div class="ibox-content">
-				
-	                <form action="" method="post" >
-	                <sec:csrfInput/>
-				<%-- <input type="hidden" id="res_review_chk" name="res_review_chk" value="${dto.res_review_chk}">
-				<input type="hidden" id="product_code" name="product_code" value="${dto.product_code}"> --%>
-	        <table class="table table-striped table-bordered table-hover dataTables-example">
-		        <thead>
-		        <tr>
-		            <th style="text-align:center">예약코드</th>
-		            <th style="text-align:center">회원아이디</th>
-		            <th style="text-align:center">담당자</th>
-		            <th style="text-align:center">상태</th>
-		            <th style="text-align:center">시간</th>
-		            <th style="text-align:center">날짜</th>
-		               
-		        </tr>
-		        </thead>
-		        <tbody id="requestDetail">
-				
-						<tr class="gradeX">
-							<td style="text-align:center">
-							<input type="text" id="res_code" name="res_code" value="${dto.res_code}">
-							
-							${dto.res_code}</td>
-							
-							<td style="text-align:center">${dto.user_id}</td>
-							
-							<td style="text-align:center">${dto.employee_code}</td>
-							
-							<td style="text-align:center">${dto.res_state}</td>
-							
-							<td style="text-align:center">${dto.res_hour}시</td>
-							
-							<td style="text-align:center">${dto.res_date}</td>
-						</tr>
-				
-		        
-		        </tbody>
-		        <tfoot>
-		        <tr>
-		            <th style="text-align:center">예약코드</th>
-		            <th style="text-align:center">회원아이디</th>
-		            <th style="text-align:center">담당자</th>
-		            <th style="text-align:center">상태</th>
-		            <th style="text-align:center">시간</th>
-		            <th style="text-align:center">날짜</th>
-		        </tr>
-		        </tfoot>
-	        </table>
+<!-- form -->	<form action="" method="post" id="requestDetail">
+				<sec:csrfInput/>
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+				<input type="hidden" id="res_code" name="res_code" value="${dto.res_code}">
+				<input type="hidden" id="user_id" name="user_id" value="${dto.user_id}">
+				<input type="hidden" id="res_review_chk" name="res_review_chk" value="${dto.res_review_chk}">
+				<input type="hidden" id="product_code" name="product_code" value="${dto.product_code}">
+				<input type="hidden" id="res_detail_code" name="res_detail_code" value="${dto.res_detail_code}">
+	                <!-- 예약 테이블 시작 -->
+                    <table class="box">
+                     <!-- 예약 상태 -->
+                     <tr>
+                        <td><strong>예약상태</strong></td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <div style="display:inline-block">
+                              <button type="button" class="btn btn-outline btn-primary" class="typeBtn" id="typeBtn1"
+                                 style="margin: 10px" value="예약신청">예약신청</button>
+                              <button type="button" class="btn btn-outline btn-primary" class="typeBtn" id="typeBtn2"
+                                 style="margin: 10px" value="예약중">예약중</button>
+                              <button type="button" class="btn btn-outline btn-primary" class="typeBtn" id="typeBtn3"
+                                 style="margin: 10px" value="서비스 완료">서비스 완료</button>
+                           </div>
+                           <div class="panel-heading" style="background-color: #e5e6e7; margin-top:15px; color: black">
+                         <%-- <input type="text" name="selectType" id="selectType" style="display: none">형태 : <span class="typeSelectedInfo">${dto.res_state}</span> --%>
+                         <input type="text" name="res_state" id="selectType" value="${dto.res_state}">
+                      </div>
+                      <div class="hr-line-dashed"></div>
+                        </td>
+                     </tr>
+                     
+                     
+                     <tr>
+                        <td><strong>날짜</strong>
+                     </tr>
+                     <tr>
+                        <td class="dashed">
+                           <!-- 날짜 -->
+                           <div class="col-lg-6"><input type="date" id="res_date" name="res_date" value="${dto.res_date}" class="form-control" readonly>
+                           </div>
+                      <div class="hr-line-dashed"></div>
+                        </td>
+                     </tr>
+                     
+                     
+                     <tr>
+                        <td><strong>시간</strong><br>
+                        <small>예약 날짜를 선택하시면, 시간을 선택할 수 있습니다.</small></td>
+                     </tr>
+                     <tr>
+                        <td class="dashed">
+                           <!-- 시간 -->
+                           <div style="display:inline-block">
+                              <button type="button" class="btn btn-outline btn-primary" class="timeBtn" id="timeBtn1"
+                                 style="margin: 10px" value="09:00" disabled>09:00</button>
+                              <button type="button" class="btn btn-outline btn-primary" class="timeBtn" id="timeBtn1"
+                                 style="margin: 10px" value="10:00" disabled>10:00</button>
+                              <button type="button" class="btn btn-outline btn-primary" class="timeBtn" id="timeBtn2"
+                                 style="margin: 10px" value="11:00" disabled>11:00</button>
+                              <button type="button" class="btn btn-outline btn-primary" class="timeBtn" id="timeBtn3"
+                                 style="margin: 10px" value="12:00">12:00</button>
+                              <button type="button" class="btn btn-outline btn-primary" class="timeBtn" id="timeBtn4"
+                                 style="margin: 10px" value="13:00">13:00</button>
+                              <button type="button" class="btn btn-outline btn-primary" class="timeBtn" id="timeBtn5"
+                                 style="margin: 10px" value="14:00">14:00</button>
+                              <button type="button" class="btn btn-outline btn-primary" class="timeBtn" id="timeBtn5"
+                                 style="margin: 10px" value="15">15:00</button>
+                              <button type="button" class="btn btn-outline btn-primary" class="timeBtn" id="timeBtn5"
+                                 style="margin: 10px" value="16">16:00</button>
+                              <button type="button" class="btn btn-outline btn-primary" class="timeBtn" id="timeBtn5"
+                                 style="margin: 10px" value="17">17:00</button>
+                              <button type="button" class="btn btn-outline btn-primary" class="timeBtn" id="timeBtn5"
+                                 style="margin: 10px" value="18">18:00</button>
+                           </div>
+                      <div class="panel-heading" style="background-color: #e5e6e7; margin-top:15px; color: black">
+                         <%-- <input type="text" name="selectTime" id="selectTime" value="${dto.res_hour}" style="display: none">선택 시간 : <span class="timeSelectedInfo">${dto.res_hour}</span> --%>
+			         	 <input type="text" name="res_hour" id="selectTime" value="${dto.res_hour}">
+                      </div>
+                      <div class="hr-line-dashed"></div>
+                        </td>
+                     </tr>
+                     
+                     
+   
+                     <%-- <!-- 호실 -->
+                     <tr>
+                        <td><strong>호실</strong></td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <div style="display:inline-block">
+                              <button type="button" class="btn btn-outline btn-primary" class="roomBtn" id="roomBtn1"
+                                 value="1실" style="margin: 10px">1실</button>
+                              <button type="button" class="btn btn-outline btn-primary" class="roomBtn" id="roomBtn2"
+                                  value="2실" style="margin: 10px">2실</button>
+                              <button type="button" class="btn btn-outline btn-primary" class="roomBtn" id="roomBtn3"
+                                  value="3실" style="margin: 10px">3실</button>
+                           </div>
+<!-- sql에서는 varchar(4)로 되어있어서 한글까지 넣으려면 sql을 다시 수정해야한다. -->
+                           <div class="panel-heading" style="background-color: #e5e6e7; margin-top:15px; color: black">
+                         <input type="text" name="selectRoom" id="selectRoom" style="display: none">호실 : <span class="roomSelectedInfo">${dto.res_room}호실</span>
+                         <input type="text" name="res_room" id="selectRoom" value="${dto.res_room}">
+                      </div>
+                      
+                      <div class="form-group row"><label class="col-lg-2 col-form-label">호실</label>
+
+					        <div class="col-sm-4"><select class="form-control m-b" name="room">
+					            <option>A301호</option>
+					            <option>A302호</option>
+					            <option>A303호</option>
+					            <option>A304호</option>
+					            <option>A305호</option>
+					            <option>A306호</option>
+					            <option>A307호</option>
+					        </select></div>
+					    </div>
+  				
+  						<div class="hr-line-dashed"></div> 
+                        </td>
+                     </tr> --%>
+   
+                     <!-- 인원 -->
+                     <tr>
+                        <td><strong>인원</strong><br><small>방문하시는 인원을 선택하세요.<br><br></small></td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <div class="row">
+                              <div class="col-3" style="width: auto;">
+                                 <input type="button" id="GuestCountMinus" name="GuestCountMinus" class="btn btn-primary" value="－" />
+                              </div>
+                              <div class="col-4">
+                                 <!-- <input type="text" id="GuestCount" name="GuestCount" maxlength="4" class="form-control text-center" value="0" readonly /> -->
+                                 <input type="text" id="GuestCount" name="res_cnt" maxlength="4" class="form-control text-center" value="${dto.res_cnt}" >
+                              </div>
+                              <div class="col-3">
+                                 <input type="button" id="GuestCountPlus" name="GuestCountPlus" class="btn btn-primary" value="＋" />
+                              </div>
+                              <div class="offset-1"></div>
+                           </div>
+                     <div class="hr-line-dashed"></div>   
+                        </td>
+                     </tr>
+                     
+                     <!-- 담당자 -->
+                     <tr>
+                        <td><strong>담당자</strong></td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <div style="display:inline-block">
+                              <button type="button" class="btn btn-outline btn-primary" class="managerBtn" id="managerBtn1" 
+                                 value="정지은" style="margin: 10px">정지은</button>
+                              <button type="button" class="btn btn-outline btn-primary" class="managerBtn" id="managerBtn2" 
+                                 value="한진원" style="margin: 10px">한진원</button>
+                              <button type="button" class="btn btn-outline btn-primary" class="managerBtn" id="managerBtn3"
+                                 value="이시현" style="margin: 10px">이시현</button>
+                              <button type="button" class="btn btn-outline btn-primary" class="managerBtn" id="managerBtn3"
+                                 value="E4" style="margin: 10px">장현정</button>
+                           </div>
+                           <div class="panel-heading" style="background-color: #e5e6e7; margin-top:15px; color: black">
+                               <%-- <input type="text" name="selectManager" id="selectManager" style="display: none">담당자 : <span class="managerSelectedInfo">${dto.employee_code}</span> --%>
+                               <input type="text" name="employee_code" id="selectManager" value="${dto.employee_code}">
+                           </div>
+                           
+                           <!-- 고객의 추가 요청사항 -->
+                           <div class="form-group" style="margin-top:30px;">
+                         <span><strong>추가 요청사항</strong></span>
+                         <textarea class="form-control" rows="3"
+                         			name="res_indiv_request" style="margin-top:10px;">
+                         			${dto.res_indiv_request}
+                         </textarea>
+    <!-- textarea 다시 체크해 볼 것! -->
+                     </div>
+                     <div class="hr-line-dashed"></div>   
+                        </td>
+                     </tr>
+                     
+                     
+                     
+                     <!-- 직원 기타메모 -->
+                     <tr>
+                        <td><strong>담당자 기타메모</strong></td>
+                     </tr>
+                     <tr>
+                        <td>
+                     
+			         <div class="col-lg-12">
+			         	<input type="text" id="res_memo" name="res_memo"
+			         			value="${dto.res_memo}" class="form-control">
+			         </div>
+			  				<div class="hr-line-dashed"></div>  
+			                     </td>
+			                     </tr>
+                  		</table>                             
+						<!-- 예약 테이블 끝 -->
 						</form>
 		                </div>
 				                
-				          </div> </div>
-				    </div> 
-				    </div> 
-				    </div> 
-				    </div> 
-				    </div> 
-				    </div> 
-				    </div> 
-				    </div> 
+				                
+				        </div>
+				    </div>
+				</div>
 <!-- ------------------------------- 예약등록표 끝 -->
-
+			</div>  
+			</div>    
+		</div>
+	</div>  
+</div>  
 
 
 

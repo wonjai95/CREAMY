@@ -22,6 +22,7 @@ public class HostVO {
    private String comp_condition;	// 업태
    private String comp_type;		// 업종
    private String zipcode;			// 우편번호
+   private String com_res;			// 예약 종류('호실', '담당자')
    
    // 영업시간 설정
    private String operating_sche_code;	// 영업 시간 설정 코드
@@ -140,6 +141,12 @@ public class HostVO {
 	}
 	public void setEmployee_name(String employee_name) {
 		this.employee_name = employee_name;
+	}
+	public String getCom_res() {
+		return com_res;
+	}
+	public void setCom_res(String com_res) {
+		this.com_res = com_res;
 	}
    
    

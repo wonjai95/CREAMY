@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.spring.Creamy_CRM.Host_service.CRMuserServiceImpl;
 import com.spring.Creamy_CRM.Host_service.LoginServiceImpl;
@@ -42,7 +43,15 @@ private static final Logger logger = LoggerFactory.getLogger(UserInfoController.
 		// 회원 선택 하면 해당 회원에 대한 판매 내역 출력(판매 탭) - user_sale
 		String user_code = req.getParameter("user_code");
 		System.out.println("user_code : " + user_code);
-		//service_product.getSaleInfo(req, model);
+		
+		if(user_code != null) {
+			
+			// 회원별 판매 목록 출력
+			service_user.userSale(req, model);
+			
+		} else {
+			
+		}
 		
 		return "host/user/user";
 	}
@@ -86,6 +95,19 @@ private static final Logger logger = LoggerFactory.getLogger(UserInfoController.
 		
 		return "host/user/mypage";
 	}
+	  
+	// 회원별 판매 내역 출력
+	/*
+	@RequestMapping("/host/user_sale")
+	public String user_sale(HttpServletRequest req, Model model) {
+		logger.info("url -> user_sale");
+		
+		
+		
+		
+		return "host/user/user_sale";
+	}
+	*/
 	
 	
 }

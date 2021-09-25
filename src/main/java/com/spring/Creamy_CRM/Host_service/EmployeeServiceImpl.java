@@ -164,8 +164,39 @@ public class EmployeeServiceImpl implements EmployeeService {
 	
 	// 직원 급여 지급 등록
 	public void insertPaymentAction(HttpServletRequest req, Model model) {
+		String employee_code = req.getParameter("employee_code");
+		String salary_payDate = req.getParameter("salary_payDate");
+		System.out.println("salary_payDate :" + salary_payDate);
 		
-	}
+		String pay_month = req.getParameter("pay_month");
+		System.out.println("pay_month : " + pay_month);
+		
+		int monthly_salary = Integer.parseInt(req.getParameter("monthly_salary"));
+		System.out.println("monthly_salary : " + monthly_salary);
+		
+		int income_tax = (int)(monthly_salary * 0.033);
+		System.out.println("income_tax : " + income_tax);
+		
+		int national_pension = (int)(monthly_salary * 0.045);
+		System.out.println("national_pension : " + national_pension);
+		
+		int health_insurance = (int)(monthly_salary *0.0343);
+		System.out.println("health_insurance : " + health_insurance);
+		
+		int lt_care_insurance = (int)(health_insurance * 0.1152 * 0.1)*10;
+		System.out.println("lt_care_insurance : " + lt_care_insurance);
+
+		int employment_insurance = (int)(monthly_salary * 0.008);
+		System.out.println("employment_insurance : " + employment_insurance);
+		
+		int total_amount = income_tax + national_pension + health_insurance + lt_care_insurance + employment_insurance;
+		
+		int loan_payment_amount = monthly_salary - (total_amount);
+		System.out.println("loan_payment_amount : " + loan_payment_amount);
+		
+		
+		
+	} 
 	
 	// 직원 등록시 해당 id 체크 
 	@Override
@@ -481,14 +512,15 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public void salaryContractAction(HttpServletRequest req, Model model) {
 		String employee_code = req.getParameter("employee_code");
 		String employee_name = req.getParameter("employee_name");
-		int monthly_salary = Integer.parseInt(req.getParameter("mon_sal"));
-		String annual_salary = req.getParameter("salary");
+		String monthly = req.getParameter("mon_sal");
+		String annual = req.getParameter("salary");
 		String payment_date = req.getParameter("payment_date");
 		String bankInfo = req.getParameter("account");
 		String con_start = req.getParameter("contract_start");
 		String con_end = req.getParameter("contract_end");
 		
-		String annual_salary_int = annual_salary.replace(",", "");
+		String monthly_salary = monthly.replace(",", "");
+		String annual_salary = annual.replace(",", "");
 		
 		String[] bankList = bankInfo.split("/");
 		System.out.println("은행  : " + bankList[0]);
@@ -499,8 +531,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 		
 		SalaryContractVO vo = new SalaryContractVO();
 		vo.setEmployee_code(employee_code);
-		vo.setMonthly_salary(monthly_salary);
-		vo.setAnnual_salary(Integer.parseInt(annual_salary_int));
+		vo.setMonthly_salary(Integer.parseInt(monthly_salary)*10000);
+		vo.setAnnual_salary(Integer.parseInt(annual_salary)*10000);
 		vo.setPayment_date(payment_date);
 		vo.setCon_start(contract_start);
 		vo.setCon_end(contract_end);

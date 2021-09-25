@@ -242,9 +242,19 @@ public class MainwebController {
 	   public String custBooking(HttpServletRequest req, Model model) {
 	      logger.info("url -> custBooking");
 	      
+	      String com_res = req.getParameter("com_res");
 	      model.addAttribute("host_code", req.getParameter("host_code"));
 	      model.addAttribute("comp_address", req.getParameter("comp_address"));
-	      return "mainweb/custBooking";
+	      model.addAttribute("com_res", com_res);
+	      
+	      if(com_res.equals("담당자")) {
+	    	  System.out.println("담당자 진입");
+	    	  return "mainweb/custManagerBooking";
+	      } else {
+	    	  System.out.println("호실 진입");
+	    	  return "mainweb/custRoomBooking";
+	      }
+	     
 	}	
 	
 	// 회원 예약 가능 시간 표시
@@ -263,6 +273,33 @@ public class MainwebController {
 		
 		service_custReserve.bookingManagerTable(req, model);
 		return "mainweb/managerTimeTable";
+	}	
+	
+	// 회원 예약 가능한 호실 표시
+	@RequestMapping("/bookingRoomTable")
+	public String bookingRoomTable(HttpServletRequest req, Model model) {
+		logger.info("url -> bookingRoomTable");
+		
+		service_custReserve.bookingRoomTable(req, model);
+		return "mainweb/bookingRoomTable";
+	}	
+	
+	// 회원이 선택한 호실의 상세정보
+	@RequestMapping("/roomTimeTable")
+	public String roomTimeTable(HttpServletRequest req, Model model) {
+		logger.info("url -> roomTimeTable");
+		
+		service_custReserve.bookingRoomTimeTable(req, model);
+		return "mainweb/roomDetail";
+	}	
+	
+	// 호실 예약 처리
+	@RequestMapping("/insertRoomBookingAction")
+	public String insertRoomBookingAction(HttpServletRequest req, Model model) {
+		logger.info("url -> insertRoomBookingAction");
+		
+		service_custReserve.insertRoomBookingAction(req, model);
+		return "mainweb/insertRoomBookingAction";
 	}	
 	
 	

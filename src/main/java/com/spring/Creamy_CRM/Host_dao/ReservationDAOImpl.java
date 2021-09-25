@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.spring.Creamy_CRM.VO.ReservationVO;
+import com.spring.Creamy_CRM.VO.userVO;
 
 @Repository
 public class ReservationDAOImpl implements ReservationDAO {
@@ -46,9 +47,15 @@ public class ReservationDAOImpl implements ReservationDAO {
 		return list;
 	}
 
+	// 예약요청 상세 페이지 내 회원정보
+	public userVO getUserInfo(String user_id) {
+		
+		return sqlSession.selectOne("com.spring.Creamy_CRM.Host_dao.ReservationDAO.getUserInfo", user_id);
+	}
+	
 	// 예약요청 상세 페이지, 수정 상세 페이지
 	@Override
-	public ReservationVO getRequestDetail(int num) {
+	public ReservationVO getRequestDetail(String num) {
 		
 		ReservationDAO dao = sqlSession.getMapper(ReservationDAO.class);
 		return dao.getRequestDetail(num);
@@ -62,18 +69,32 @@ public class ReservationDAOImpl implements ReservationDAO {
 
 	// 예약요청 수정 처리 페이지
 	@Override
-	public int updateRequest(ReservationVO vo) {
-
+	public int updateRequest1(ReservationVO vo) {
+		// SQL(DB) : reservation_tbl 업데이트
 		ReservationDAO dao = sqlSession.getMapper(ReservationDAO.class);
-		return dao.updateRequest(vo);
+		return dao.updateRequest1(vo) + dao.updateRequest2(vo);
+	}
+	@Override
+	public int updateRequest2(ReservationVO vo) {
+		// SQL(DB) : reservation_detail_tbl 업데이트
+		ReservationDAO dao = sqlSession.getMapper(ReservationDAO.class);
+		return dao.updateRequest2(vo);
 	}
 
 	// 예약요청 삭제 처리 페이지
 	@Override
-	public int deleteRequest(int num) {
+	public int deleteRequest1(int num) {
 		
 		ReservationDAO dao = sqlSession.getMapper(ReservationDAO.class);
-		int deleteCnt = dao.deleteRequest(num);
+		int deleteCnt = dao.deleteRequest2(num) + dao.deleteRequest1(num);
+		
+		return deleteCnt;
+	}
+	@Override
+	public int deleteRequest2(int num) {
+		
+		ReservationDAO dao = sqlSession.getMapper(ReservationDAO.class);
+		int deleteCnt = dao.deleteRequest2(num);
 		
 		return deleteCnt;
 	}

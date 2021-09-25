@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.spring.Creamy_CRM.VO.HostVO;
+import com.spring.Creamy_CRM.VO.ReservationVO;
 
 @Repository
 public class UserReservationDAOImpl implements UserReservationDAO {
@@ -49,5 +50,35 @@ public class UserReservationDAOImpl implements UserReservationDAO {
 		UserReservationDAO dao = sqlSession.getMapper(UserReservationDAO.class);
 		return dao.getReservedManager(map);
 	}
+
+	// 회원 예약 가능한 호실 표시
+	@Override
+	public List<ReservationVO> getAvailableRoom(String host_code) {
+		UserReservationDAO dao = sqlSession.getMapper(UserReservationDAO.class);
+		return dao.getAvailableRoom(host_code);
+	}
+
+	// 해당 날짜에 해당 호실 예약 현황
+	@Override
+	public List<ReservationVO> getBookedRoomTime(Map<String, Object> map) {
+		UserReservationDAO dao = sqlSession.getMapper(UserReservationDAO.class);
+		return dao.getBookedRoomTime(map);
+	}
+
+	// 호실 예약 처리
+	@Override
+	public int insertRoomBooking(ReservationVO vo) {
+		UserReservationDAO dao = sqlSession.getMapper(UserReservationDAO.class);
+		return dao.insertRoomBooking(vo);
+	}
+
+	// 예약 신청 시간 가능 여부 체크
+	@Override
+	public int chkRoomBooking(ReservationVO vo) {
+		UserReservationDAO dao = sqlSession.getMapper(UserReservationDAO.class);
+		return dao.chkRoomBooking(vo);
+	}
+	
+	
 
 }

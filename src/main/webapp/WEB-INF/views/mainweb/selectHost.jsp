@@ -73,7 +73,8 @@
 	        	<c:forEach var="dto" items="${dtos}">
 		            <div class="col-lg-4">
 		                <div class="contact-box">
-		                    <a class="row" href="custBooking?host_code=${dto.host_code}&comp_address=${dto.comp_address}" style="justify-content: center;">
+		                    <a class="row" href="custBooking?host_code=${dto.host_code}&comp_address=${dto.comp_address}&com_res=${dto.com_res}" 
+		                    	style="justify-content: center;">
 			                    <div class="col-8" style="text-align: center;">
 			                        <h3><strong>${dto.comp_name}</strong></h3>
 			                        <p>${dto.host_name}</p>

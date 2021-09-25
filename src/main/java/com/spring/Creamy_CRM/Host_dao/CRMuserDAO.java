@@ -19,4 +19,8 @@ public interface CRMuserDAO {
 	
 	// 회원 정보 수정
 	public int updateUser(userVO vo);
+	
+	// 회원별 판매 내역 출력
+	public List<userVO> userSale(String user_code);
+	
 }

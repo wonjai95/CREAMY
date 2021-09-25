@@ -79,7 +79,7 @@
 						<tr class="gradeX">
 							<td style="text-align:center">
 								<!-- 상세페이지 -->
-								<a href="requestDetails?res_code=${dto.res_code}">${dto.res_code}</a>
+								<a href="requestDetails?res_code=${dto.res_code}&res_detail_code=${dto.res_detail_code}&user_id=${dto.user_id}">${dto.res_code}</a>
 							</td>
 							
 							<td style="text-align:center">${dto.user_id}</td>
