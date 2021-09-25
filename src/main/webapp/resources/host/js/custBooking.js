@@ -78,6 +78,9 @@ $(document).ready(function() {
               // 시간 형식 hh:mm을 위한 0 삽입
               hours = hours < 10 ? "0" + hours : hours;
               
+              // localTime은 24:00을 지원하지 않기 때문에 00:00으로 초기화
+              hours = hours >= "24" ? "00" : hours;
+              
               var getTime = hours + ":00";
               // 일 ~ 토 : 0~6
               console.log("요일 : " + getDay + ", 시간 : " + getTime);
