@@ -116,58 +116,36 @@
 												<div class="col-lg-6">
 								                    <div class="ibox ">
 								                        <div class="ibox-title">
-								                            <h5>Border Table </h5>
+								                            <h5>회원정보</h5>
 								                            <div class="ibox-tools">
-								                                <a class="collapse-link">
-								                                    <i class="fa fa-chevron-up"></i>
-								                                </a>
-								                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-								                                    <i class="fa fa-wrench"></i>
-								                                </a>
-								                                <ul class="dropdown-menu dropdown-user">
-								                                    <li><a href="#" class="dropdown-item">Config option 1</a>
-								                                    </li>
-								                                    <li><a href="#" class="dropdown-item">Config option 2</a>
-								                                    </li>
-								                                </ul>
-								                                <a class="close-link">
-								                                    <i class="fa fa-times"></i>
-								                                </a>
 								                            </div>
 								                        </div>
 								                        <div class="ibox-content">
-								
-								                            <table class="table table-bordered">
-								                                <thead>
-								                                <tr>
-								                                    <th>#</th>
-								                                    <th>First Name</th>
-								                                    <th>Last Name</th>
-								                                    <th>Username</th>
-								                                </tr>
-								                                </thead>
-								                                <tbody>
-								                                <tr>
-								                                    <td>1</td>
-								                                    <td>Mark</td>
-								                                    <td>Otto</td>
-								                                    <td>@mdo</td>
-								                                </tr>
-								                                <tr>
-								                                    <td>2</td>
-								                                    <td>Jacob</td>
-								                                    <td>Thornton</td>
-								                                    <td>@fat</td>
-								                                </tr>
-								                                <tr>
-								                                    <td>3</td>
-								                                    <td>Larry</td>
-								                                    <td>the Bird</td>
-								                                    <td>@twitter</td>
-								                                </tr>
-								                                </tbody>
-								                            </table>
-								
+															<form action="" name="">
+								                            <table id="rowClick" class="table table-hover" data-page-size="15">
+																<thead>
+													            <tr>
+													                <th>회원코드</th>
+													                <th>회원명</th>
+													                <th>생년월일</th>
+													                <th>성별</th>
+													                <th>연락처</th>
+													            </tr>
+													            </thead>
+													            
+													            <tbody>
+													            <c:forEach var="dto" items="${dto}" varStatus="status">
+														            <tr >
+														                <td id="user_code${status.index}">${dto.user_code}<input type="hidden" name="user_code${status.index}" value="${dto.user_code}"></td>
+														                <td id="user_name${status.index}">${dto.user_name}<input type="hidden" name="user_name${status.index}" value="${dto.user_name}"></td>
+														                <td id="user_birth${status.index}">${dto.user_birth}<input type="hidden" name="user_birth${status.index}" value="${dto.user_birth}"></td>
+														                <td id="user_gender${status.index}">${dto.user_gender}<input type="hidden" name="user_gender${status.index}" value="${dto.user_gender}"></td>
+														                <td id="user_address${status.index}">${dto.user_address}<input type="hidden" name="user_address${status.index}" value="${dto.user_address}"></td>
+														            </tr>
+														        </c:forEach>
+													            </tbody>
+															</table>
+															</form>
 								                        </div>
 								                    </div>
 								                </div>
@@ -180,7 +158,10 @@
 								                        </div>
 								                        <div class="ibox-content">
 								                            <div>
-								                                <div id="lineChart"></div>
+								                                <!-- <div id="lineChart"></div> -->
+								                                <div id="gauge"></div>
+								                                
+								                                
 								                            </div>
 								                        </div>
 								                    </div>
@@ -217,7 +198,7 @@
 
  $(document).ready(function () {
 
-     c3.generate({
+/* 	 c3.generate({
          bindto: '#lineChart',
          data:{
              columns: [
@@ -229,9 +210,32 @@
                  data2: '#BABABA'
              }
          }
-     });
+     }); */
+	 
+	 
+	 
+	 c3.generate({
+	     bindto: '#gauge',
+	     data:{
+	         columns: [
+	        	 
+	        	 ['dto.user_gender', 2]
+	        	 
+	         ],
+
+	         type: 'gauge'
+	     },
+	     color:{
+	         pattern: ['#1ab394', '#BABABA']
+
+	     }
+	 });
+	 
+	 
  });
      
+
+ 
  </script>
 
 </body>

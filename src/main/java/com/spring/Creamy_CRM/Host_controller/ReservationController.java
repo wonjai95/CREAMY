@@ -29,8 +29,9 @@ public class ReservationController {
 		logger.info("url -> reservation");
 		
 		service.requestList(req, model);
-		service.requestSearch(req, model);
+		//service.requestSearch(req, model);
 		
+		//service.completeList(req, model);
 		return "host/reservation/reservation";
 	}
 	//예약 요청
@@ -81,10 +82,21 @@ public class ReservationController {
 		
 		return "host/reservation/deleteAction";
 	}
+	//예약 취소
+	@RequestMapping("/host/completeAction")
+	public String completeAction(HttpServletRequest req, Model model) {
+		logger.info("url -> completeAction");
+		
+		service.completeAction(req, model);
+		
+		return "host/reservation/completeAction";
+	}
 	//예약 조회
 	@RequestMapping("/host/showReservation")
 	public String showReservation(HttpServletRequest req, Model model) {
 		logger.info("url -> showReservation");
+		
+		service.completeList(req, model);
 		
 		return "host/reservation/showReservation";
 	}
