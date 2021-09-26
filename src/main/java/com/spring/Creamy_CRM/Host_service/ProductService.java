@@ -19,6 +19,9 @@ public interface ProductService {
 	// 판매 내역 출력
 	public void getSaleInfo(HttpServletRequest req, Model model);
 	
+	// 결제 정보 insert
+	public void addSaleInfo(HttpServletRequest req, Model model);
+	
 	//상품
 	void product(HttpServletRequest req, Model model);
 	//상품그룹 등록

@@ -35,7 +35,7 @@
   	<select id="userSale" parameterType="String" resultType="com.spring.Creamy_CRM.VO.userVO">
   		SELECT product_typeOfSales, product_name, product_group_name, product_price, sale_date, payment_option
   		  FROM user_sale_view
-  		 <!-- WHERE user_code=#{user_code} -->
+  		 WHERE user_code=#{user_code}
   	</select>
   	
   	
