@@ -15,6 +15,9 @@
 	<security:http pattern="/hostjs/**" security="none" />
 	<security:http pattern="/images/**" security="none" />
 	
+	<!-- 안드로이드 보안설정 x  -->
+	<security:http pattern="/android/**" security="none" />
+	
 	
 	<security:http auto-config="true" use-expressions="true" create-session="never">
 		<security:headers>
