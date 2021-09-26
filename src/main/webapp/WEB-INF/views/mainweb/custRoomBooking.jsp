@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../setting.jsp" %>
+<%@ include file="/WEB-INF/views/setting.jsp" %>
 <!DOCTYPE html>
 <html>
 
@@ -37,7 +37,7 @@
                 <!--<button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">-->
                     <!--<i class="fa fa-reorder"></i>-->
                 <!--</button>-->
-            <a href="#" class="navbar-brand">CREAMY</a>
+            <a href="home" class="navbar-brand">CREAMY</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fa fa-reorder"></i>
             </button>
@@ -48,7 +48,7 @@
            <form action="insertBooking" method="post" id="custBookingForm">
            <sec:csrfInput/>
            <input type="hidden" id="user_id" name="user_id" value="${sessionScope.id}">
-           <input type="hidden" id="res_date" name="res_date">   <!-- 다시 체크해 볼 것!  name="custBookingForm" -->
+           <input type="hidden" id="res_date" name="res_date">   
            <input type="hidden" id="res_memo" name="res_memo">
            <input type="hidden" id="host_code" name="host_code" value="${host_code}">
            <input type="hidden" id="chkDay">
@@ -56,6 +56,7 @@
            <input type="hidden" id="per_price" value="0">
            <input type="hidden" id="min_cnt" value="0">
            <input type="hidden" id="max_cnt" value="0">
+           <input type="hidden" id="res_sales" name="res_sales" value="0">
                 <div class="row">
                    <!-- col-lg-8  시작 -->
                     <div class="col-lg-6 col-md-12">
@@ -128,7 +129,7 @@
                                     </tr>
                                   </table>
                                   
-                                  <table class="box" style="margin-top:40px;">
+                                  <table class="box" style="margin-top:20px;">
                                     <tr>
                                        <td><strong>금액</strong></td>
                                     </tr>

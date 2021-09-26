@@ -28,10 +28,18 @@
 
 <body class="top-navigation">
 	<div style="display:inline-block" id="managerTable">
-		<c:forEach var="dto" items="${dtos}" varStatus="status">
-			<button type="button" class="btn btn-outline btn-primary" class="managerBtn" id="managerBtn${status.index}" 
-                 style="margin: 10px" value="${dto.employee_code}">${dto.employee_name}</button>
-		</c:forEach>
+		 <!-- 인원 -->
+      	<table class="box">		
+      		<tr>
+		      	<c:forEach var="dto" items="${dtos}" varStatus="status">
+					<td class="mangTr${status.index}">
+						<button type="button" class="btn btn-outline btn-primary" class="managerBtn" id="managerBtn${status.index}" 
+			                 style="margin: 10px" value="${dto.employee_name}">${dto.employee_name}</button>
+			             <input type="text" style="display: none" name="employee_code" value="${dto.employee_code}">
+		             </td>
+				</c:forEach>
+			</tr>
+		</table>
 	</div>
 </body>
 

@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.spring.Creamy_CRM.VO.HostVO;
+import com.spring.Creamy_CRM.VO.ProductVO;
 import com.spring.Creamy_CRM.VO.ReservationVO;
 
 @Repository
@@ -30,6 +31,13 @@ public class UserReservationDAOImpl implements UserReservationDAO {
 		return dao.selectHost();
 	}
 
+	// 해당 사장님의 상품 정보 가져오기
+	@Override
+	public List<ProductVO> getProductList(String host_code) {
+		UserReservationDAO dao = sqlSession.getMapper(UserReservationDAO.class);
+		return dao.getProductList(host_code);
+	}
+	
 	// 해당 사장님의 해당 요일 영업시간 조회
 	@Override
 	public HostVO getOperatingInfo(Map<String, Object> map) {
@@ -57,6 +65,13 @@ public class UserReservationDAOImpl implements UserReservationDAO {
 		UserReservationDAO dao = sqlSession.getMapper(UserReservationDAO.class);
 		return dao.getAvailableRoom(host_code);
 	}
+	
+	// 호실 상세 정보
+	@Override
+	public ReservationVO getRoomInfo(String room_setting_code) {
+		UserReservationDAO dao = sqlSession.getMapper(UserReservationDAO.class);
+		return dao.getRoomInfo(room_setting_code);
+	}
 
 	// 해당 날짜에 해당 호실 예약 현황
 	@Override
@@ -69,15 +84,38 @@ public class UserReservationDAOImpl implements UserReservationDAO {
 	@Override
 	public int insertRoomBooking(ReservationVO vo) {
 		UserReservationDAO dao = sqlSession.getMapper(UserReservationDAO.class);
+		insertRoomBooking2(vo);
 		return dao.insertRoomBooking(vo);
+	}
+	
+	// 호실 예약 상세 처리
+	@Override
+	public int insertRoomBooking2(ReservationVO vo) {
+		UserReservationDAO dao = sqlSession.getMapper(UserReservationDAO.class);
+		return dao.insertRoomBooking2(vo);
 	}
 
 	// 예약 신청 시간 가능 여부 체크
 	@Override
-	public int chkRoomBooking(ReservationVO vo) {
+	public int chkRoomBooking(Map<String, Object> map) {
 		UserReservationDAO dao = sqlSession.getMapper(UserReservationDAO.class);
-		return dao.chkRoomBooking(vo);
+		createRoomBookingView(map);
+		return dao.chkRoomBooking(map);
 	}
+
+	// 예약 신청 시간 가능 여부 체크를 위한 뷰 생성
+	@Override
+	public void createRoomBookingView(Map<String, Object> map) {
+		System.out.println("DAO - sql 문 : " + map.get("sql"));
+		UserReservationDAO dao = sqlSession.getMapper(UserReservationDAO.class);
+		dao.createRoomBookingView(map);
+	}
+
+
+
+
+	
+	
 	
 	
 

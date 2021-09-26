@@ -10,14 +10,11 @@ $(document).ready(function() {
 
 
     $('#external-events div.external-event').each(function() {
-
-        // store data so the calendar knows to render an event upon drop
         $(this).data('event', {
             title: $.trim($(this).text()), // use the element's text as the event title
             stick: true // maintain when user navigates (see docs on the renderEvent method)
         });
 
-        // make the event draggable using jQuery UI
         $(this).draggable({
             zIndex: 1111999,
             revert: true,      // will cause the event to go back to its
@@ -112,7 +109,6 @@ $(document).ready(function() {
                 		console.log(error);  
                 		$("#timeTable").html("예약 가능한 시간이 없습니다.");
                 	  }
-                	  
                   });
             	  
               // 달력에 날짜 클릭시 com_res가 "호실"일 경우 bookingRoomTable 내용을 보여줌
@@ -132,17 +128,13 @@ $(document).ready(function() {
                 		console.log(error);  
                 		$("#roomTable").html("예약 가능한 시간이 없습니다.");
                 	  }
-                	  
                   });
               } else {
             	  alert("다시 시도해주세요.");
             	  window.history.back();
               }
-              
-
             $('.res_date').html(m);
            }
-        
         }, 
     });
 
@@ -169,6 +161,7 @@ $(document).ready(function() {
     	
     	var priceTotal = parseInt(cnt) * parseInt(per_price);
     	$("#priceTotal").val(addComma(priceTotal));
+    	$("#res_sales").val(priceTotal);
     };
     
     // 인원수 감소
@@ -220,26 +213,25 @@ $(document).ready(function() {
     });
     
     // 담당자 선택
-    $("button[id^=managerBtn]").click(function() {
-       var managerClick = $(this).attr('value');
-       $('#selectManager').val(managerClick);
+    $("td[class^=managerBtn]").click(function() {
+       var managerClick = $(this).find(".managerBtn").attr('value');
+       var employee_code = $(this).find("#employee_code").val();
+       $('#selectManager').val(employee_code);
        $('.managerSelectedInfo').html(managerClick);
     });
     
     // 결제 상품 선택 
-    $("input[name=ReserveProduct]").click(function() {
-       var productClick = $(this).attr('value');
-       console.log(productClick);
-       var productPrice = $('input[id$=price_'+productClick+']');
-       console.log(productPrice.val());
-       $('#ReserveProductSum').val(productPrice.val());
+    $("tr[class^=proList]").click(function() {
+       var productPrice = $(this).find("input[id^=price]").val();
+       $('#ReserveProductSum').val(productPrice);
        
-       var productPrice_format = addComma(productPrice.val());
+       var product_code = $(this).find("input[name=ReserveProduct]").val();
+       $("#product_code").val(product_code);
        
+       var productPrice_format = addComma(productPrice);
        $('.productSelectedInfo').html(productPrice_format);
        
     });
-    
     
     
   //천단위 콤마 함수
@@ -254,13 +246,22 @@ $(document).ready(function() {
        return value; 
   };
   
-	// 예약하기 버튼 클릭 시 로그인이 되어있지 않으며 alert및 이전페이지로 이동
+	// 예약하기 버튼 클릭 시 필수 정보 부재시 alert 및 return false
 	$("#custBookingForm").submit(function() {
 		if($("#user_id").val() == "") {
 			alert("로그인 후 예약을 진행하세요!");
 			window.location="home";
 			return false;
-		}
+		} else if($("#GuestCount").val() == 0) {
+			alert("예약 항목을 선택해주세요!");
+			return false;
+		} else if($("#priceTotal").val() == 0) {
+			alert("예약 항목을 선택해주세요!");
+			return false;
+		} else if($("#ReserveProductSum").val() == 0) {
+			alert("예약 항목을 선택해주세요!");
+			return false;
+		} 
 	});
   
   
