@@ -249,6 +249,7 @@ public class MainwebController {
 	      
 	      if(com_res.equals("담당자")) {
 	    	  System.out.println("담당자 진입");
+	    	  service_custReserve.custManagerBooking(req, model);
 	    	  return "mainweb/custManagerBooking";
 	      } else {
 	    	  System.out.println("호실 진입");

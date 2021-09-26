@@ -11,13 +11,14 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
 
+
 public interface UserReservationService {
 	
 	// 고객 매장 선택 페이지
 	public void selectHost(HttpServletRequest req, Model model);
 
-	// 고객 예약 페이지
-	public void custBooking(HttpServletRequest req, Model model);
+	// 고객 담장자 예약 페이지
+	public void custManagerBooking(HttpServletRequest req, Model model);
 	
 	// 고객 예약 가능 시간 표시
 	public void bookingTimeTable(HttpServletRequest req, Model model);

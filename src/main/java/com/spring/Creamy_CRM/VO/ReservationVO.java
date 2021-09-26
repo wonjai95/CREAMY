@@ -24,6 +24,7 @@ public class ReservationVO {
 	private String res_review_chk;			// 후기 작성여부 체크
 	private String res_start;				// 예약 시작 시간
 	private String res_end;					// 예약 종료 시간
+	private int res_sales;					// 총 금액
 	
 	//고객 예약내역에서 사용할 변수
 	private String comp_name;			//회사명
@@ -36,6 +37,7 @@ public class ReservationVO {
 	private int per_price;				// 1인당 가격
 	private int min_cnt;				// 최소 인원수
 	private int max_cnt;				// 최대 인원수
+	
 	
 	private String host_code;			// 사장님 코드
 	
@@ -193,6 +195,12 @@ public class ReservationVO {
 	}
 	public void setMax_cnt(int max_cnt) {
 		this.max_cnt = max_cnt;
+	}
+	public int getRes_sales() {
+		return res_sales;
+	}
+	public void setRes_sales(int res_sales) {
+		this.res_sales = res_sales;
 	}
 	
 	
