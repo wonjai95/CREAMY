@@ -16,7 +16,6 @@
     <input type="hidden" name="employee_code" value="${employee_code}">
     <input type="hidden" name="salary_contract_code" value="0">
     <input type="hidden" name="monthly_salary" value="0">
-    <input type="hidden" name="salary_payDate" value=sysdate>
 
         <!-- 월선택 달력!!! -->
 		<div class="round-btn" style="text-align:right; margin-bottom:10px;">
