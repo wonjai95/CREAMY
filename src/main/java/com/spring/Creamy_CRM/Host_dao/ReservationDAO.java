@@ -38,6 +38,9 @@ public interface ReservationDAO {
 	public int deleteRequest1(String res_code);
 	public int deleteRequest2(String res_detail_code);
 	
+	// 서비스 완료처리 페이지
+	public int completeService(ReservationVO vo);
+	
 //======= 예약조회 탭 =======
 	// 예약조회 목록 갯수 구하기
 	public int getCompleteCnt();

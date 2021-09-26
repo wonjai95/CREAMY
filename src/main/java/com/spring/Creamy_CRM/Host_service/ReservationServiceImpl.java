@@ -109,12 +109,14 @@ public class ReservationServiceImpl implements ReservationService {
 		System.out.println("==============================");
 		
 		List<ReservationVO> dtos = null;
+		//String state = "서비스 완료";
 
 		if(cnt > 0) {
 			// 5-2단계. 게시글 목록 조회
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("start", start);
 			map.put("end", end);
+			//map.put("res_state", state);
 			
 			dtos = dao.getRequestList(map);  // dtos대신 list로 매개변수 줘도 무방하다.
 		}
@@ -229,11 +231,38 @@ public class ReservationServiceImpl implements ReservationService {
 		// 6단계. jsp로 전달하기 위해 request나 session에 처리결과를 저장
 		model.addAttribute("deleteCnt", deleteCnt);  // deleteCnt = 2
 	}
-
+	
+	// 서비스 완료처리 페이지
+	public void completeAction(HttpServletRequest req, Model model) {
+		System.out.println("completeAction 시작합니다.");
+		// 3단계. 화면으로부터 입력받은 값(= hidden값)을 받아온다.
+		String res_state = "서비스 완료";
+		String res_code = req.getParameter("res_code");
+		
+		// reservationVO vo 바구니 생성
+		ReservationVO vo = new ReservationVO();
+		
+		vo.setRes_state(res_state);
+		vo.setRes_code(res_code);  // update시, WHERE절에서 key를 비교하기 위해서.
+		
+		System.out.println("res_state : " + res_state);
+		System.out.println("res_code : " + res_code);
+		
+		int updateCnt = dao.completeService(vo);
+		System.out.println("updateCnt : " + updateCnt);
+		
+		model.addAttribute("updateCnt", updateCnt);
+	}
+	
+	
+	
+	
+	
 //======= 예약조회 탭 =======
 	// 예약조회 목록
 	@Override
 	public void completeList(HttpServletRequest req, Model model) {
+		System.out.println("서비스 completeList시작합니다.");
 		// 3단계. 화면으로부터 입력받은 값을 받아온다.
 		// 페이징 (변수들)
 		int pageSize = 10;		// 한 페이지당 출력할 글의 갯수

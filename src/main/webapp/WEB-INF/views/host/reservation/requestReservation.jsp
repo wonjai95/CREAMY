@@ -74,28 +74,26 @@
 	<div class="row">
 	    <div class="col-lg-12">
 	        <div class="ibox-title">
-	            <h5>예약요청 목록을 보여줍니다. 예약코드를 선택해 관리해보세요.</h5>	            
+	            <h5>예약요청 목록을 보여줍니다. 예약코드를 선택해 관리해보세요.</h5>
+	            <br>
+	            <small>*** 테스트 공지 : 현재 보이는 창은 mapper : WHERE NOT res_state IN '서비스 완료' 를 지정해서,
+	            예약 상태가 서비스 완료를 제외한 모든 목록 뿌리기 입니다. 서비스 완료 목록보기는 위에 [예약 조회] 탭으로 ㄱㄱ</small>            
 	        </div>
 	    </div>
 <!-- ------------------------------- 테이블표 시작 전 '예약요청' 설명란 끝 -->
 
 <!-- ------------------------------- 테이블표 시작 전 '예약요청' 검색창 시작 -->
+		
+		
 		<div class="col-sm-2">
 			<div class="form-group">
 				<select name="" id="" class="form-control">
 					<option value="1" selected="">예약상태</option>
-					<option value="2">글제목</option>
-					<option value="3">작성자</option>
-					<option value="4">등록일</option>
+					<option value="2">예약완료</option>
+					<option value="3">예약취소</option>
 				</select>
 			</div>
 		</div>
-		
-		<form action="requestReservation" method="post">
-		   <sec:csrfInput/>
-           <input type="hidden" id="pageNum" name="pageNum" value="${pageNum}">
-           <%-- <input type="hidden" id="user_id" name="user_id" value="${dto.user_id}"> --%>
-		
 		
 		<div class="col-sm-2">
 			<div class="form-group">
@@ -144,6 +142,7 @@
 		        <tbody id="requestList">
 				<!-- 예약조회 목록이 있다면 -->
 				<c:if test="${cnt > 0}">
+					<%-- <c:if test="${dto.res_state == '서비스 완' > 0}"> --%>
 					<%-- c:forEach var="작은 바구니 참조변수(임의로 지정하기)" items="${큰 바구니}" --%>
 					<c:forEach var="dto" items="${dtos}">
 						<tr class="gradeX">
@@ -153,7 +152,7 @@
 							</td>
 							
 							<td style="text-align:center">${dto.user_id}</td>
-							
+							<%-- ${param.dto.user_id} --%>
 							<td style="text-align:center">${dto.employee_code}</td>
 							
 							<td style="text-align:center">${dto.res_state}</td>
@@ -163,6 +162,7 @@
 							<td style="text-align:center">${dto.res_date}</td>
 						</tr>
 					</c:forEach>
+					<%-- </c:if> --%>
 				</c:if>
 				
 				<!-- 예약조회 목록이 없다면, -->

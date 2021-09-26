@@ -108,6 +108,13 @@ public class ReservationDAOImpl implements ReservationDAO {
 		
 		return deleteCnt;
 	}
+	
+	// 서비스 완료처리 페이지
+	public int completeService(ReservationVO vo) {
+		// SQL(DB) : reservation_tbl 업데이트
+		ReservationDAO dao = sqlSession.getMapper(ReservationDAO.class);
+		return dao.completeService(vo);
+	}
 
 //======= 예약조회 탭 =======
 	// 예약조회 목록 갯수 구하기
