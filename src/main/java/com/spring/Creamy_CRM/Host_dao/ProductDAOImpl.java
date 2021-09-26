@@ -19,6 +19,7 @@ import com.spring.Creamy_CRM.VO.ProductVO;
 import com.spring.Creamy_CRM.VO.SaleVO;
 import com.spring.Creamy_CRM.VO.StockVO;
 import com.spring.Creamy_CRM.VO.TradeVO;
+import com.spring.Creamy_CRM.VO.userVO;
 
 @Repository
 public class ProductDAOImpl implements ProductDAO {
@@ -218,6 +219,13 @@ public class ProductDAOImpl implements ProductDAO {
 	@Override
 	public int deleteStock(String stock_code) {
 		return sqlSession.delete("com.spring.Creamy_CRM.Host_dao.productDAO.deleteStock", stock_code);
+	}
+
+	// 결제정보 등록
+	@Override
+	public int addSaleInfo(userVO vo) {
+		
+		return sqlSession.insert("com.spring.Creamy_CRM.Host_dao.productDAO.addSaleInfo", vo);
 	}
 
 }
