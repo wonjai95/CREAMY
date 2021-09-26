@@ -590,27 +590,33 @@ public class ProductServiceImpl implements ProductService {
 	public void addSaleInfo(HttpServletRequest req, Model model) {
 		System.out.println("service ==> addSaleInfo");
 		
-		//int total_payment = Integer.parseInt(req.getParameter("total_payment"));
-		String payment_option = req.getParameter("payment_option");
-		String credit_select = req.getParameter("credit_select");
-		String credit_installment = req.getParameter("credit_installment");
+		String host_code = (String) req.getSession().getAttribute("code");
+		System.out.println("host_code : " + host_code);
+		
+		int total_payment = Integer.parseInt(req.getParameter("product_price_hidden"));
+		System.out.println("total_payment : " + total_payment);
+		String payment_option = req.getParameter("payment_option_hidden");
+		System.out.println("payment_option  : " + payment_option);
+		//String credit_select = req.getParameter("credit_select");
+		//String credit_installment = req.getParameter("credit_installment");
 		String sale_date = req.getParameter("sale_date");
 		
 		String sale_memo = req.getParameter("sale_memo");
 		
 		String user_code = req.getParameter("user_code");
-		String employee_code = req.getParameter("employee_code");
+		String employee_code = req.getParameter("employee_name");
 		String product_code = req.getParameter("product_code");
-		
+		System.out.println("product_code : " + product_code);
 		userVO vo = new userVO();
-		//vo.setTotal_payment(total_payment);
-		//vo.setPayment_option(payment_option);
+		vo.setTotal_payment(total_payment);
+		vo.setPayment_option(payment_option);
 		
 		Date sDate = Date.valueOf(sale_date);
 		vo.setSale_date(sDate);
 		vo.setSale_memo(sale_memo);
-		
 		vo.setEmployee_code(employee_code);
+		
+		
 		vo.setUser_code(user_code);
 		vo.setProduct_code(product_code);
 		

@@ -135,7 +135,7 @@ $("document").ready(function() {
 	<!-- nav bar  -->
 	<jsp:include page="../navbar.jsp" />
 	
-<!-- 버튼 클릭시 전달할 직원 코드 -->   
+<!-- 버튼 클릭시 전달할 회원 코드 -->   
 <input type="hidden" value="0" name="user_code_hidden">
 <input type="hidden" value="0" name="user_name_hidden">
 <input type="hidden" value="0" name="user_ph_hidden">
