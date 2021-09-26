@@ -209,6 +209,37 @@ public class MainwebController {
 		return "mainweb/review/review_main";
 	}
 	
+	//리뷰 수정
+		@RequestMapping("/modify_review")
+		public String modify_review(HttpServletRequest req, Model model) {
+			logger.info("url ->modify_review");
+			
+			service_review.ReviewDetail(req, model);
+			
+			return "mainweb/review/review_modify";
+		}
+		
+		//리뷰 수정 처리
+		@RequestMapping("/modify_reviewAction")
+		public String modify_reviewAction(HttpServletRequest req, Model model) {
+			logger.info("url -> modify_reviewAction");
+			
+			service_review.Modify_reviewAction(req, model);
+			
+			String pageCheck = req.getParameter("check_page");
+			
+			if(pageCheck.equals("my")) {
+				service_review.getMyReviewList(req, model);
+				
+				return "mainweb/review/review_mypage";
+			}else {
+				
+				service_review.getReviewList(req, model);
+				return "mainweb/review/review_main";	
+			}
+			
+		}
+	
 	//로그아웃 - 수정예정
 	@RequestMapping("/logout")
 	public String logout(HttpServletRequest req) {
@@ -332,3 +363,4 @@ public class MainwebController {
 	}
 
 }
+	

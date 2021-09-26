@@ -14,6 +14,7 @@ public class ReviewVO {
 	private String res_code;		//예약 코드
 	
 	private String user_name;		//작성자 이름
+	private String user_id;			//작성자 id
 	
 	
 	
@@ -76,6 +77,12 @@ public class ReviewVO {
 	}
 	public void setUser_name(String user_name) {
 		this.user_name = user_name;
+	}
+	public String getUser_id() {
+		return user_id;
+	}
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
 	
 	
