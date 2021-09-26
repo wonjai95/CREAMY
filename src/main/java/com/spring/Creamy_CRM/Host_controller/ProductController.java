@@ -207,12 +207,22 @@ public class ProductController {
 
 		// 상품 목록 출력  
 		service.printProducts(req, model);
-
 		model.addAttribute("dto_product", req.getAttribute("dto2")); // 상품 정보 넘겨주기
-		
-		// 상품 장바구니에 담기
 		
 		return "host/product/product_selling";
 	}
+	
+	// 판매 처리 
+	@RequestMapping("/host/selling_action")
+	public String selling_action(HttpServletRequest req, Model model) {
+		logger.info("url -> product_selling");
+		
+		// 결제 정보 insert
+		service.addSaleInfo(req, model);
+		
+		return "host/product/selling_action";
+	}
+	
+	
 
 }
