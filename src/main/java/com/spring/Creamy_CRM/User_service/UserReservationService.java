@@ -16,6 +16,9 @@ public interface UserReservationService {
 	
 	// 고객 매장 선택 페이지
 	public void selectHost(HttpServletRequest req, Model model);
+	
+	// 고객 매장 선택 페이지 - 검색
+	public void searchHostList(HttpServletRequest req, Model model);
 
 	// 고객 담장자 예약 페이지
 	public void custManagerBooking(HttpServletRequest req, Model model);
