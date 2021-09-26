@@ -63,6 +63,15 @@ public class EmployeeController {
 		return "host/employee/employee_attendanceList";
 	}
 	
+	// 선택한 월의 직원 근태 목록 조회
+	@RequestMapping("host/month_attendanceList")
+	public String month_attendanceList(HttpServletRequest req, Model model) {
+		logger.info("url -> month_attendanceList");
+		
+		
+		return "host/employee/employee_attendanceList";
+	}
+	
 	// 직원 휴가 목록 조회
 	@RequestMapping("host/employee_leaveList")
 	public String employee_leaveList(HttpServletRequest req, Model model) {
@@ -104,10 +113,12 @@ public class EmployeeController {
 	}
 	
 	// 급여 지급 조회
-	@RequestMapping("host/employee_payment")
+	@RequestMapping("host/employee_paymentList")
 	public String employee_payment(HttpServletRequest req, Model model) {
 		
-		return "host/employee/employee_payment";
+		service.paymentList(req, model);
+		
+		return "host/employee/employee_paymentList";
 	}
 	   
 	// 직원 등록

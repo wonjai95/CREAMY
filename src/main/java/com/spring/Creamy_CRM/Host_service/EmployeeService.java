@@ -36,6 +36,9 @@ public interface EmployeeService {
 	// 직원 급여 지급 등록
 	public void insertPaymentAction(HttpServletRequest req, Model model);
 	
+	// 직원 급여 지금 목록 조회
+	public void paymentList(HttpServletRequest req, Model model);
+	
 	// 직원 등록시 해당 id가 있는지 체크 
 	public void chkEmployeeIdAction(HttpServletRequest req, Model model);
 

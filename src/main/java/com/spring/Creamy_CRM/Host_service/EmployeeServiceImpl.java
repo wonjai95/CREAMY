@@ -23,6 +23,7 @@ import com.spring.Creamy_CRM.VO.AttendanceVO;
 import com.spring.Creamy_CRM.VO.EmployeeVO;
 import com.spring.Creamy_CRM.VO.LeaveVO;
 import com.spring.Creamy_CRM.VO.SalaryContractVO;
+import com.spring.Creamy_CRM.VO.SalaryVO;
 import com.spring.Creamy_CRM.VO.WorkingHoursVO;
 import com.spring.Creamy_CRM.util.EmailChkHandler;
 
@@ -124,10 +125,21 @@ public class EmployeeServiceImpl implements EmployeeService {
 		String employee_code = req.getParameter("employee_code");
 		System.out.println("근태 목록 서비스");
 		
+		// ajax에서 넘어온 년도와 월 ex) 2021-09
+		String currentMonth = req.getParameter("currentMonth");
+		System.out.println("currentMonth : " + currentMonth);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("empCode", employee_code);
+		map.put("curMonth", currentMonth);
+		
 		// 직원 근태 정보 가져오기
-		ArrayList<AttendanceVO> attList = dao.getAttendanceList(employee_code);
+		ArrayList<AttendanceVO> attList = dao.getAttendanceList(map);
 		
 		model.addAttribute("attList", attList);
+		model.addAttribute("employee_code", employee_code);
+		model.addAttribute("currentMonth", currentMonth);
 	}
 	
 	// 직원 휴가 목록 조회
@@ -189,14 +201,38 @@ public class EmployeeServiceImpl implements EmployeeService {
 		int employment_insurance = (int)(monthly_salary * 0.008);
 		System.out.println("employment_insurance : " + employment_insurance);
 		
-		int total_amount = income_tax + national_pension + health_insurance + lt_care_insurance + employment_insurance;
+		int deduction_total = income_tax + national_pension + health_insurance + lt_care_insurance + employment_insurance;
 		
-		int loan_payment_amount = monthly_salary - (total_amount);
+		int loan_payment_amount = monthly_salary - (deduction_total);
 		System.out.println("loan_payment_amount : " + loan_payment_amount);
 		
+		SalaryVO vo = new SalaryVO();
+		vo.setEmployee_code(employee_code);
+		vo.setSalary_payDate(Date.valueOf(salary_payDate));
+		vo.setPay_month(pay_month);
+		vo.setSalary(monthly_salary);
+		vo.setIncome_tax(income_tax);
+		vo.setNational_pension(national_pension);
+		vo.setHealth_insurance(health_insurance);
+		vo.setLt_care_insurance(lt_care_insurance);
+		vo.setEmployment_insurance(employment_insurance);
+		vo.setDeduction_total(deduction_total);
+		vo.setLoan_payment_amount(loan_payment_amount);
 		
+		int insertCnt = dao.insertPayment(vo);
 		
-	} 
+		model.addAttribute("insertCnt", insertCnt);
+	}
+	
+	// 직원 급여 지금 목록 조회
+	public void paymentList(HttpServletRequest req, Model model) {
+		String employee_code = req.getParameter("employee_code");
+		System.out.println("employee_code : " + employee_code);
+		
+		ArrayList<SalaryVO> paymentList = dao.getPaymentList(employee_code);
+		
+		model.addAttribute("paymentList", paymentList);
+	}
 	
 	// 직원 등록시 해당 id 체크 
 	@Override
