@@ -26,6 +26,11 @@
 <input type="hidden" value="0" name="product_rentalPeriod_hidden">
 
 
+<!-- 버튼 클릭시 전달할 버튼 코드 -->   
+<input type="hidden" value="0" name="cash_btn_hidden">
+
+
+
 <!-- ------------------------------- 판매 정보 시작 -->
 <div class="wrapper wrapper-content animated fadeInRight">
 	<div class="row">
@@ -35,7 +40,7 @@
 	            <h5>상품판매를 진행합니다.</h5>
 	            
 	            &nbsp;&nbsp;&nbsp;
-	            <button type="submit" class="btn btn-primary btn-lg"> 상품 판매 </button>
+	            <button type="submit" id="selling" class="btn btn-primary btn-lg"> 상품 판매 </button>
 	            
 	        </div>
 <!-- ------------------------------- 판매 정보 끝 -->
@@ -240,14 +245,16 @@
 	                
 	                <div class="form-group  row">
 	                <label class="col-sm-3 col-form-label">납부 방법</label>
-		                <div class="col-sm-8" name="payment_option">
-		                	<table>
+		                <div class="col-sm-8" name="">  
+		                	<table>   
 		                	<tr><td>
-			                    <button type="button" name="현금" id="cash_btn" class="btn btn-outline btn-primary">현금</button>
-			                    <button type="button" name="카드" id="credit_btn" class="btn btn-outline btn-primary">카드</button>
-			                    <button type="button" name="무통장" id="bank_btn" class="btn btn-outline btn-primary">무통장</button>
-			                    <button type="button" name="카카오페이" id="kakao_btn" class="btn btn-outline btn-primary">카카오페이</button>
-		                    </td></tr>
+			                    <input type="button" name="payment_option" id="cash_btn" value="현금" class="btn btn-outline btn-primary" >
+			                    <input type="hidden" name="payment_option_hidden" value="0">
+			                    <%--<input type="button" name="payment_option" id="credit_btn" value="카드" class="btn btn-outline btn-primary" >
+			                    <input type="button" name="payment_option" id="bank_btn" value="무통장" class="btn btn-outline btn-primary" >
+			                    <input type="button" name="payment_option" id="kakao_btn" value="카카오페이" class="btn btn-outline btn-primary" >
+			                     --%>
+		                    </td></tr>   
 		                    </table>
 		                 </div>
 		            </div>
@@ -313,23 +320,20 @@
 		                	<input type="checkbox" class="i-checks" style="position: absolute; opacity: 0;">dd
 		                	<ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>
 		                	
-		                </div>
+		                </div>         
 		            </div> 
 	                <div class="hr-line-dashed"></div>
 	                <div class="form-group  row">
 	                <label class="col-sm-3 col-form-label">수납자</label>
 		                <div class="col-sm-8">
-		                     <select name="employee_code" id="" class="form-control">
-								<option value="1" selected="">미지정</option>
-	                            <%-- 
-	                            <c:forEach var="dto" items="${dto}">
-	                            	<option value="${dto.employee_name}">${dto.employee_name}</option> 
-	                            	<input type="hidden" name="${dto.employee_name}">
-	                            </c:forEach>
-	                             --%>
-                        	 </select>
+			                     <select name="employee_name" id="" class="form-control">
+			                     <option value="1" selected="">미지정</option>
+									<c:forEach var="dto_emp" items="${dtos}">
+ 		                            	<option value="${dto_emp.employee_code}">${dto_emp.employee_name}</option> 
+	                            	</c:forEach>
+	                        	 </select>
                         </div>   
-		            </div>
+		            </div>    
 		            <div class="hr-line-dashed"></div> 
 	                <div class="form-group  row">
 	                <label class="col-sm-3 col-form-label">납부 메모</label>

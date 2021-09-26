@@ -210,14 +210,13 @@
 	
 	<!-- 재고 삭제 -->
 	<delete id="deleteStock" parameterType="String">
-		delete from stock_tbl where stock_code = #{stock_code}	
+		delete from stock_tbl where stock_code = #{stock_code}
 	</delete>
 	
-	<!-- 결제정보 등록 -->
-	<insert id="addSaleInfo" parameterType="com.spring.Creamy_CRM.VO.userVO">
+	<!-- 결제정보 등록 -->  
+	<insert id="addSaleInfo" parameterType="com.spring.Creamy_CRM.VO.userVO"> 
 		INSERT INTO sale_tbl(sale_code, total_payment, sale_date, payment_option, sale_memo, user_code, employee_code, product_code)
-		 VALUES('SL'||sale_seq.NEXTVAL, #{total_payment}, #{sale_date}, #{payment_option}, #{sale_memo}, #{user_code}, #{employee_code}, #{product_code});
-
+		 VALUES('SL'||sale_seq.NEXTVAL, #{total_payment}, #{sale_date}, #{payment_option}, #{sale_memo}, #{user_code}, #{employee_code}, #{product_code})
 	</insert>
 	
 	

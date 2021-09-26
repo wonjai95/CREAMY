@@ -16,9 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.spring.Creamy_CRM.Host_service.CRMuserService;
-import com.spring.Creamy_CRM.Host_service.LoginServiceImpl;
+import com.spring.Creamy_CRM.Host_service.EmployeeService;
 import com.spring.Creamy_CRM.Host_service.ProductService;
-import com.spring.Creamy_CRM.VO.userVO;
 
 @Controller
 public class ProductController {
@@ -26,9 +25,13 @@ public class ProductController {
 
 	@Autowired
 	ProductService service;
+	
 	@Autowired
 	CRMuserService service_user;
 
+	@Autowired
+	EmployeeService service_emp;
+	
 	// 상품관련 페이지 요청
 	@RequestMapping("/host/product")
 	public String product(HttpServletRequest req, Model model) {
@@ -195,8 +198,8 @@ public class ProductController {
 		return "host/product/deleteStockAction";
 	}
 
-	// 판매 페이지
-	@RequestMapping("/host/product_selling")
+	// 판매 페이지      
+	@RequestMapping("/host/product_selling")         
 	public String product_selling(HttpServletRequest req, Model model) {
 		logger.info("url -> product_selling");
 
@@ -209,10 +212,14 @@ public class ProductController {
 		service.printProducts(req, model);
 		model.addAttribute("dto_product", req.getAttribute("dto2")); // 상품 정보 넘겨주기
 		
+		// 결제정보 입력창에서 직원(수납자) 정보 뿌리기
+		service_emp.employeeList(req, model);
+		
+		
 		return "host/product/product_selling";
 	}
 	
-	// 판매 처리 
+	// 판매 처리
 	@RequestMapping("/host/selling_action")
 	public String selling_action(HttpServletRequest req, Model model) {
 		logger.info("url -> product_selling");
@@ -221,8 +228,8 @@ public class ProductController {
 		service.addSaleInfo(req, model);
 		
 		return "host/product/selling_action";
-	}
-	
+	}    
+	    
 	
 
 }
