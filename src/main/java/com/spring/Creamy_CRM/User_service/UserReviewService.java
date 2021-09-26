@@ -27,4 +27,7 @@ public interface UserReviewService {
 	//후기 클릭시 상세내용 출력
 	public void ReviewDetail(HttpServletRequest req, Model model);
 	
+	//후기 수정 액션
+	public void Modify_reviewAction(HttpServletRequest req, Model model);
+	
 }

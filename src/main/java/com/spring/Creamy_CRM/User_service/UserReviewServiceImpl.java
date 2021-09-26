@@ -168,5 +168,42 @@ public class UserReviewServiceImpl implements UserReviewService {
 		
 	}
 
+	//후기 수정 액션
+	@Override
+	public void Modify_reviewAction(HttpServletRequest req, Model model) {
+		String review_code = req.getParameter("review_code");
+		String res_code = req.getParameter("res_code");
+		String id = (String) req.getSession().getAttribute("id");
+		//유저 코드 들고오기
+		String user_code = dao_login.getUserInfo(id).getUser_code();
+		
+		String title = req.getParameter("title");
+		String content = req.getParameter("contents");
+		Date date = new Date(System.currentTimeMillis());
+		int star = Integer.parseInt(req.getParameter("star"));
+		String imgPath = req.getParameter("file_name");
+		
+		if(imgPath.length() < 1) {
+			imgPath = req.getParameter("img_url");
+		}
+		
+		ReviewVO vo = new ReviewVO();
+		vo.setReview_code(review_code);
+		vo.setUser_code(user_code);
+		vo.setTitle(title);
+		vo.setContent(content);
+		vo.setRegDate(date);
+		vo.setStar(star);
+		vo.setReview_img(imgPath);
+		vo.setRes_code(res_code);
+		
+		System.out.println("이미지 " +imgPath);
+		System.out.println("별 " +star);
+		
+		int modifyCnt = dao_review.modify_Review(vo);
+		System.out.println("후기 수정 성공 : "+modifyCnt);
+		
+	}
+
 
 }

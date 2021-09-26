@@ -67,5 +67,10 @@ public class UserReviewDAOImpl implements UserReviewDAO {
 	public int plusReadCnt(Map<String, Object> map) {
 		return sqlSession.update("com.spring.Creamy_CRM.User_dao.UserReviewDAO.plusReadCnt",map);
 	}
+
+	@Override
+	public int modify_Review(ReviewVO vo) {
+		return sqlSession.update("com.spring.Creamy_CRM.User_dao.UserReviewDAO.modify_Review",vo);
+	}
 	
 }
