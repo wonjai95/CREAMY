@@ -30,6 +30,13 @@ public class UserReservationDAOImpl implements UserReservationDAO {
 		UserReservationDAO dao = sqlSession.getMapper(UserReservationDAO.class);
 		return dao.selectHost();
 	}
+	
+	// 고객 매장 선택 페이지 - 검색
+	@Override
+	public List<HostVO> searchHostList(String keyword) {
+		UserReservationDAO dao = sqlSession.getMapper(UserReservationDAO.class);
+		return dao.searchHostList(keyword);
+	}
 
 	// 해당 사장님의 상품 정보 가져오기
 	@Override
@@ -111,10 +118,6 @@ public class UserReservationDAOImpl implements UserReservationDAO {
 		dao.createRoomBookingView(map);
 	}
 
-
-
-
-	
 	
 	
 	

@@ -237,6 +237,16 @@ public class MainwebController {
 	      return "mainweb/selectHost";
 	}	
 	
+	// 고객 매장 선택 페이지 - 검색
+	@RequestMapping("/searchHostList")
+	public String searchHostList(HttpServletRequest req, Model model) {
+		logger.info("url -> searchHostList");
+		
+		service_custReserve.searchHostList(req, model);
+		return "mainweb/searchHostList";
+	}	
+	
+	
 	//회원 예약 페이지
 	@RequestMapping("/custBooking")
 	   public String custBooking(HttpServletRequest req, Model model) {

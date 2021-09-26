@@ -41,6 +41,17 @@ public class UserReservationServiceImpl implements UserReservationService {
 		model.addAttribute("dtos", list);
 	}
 	
+	// 고객 매장 선택 페이지 - 검색
+	@Override
+	public void searchHostList(HttpServletRequest req, Model model) {
+		String keyword = req.getParameter("keyword");
+		System.out.println("keyword : " + keyword);
+		List<HostVO> list = dao.searchHostList(keyword);
+		model.addAttribute("dtos", list);
+		
+	}
+	
+	
 	// 담당자 예약 - 해당 사장님의 상품 정보 가져오기
 	@Override
 	public void custManagerBooking(HttpServletRequest req, Model model) {

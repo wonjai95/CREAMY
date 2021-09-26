@@ -22,6 +22,19 @@
          margin-bottom: 20px;
       }
    
+	   @font-face {
+		    font-family: 'Wemakeprice-Regular';
+		    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/Wemakeprice-Regular.woff') format('woff');
+		    font-weight: normal;
+		    font-style: normal;
+		}
+		
+		body { font-family: 'Wemakeprice-Regular';}
+		.panel-heading { margin-bottom: 20px;}
+		a:link {text-decoration: none;}
+		h3 {font-size: 18px;}
+		address {font-size: 14px;}
+	   
    </style>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a24a16f3acffb8fc1ba508e3c65e6c76&libraries=services"></script>
 <script type="text/javascript" src="${path}/resources/host/js/custBooking.js"></script>
@@ -106,13 +119,13 @@
                                        <td>
                                           <div class="row">
                                              <div class="col-3" style="width: auto;">
-                                                <input type="button" id="GuestCountMinus" name="GuestCountMinus" class="btn btn-primary" value="－" />
+                                                <input type="button" id="GuestCountMinus" name="GuestCountMinus" class="btn btn-primary" value="-" />
                                              </div>
                                              <div class="col-4">
                                                 <input type="text" id="GuestCount" name="GuestCount" maxlength="4" class="form-control text-center" value="0" readonly />
                                              </div>
                                              <div class="col-3">
-                                                <input type="button" id="GuestCountPlus" name="GuestCountPlus" class="btn btn-primary" value="＋" />
+                                                <input type="button" id="GuestCountPlus" name="GuestCountPlus" class="btn btn-primary" value="+" />
                                              </div>
                                              <div class="offset-1"></div>
                                           </div>

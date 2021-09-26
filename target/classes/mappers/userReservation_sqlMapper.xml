@@ -15,6 +15,16 @@
 	<select id="selectHost" resultType="com.spring.Creamy_CRM.VO.HostVO">
 		SELECT * FROM host_info_view 
 	</select>
+	
+	<!-- 매장 목록 조회 -->
+	<select id="searchHostList" parameterType="String" resultType="com.spring.Creamy_CRM.VO.HostVO">
+		SELECT * 
+		  FROM host_info_view 
+		 WHERE host_name LIKE '%' || #{keyword} || '%'
+		    OR comp_name LIKE '%' || #{keyword} || '%'
+		    OR comp_address LIKE '%' || #{keyword} || '%'
+		    OR host_ph LIKE '%' || #{keyword} || '%'
+	</select>
    	
    	<!-- 담당자 예약 - 해당 사장님의 상품 정보 가져오기 -->
    	<select id="getProductList" parameterType="String" resultType="com.spring.Creamy_CRM.VO.ProductVO">

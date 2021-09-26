@@ -21,7 +21,20 @@
       .panel-heading {
          margin-bottom: 20px;
       }
-   
+      
+	@font-face {
+	    font-family: 'Wemakeprice-Regular';
+	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/Wemakeprice-Regular.woff') format('woff');
+	    font-weight: normal;
+	    font-style: normal;
+	}
+	
+	body { font-family: 'Wemakeprice-Regular';}
+	.panel-heading { margin-bottom: 20px;}
+	a:link {text-decoration: none;}
+	h3 {font-size: 18px;}
+	address {font-size: 14px;}
+	
    </style>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a24a16f3acffb8fc1ba508e3c65e6c76&libraries=services"></script>
 <script type="text/javascript" src="${path}/resources/host/js/custBooking.js"></script>
@@ -33,10 +46,6 @@
         <div id="page-wrapper" class="gray-bg">
         <div class="row border-bottom white-bg">
         <nav class="navbar navbar-expand-lg navbar-static-top" role="navigation">
-            <!--<div class="navbar-header">-->
-                <!--<button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">-->
-                    <!--<i class="fa fa-reorder"></i>-->
-                <!--</button>-->
             <a href="home" class="navbar-brand">CREAMY</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fa fa-reorder"></i>
@@ -84,7 +93,7 @@
                                    <!-- 예약 테이블 시작 -->
                                    <table class="box">
 	                                    <tr>
-	                                       <td><strong>호실</strong><br>
+	                                       <td><strong>호실</strong><br><br>
 	                                       <small>예약 날짜를 선택하시면, 호실을 선택할 수 있습니다.</small></td>
 	                                    </tr>
 	                                    <tr>
@@ -108,20 +117,20 @@
 					             <!-- 인원 -->
                                  <table class="box">
                                     <tr>
-                                       <td><strong>인원</strong><br><small>방문하시는 인원을 선택하세요.<br><br></small></td>
+                                       <td><strong>인원</strong><br><br><small>방문하시는 인원을 선택하세요.<br><br></small></td>
                                     </tr>
                                     <tr>
                                        <td>
                                           <div class="row">
                                              <div class="col-3" style="width: auto;">
-                                                <input type="button" id="GuestCountMinus" name="GuestCountMinus" class="btn btn-primary" value="－" />
+                                                <input type="button" id="GuestCountMinus" name="GuestCountMinus" class="btn btn-primary" value="-" style="color:white"/>
                                              </div>
                                              <div class="col-4">
                                                 <input type="number" id="GuestCount" name="GuestCount" 
                                                 	maxlength="4" class="form-control text-center" value="0" readonly />
                                              </div>
                                              <div class="col-3">
-                                                <input type="button" id="GuestCountPlus" name="GuestCountPlus" class="btn btn-primary" value="＋" />
+                                                <input type="button" id="GuestCountPlus" name="GuestCountPlus" class="btn btn-primary" value="+" style="color:white"/>
                                              </div>
                                              <div class="offset-1"></div>
                                           </div>
