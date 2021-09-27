@@ -49,17 +49,19 @@ $("document").ready(function(){
 		  var header = $("meta[name='_csrf_header']").attr("content");
 	      var token = $("meta[name='_csrf']").attr("content");
 	      var empCode = $("input[name=employee_code]").val();
+	      var empName = $("input[name=employee_name]").val();
 	      var curMonth = new Date().toISOString().slice(0, 7);
 	      
 	      console.log("header : " + header);
 	      console.log("token : " + token);
 	      console.log("empCode : " + empCode);
+	      console.log("empName : " + empName);
 	      console.log("currentMonth : " + curMonth);
 	      
 	      $.ajax({
 	         url : "employee_attendanceList",
 	         type : "Post",
-	         data : "employee_code="+empCode+"&currentMonth="+curMonth,
+	         data : "employee_code="+empCode+"&employee_name="+empName+"&currentMonth="+curMonth,
 	         beforeSend : function(jqXHR, settings) {
 	            console.log("beforesend 진행");
 	            jqXHR.setRequestHeader(header, token);
@@ -82,15 +84,17 @@ $("document").ready(function(){
 		  var header = $("meta[name='_csrf_header']").attr("content");
 	      var token = $("meta[name='_csrf']").attr("content");
 	      var empCode = $("input[name=employee_code]").val();
+	      var curYear = new Date().toISOString().slice(0, 4);
 	      
 	      console.log("header : " + header);
 	      console.log("token : " + token);
 	      console.log("empCode : " + empCode);
+	      console.log("curYear : " + curYear);
 	      
 	      $.ajax({
 	         url : "employee_leaveList",
 	         type : "Post",
-	         data : "employee_code=" + empCode,
+	         data : "employee_code=" + empCode+ "&curYear=" + curYear,
 	         beforeSend : function(jqXHR, settings) {
 	            console.log("beforesend 진행");
 	            jqXHR.setRequestHeader(header, token);
@@ -145,15 +149,17 @@ $("document").ready(function(){
 		  var header = $("meta[name='_csrf_header']").attr("content");
 	      var token = $("meta[name='_csrf']").attr("content");
 	      var empCode = $("input[name=employee_code]").val();
+	      var curYear = new Date().toISOString().slice(0, 4);
 	      
 	      console.log("header : " + header);
 	      console.log("token : " + token);
 	      console.log("empCode : " + empCode);
+	      console.log("curYear : " + curYear);
 	      
 	      $.ajax({
 	         url : "employee_paymentList",
 	         type : "Post",
-	         data : "employee_code=" + empCode,
+	         data : "employee_code=" + empCode+ "&curYear=" + curYear,
 	         beforeSend : function(jqXHR, settings) {
 	            console.log("beforesend 진행");
 	            jqXHR.setRequestHeader(header, token);

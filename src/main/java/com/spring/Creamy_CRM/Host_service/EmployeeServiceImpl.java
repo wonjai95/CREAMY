@@ -125,6 +125,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 		String employee_code = req.getParameter("employee_code");
 		System.out.println("근태 목록 서비스");
 		
+		String employee_name = req.getParameter("employee_name");
+		System.out.println("employee_name : " + employee_name);
+		
 		// ajax에서 넘어온 년도와 월 ex) 2021-09
 		String currentMonth = req.getParameter("currentMonth");
 		System.out.println("currentMonth : " + currentMonth);
@@ -139,7 +142,59 @@ public class EmployeeServiceImpl implements EmployeeService {
 		
 		model.addAttribute("attList", attList);
 		model.addAttribute("employee_code", employee_code);
+		model.addAttribute("employee_name", employee_name);
 		model.addAttribute("currentMonth", currentMonth);
+	}
+	
+	// 해당 월 직원 근태 목록 조회
+	public void attendanceMonthList(HttpServletRequest req, Model model) {
+		String employee_code = req.getParameter("employee_code");
+		System.out.println("근태 목록 서비스");
+		
+		// ajax에서 넘어온 년도와 월 ex) 2021-09
+		String changeMonth = req.getParameter("changeMonth");
+		System.out.println("changeMonth : " + changeMonth);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("empCode", employee_code);
+		map.put("curMonth", changeMonth);
+		
+		// 직원 근태 정보 가져오기
+		ArrayList<AttendanceVO> attList = dao.getAttendanceList(map);
+		
+		model.addAttribute("attList", attList);
+		model.addAttribute("employee_code", employee_code);
+		model.addAttribute("currentMonth", changeMonth);
+	}
+	
+	// 수정할 근태 정보 가져오기
+	public void getAttendanceInfo(HttpServletRequest req, Model model) {
+		String employee_code = req.getParameter("employee_code");
+		System.out.println("employee_code : " + employee_code);
+		
+		String employee_name = req.getParameter("employee_name");
+		System.out.println("employee_name : " + employee_name);
+		
+		String attendance_code = req.getParameter("attendance_code");
+		System.out.println("attendance_code : " + attendance_code);
+		
+		AttendanceVO vo = dao.getAttendanceInfo(attendance_code);
+		
+		model.addAttribute("employee_code", employee_code);
+		model.addAttribute("employee_name", employee_name);
+		model.addAttribute("vo", vo);
+	}
+	
+	// 직원 근태 삭제
+	public void deleteAttendance(HttpServletRequest req, Model model) {
+		String attendance_code = req.getParameter("attendance_code");
+		System.out.println("attendance_code : " + attendance_code);
+		
+		int deleteCnt = dao.deleteAttendance(attendance_code);
+		System.out.println("deleteCnt : " + deleteCnt);
+		
+		model.addAttribute("deleteCnt", deleteCnt);
 	}
 	
 	// 직원 휴가 목록 조회
@@ -147,10 +202,103 @@ public class EmployeeServiceImpl implements EmployeeService {
 		String employee_code = req.getParameter("employee_code");
 		System.out.println("휴가 목록 서비스");
 		
+		String curYear = req.getParameter("curYear");
+		System.out.println("curYear : " + curYear);
+		
 		// 직원 휴가 정보 가져오기
 		ArrayList<LeaveVO> leaveList = dao.getLeaveList(employee_code);
 		
 		model.addAttribute("leaveList", leaveList);
+		model.addAttribute("employee_code", employee_code);
+		model.addAttribute("curYear", curYear);
+	}
+	
+	// 수정할 휴가 정보 가져오기
+	public void getLeaveInfo(HttpServletRequest req, Model model) {
+		String employee_code = req.getParameter("employee_code");
+		System.out.println("employee_code : " + employee_code);
+		
+		String leave_code = req.getParameter("leave_code");
+		System.out.println("leave_code : " + leave_code);
+		
+		EmployeeVO dto = dao.getEmployeeDetail(employee_code);
+		LeaveVO vo = dao.getLeaveInfo(leave_code);
+		
+		String hp = vo.getEmergency_contact();
+		String[] list= hp.split("-");
+		System.out.println("list : " + list);
+		
+//		int annual_leave_usage = dto.getAnnual_leave_usage();
+//		System.out.println("annual_leave_usage : " + annual_leave_usage);
+//		
+//		int leave_usage_cnt = vo.getLeave_usage_cnt();
+//		System.out.println("leave_usage_cnt : " + leave_usage_cnt);
+//		
+//		dto.setAnnual_leave_usage(annual_leave_usage + leave_usage_cnt);
+		
+		model.addAttribute("dto", dto);
+		model.addAttribute("list", list);
+		model.addAttribute("vo", vo);
+	}
+	
+	// 직원 휴가 수정 처리
+	public void updateLeave(HttpServletRequest req, Model model) {
+		
+		String employee_code = req.getParameter("employee_code");
+		String leave_code = req.getParameter("leave_code");
+		String strStartDate = req.getParameter("leave_start");
+		String strEndDate = req.getParameter("leave_end");
+		int leave_total_days = Integer.parseInt(req.getParameter("leave_total_days"));
+		String leave_memo = req.getParameter("leave_memo");
+		String employee_ph1 = req.getParameter("employee_ph1");
+		String employee_ph2 = req.getParameter("employee_ph2");
+		String employee_ph3 = req.getParameter("employee_ph3");
+		String emergency_contact = employee_ph1 + "-" + employee_ph2 + "-" + employee_ph3;
+		
+		Date leave_date = Date.valueOf(strStartDate);
+		Date leave_end = Date.valueOf(strEndDate);
+	
+		if(leave_memo == null || leave_memo.equals("")) leave_memo = "0";
+		if(employee_ph1 == null || employee_ph1.equals("")) employee_ph1 = "0";
+		if(employee_ph2 == null || employee_ph2.equals("")) employee_ph2 = "0";
+		if(employee_ph3 == null || employee_ph3.equals("")) employee_ph3 = "0";
+		
+		
+		LeaveVO vo = new LeaveVO();
+		vo.setLeave_code(leave_code);
+		vo.setEmployee_code(employee_code);
+		vo.setLeave_date(leave_date);
+		vo.setLeave_end(leave_end);
+		vo.setLeave_usage_cnt(leave_total_days);
+		vo.setLeave_memo(leave_memo);
+		vo.setEmergency_contact(emergency_contact);
+		
+		// 휴가 신청 일수와 연차 비교
+		EmployeeVO dto = dao.getEmployeeDetail(employee_code);
+		int annual_leave_cnt = dto.getAnnual_leave_cnt();
+		int annual_leave_usage = dto.getAnnual_leave_usage();
+		int updateCnt = 0;
+		
+		// 해당 직원의 연차 일수 초과 확인
+		if(annual_leave_cnt - annual_leave_usage - leave_total_days < 0) {
+			updateCnt = 2;
+			
+		// 초과 X(정상 휴가 등록)
+		} else {
+			updateCnt = dao.updateLeave(vo);
+		}
+		
+		model.addAttribute("updateCnt", updateCnt);
+	}
+	
+	// 직원 휴가 삭제
+	public void deleteLeave(HttpServletRequest req, Model model) {
+		String leave_code = req.getParameter("leave_code");
+		System.out.println("leave_code : " + leave_code);
+		
+		int deleteCnt = dao.deleteLeave(leave_code);
+		
+		model.addAttribute("deleteCnt", deleteCnt);
 	}
 	
 	// 직원 급여 계약 목록 조회
@@ -176,6 +324,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	
 	// 직원 급여 지급 등록
 	public void insertPaymentAction(HttpServletRequest req, Model model) {
+		
 		String employee_code = req.getParameter("employee_code");
 		String salary_payDate = req.getParameter("salary_payDate");
 		System.out.println("salary_payDate :" + salary_payDate);
@@ -206,21 +355,29 @@ public class EmployeeServiceImpl implements EmployeeService {
 		int loan_payment_amount = monthly_salary - (deduction_total);
 		System.out.println("loan_payment_amount : " + loan_payment_amount);
 		
-		SalaryVO vo = new SalaryVO();
-		vo.setEmployee_code(employee_code);
-		vo.setSalary_payDate(Date.valueOf(salary_payDate));
-		vo.setPay_month(pay_month);
-		vo.setSalary(monthly_salary);
-		vo.setIncome_tax(income_tax);
-		vo.setNational_pension(national_pension);
-		vo.setHealth_insurance(health_insurance);
-		vo.setLt_care_insurance(lt_care_insurance);
-		vo.setEmployment_insurance(employment_insurance);
-		vo.setDeduction_total(deduction_total);
-		vo.setLoan_payment_amount(loan_payment_amount);
+		int selectCnt = dao.chkPaymentAction(pay_month);
+		int insertCnt = 0;
 		
-		int insertCnt = dao.insertPayment(vo);
+		if(selectCnt == 0) {
 		
+			SalaryVO vo = new SalaryVO();
+			vo.setEmployee_code(employee_code);
+			vo.setSalary_payDate(Date.valueOf(salary_payDate));
+			vo.setPay_month(pay_month);
+			vo.setSalary(monthly_salary);
+			vo.setIncome_tax(income_tax);
+			vo.setNational_pension(national_pension);
+			vo.setHealth_insurance(health_insurance);
+			vo.setLt_care_insurance(lt_care_insurance);
+			vo.setEmployment_insurance(employment_insurance);
+			vo.setDeduction_total(deduction_total);
+			vo.setLoan_payment_amount(loan_payment_amount);
+			
+			insertCnt = dao.insertPayment(vo);
+			
+		}
+		
+		model.addAttribute("selectCnt", selectCnt);
 		model.addAttribute("insertCnt", insertCnt);
 	}
 	
@@ -229,9 +386,24 @@ public class EmployeeServiceImpl implements EmployeeService {
 		String employee_code = req.getParameter("employee_code");
 		System.out.println("employee_code : " + employee_code);
 		
+		String curYear = req.getParameter("curYear");
+		System.out.println("curYear : " + curYear);
+		
 		ArrayList<SalaryVO> paymentList = dao.getPaymentList(employee_code);
 		
 		model.addAttribute("paymentList", paymentList);
+		model.addAttribute("curYear", curYear);
+	}
+	
+	// 직원 급여 지급 삭제
+	public void deletePayment(HttpServletRequest req, Model model) {
+		String salary_code = req.getParameter("salary_code");
+		System.out.println("salary_code : " + salary_code);
+		
+		int deleteCnt = dao.deletePayment(salary_code);
+		System.out.println("deleteCnt : " + deleteCnt);
+		
+		model.addAttribute("deleteCnt", deleteCnt);
 	}
 	
 	// 직원 등록시 해당 id 체크 
@@ -499,7 +671,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 		String strEndDate = req.getParameter("leave_end");
 		int leave_total_days = Integer.parseInt(req.getParameter("leave_total_days"));
 		String leave_memo = req.getParameter("leave_memo");
-		String leave_reason = req.getParameter("leave_reason");
 		String employee_ph1 = req.getParameter("employee_ph1");
 		String employee_ph2 = req.getParameter("employee_ph2");
 		String employee_ph3 = req.getParameter("employee_ph3");
@@ -509,7 +680,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 		Date leave_end = Date.valueOf(strEndDate);
 	
 		if(leave_memo == null || leave_memo.equals("")) leave_memo = "0";
-		if(leave_reason == null || leave_reason.equals("")) leave_reason = "0";
 		if(employee_ph1 == null || employee_ph1.equals("")) employee_ph1 = "0";
 		if(employee_ph2 == null || employee_ph2.equals("")) employee_ph2 = "0";
 		if(employee_ph3 == null || employee_ph3.equals("")) employee_ph3 = "0";
@@ -520,7 +690,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 		vo.setLeave_date(leave_date);
 		vo.setLeave_end(leave_end);
 		vo.setLeave_usage_cnt(leave_total_days);
-		vo.setLeave_reason(leave_reason);
 		vo.setLeave_memo(leave_memo);
 		vo.setEmergency_contact(emergency_contact);
 		

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/setting.jsp"%>
 <!DOCTYPE html>
 <html>
@@ -15,12 +15,13 @@ body {
 	text-shadow: aqua;
 }
 </style>
-<script type="text/javascript" src="${path}/resources/host/js/employee_leave_contract.js"></script>
+<script type="text/javascript" src="${path}/resources/host/js/employee_getLeaveInfo.js"></script>
 </head>
 <body>
 	<div class="ibox-content">
-		<form action="employee_leaveAction" method="post" id="employee_leaveForm">
+		<form action="employee_leaveUpdate" method="post" id="employee_leaveForm">
 			<sec:csrfInput/>
+			<input type="hidden" name="leave_code" value="${vo.leave_code}">
 			<div class="form-group  row">
 				<label class="col-sm-2 col-form-label">직원코드</label>
 				<div class="col-sm-7">
@@ -58,8 +59,8 @@ body {
 			<div class="form-group row">
 				<label class="col-sm-2 col-form-label" style="margin-right: 12px;">구분</label>
 				<div class="col-sm-3" style="display: contents;">
-					<input type='date' value="0" name="leave_start" style="border: 1px solid #e5e6e7" required/>&nbsp;&nbsp; ~ &nbsp;&nbsp;
-					<input type='date' value="0" name="leave_end" style="border: 1px solid #e5e6e7" required/>&nbsp;&nbsp; 
+					<input type='date' name="leave_start" style="border: 1px solid #e5e6e7" value="${vo.leave_date}"/>&nbsp;&nbsp; ~ &nbsp;&nbsp;
+					<input type='date' name="leave_end" style="border: 1px solid #e5e6e7" value="${vo.leave_end}"/>&nbsp;&nbsp; 
 				</div>
 			</div>	
 			
@@ -77,9 +78,9 @@ body {
 			<div class="form-group row">
 				<label class="col-sm-2 col-form-label">핸드폰</label>
 				<div class="col-sm-7" style="display: flex;">
-					<input type="text" class="form-control" name="employee_ph1" maxlength="3" placeholder="000"> &nbsp;&nbsp;-&nbsp;&nbsp;
-					<input type="text" class="form-control" name="employee_ph2" maxlength="4" placeholder="0000"> &nbsp;&nbsp;-&nbsp;&nbsp;
-					<input type="text" class="form-control" name="employee_ph3" maxlength="4" placeholder="0000"> 
+					<input type="text" class="form-control" name="employee_ph1" maxlength="3" value="${list[0]}" placeholder="000"> &nbsp;&nbsp;-&nbsp;&nbsp;
+					<input type="text" class="form-control" name="employee_ph2" maxlength="4" value="${list[1]}" placeholder="0000"> &nbsp;&nbsp;-&nbsp;&nbsp;
+					<input type="text" class="form-control" name="employee_ph3" maxlength="4" value="${list[2]}" placeholder="0000"> 
 				</div>
 			</div>
 			
@@ -87,13 +88,19 @@ body {
 			<div class="form-group row">
 				<label class="col-sm-2 col-form-label">기타 메모</label>
 				<div class="col-sm-7">
-					<input type="text" class="form-control" name="etc_memo" placeholder="기타 메모">
+					<c:if test="${vo.leave_memo == '0'}">
+						<input type="text" class="form-control" name="etc_memo" placeholder="기타 메모">
+					</c:if>
+					
+					<c:if test="${vo.leave_memo != '0'}">
+						<input type="text" class="form-control" name="etc_memo" value="${vo.leave_memo}">
+					</c:if>
 				</div>
 			</div>
 			
 			<div class="hr-line-dashed"></div>
 			<div class="form-group row">
-				<label class="col-sm-2 col-form-label">신청일자</label>
+				<label class="col-sm-2 col-form-label">신청(수정)일자</label>
 				<div class="col-sm-7">
 					<input type='date' name="leave_register_date" class="register_date" readonly 
 						style="border: 1px solid #e5e6e7; align-self: center; height: 35.6px;"/>
@@ -104,13 +111,12 @@ body {
 			<div class="hr-line-dashed"></div>
 			<div class="col-sm-7">
 				<div class="form-group" style="text-align: right;">
-					<input type="submit" class="btn btn-primary dim" style="width:100px;" value="등록">
+					<input type="submit" class="btn btn-primary dim" style="width:100px;" value="수정">
 					<input type="button" class="btn btn-primary dim" name="window_close" style="width:100px;" value="창닫기">
 				</div>
 			</div>
 			<!-- 등록 및 창 닫기 버튼 끝 -->
 		</form>
 	</div>
-
 </body>
 </html>
