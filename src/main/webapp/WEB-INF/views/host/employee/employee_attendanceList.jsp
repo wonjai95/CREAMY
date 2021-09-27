@@ -17,6 +17,8 @@
 	<div id="tab-1" class="tab-pane active">
 	   <div class="panel-body">
 	   <input type="hidden" name="employee_code" value="${employee_code}">
+	   <input type="hidden" name="employee_name" value="${employee_name}">
+	   <input type="hidden" name="attendance_code" value="0">
 		   
 	   	<!-- 월선택 달력!!! -->
 		<div class="form-group" id="data_4" style="width:13%; margin-bottom:10px; display:inline-block;">
@@ -26,8 +28,8 @@
 		</div>
 		
 		<div class="round-btn" style="display:inline-block; float:right;">
-			<a class="btn btn-default btn-rounded" href="#">수정</a>
-			<a class="btn btn-default btn-rounded" href="#">삭제</a>
+			<a class="btn btn-default btn-rounded" id="attendanceUpd_btn">수정</a>
+			<a class="btn btn-default btn-rounded" id="attendanceDel_btn">삭제</a>
 		</div>
 		
 	     <fieldset>
@@ -48,8 +50,11 @@
 			     </thead>
 			     <tbody>
 					<c:forEach var="list1" items="${attList}" varStatus="status">
-			      	<tr>
-			           <td><fmt:formatDate value="${list1.attendance_date}" pattern="dd" /></td>
+			      	<tr class="attendance">
+			           <td>
+			           		<fmt:formatDate value="${list1.attendance_date}" pattern="dd" />
+			           		<input type="hidden" name="attendance_cd" value="${list1.attendance_code}">
+			           </td>
 			           <td>${list1.check_in_time}</td>
 			           <td>
 				           	<c:if test="${list1.check_out_time == '0'}">

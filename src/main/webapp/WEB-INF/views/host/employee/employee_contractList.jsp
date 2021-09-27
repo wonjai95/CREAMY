@@ -12,7 +12,7 @@
 <!-- 급여 계약 시작 -->
 <div id="tab-3" class="tab-pane active">
     <div class="panel-body">
-    
+    <sec:csrfInput/>
     <input type="hidden" name="employee_code" value="${employee_code}">
     <input type="hidden" name="salary_contract_code" value="0">
     <input type="hidden" name="monthly_salary" value="0">
@@ -38,14 +38,19 @@
 				</thead>
 				
 				<tbody>
-					<c:forEach var="list3" items="${contractList}"  varStatus="status">
-						<input type="hidden" name="contract_code${status.index}" value="${list3.salary_contract_code}">
-						<tr class="contract${status.index}">
-							<td>${list3.con_start} ~ ${list3.con_end}</td>
-							<td><fmt:formatNumber value="${list3.monthly_salary}" pattern="###,###,###"/></td>
+					<c:forEach var="list3" items="${contractList}">
+						
+						<tr class="contract">
+							<td>
+								${list3.con_start} ~ ${list3.con_end}
+								<input type="hidden" name="contract_code" value="${list3.salary_contract_code}">
+							</td>
+							<td>
+								<fmt:formatNumber value="${list3.monthly_salary}" pattern="###,###,###"/>
+								<input type="hidden" name="monthly_sal" value="${list3.monthly_salary}">
+							</td>
 							<td>
 								<fmt:formatNumber value="${list3.annual_salary}" pattern="###,###,###"/>
-								<input type="hidden" name="monthly_sal${status.index})" value="${list3.monthly_salary}">
 							</td>
 							<td>매달 ${list3.payment_date}일</td>
 							<td>국민은행 / 111-111-1111111</td>

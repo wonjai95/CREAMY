@@ -6,22 +6,27 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="${path}/resources/host/js/employee_leaveList.js"></script>
 </head>
 <body>
 <!-- 휴가탭 시작 -->
 <div id="tab-2" class="tab-pane active">
     <div class="panel-body">
+	
+	<input type="hidden" name="employee_code" value="${employee_code}">
+	<input type="hidden" name="leave_code" value="0">
     
 	    <!-- 월선택 달력!!! -->
 		<div class="form-group" id="data_4" style="width:13%; margin-bottom:10px; display:inline-block;">
 			<div class="input-group date">
-		 		 <input type="month" class="form-control" style="width:auto;">
+		 		 <input type="hidden" id="curYear" value="${curYear}">
+			  	 <select name="YEAR" id="YEAR" title="년도" class="form-control"></select>
 		    </div>
 		</div>
 	
 		<div class="round-btn" style="display:inline-block; float:right;">
-			<a class="btn btn-default btn-rounded" href="#">수정</a>
-			<a class="btn btn-default btn-rounded" href="#">삭제</a>
+			<a class="btn btn-default btn-rounded" id="leaveUpd_btn">수정</a>
+			<a class="btn btn-default btn-rounded" id="leaveDel_btn">삭제</a>
 		</div>
 	
 		<fieldset>
@@ -42,14 +47,25 @@
 				
 				<tbody>
 					<c:forEach var="list2" items="${leaveList}">
-						<tr>
-						    <td>● 연차</td>
+						<tr class="leave">
+						    <td>
+						    	● 연차
+						    	<input type="hidden" name="leave_cd" value="${list2.leave_code}">
+						    </td>
 						    <td>승인</td>
 						    <td>${list2.leave_date}</td>
 							<td>${list2.leave_end}</td>
 							<td>${list2.leave_usage_cnt}</td>
 							<td>${list2.emergency_contact}</td>
-							<td>${list2.leave_memo}</td>
+							<td>
+								<c:if test="${list2.leave_memo == '0'}">
+									-
+								</c:if>
+								
+								<c:if test="${list2.leave_memo != '0'}">
+									${list2.leave_memo}
+								</c:if>
+							</td>
 							<td>${list2.leave_regDatae}</td>
 						</tr>
 					</c:forEach>
