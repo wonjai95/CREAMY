@@ -13,6 +13,12 @@ import javax.servlet.http.HttpServletRequest;
 
 public interface Android_service {
 
-	public Map<String, String> androidlogin(HttpServletRequest req);
+	//로그인
+	public Map<String, String> login(HttpServletRequest req);
 	
+	//마이페이지 - 관리자
+	public Map<String, Object> getInfomation(HttpServletRequest req);
+	
+	//마이페이지 - 고객
+	public Map<String, Object> getUserInfomation(HttpServletRequest req);
 }

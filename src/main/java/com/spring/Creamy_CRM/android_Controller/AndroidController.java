@@ -34,27 +34,38 @@ public class AndroidController {
 	
 	//로그인
 	@ResponseBody // 웹(스프링)에서 안드로이드로 값(json)을 전달하기 위한 어노테이션
-	@RequestMapping("user/androidSignIn")
+	@RequestMapping("android/androidSignIn")
 	public Map<String, String> androidSignIn(HttpServletRequest req){
-		log.info(" url -> androidSignIn()");
+		log.info("androidSignIn()");
+		System.out.println("url -> 안드로이드 로그인");
 		
-		Map<String, String> out = service_android.androidlogin(req);
+		Map<String, String> out = service_android.login(req);
 		
 		return out;
 	}
 	
-	// 앱 마이페이지 
+	// 앱 마이페이지 ->사장, 사원
 	@ResponseBody
-	@RequestMapping("androidMyPageMain")
+	@RequestMapping("android/androidMyPageMain")
 	public Map<String, Object> androidMyPageMain(HttpServletRequest req) {
 		log.info("androidMyPageMain()");
+		System.out.println("url -> 안드로이드 마이페이지");
 		
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("data1", 0);
-		map.put("data2", 0);
-		map.put("data3", 0);
-		map.put("data4", 0);
-		map.put("member", 0);
+		Map<String, Object> map = service_android.getInfomation(req);
+		
+		
+		return map;
+	}
+	
+	//마이페이지 - 고객
+	@ResponseBody
+	@RequestMapping("android/androidUserPageMain")
+	public Map<String, Object> androidUserPageMain(HttpServletRequest req){
+		log.info("androidMyPageMain()");
+		System.out.println("url -> 안드로이드 마이페이지");
+		
+		Map<String, Object> map = service_android.getUserInfomation(req);
+		
 		
 		return map;
 	}

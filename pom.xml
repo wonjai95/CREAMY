@@ -225,6 +225,15 @@
       </dependency>
       
       <!-- fileupload 끝 -->
+      
+      <!-- Jsoup  -->
+      <!-- jsoup HTML parser library @ https://jsoup.org/ -->
+	  <dependency>
+	 	<groupId>org.jsoup</groupId>
+	  	<artifactId>jsoup</artifactId>
+	  	<version>1.14.2</version>
+	  </dependency>
+      <!-- Jsoup end  -->
         
         
 	
