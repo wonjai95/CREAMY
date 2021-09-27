@@ -144,16 +144,29 @@ public class CRMuserServiceImpl implements CRMuserService {
 		
 	}   
 
-	// 회원 정보 삭제
+	// 회원 정보 삭제(user_tbl)
 	@Override
 	public void deleteUser(HttpServletRequest req, Model model) {
-		System.out.println("service => deleteUser");
+		System.out.println("service => deleteUser(user_tbl)");
 		
 		String user_code = req.getParameter("user_code");
 		System.out.println("user_code : " + user_code);
 		
 		int deleteCnt = dao_user.deleteUser(user_code);
 		model.addAttribute("deleteCnt", deleteCnt);
+	}
+
+	// 회원 삭제(Auth_tbl)
+	@Override
+	public void deleteUserAuth(HttpServletRequest req, Model model) {
+		System.out.println("service => deleteUserAuth(Auth_tbl)");
+		
+		String user_code = req.getParameter("user_code");
+		System.out.println("user_code : " + user_code);
+		
+		int deleteCnt = dao_user.deleteUserAuth(user_code);
+		model.addAttribute("deleteCnt", deleteCnt);
+		
 	}
 
 

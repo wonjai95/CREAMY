@@ -23,6 +23,9 @@ public interface CRMuserDAO {
 	// 회원별 판매 내역 출력
 	public List<userVO> userSale(String user_code);
 	
-	// 회원 삭제
+	// 회원 삭제(user_tbl)
 	public int deleteUser(String user_code);
+	
+	// 회원 삭제(Auth_tbl)
+	public int deleteUserAuth(String user_code);
 }

@@ -96,7 +96,7 @@ private static final Logger logger = LoggerFactory.getLogger(UserInfoController.
 		return "host/user/mypage";
 	}
 	  
-	// 회원 삭제 처리
+	// 회원 삭제 처리(user_tbl)
 	@RequestMapping("/host/del_user_action")
 	public String del_user_action(HttpServletRequest req, Model model) {
 		logger.info("url -> del_user_action");
@@ -105,6 +105,17 @@ private static final Logger logger = LoggerFactory.getLogger(UserInfoController.
 		
 		return "host/user/del_user_action";
 	}
+	
+	// 회원 삭제 처리(Auth_tbl)
+	@RequestMapping("/host/del_userAuth_action")
+	public String del_userAuth_action(HttpServletRequest req, Model model) {
+		logger.info("url -> del_userAuth_action");
+		
+		service_user.deleteUserAuth(req, model);
+		
+		return "host/user/del_userAuth_action";
+	}
+		
 	
 	
 	// 회원별 판매 내역 출력

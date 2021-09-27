@@ -10,11 +10,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Creamy | User Info</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>INSPINIA | Data Tables</title>
+<title>Creamy | User Info </title>
 <script type="text/javascript" src="${path}/resources/host/js/user.js"></script>
 <script type="text/javascript">
 

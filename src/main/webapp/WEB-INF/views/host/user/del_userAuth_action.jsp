@@ -12,9 +12,13 @@
 
 <c:if test="${deleteCnt == 1}">
 	<script type="text/javascript">
-		window.alert("회원 삭제 성공!!");
-		
-		location.replace='del_userAuth_action';
+		 function myconfirm() {
+             msg = "회원 정보 삭제 성공!! \n 회원 아이디 및 비밀번호도 삭제할까요?";
+             if (confirm(msg)!=0) {
+                  // Yes click
+             } else {
+                 // no click
+ 		}
 	</script>
 </c:if>
 <c:if test="${deleteCnt == 0}">
