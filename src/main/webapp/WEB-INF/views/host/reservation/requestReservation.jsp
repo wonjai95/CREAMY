@@ -15,7 +15,7 @@
 <title> 예약요청 </title>
 
 <script type="text/javascript">
-
+	/* requestReservation페이지를 보여주는 기본함수 */
 	$(function() {
 		$.ajax({
 			url : '${pageContext.request.contextPath}/requestReservation',  // 전송페이지 => 컨트롤러/basic1_next
@@ -29,6 +29,32 @@
 			}
 		});
 	});
+	
+	
+	/* 검색어 search 기능 함수 */
+	$(function() {
+		$('#res_code').keyup(function() {
+			var res_code = $('#res_code').val();  // input태그에서 입력한 키워드
+			
+			$.ajax({
+				url : '${pageContext.request.contextPath}/requestReservation',  // '컨트롤러'/매핑주소
+				type : 'POST',
+				data : 'res_code=' + res_code,
+				success : function(result) {  // 콜백함수
+					$('#requestList').html(result);
+				},
+				error : function() {
+					alert('오류');
+				}
+			});
+	});
+});
+	
+	
+	
+	
+	
+	
 </script>
 
 <style type="text/css">
@@ -47,16 +73,58 @@
 <div class="wrapper wrapper-content animated fadeInRight">
 	<div class="row">
 	    <div class="col-lg-12">
-	    <div class="ibox ">
 	        <div class="ibox-title">
-	            <h5>예약요청 목록을 보여줍니다. 예약코드를 선택해 관리해보세요.</h5>	            
+	            <h5>예약요청 목록을 보여줍니다. 예약코드를 선택해 관리해보세요.</h5>
+	            <br>
+	            <small>*** 테스트 공지 : 현재 보이는 창은 mapper : WHERE NOT res_state IN '서비스 완료' 를 지정해서,
+	            예약 상태가 서비스 완료를 제외한 모든 목록 뿌리기 입니다. 서비스 완료 목록보기는 위에 [예약 조회] 탭으로 ㄱㄱ</small>            
 	        </div>
+	    </div>
 <!-- ------------------------------- 테이블표 시작 전 '예약요청' 설명란 끝 -->
 
+<!-- ------------------------------- 테이블표 시작 전 '예약요청' 검색창 시작 -->
+		
+		
+		<div class="col-sm-2">
+			<div class="form-group">
+				<select name="" id="" class="form-control">
+					<option value="1" selected="">예약상태</option>
+					<option value="2">예약완료</option>
+					<option value="3">예약취소</option>
+				</select>
+			</div>
+		</div>
+		
+		<div class="col-sm-2">
+			<div class="form-group">
+				<input type="text" id="res_code" name="res_code" value="${dto.res_code}" placeholder="검색어"
+					class="form-control">
+			</div>
+		</div>
+
+		<!-- <div class="col-sm-2">
+			<div class="form-group">
+				<button class="btn btn-primary dim" type="button">찾기</button>
+				
+				<button type="submit" class="btn btn-primary dim"
+	            		formaction="completeAction" form="requestDetail">
+	            </button>
+				
+				
+				
+			</div>
+		</div> -->
+<!-- ------------------------------- 테이블표 시작 전 '예약요청' 검색창 끝 -->
+
 <!-- ------------------------------- 테이블표 시작 -->
-		<form action="requestReservation" method="post">
-           <sec:csrfInput/>
-           <input type="hidden" id="user_id" name="user_id">
+		<div class="col-lg-12">
+	    <div class="ibox ">
+		
+		
+		<%-- <form action="requestReservation" method="post">
+		   <sec:csrfInput/>
+           <input type="hidden" id="pageNum" name="pageNum" value="${pageNum}">
+           <input type="hidden" id="user_id" name="user_id" value="${dto.user_id}"> --%>
 		<div class="ibox-content">
 			<div class="table-responsive">
 	        <table class="table table-striped table-bordered table-hover dataTables-example">
@@ -74,6 +142,7 @@
 		        <tbody id="requestList">
 				<!-- 예약조회 목록이 있다면 -->
 				<c:if test="${cnt > 0}">
+					<%-- <c:if test="${dto.res_state == '서비스 완' > 0}"> --%>
 					<%-- c:forEach var="작은 바구니 참조변수(임의로 지정하기)" items="${큰 바구니}" --%>
 					<c:forEach var="dto" items="${dtos}">
 						<tr class="gradeX">
@@ -83,7 +152,7 @@
 							</td>
 							
 							<td style="text-align:center">${dto.user_id}</td>
-							
+							<%-- ${param.dto.user_id} --%>
 							<td style="text-align:center">${dto.employee_code}</td>
 							
 							<td style="text-align:center">${dto.res_state}</td>
@@ -93,6 +162,7 @@
 							<td style="text-align:center">${dto.res_date}</td>
 						</tr>
 					</c:forEach>
+					<%-- </c:if> --%>
 				</c:if>
 				
 				<!-- 예약조회 목록이 없다면, -->
@@ -118,7 +188,7 @@
 	        </table>
 	        
 	        <!-- 페이지 컨트롤 -->
-			<table style="width:1000px; display:block; margin:0px 0px 0px 300px;">
+			<table style="width:1000px; display:block; margin:0px 0px 0px 500px;">
 				<tr>
 					<th id="arrow" align="center" style="font-size:18px">
 						<!-- 게시글이 있다면, -->

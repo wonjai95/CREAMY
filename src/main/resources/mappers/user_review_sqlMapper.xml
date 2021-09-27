@@ -71,12 +71,23 @@
   </select>
   
   <select id="getReviewDetail" parameterType="String" resultType="com.spring.Creamy_CRM.VO.ReviewVO">
-  	SELECT * FROM review_tbl
-  	WHERE review_code = #{review_code}
+  	select r.*, u.user_id
+	from review_tbl r, user_tbl u
+	where r.user_code = u.user_code
+  	AND review_code = #{review_code}
   </select>
   
   <update id="plusReadCnt" parameterType="java.util.Map">
   	update review_tbl set readCnt = #{readcnt}
+  	where review_code = #{review_code}
+  </update>
+  
+  <update id="modify_Review" parameterType="com.spring.Creamy_CRM.VO.ReviewVO">
+  	update review_tbl set
+  	title = #{title},
+  	content = #{content},
+  	star = #{star},
+  	review_img = #{review_img}
   	where review_code = #{review_code}
   </update>
   	

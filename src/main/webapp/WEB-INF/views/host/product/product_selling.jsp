@@ -16,6 +16,7 @@
 <script type="text/javascript" src="${path}/resources/host/js/product_selling.js"></script>
 </head>
 <body>
+<form action="selling_action" name="">
 <div id="wrapper">
 
 <!-- 버튼 클릭시 전달할 상품정보 코드 -->   
@@ -23,6 +24,11 @@
 <input type="hidden" value="0" name="product_name_hidden">
 <input type="hidden" value="0" name="product_price_hidden">
 <input type="hidden" value="0" name="product_rentalPeriod_hidden">
+
+
+<!-- 버튼 클릭시 전달할 버튼 코드 -->   
+<input type="hidden" value="0" name="cash_btn_hidden">
+
 
 
 <!-- ------------------------------- 판매 정보 시작 -->
@@ -34,9 +40,7 @@
 	            <h5>상품판매를 진행합니다.</h5>
 	            
 	            &nbsp;&nbsp;&nbsp;
-	            <button type="button" class="btn btn-primary btn-lg"
-	            		onclick="insertReservation"> 상품 판매
-	            </button>
+	            <button type="submit" id="selling" class="btn btn-primary btn-lg"> 상품 판매 </button>
 	            
 	        </div>
 <!-- ------------------------------- 판매 정보 끝 -->
@@ -130,7 +134,7 @@
 	        </div>
 	        
 	        <div class="ibox-content m-b-sm border-bottom">  
-	            <form action="" name="">
+	            
 	            
 	            <div class="col-sm-5" style="display: flex">
 					<div class="form-group">    
@@ -167,6 +171,7 @@
 		            </tr>
 		            </thead>
 		            <c:forEach var="dto_product" items="${dto_product}" varStatus="status">
+					<input type="hidden" name="product_code" value="${dto_product.product_code}">
 		            <tbody>
 			            <tr class="product${status.index}" id="product${status.index}">
 			                <td id="product_typeOfSales${status.index}">${dto_product.product_typeOfSales}<input type="hidden" name="product_typeOfSales${status.index}" value="${dto_product.product_typeOfSales}"></td>
@@ -174,6 +179,7 @@
 			                <td id="product_price${status.index}">${dto_product.product_price}<input type="hidden" name="product_price${status.index}" value="${dto_product.product_price}"></td>
 			                <td id="product_rentalPeriod${status.index}">${dto_product.product_rentalPeriod}<input type="hidden" name="product_rentalPeriod${status.index}" value="${dto_product.product_rentalPeriod}"></td>
 			            </tr>
+						
 		            </tbody>
 		            </c:forEach>
 		           
@@ -183,7 +189,6 @@
 				</div>
 	                
 	                <div class="hr-line-dashed"></div>
-	            </form>
 	        </div>
 	        
 	    </div>
@@ -194,7 +199,6 @@
 	        </div>
 	        <div class="ibox-content m-b-sm border-bottom">  
 	        
-	            <form method="get">
 	                <div class="col-sm-10">
 	                    <button type="button" id="add_btn" class="btn btn-outline btn-primary">추가</button>
 	                    <button type="button" id="del_btn" class="btn btn-outline btn-primary">삭제</button>
@@ -210,16 +214,15 @@
 		            </thead>
 		            <tbody>
 			            <tr class="cartList">
-			                <td id="cart_product_name"><input type="hidden" name="" value=""></td>
-			                <td id="cart_product_typeOfSales"><input type="hidden" name="" value=""></td>
-			                <td id="cart_product_price"><input type="hidden" name="" value=""></td>    
+			                <td id="cart_product_name"><input type="hidden" name="cart_product_name" value=""></td>
+			                <td id="cart_product_typeOfSales"><input type="hidden" name="cart_product_typeOfSales" value=""></td>
+			                <td id="cart_product_price"><input type="hidden" name="cart_product_price" value=""></td>    
 			            </tr>
 			            
 		            </tbody>
 				</table>
 	                
 	                <div class="hr-line-dashed"></div>
-	            </form>
 	        </div>
 	    </div> 
 	</div>
@@ -233,24 +236,25 @@
 	            <h5>결제 정보</h5>
 	        </div>
 	        <div class="ibox-content">
-	            <form method="get">
 	                <div class="form-group row">
 	                <label class="col-sm-3 col-form-label">결제 금액</label>
-	                    <div class="col-lg-8" id="total_payment"></div>
+	                    <div class="col-lg-8" id="total_payment"><input type="hidden" name="total_payment"></div>
 	                </div>
 	                <hr>
 	                <div class="hr-line-dashed"></div>
 	                
 	                <div class="form-group  row">
 	                <label class="col-sm-3 col-form-label">납부 방법</label>
-		                <div class="col-sm-8">
-		                	<table>
+		                <div class="col-sm-8" name="">  
+		                	<table>   
 		                	<tr><td>
-			                    <button type="button" id="cash_btn" class="btn btn-outline btn-primary">현금</button>
-			                    <button type="button" id="credit_btn" class="btn btn-outline btn-primary">카드</button>
-			                    <button type="button" id="bank_btn" class="btn btn-outline btn-primary">무통장</button>
-			                    <button type="button" id="kakao_btn" class="btn btn-outline btn-primary">카카오페이</button>
-		                    </td></tr>
+			                    <input type="button" name="payment_option" id="cash_btn" value="현금" class="btn btn-outline btn-primary" >
+			                    <input type="hidden" name="payment_option_hidden" value="0">
+			                    <%--<input type="button" name="payment_option" id="credit_btn" value="카드" class="btn btn-outline btn-primary" >
+			                    <input type="button" name="payment_option" id="bank_btn" value="무통장" class="btn btn-outline btn-primary" >
+			                    <input type="button" name="payment_option" id="kakao_btn" value="카카오페이" class="btn btn-outline btn-primary" >
+			                     --%>
+		                    </td></tr>   
 		                    </table>
 		                 </div>
 		            </div>
@@ -260,31 +264,41 @@
 	                <div class="form-group row">
 	                <label class="col-sm-3 col-form-label">금융 기관</label>
 
-						<div id="cash">현금이다.</div>
 	                	<div id="banking" class="col-sm-8" style="display:flex;">
 		                     <div class="col-sm-6">
-		                     <select name="" id="banking_credit" class="form-control">
+		                     <select name="credit_select" id="credit_select" class="form-control">
 								<option value="1" selected="">카드 선택</option>
-	                             <option>삼성카드</option> 
-	                             <option>우리카드</option>
-	                             <option>BC카드</option>
-	                             <option>국민카드</option>
+	                             <option value="samsung">삼성카드</option> 
+	                             <option value="bc">BC카드</option>
+	                             <option value="kookmin">국민카드</option>
+	                             <option value="hana">하나카드</option>
+	                             <option value="shinhan">신한카드</option>
+	                             <option value="lotte">롯데카드</option>
+	                             <option value="hyundai">현대카드</option>
+	                             <option value="nonghyup">농협카드</option>
+	                             
                         	 </select>
                         	 </div> 
                         	 <div class="col-sm-6">
-		                     <select name="" id="banking_installment" class="form-control">
+		                     <select name="credit_installment" id="credit_installment" class="form-control">
 								<option value="1" selected="">일시불</option>
-	                             <option>1개월</option> 
-	                             <option>2개월</option>
-	                             <option>3개월</option>
-	                             <option>4개월</option>
+	                             <option value="2">2개월</option>
+	                             <option value="3">3개월</option>
+	                             <option value="4">4개월</option>
+	                             <option value="5">5개월</option>
+	                             <option value="6">6개월</option>
+	                             <option value="7">7개월</option>
+	                             <option value="8">8개월</option>
+	                             <option value="9">9개월</option>
+	                             <option value="10">10개월</option>
+	                             <option value="11">11개월</option>
+	                             <option value="12">12개월</option>
+	                             <option value="20">20개월</option>
+	                             <option value="24">24개월</option>
+	                             <option value="36">36개월</option>
                         	 </select>
                         	 </div> 
 		                </div> 
-	                
-	                
-	                
-	                
 		                
 		            </div> 
 	                <div class="hr-line-dashed"></div> 
@@ -292,7 +306,7 @@
 	                <div class="form-group  row">
 	                <label class="col-sm-3 col-form-label">판매 일자</label>
 		                <div class="col-sm-8">
-							<input type="date" class="form-control">
+							<input name="sale_date" type="date" class="form-control">
 		                </div>
 		            </div> 
 		            <div class="hr-line-dashed"></div> 
@@ -306,33 +320,28 @@
 		                	<input type="checkbox" class="i-checks" style="position: absolute; opacity: 0;">dd
 		                	<ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>
 		                	
-		                </div>
+		                </div>         
 		            </div> 
 	                <div class="hr-line-dashed"></div>
 	                <div class="form-group  row">
 	                <label class="col-sm-3 col-form-label">수납자</label>
 		                <div class="col-sm-8">
-		                     <select name="" id="" class="form-control">
-								<option value="1" selected="">미지정</option>
-	                             <option>정지은</option> 
-	                             <option>한진원</option>
-	                             <option>주수림</option>
-	                             <option>한진원</option>
-	                             <option>이시현</option>
-	                             <option>정원제</option>
-	                             <option>장현정</option>
-                        	 </select>
-                        </div>
-		            </div>
+			                     <select name="employee_name" id="" class="form-control">
+			                     <option value="1" selected="">미지정</option>
+									<c:forEach var="dto_emp" items="${dtos}">
+ 		                            	<option value="${dto_emp.employee_code}">${dto_emp.employee_name}</option> 
+	                            	</c:forEach>
+	                        	 </select>
+                        </div>   
+		            </div>    
 		            <div class="hr-line-dashed"></div> 
 	                <div class="form-group  row">
 	                <label class="col-sm-3 col-form-label">납부 메모</label>
 		                <div class="col-sm-8">
-		                	<input type="text" value="">
+		                	<input type="text" name="sale_memo">
                         </div> 
 		            </div>
 	                <div class="hr-line-dashed"></div> 
-	            </form>
 	        </div>
 	    </div>
 	</div>
@@ -344,6 +353,6 @@
 	</div>    
 </div>
 </div>
-</div>
+</form>
 </body>
 </html>

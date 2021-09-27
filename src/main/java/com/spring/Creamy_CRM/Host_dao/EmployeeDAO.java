@@ -28,7 +28,7 @@ public interface EmployeeDAO {
 	public int updateEmployee(EmployeeVO vo);
 	
 	// 직원의 근태 정보
-	public ArrayList<AttendanceVO> getAttendanceList(String employee_code);
+	public ArrayList<AttendanceVO> getAttendanceList(Map<String, Object> map);
 	
 	// 직원의 휴가 정보
 	public ArrayList<LeaveVO> getLeaveList(String employee_code);
@@ -41,6 +41,9 @@ public interface EmployeeDAO {
 	
 	// 직원 급여 지급 등록
 	public int insertPayment(SalaryVO vo);
+	
+	// 직원 급여 지급 정보
+	public ArrayList<SalaryVO> getPaymentList(String employee_code);
 	
 	// 이미 직원 등록이 완료된 id인지 체크
 	public int chkEmployeeIdPreexisting(String employee_id);

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../setting.jsp" %>
+<%@ include file="/WEB-INF/views/setting.jsp" %>
 <!DOCTYPE html>
 <html>
 
@@ -21,7 +21,20 @@
       .panel-heading {
          margin-bottom: 20px;
       }
-   
+      
+	@font-face {
+	    font-family: 'Wemakeprice-Regular';
+	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/Wemakeprice-Regular.woff') format('woff');
+	    font-weight: normal;
+	    font-style: normal;
+	}
+	
+	body { font-family: 'Wemakeprice-Regular';}
+	.panel-heading { margin-bottom: 20px;}
+	a:link {text-decoration: none;}
+	h3 {font-size: 18px;}
+	address {font-size: 14px;}
+	
    </style>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a24a16f3acffb8fc1ba508e3c65e6c76&libraries=services"></script>
 <script type="text/javascript" src="${path}/resources/host/js/custBooking.js"></script>
@@ -33,11 +46,7 @@
         <div id="page-wrapper" class="gray-bg">
         <div class="row border-bottom white-bg">
         <nav class="navbar navbar-expand-lg navbar-static-top" role="navigation">
-            <!--<div class="navbar-header">-->
-                <!--<button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">-->
-                    <!--<i class="fa fa-reorder"></i>-->
-                <!--</button>-->
-            <a href="#" class="navbar-brand">CREAMY</a>
+            <a href="home" class="navbar-brand">CREAMY</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fa fa-reorder"></i>
             </button>
@@ -48,7 +57,7 @@
            <form action="insertBooking" method="post" id="custBookingForm">
            <sec:csrfInput/>
            <input type="hidden" id="user_id" name="user_id" value="${sessionScope.id}">
-           <input type="hidden" id="res_date" name="res_date">   <!-- 다시 체크해 볼 것!  name="custBookingForm" -->
+           <input type="hidden" id="res_date" name="res_date">   
            <input type="hidden" id="res_memo" name="res_memo">
            <input type="hidden" id="host_code" name="host_code" value="${host_code}">
            <input type="hidden" id="chkDay">
@@ -56,6 +65,7 @@
            <input type="hidden" id="per_price" value="0">
            <input type="hidden" id="min_cnt" value="0">
            <input type="hidden" id="max_cnt" value="0">
+           <input type="hidden" id="res_sales" name="res_sales" value="0">
                 <div class="row">
                    <!-- col-lg-8  시작 -->
                     <div class="col-lg-6 col-md-12">
@@ -83,7 +93,7 @@
                                    <!-- 예약 테이블 시작 -->
                                    <table class="box">
 	                                    <tr>
-	                                       <td><strong>호실</strong><br>
+	                                       <td><strong>호실</strong><br><br>
 	                                       <small>예약 날짜를 선택하시면, 호실을 선택할 수 있습니다.</small></td>
 	                                    </tr>
 	                                    <tr>
@@ -107,20 +117,20 @@
 					             <!-- 인원 -->
                                  <table class="box">
                                     <tr>
-                                       <td><strong>인원</strong><br><small>방문하시는 인원을 선택하세요.<br><br></small></td>
+                                       <td><strong>인원</strong><br><br><small>방문하시는 인원을 선택하세요.<br><br></small></td>
                                     </tr>
                                     <tr>
                                        <td>
                                           <div class="row">
                                              <div class="col-3" style="width: auto;">
-                                                <input type="button" id="GuestCountMinus" name="GuestCountMinus" class="btn btn-primary" value="－" />
+                                                <input type="button" id="GuestCountMinus" name="GuestCountMinus" class="btn btn-primary" value="-" style="color:white"/>
                                              </div>
                                              <div class="col-4">
                                                 <input type="number" id="GuestCount" name="GuestCount" 
                                                 	maxlength="4" class="form-control text-center" value="0" readonly />
                                              </div>
                                              <div class="col-3">
-                                                <input type="button" id="GuestCountPlus" name="GuestCountPlus" class="btn btn-primary" value="＋" />
+                                                <input type="button" id="GuestCountPlus" name="GuestCountPlus" class="btn btn-primary" value="+" style="color:white"/>
                                              </div>
                                              <div class="offset-1"></div>
                                           </div>
@@ -128,7 +138,7 @@
                                     </tr>
                                   </table>
                                   
-                                  <table class="box" style="margin-top:40px;">
+                                  <table class="box" style="margin-top:20px;">
                                     <tr>
                                        <td><strong>금액</strong></td>
                                     </tr>

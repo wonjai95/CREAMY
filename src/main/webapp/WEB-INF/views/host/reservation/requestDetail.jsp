@@ -66,6 +66,16 @@
 		}
 	}
 	
+	function completeService(){		
+		var isTrue = confirm("해당 서비스를 완료하시겠습니까?");
+		
+		if(isTrue==true){
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 
 </script>
 
@@ -104,13 +114,16 @@
 	            		formaction="insertAction">예약 등록
 	            </button>
 	            &nbsp;&nbsp;&nbsp;
-	            <!-- onclick="modifyReservation();" -->
 	            <button type="submit" class="btn btn-primary btn-lg"
 	            		formaction="modifyAction" form="requestDetail" onclick="return modifyReservation();">예약 수정
 	            </button>
 	            &nbsp;&nbsp;&nbsp;
 	            <button type="submit" class="btn btn-primary btn-lg"
 	            		formaction="deleteAction" form="requestDetail" onclick="return deleteReservation();">예약 취소
+	            </button>
+	            &nbsp;&nbsp;&nbsp;
+	            <button type="submit" class="btn btn-primary btn-lg"
+	            		formaction="completeAction" form="requestDetail" onclick="return completeService();">서비스 완료
 	            </button>
 	            &nbsp;&nbsp;&nbsp;
 	            <button type="button" class="btn btn-primary btn-lg"
@@ -186,6 +199,7 @@
 	    <div class="ibox ">
 	        <div class="ibox-title">
 	            <h3>예약 상세</h3>
+	            <small>예약 코드 : ${dto.res_code}</small>
 	        </div>
 	        <div class="ibox-content">
 <!-- form -->	<form action="" method="post" id="requestDetail">
@@ -205,16 +219,14 @@
                      <tr>
                         <td>
                            <div style="display:inline-block">
-                              <button type="button" class="btn btn-outline btn-primary" class="typeBtn" id="typeBtn1"
+                              <button type="button" class="btn btn-outline btn-primary" class="typeBtn" id="stateBtn1"
                                  style="margin: 10px" value="예약신청">예약신청</button>
-                              <button type="button" class="btn btn-outline btn-primary" class="typeBtn" id="typeBtn2"
+                              <button type="button" class="btn btn-outline btn-primary" class="typeBtn" id="stateBtn2"
                                  style="margin: 10px" value="예약중">예약중</button>
-                              <button type="button" class="btn btn-outline btn-primary" class="typeBtn" id="typeBtn3"
-                                 style="margin: 10px" value="서비스 완료">서비스 완료</button>
                            </div>
-                           <div class="panel-heading" style="background-color: #e5e6e7; margin-top:15px; color: black">
-                         <%-- <input type="text" name="selectType" id="selectType" style="display: none">형태 : <span class="typeSelectedInfo">${dto.res_state}</span> --%>
-                         <input type="text" name="res_state" id="selectType" value="${dto.res_state}">
+                           <div class="col-lg-3" style="margin-top:15px; color: black">
+                         <%-- <input type="text" name="selectType" id="selectType" style="display: none">형태 : <span class="stateSelectedInfo">${dto.res_state}</span> --%>
+                         <input type="text" name="res_state" id="selectState" value="${dto.res_state}">
                       </div>
                       <div class="hr-line-dashed"></div>
                         </td>
@@ -227,7 +239,8 @@
                      <tr>
                         <td class="dashed">
                            <!-- 날짜 -->
-                           <div class="col-lg-6"><input type="date" id="res_date" name="res_date" value="${dto.res_date}" class="form-control" readonly>
+                           <div class="col-lg-3" style="margin-top:15px; color: black">
+                              <input type="date" id="res_date" name="res_date" value="${dto.res_date}"  readonly>
                            </div>
                       <div class="hr-line-dashed"></div>
                         </td>
@@ -235,35 +248,34 @@
                      
                      
                      <tr>
-                        <td><strong>시간</strong><br>
-                        <small>예약 날짜를 선택하시면, 시간을 선택할 수 있습니다.</small></td>
+                        <td><strong>시간</strong><br></td>
                      </tr>
                      <tr>
                         <td class="dashed">
                            <!-- 시간 -->
                            <div style="display:inline-block">
                               <button type="button" class="btn btn-outline btn-primary" class="timeBtn" id="timeBtn1"
-                                 style="margin: 10px" value="09:00" disabled>09:00</button>
-                              <button type="button" class="btn btn-outline btn-primary" class="timeBtn" id="timeBtn1"
-                                 style="margin: 10px" value="10:00" disabled>10:00</button>
+                                 style="margin: 10px" value="09:00">09:00</button>
                               <button type="button" class="btn btn-outline btn-primary" class="timeBtn" id="timeBtn2"
-                                 style="margin: 10px" value="11:00" disabled>11:00</button>
+                                 style="margin: 10px" value="10:00">10:00</button>
                               <button type="button" class="btn btn-outline btn-primary" class="timeBtn" id="timeBtn3"
-                                 style="margin: 10px" value="12:00">12:00</button>
+                                 style="margin: 10px" value="11:00">11:00</button>
                               <button type="button" class="btn btn-outline btn-primary" class="timeBtn" id="timeBtn4"
+                                 style="margin: 10px" value="12:00">12:00</button>
+                              <button type="button" class="btn btn-outline btn-primary" class="timeBtn" id="timeBtn5"
                                  style="margin: 10px" value="13:00">13:00</button>
-                              <button type="button" class="btn btn-outline btn-primary" class="timeBtn" id="timeBtn5"
+                              <button type="button" class="btn btn-outline btn-primary" class="timeBtn" id="timeBtn6"
                                  style="margin: 10px" value="14:00">14:00</button>
-                              <button type="button" class="btn btn-outline btn-primary" class="timeBtn" id="timeBtn5"
+                              <button type="button" class="btn btn-outline btn-primary" class="timeBtn" id="timeBtn7"
                                  style="margin: 10px" value="15">15:00</button>
-                              <button type="button" class="btn btn-outline btn-primary" class="timeBtn" id="timeBtn5"
+                              <button type="button" class="btn btn-outline btn-primary" class="timeBtn" id="timeBtn8"
                                  style="margin: 10px" value="16">16:00</button>
-                              <button type="button" class="btn btn-outline btn-primary" class="timeBtn" id="timeBtn5"
+                              <button type="button" class="btn btn-outline btn-primary" class="timeBtn" id="timeBtn9"
                                  style="margin: 10px" value="17">17:00</button>
-                              <button type="button" class="btn btn-outline btn-primary" class="timeBtn" id="timeBtn5"
+                              <button type="button" class="btn btn-outline btn-primary" class="timeBtn" id="timeBtn10"
                                  style="margin: 10px" value="18">18:00</button>
                            </div>
-                      <div class="panel-heading" style="background-color: #e5e6e7; margin-top:15px; color: black">
+                      <div class="col-lg-3" style="margin-top:15px; color: black">
                          <%-- <input type="text" name="selectTime" id="selectTime" value="${dto.res_hour}" style="display: none">선택 시간 : <span class="timeSelectedInfo">${dto.res_hour}</span> --%>
 			         	 <input type="text" name="res_hour" id="selectTime" value="${dto.res_hour}">
                       </div>
@@ -312,17 +324,17 @@
    
                      <!-- 인원 -->
                      <tr>
-                        <td><strong>인원</strong><br><small>방문하시는 인원을 선택하세요.<br><br></small></td>
+                        <td><strong>인원</strong></td>
                      </tr>
                      <tr>
                         <td>
-                           <div class="row">
+                           <div class="row" style="margin-top:15px; color: black">
                               <div class="col-3" style="width: auto;">
                                  <input type="button" id="GuestCountMinus" name="GuestCountMinus" class="btn btn-primary" value="－" />
                               </div>
-                              <div class="col-4">
+                              <div class="col-2">
                                  <!-- <input type="text" id="GuestCount" name="GuestCount" maxlength="4" class="form-control text-center" value="0" readonly /> -->
-                                 <input type="text" id="GuestCount" name="res_cnt" maxlength="4" class="form-control text-center" value="${dto.res_cnt}" >
+                                 <input type="text" id="GuestCount" name="res_cnt" maxlength="4" class="form-control text-center" value="${dto.res_cnt}" readonly>
                               </div>
                               <div class="col-3">
                                  <input type="button" id="GuestCountPlus" name="GuestCountPlus" class="btn btn-primary" value="＋" />
@@ -349,7 +361,7 @@
                               <button type="button" class="btn btn-outline btn-primary" class="managerBtn" id="managerBtn3"
                                  value="E4" style="margin: 10px">장현정</button>
                            </div>
-                           <div class="panel-heading" style="background-color: #e5e6e7; margin-top:15px; color: black">
+                           <div class="col-lg-3" style="margin-top:15px; color: black">
                                <%-- <input type="text" name="selectManager" id="selectManager" style="display: none">담당자 : <span class="managerSelectedInfo">${dto.employee_code}</span> --%>
                                <input type="text" name="employee_code" id="selectManager" value="${dto.employee_code}">
                            </div>
@@ -358,7 +370,7 @@
                            <div class="form-group" style="margin-top:30px;">
                          <span><strong>추가 요청사항</strong></span>
                          <textarea class="form-control" rows="3"
-                         			name="res_indiv_request" style="margin-top:10px;">
+                         			name="res_indiv_request" style="margin-top:10px; color: black">
                          			${dto.res_indiv_request}
                          </textarea>
     <!-- textarea 다시 체크해 볼 것! -->
@@ -376,7 +388,7 @@
                      <tr>
                         <td>
                      
-			         <div class="col-lg-12">
+			         <div class="col-lg-12" style="margin-top:15px; color: black">
 			         	<input type="text" id="res_memo" name="res_memo"
 			         			value="${dto.res_memo}" class="form-control">
 			         </div>

@@ -22,6 +22,19 @@
          margin-bottom: 20px;
       }
    
+	   @font-face {
+		    font-family: 'Wemakeprice-Regular';
+		    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/Wemakeprice-Regular.woff') format('woff');
+		    font-weight: normal;
+		    font-style: normal;
+		}
+		
+		body { font-family: 'Wemakeprice-Regular';}
+		.panel-heading { margin-bottom: 20px;}
+		a:link {text-decoration: none;}
+		h3 {font-size: 18px;}
+		address {font-size: 14px;}
+	   
    </style>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a24a16f3acffb8fc1ba508e3c65e6c76&libraries=services"></script>
 <script type="text/javascript" src="${path}/resources/host/js/custBooking.js"></script>
@@ -37,7 +50,7 @@
                 <!--<button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">-->
                     <!--<i class="fa fa-reorder"></i>-->
                 <!--</button>-->
-            <a href="#" class="navbar-brand">CREAMY</a>
+            <a href="home" class="navbar-brand">CREAMY</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fa fa-reorder"></i>
             </button>
@@ -48,11 +61,13 @@
            <form action="insertBooking" method="post" id="custBookingForm">
            <sec:csrfInput/>
            <input type="hidden" id="user_id" name="user_id" value="${sessionScope.id}">
+           <input type="hidden" id="res_state" name="res_state"> <!-- custRoomBooking.jsp에도 hidden으로 res_state를 넣기??? -->
            <input type="hidden" id="res_date" name="res_date">   <!-- 다시 체크해 볼 것!  name="custBookingForm" -->
            <input type="hidden" id="res_memo" name="res_memo">
            <input type="hidden" id="host_code" name="host_code" value="${host_code}">
            <input type="hidden" id="chkDay">
            <input type="hidden" id="com_res" value="${com_res}">
+           <input type="hidden" id="product_code" name="product_code">
                 <div class="row">
                    <!-- col-lg-8  시작 -->
                     <div class="col-lg-6 col-md-12">
@@ -104,13 +119,13 @@
                                        <td>
                                           <div class="row">
                                              <div class="col-3" style="width: auto;">
-                                                <input type="button" id="GuestCountMinus" name="GuestCountMinus" class="btn btn-primary" value="－" />
+                                                <input type="button" id="GuestCountMinus" name="GuestCountMinus" class="btn btn-primary" value="-" />
                                              </div>
                                              <div class="col-4">
                                                 <input type="text" id="GuestCount" name="GuestCount" maxlength="4" class="form-control text-center" value="0" readonly />
                                              </div>
                                              <div class="col-3">
-                                                <input type="button" id="GuestCountPlus" name="GuestCountPlus" class="btn btn-primary" value="＋" />
+                                                <input type="button" id="GuestCountPlus" name="GuestCountPlus" class="btn btn-primary" value="+" />
                                              </div>
                                              <div class="offset-1"></div>
                                           </div>
@@ -150,55 +165,25 @@
 		                              <tr>
 		                                 <td class="dashed">
 		                                    <div id="product-list">
-		                                       <table class="product-item" data-cat="group-0" style="width:100%; border:1px solid #ddd; padding:0px; margin-bottom:8px;">
-		                                          <tr>
-		                                             <td style="width:64px; padding:10px 0 0 0; background:#fafafa; text-align:center">
-		                                                <input type="radio" class="checkbox" id="product_17806" name="ReserveProduct" value="17806" />
-		                                                <label for="product_17806" class="input-label checkbox"></label>
-		                                                <input type="hidden" id="price_17806" value="100" />
-		                                             </td>
-		                                             <td style="padding:8px">
-		                                                <strong>테스트</strong>
-		                                                
-		                                                <br />
-		                                                   <small><strong>100</strong>원</small><br/>
-		                                             </td>
-		                                             
-		                                          </tr>
-		                                       </table>
-		                              
-		                                       <table class="product-item" data-cat="group-0" style="width:100%; border:1px solid #ddd; padding:0px; margin-bottom:8px;">
-		                                          <tr>
-		                                             <td style="width:64px; padding:10px 0 0 0; background:#fafafa; text-align:center">
-		                                                <input type="radio" class="checkbox" id="product_17807" name="ReserveProduct" value="17807" />
-		                                                <label for="product_17807" class="input-label checkbox"></label>
-		                                                <input type="hidden" id="price_17807" value="800000" />
-		                                             </td>
-		                                             <td style="padding:8px">
-		                                                <strong>테스트 쿠폰</strong>
-		                                                <br />
-		                                                   <small><strong>800,000</strong>원</small><br/>
-		                                             </td>
-		                                             
-		                                          </tr>
-		                                       </table>
-		                                    
-		                                       	<table class="product-item" data-cat="group-2676" style="width:100%; border:1px solid #ddd; padding:0px; margin-bottom:8px;">
-		                                          <tr>
-		                                             <td style="width:64px; padding:10px 0 0 0; background:#fafafa; text-align:center">
-		                                                <input type="radio" class="checkbox" id="product_17808" name="ReserveProduct" value="17808" />
-		                                                <label for="product_17808" class="input-label checkbox"></label>
-		                                                <input type="hidden" id="price_17808" value="100000" />
-		                                             </td>
-		                                             <td style="padding:8px">
-		                                                <strong>왜안나오노</strong>
-		                                                
-		                                                <br />
-		                                                   <small><strong>100,000</strong>원</small><br/>
-		                                             </td>
-		                                             
-		                                          </tr>
-		                                          </table>
+		                                    	<c:forEach var="dto" items="${dtos}" varStatus="status">
+			                                       <table class="product-item" data-cat="group-0" style="width:100%; border:1px solid #ddd; padding:0px; margin-bottom:8px;">
+			                                          <tr class="proList">
+			                                             <td style="width:64px; padding:10px 0 0 0; background:#fafafa; text-align:center">
+			                                                <input type="radio" class="checkbox" id="product${status.index}" name="ReserveProduct" value="${dto.product_code}" />
+			                                                <label for="product${status.index}" class="input-label checkbox"></label>
+			                                                <input type="hidden" id="price${status.index}" value="${dto.product_price}" />
+			                                             </td>
+			                                             <td style="padding:8px">
+			                                                <strong>${dto.product_name}</strong>
+			                                                
+			                                                <br />
+			                                                   <small><strong><fmt:formatNumber value="${dto.product_price}" pattern="#,###"/></strong>원</small><br/>
+			                                             </td>
+			                                             
+			                                          </tr>
+			                                       </table>
+		                              			</c:forEach>
+
 		                                             <div class="panel-heading" style="background-color: #e5e6e7; margin-top:15px; color: black">
 			                                              <input type="text" name="ReserveProductSum" id="ReserveProductSum" style="display: none">
 			                                                   	 결제금액 : <span class="productSelectedInfo">총액</span>

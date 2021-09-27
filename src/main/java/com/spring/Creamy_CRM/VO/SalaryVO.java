@@ -11,10 +11,12 @@ public class SalaryVO {
 	private int salary;							// 급여(월급)
 	private int income_tax;						// 소득세
 	private int national_pension;				// 국민연금
+	private int employment_insurance;			// 고용보험
 	private int health_insurance;				// 건강보험
 	private int lt_care_insurance;				// 장기요양보험
-	private int employment_insurance;			// 고용보험
+	private int deduction_total;				// 공제 합계
 	private int loan_payment_amount;			// 차인지급액
+	
 	public String getSalary_code() {
 		return salary_code;
 	}
@@ -80,6 +82,12 @@ public class SalaryVO {
 	}
 	public void setPay_month(String pay_month) {
 		this.pay_month = pay_month;
+	}
+	public int getDeduction_total() {
+		return deduction_total;
+	}
+	public void setDeduction_total(int deduction_total) {
+		this.deduction_total = deduction_total;
 	}
 	
 	

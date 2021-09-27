@@ -44,10 +44,11 @@
 	</update>
 	
 	<!-- 직원의 근태 정보 조회 -->
-	<select id="getAttendanceList" parameterType="String" resultType="com.spring.Creamy_CRM.VO.AttendanceVO">
+	<select id="getAttendanceList" parameterType="java.util.Map" resultType="com.spring.Creamy_CRM.VO.AttendanceVO">
 		SELECT *
 		  FROM attendance_tbl
-		 WHERE employee_code = #{employee_code}
+		 WHERE employee_code = #{empCode}
+		   AND TO_CHAR(attendance_date, 'YYYY-MM') = #{curMonth}
 		ORDER BY attendance_date DESC
 	</select>
 	
@@ -75,10 +76,19 @@
 	
 	<!-- 직원 급여 지급 등록 -->
 	<insert id="insertPayment" parameterType="com.spring.Creamy_CRM.VO.SalaryVO">
-		INSERT INTO salary_tbl(salary_code, employee_code, salary_contract_code, salary, total_payment, income_tax, loan_payment_amount, national_pension, health_insurance, employment_insurance,
-								lt_care_insurance, salary_payDate, pay_month)
-		VALUES()
+		INSERT INTO salary_tbl(salary_code, employee_code, salary_payDate, pay_month, salary, income_tax, national_pension, health_insurance,
+								employment_insurance, lt_care_insurance, deduction_total, loan_payment_amount)
+		VALUES('S'||sal_seq.nextval, #{employee_code}, #{salary_payDate}, #{pay_month}, #{salary},  #{income_tax}, #{national_pension},
+				#{health_insurance}, #{employment_insurance}, #{lt_care_insurance}, #{deduction_total}, #{loan_payment_amount})
 	</insert>
+	
+	<!-- 직원 급여 지급 정보 조회 -->
+	<select id="getPaymentList" parameterType="String" resultType="com.spring.Creamy_CRM.VO.SalaryVO">
+		SELECT *
+		  FROM salary_tbl
+		 WHERE employee_code = #{employee_code}
+		ORDER BY salary_payDate DESC
+	</select>
 	
 	<!-- 이미 직원 등록이 완료된 id인지 체크 -->
 	<select id="chkEmployeeIdPreexisting" parameterType="String" resultType="Integer">

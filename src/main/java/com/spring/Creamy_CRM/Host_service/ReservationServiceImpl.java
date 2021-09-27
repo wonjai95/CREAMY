@@ -35,7 +35,7 @@ public class ReservationServiceImpl implements ReservationService {
 		System.out.println("서비스 requestList시작합니다.");
 		// 3단계. 화면으로부터 입력받은 값을 받아온다.
 		// 페이징 (변수들)
-		int pageSize = 25;		// 한 페이지당 출력할 글의 갯수
+		int pageSize = 10;		// 한 페이지당 출력할 글의 갯수
 		int pageBlock = 10;		// 한 블럭당 페이지의 갯수
 		
 		int cnt = 0;			// 글 갯수
@@ -54,9 +54,11 @@ public class ReservationServiceImpl implements ReservationService {
 		System.out.println("cnt => " + cnt);
 		
 		pageNum = req.getParameter("pageNum");
+		System.out.println("pageNum => " + pageNum);
 		
 		if(pageNum == null) {
 			pageNum = "1";	// 첫 페이지를 1페이지로 지정한다.
+			System.out.println("pageNum첫페이지 => " + pageNum);
 		}
 		
 		// 글 30건 기준
@@ -107,12 +109,14 @@ public class ReservationServiceImpl implements ReservationService {
 		System.out.println("==============================");
 		
 		List<ReservationVO> dtos = null;
+		//String state = "서비스 완료";
 
 		if(cnt > 0) {
 			// 5-2단계. 게시글 목록 조회
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("start", start);
 			map.put("end", end);
+			//map.put("res_state", state);
 			
 			dtos = dao.getRequestList(map);  // dtos대신 list로 매개변수 줘도 무방하다.
 		}
@@ -131,6 +135,19 @@ public class ReservationServiceImpl implements ReservationService {
 		}
 	}
 
+	// 예약요청 검색목록
+	@Override
+	public void requestSearch(HttpServletRequest req, Model model) {
+		
+		String res_code = req.getParameter("res_code");
+		System.out.println("res_code ==> " + res_code);
+		
+		List<ReservationVO> dtos = dao.requestSearch(res_code);
+		System.out.println("dtos ==> " + dtos);
+		
+		model.addAttribute("dtos", dtos);
+	}
+	
 	// 예약요청 상세 페이지
 	@Override
 	public void requestDetailAction(HttpServletRequest req, Model model) {
@@ -202,26 +219,53 @@ public class ReservationServiceImpl implements ReservationService {
 	@Override
 	public void deleteAction(HttpServletRequest req, Model model) {
 		// 3단계. 화면으로부터 입력받은 값(= hidden값, input(비밀번호)값)을 받아온다.
-		int res_code = Integer.parseInt(req.getParameter("res_code"));
-		int res_detail_code = Integer.parseInt(req.getParameter("res_detail_code"));
+		String res_code = req.getParameter("res_code");
+		String res_detail_code = req.getParameter("res_detail_code");
 		System.out.println("res_code : " + res_code);
 		System.out.println("res_detail_code : " + res_detail_code);
 		
 		// 5단계. 게시글 삭제 처리
-		int deleteCnt = dao.deleteRequest2(res_detail_code) + dao.deleteRequest1(res_code);
+		int deleteCnt = dao.deleteRequest1(res_code) + dao.deleteRequest2(res_detail_code);
 		System.out.println("deleteCnt : " + deleteCnt);
 	
 		// 6단계. jsp로 전달하기 위해 request나 session에 처리결과를 저장
 		model.addAttribute("deleteCnt", deleteCnt);  // deleteCnt = 2
 	}
-
+	
+	// 서비스 완료처리 페이지
+	public void completeAction(HttpServletRequest req, Model model) {
+		System.out.println("completeAction 시작합니다.");
+		// 3단계. 화면으로부터 입력받은 값(= hidden값)을 받아온다.
+		String res_state = "서비스 완료";
+		String res_code = req.getParameter("res_code");
+		
+		// reservationVO vo 바구니 생성
+		ReservationVO vo = new ReservationVO();
+		
+		vo.setRes_state(res_state);
+		vo.setRes_code(res_code);  // update시, WHERE절에서 key를 비교하기 위해서.
+		
+		System.out.println("res_state : " + res_state);
+		System.out.println("res_code : " + res_code);
+		
+		int updateCnt = dao.completeService(vo);
+		System.out.println("updateCnt : " + updateCnt);
+		
+		model.addAttribute("updateCnt", updateCnt);
+	}
+	
+	
+	
+	
+	
 //======= 예약조회 탭 =======
 	// 예약조회 목록
 	@Override
 	public void completeList(HttpServletRequest req, Model model) {
+		System.out.println("서비스 completeList시작합니다.");
 		// 3단계. 화면으로부터 입력받은 값을 받아온다.
 		// 페이징 (변수들)
-		int pageSize = 25;		// 한 페이지당 출력할 글의 갯수
+		int pageSize = 10;		// 한 페이지당 출력할 글의 갯수
 		int pageBlock = 10;		// 한 블럭당 페이지의 갯수
 		
 		int cnt = 0;			// 글 갯수

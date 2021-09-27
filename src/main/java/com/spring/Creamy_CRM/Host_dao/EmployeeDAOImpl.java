@@ -49,9 +49,9 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	
 	// 직원의 근태 정보
 	@Override
-	public ArrayList<AttendanceVO> getAttendanceList(String employee_code){
+	public ArrayList<AttendanceVO> getAttendanceList(Map<String, Object> map){
 		EmployeeDAO dao = sqlSession.getMapper(EmployeeDAO.class);
-		return dao.getAttendanceList(employee_code);
+		return dao.getAttendanceList(map);
 	}
 	
 	// 직원의 휴가 정보
@@ -80,6 +80,12 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	public int insertPayment(SalaryVO vo) {
 		EmployeeDAO dao = sqlSession.getMapper(EmployeeDAO.class);
 		return dao.insertPayment(vo);
+	}
+	
+	// 직원 급여 지급 정보
+	public ArrayList<SalaryVO> getPaymentList(String employee_code){
+		EmployeeDAO dao = sqlSession.getMapper(EmployeeDAO.class);
+		return dao.getPaymentList(employee_code);
 	}
 	
 	// 이미 직원 등록이 완료된 id인지 체크

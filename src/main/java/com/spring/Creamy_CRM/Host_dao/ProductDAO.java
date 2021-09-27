@@ -16,6 +16,7 @@ import com.spring.Creamy_CRM.VO.S_tVO;
 import com.spring.Creamy_CRM.VO.SaleVO;
 import com.spring.Creamy_CRM.VO.StockVO;
 import com.spring.Creamy_CRM.VO.TradeVO;
+import com.spring.Creamy_CRM.VO.userVO;
 
 public interface ProductDAO {
 
@@ -90,7 +91,7 @@ public interface ProductDAO {
 	int updateStock(StockVO vo);
 	// 재고 삭제
 	int deleteStock(String stock_code);
-	
+
 	
 	//입출고 현황
 	int stCnt(String host_code);
@@ -100,5 +101,9 @@ public interface ProductDAO {
 	
 	/*ajax*/
 	List<ProductVO> ajax_getProductByCode(String product_group_code);
+
+	// 결제정보 등록
+	public int addSaleInfo(userVO vo);
+
 
 }

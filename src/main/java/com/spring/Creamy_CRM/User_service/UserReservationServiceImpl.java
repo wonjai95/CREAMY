@@ -23,9 +23,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
-import com.spring.Creamy_CRM.User_dao.UserReservationDAO;
 import com.spring.Creamy_CRM.User_dao.UserReservationDAOImpl;
 import com.spring.Creamy_CRM.VO.HostVO;
+import com.spring.Creamy_CRM.VO.ProductVO;
 import com.spring.Creamy_CRM.VO.ReservationVO;
 
 @Service
@@ -41,14 +41,27 @@ public class UserReservationServiceImpl implements UserReservationService {
 		model.addAttribute("dtos", list);
 	}
 	
-	// 고객 예약 페이지
+	// 고객 매장 선택 페이지 - 검색
 	@Override
-	public void custBooking(HttpServletRequest req, Model model) {
+	public void searchHostList(HttpServletRequest req, Model model) {
+		String keyword = req.getParameter("keyword");
+		System.out.println("keyword : " + keyword);
+		List<HostVO> list = dao.searchHostList(keyword);
+		model.addAttribute("dtos", list);
+		
+	}
+	
+	
+	// 담당자 예약 - 해당 사장님의 상품 정보 가져오기
+	@Override
+	public void custManagerBooking(HttpServletRequest req, Model model) {
 		String host_code = req.getParameter("host_code");
 		System.out.println("host_code : " + host_code);
 		
-		// 해당 사장님의 호실과 상품 정보 가져오기
+		// 담당자 예약 - 해당 사장님의 상품 정보 가져오기
+		List<ProductVO> dtos = dao.getProductList(host_code);
 		
+		model.addAttribute("dtos", dtos);
 		
 	}
 
@@ -74,13 +87,6 @@ public class UserReservationServiceImpl implements UserReservationService {
 		String close_sche = vo.getClose_sche();
 		System.out.println("open_sche : " + open_sche);
 		System.out.println("close_sche : " + close_sche);
-		
-		// 몇 시간 이용 : ex. 3(시간 이용)
-//		String hrs = req.getParameter("hrs");
-		// 이용 시작 시간 start_hrs --> ex. 10:00
-		// 이용 종료 시간 LocalTime.parse(start_hrs).plus(hrs, ChronoUnit.HOURS) --> 13:00
-		// db를 가서, 1건의 예약에 대한 해당 날짜에 시작시간과 종료시간 설정
-		
 		
 		// 현재 날짜
 		Date today = new Date(System.currentTimeMillis());
@@ -115,6 +121,7 @@ public class UserReservationServiceImpl implements UserReservationService {
 		LocalTime end = LocalTime.parse(close_sche);
 		String timeSche = start.toString();
 		String endTime = end.toString();
+		System.out.println("endTime : " + endTime);
 		dtos.add(timeSche);
 		int i = 1;
 		
@@ -204,6 +211,8 @@ public class UserReservationServiceImpl implements UserReservationService {
 		
 		HostVO vo = dao.getOperatingInfo(map);
 		
+		ReservationVO roomVO = dao.getRoomInfo(selectRoom);
+		
 		// 해당 날짜에 해당 호실 예약 현황
 		map.put("res_date", selectDate);
 		map.put("room_setting_code", selectRoom);
@@ -213,6 +222,7 @@ public class UserReservationServiceImpl implements UserReservationService {
 		model.addAttribute("close_sche", vo.getClose_sche());
 		model.addAttribute("selectDate", selectDate);
 		model.addAttribute("dtos", resVO);
+		model.addAttribute("roomDto", roomVO);
 	}
 
 	// 호실 예약 처리
@@ -220,8 +230,9 @@ public class UserReservationServiceImpl implements UserReservationService {
 	public void insertRoomBookingAction(HttpServletRequest req, Model model) {
 		String res_start = req.getParameter("res_start");
 		String res_end = req.getParameter("res_end");
+		int res_sales = Integer.parseInt(req.getParameter("res_sales"));
 		int guestCount = Integer.parseInt(req.getParameter("GuestCount"));
-		String priceTotal = req.getParameter("priceTotal");
+		String res_state = "예약완료";
 		String room_setting_code = req.getParameter("selectRoom");
 		String res_indiv_request = req.getParameter("res_indiv_request");
 		String user_id = req.getParameter("user_id");
@@ -229,42 +240,72 @@ public class UserReservationServiceImpl implements UserReservationService {
 		System.out.println("str_res_date : " + str_res_date);
 		Date res_date = Date.valueOf(str_res_date);
 		
-		System.out.println("res_start : " + res_start);
-		System.out.println("res_end : " + res_end);
-		System.out.println("guestCount : " + guestCount);
-		System.out.println("priceTotal : " + priceTotal);
-		System.out.println("room_setting_code : " + room_setting_code);
-		System.out.println("res_indiv_request : " + res_indiv_request);
-		System.out.println("res_date : " + res_date);
+		String open_sche = req.getParameter("open_sche");
+		String close_sche = req.getParameter("close_sche");
+		
+		int openTime = Integer.parseInt(open_sche.split(":")[0]);
+		int closeTime = Integer.parseInt(close_sche.split(":")[0]);
 		
 		ReservationVO vo = new ReservationVO();
-		vo.setRes_start(res_start);
-		vo.setRes_end(res_end);
+		vo.setRes_state(res_state);
 		vo.setRes_cnt(guestCount);
 		vo.setRoom_setting_code(room_setting_code);
 		vo.setRes_indiv_request(res_indiv_request);
 		vo.setUser_id(user_id);
 		vo.setRes_date(res_date);
+		vo.setRes_hour(Integer.parseInt(res_start));
+		vo.setRes_sales(res_sales);
 		
-		// 예약 신청 시간 가능 여부 체크
-		int chk = dao.chkRoomBooking(vo);
+		// 예약 성공 여부
 		int insertCnt = 0;
 		
-		// chk !=0 이면 예약 불가능 => insertCnt = 3 
-		// 예약 가능
-		if(chk == 0) {
-			System.out.println("예약 가능");
+		// 예약 시작 시간 >= 예약 종료시간 || 영업 시작 시간 > 예약 시작 시간 || 영업 종료 시간 < 예약 종료시간
+		if(Integer.parseInt(res_start) >= Integer.parseInt(res_end) || 
+				openTime > Integer.parseInt(res_start) || 
+				closeTime < Integer.parseInt(res_end)) {
+			insertCnt = 2;
 			
-		
-		} else {
-			System.out.println("예약 불가능");
-			insertCnt = 3;
+		// 예약 시작 시간 < 예약 종료시간
+		}  else {
+			res_start = res_start + ":00";
+			res_end = res_end + ":00";
+			vo.setRes_start(res_start);
+			vo.setRes_end(res_end);
+			
+			// 예약 신청 시간 가능 여부 체크를 위한 뷰 생성를 생성해서, 그 뷰와 reservation_tbl를 조인
+			// => count(*) = 0이면 예약 가능
+			// 예약 신청 시간 가능 여부 체크를 위한 뷰 생성 sql문
+			String sql = "CREATE OR REPLACE VIEW res_timetable_view " 
+							+ "AS "
+							+ "SELECT * "
+							+ "FROM reservation_detail_tbl "
+							+ "WHERE TO_DATE('1990/01/01' || '" + res_start + "', 'YYYY/MM/dd HH24:mi') BETWEEN TO_DATE(TO_CHAR('1990/01/01' || res_start), 'YYYY/MM/dd HH24:mi') + 5/(24*60) AND TO_DATE(TO_CHAR('1990/01/01' || res_end), 'YYYY/MM/dd HH24:mi') + 5/(24*60) "
+							+ "OR TO_DATE('1990/01/01' || '" + res_end + "', 'YYYY/MM/dd HH24:mi') BETWEEN TO_DATE(TO_CHAR('1990/01/01' || res_start), 'YYYY/MM/dd HH24:mi') + 5/(24*60) AND TO_DATE(TO_CHAR('1990/01/01' || res_end), 'YYYY/MM/dd HH24:mi') + 5/(24*60) "
+							+ "OR TO_DATE(TO_CHAR('1990/01/01' || res_start), 'YYYY/MM/dd HH24:mi') + 5/(24*60) BETWEEN TO_DATE('1990/01/01' || '" + res_start + "', 'YYYY/MM/dd HH24:mi') AND TO_DATE('1990/01/01' || '" + res_end + "', 'YYYY/MM/dd HH24:mi') " 
+							+ "OR TO_DATE(TO_CHAR('1990/01/01' || res_end), 'YYYY/MM/dd HH24:mi') + 5/(24*60) BETWEEN TO_DATE('1990/01/01' || '" + res_start + "', 'YYYY/MM/dd HH24:mi') AND TO_DATE('1990/01/01' || '" + res_end + "', 'YYYY/MM/dd HH24:mi')";
+			
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("sql", sql);
+			map.put("res_date", res_date);
+			map.put("room_setting_code", room_setting_code);
+			// 예약 신청 시간 가능 여부 체크
+			int chk = dao.chkRoomBooking(map);
+			System.out.println("chk : " + chk);
+			
+			// chk !=0 이면 예약 불가능 => insertCnt = 3 
+			// 예약 가능
+			if(chk == 0) {
+				System.out.println("예약 가능");
+				insertCnt = dao.insertRoomBooking(vo);
+			} else {
+				System.out.println("예약 불가능");
+				insertCnt = 3;
+			}
 		}
-		
 		model.addAttribute("insertCnt", insertCnt);
 		
 	}
-	
+
 	
 	
 

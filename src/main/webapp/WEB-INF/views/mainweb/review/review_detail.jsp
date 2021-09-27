@@ -32,6 +32,8 @@
   
   </script>
   
+ 
+  
 </head>
 
 <body onload="check_starpoint(${vo.star});">
@@ -52,13 +54,16 @@
 		        
 		        <!-- ======= 회원 수정 폼 ======= -->
 		        <div class="php-email-form">
+		        
+		        <form method="post">
 		         <div class="row mt-5 justify-content-center">
 		         	<div class="col-lg-10">
 		         	 	
 		         	 	<div style="display: flex; margin-left: 0px;">
 		         	 	<div style="width: 100%;">
 		         	 	<input type="hidden" name="img_url" value="0">
-		         	 	<input type="hidden" name="res_code" value="${res_code}">
+		         	 	<input type="hidden" name="check_page" value="${check_page}">
+		         	 	<input type="hidden" name="review_code" value="${vo.review_code}">
 		         	 	<sec:csrfInput/>
 		         	 	
 		         	 		<div style="padding-bottom: 9px; display: flex; justify-content: flex-end; ">
@@ -123,24 +128,38 @@
 	 		       		 	 </div>
        		        		
       		         		<div class="text-center" style="margin-top: 30px;">
-      		         		<c:if test="${check_page eq 'my'}">
-		              		<button type="button" onclick="location.href='my_review'">목록으로</button>
+      		         		<c:if test="${sessionScope.id eq vo.user_id}">
+	      		         		<c:if test="${check_page eq 'my'}">
+	      		         		<button type="submit" formaction="modify_review" >후기 수정</button>
+	      		         		<button type="submit" formaction="delete_review">후기 삭제</button>
+			              		<button type="button" onclick="location.href='my_review'">목록으로</button>
+			              		</c:if>
+			              		<c:if test="${check_page eq 'all'}">
+			              		<button type="submit" formaction="modify_review" >후기 수정</button>
+			              		<button type="submit" formaction="delete_review">후기 삭제</button>
+			              		<button type="button" onclick="location.href='review_main'">목록으로</button>
+			              		</c:if>
 		              		</c:if>
-		              		<c:if test="${check_page eq 'all'}">
-		              		<button type="button" onclick="location.href='review_main'">목록으로</button>
+		              		<c:if test="${sessionScope.id ne vo.user_id}">
+	      		         		<c:if test="${check_page eq 'my'}">
+			              		<button type="button" onclick="location.href='my_review'">목록으로</button>
+			              		</c:if>
+			              		<c:if test="${check_page eq 'all'}">
+			              		<button type="button" onclick="location.href='review_main'">목록으로</button>
+			              		</c:if>
 		              		</c:if>
 		 		       		    </div>
 		  		          
 		 		      		    </div>
 		  				            </div>
          	 </div>
+         	
          </div>
+          </form>
          </div>
 
       </div>
     </section><!-- End Contact Section -->
-
-  </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
   <footer id="footer">

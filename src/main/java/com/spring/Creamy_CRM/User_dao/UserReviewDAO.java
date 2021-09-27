@@ -38,4 +38,7 @@ public interface UserReviewDAO {
 	//조회수 증가
 	public int plusReadCnt(Map<String, Object> map);
 	
+	//리뷰 수정하기
+	public int modify_Review(ReviewVO vo);
+	
 }

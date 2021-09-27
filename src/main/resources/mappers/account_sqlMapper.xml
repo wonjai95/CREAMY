@@ -10,9 +10,17 @@
 -->
   
   
-  <mapper namespace="com.spring.Creamy_CRM.Host_dao.accountDAO">
-  
+  <mapper namespace="com.spring.Creamy_CRM.Host_dao.AccountDAO">
+  	<!-- 작성자 : 주수림, 작성일 : 2021-09-26, 매입매출전표 목록, 등록 mapper -->
+  	<!-- 매입매출 전표 목록 -->
+  	<select id="getSlipList" parameterType="String" resultType="com.spring.Creamy_CRM.VO.AccountVO">
+  		SELECT * FROM slip_tbl ORDER BY slip_regDate DESC
+  	</select>
   	
-  	
+  	<!-- 매입매출 전표 등록 -->	
+  	<insert id="insertSlip" parameterType="com.spring.Creamy_CRM.VO.AccountVO">
+  		INSERT INTO slip_tbl (slip_code, host_code, slip_type, slip_regDate, slip_money, slip_memo)
+  		VALUES ('SLIP'||slip_seq.nextval, #{host_code}, #{slip_type}, #{slip_regDate}, #{slip_money}, #{slip_memo})
+  	</insert>
   
   </mapper>
