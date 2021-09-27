@@ -32,11 +32,11 @@
 	    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 		        <c:forEach var="day" items="${dayList}" varStatus="i">
 					<div class="form-group" style="font-size: 20px;">
-						 <input type="checkbox" name="day" value="${i.count}">
+						 <input type="checkbox" name="day" value="${i.index + 1}">
 						 <label>${day}</label>
-						 <input type="time" name="open" disabled="disabled" required="required">
+						 <input type="time" name="open" disabled="disabled" required="required" value="${operArray[i.index].open_sche}">
 						  ~ 
-						 <input type="time" name="close" disabled="disabled" required="required">
+						 <input type="time" name="close" disabled="disabled" required="required" value="${operArray[i.index].close_sche}">
 					</div>
 					<br/>
 				</c:forEach>

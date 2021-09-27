@@ -51,10 +51,10 @@
 				<div class="row">
 					<div class="col-lg-9 animated fadeInRight">
 						<div class="ibox-content" style="margin: 0px; padding: 0px;">
-							<form action="deleteProductAction" method="post"
-								onsubmit="return deleteProduct();">
+							<form action="" method="post" onsubmit="">
 								<input type="hidden" name="${_csrf.parameterName}"
 									value="${_csrf.token}">
+									
 								<div id="p_group">
 									<div>
 										<button type="button" class="btn btn-primary dim"
@@ -68,42 +68,43 @@
 										<button type="submit" class="btn btn-primary dim">상품삭제</button>
 									</div>
 								</div>
+								
 								<table
 									class="footable table table-stripped toggle-arrow-tiny footable-loaded tablet breakpoint"
 									data-page-size="15">
 									<thead>
 										<tr>
-											<th class="text-right footable-visible footable-last-column">
-												<span class="footable-sort-indicator"
-												onclick="unselected();">선택</span>
-											</th>
 
 											<th class="text-right footable-visible footable-last-column">
 												<span class="footable-sort-indicator">구분</span>
 											</th>
 
 											<th class="text-right footable-visible footable-last-column">
-												<span class="footable-sort-indicator">상품 이미지</span>
+												<span class="footable-sort-indicator">거래처 이름</span>
 											</th>
 
 											<th class="text-right footable-visible footable-last-column">
-												<span class="footable-sort-indicator">상품명</span>
+												<span class="footable-sort-indicator">입고 날짜</span>
 											</th>
 
 											<th class="text-right footable-visible footable-last-column">
-												<span class="footable-sort-indicator">상품가격</span>
+												<span class="footable-sort-indicator">브랜드</span>
 											</th>
 
 											<th class="text-right footable-visible footable-last-column">
-												<span class="footable-sort-indicator">상품기간</span>
+												<span class="footable-sort-indicator">재고명</span>
 											</th>
 
 											<th class="text-right footable-visible footable-last-column">
-												<span class="footable-sort-indicator">상품설명</span>
+												<span class="footable-sort-indicator">가격</span>
 											</th>
 
 											<th class="text-right footable-visible footable-last-column">
-												<span class="footable-sort-indicator">상품그룹</span>
+												<span class="footable-sort-indicator">수량</span>
+											</th>
+											
+											<th class="text-right footable-visible footable-last-column">
+												<span class="footable-sort-indicator">총 금액</span>
 											</th>
 
 										</tr>
@@ -111,35 +112,34 @@
 
 									<tbody>
 
-										<c:forEach var="product" items="${productlist}">
+										<c:forEach var="st" items="${stList}">
 											<tr class="footable-odd">
-												<td class="footable-visible">&nbsp;&nbsp; <input
-													type="radio" name="product_code"
-													value="${product.product_code}">
+
+												<td class="footable-visible"><span>${st.stock_status}</span>
 												</td>
 
-												<td class="footable-visible"><span>${product.product_typeOfSales}</span>
+												<td class="footable-visible"><span>${st.trade_name}</span>
 												</td>
 
-												<td class="footable-visible"><span>${product.product_img}</span>
+												<td class="footable-visible"><span>${st.stock_indate}</span>
 												</td>
 
-												<td class="footable-visible"><span>${product.product_name}</span>
+												<td class="footable-visible"><span>${st.stock_brand}</span>
 												</td>
 
-												<td class="footable-visible"><span>${product.product_price}</span>
+												<td class="footable-visible"><span>${st.stock_name}</span>
 												</td>
-
-												<td class="footable-visible"><span>${product.product_rentalPeriod}</span>
+												
+												<td class="footable-visible"><span>${st.stock_price}</span>
+												</td>
+												
+												<td class="footable-visible"><span>${st.stock_count}</span>
 												</td>
 
 												<td class="text-right footable-visible footable-last-column">
-													<span class="label label-primary">${product.product_content}</span>
+													<span class="label label-primary">${st.stock_count * st.stock_price}</span>
 												</td>
 
-												<td class="footable-visible"><span
-													class="label label-primary">${product.product_group_code}</span>
-												</td>
 											</tr>
 										</c:forEach>
 									</tbody>

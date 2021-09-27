@@ -1,8 +1,5 @@
 package com.spring.Creamy_CRM.Host_controller;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -23,18 +20,9 @@ public class HostController {
 	private HostService service;
 	
 	@RequestMapping("/host/hostPage")
-	public String mypage(Model model) {
+	public String mypage(HttpServletRequest req, Model model) {
 		logger.info("url -> hostPage");
-		
-		String[] days = {
-			"월요일","화요일","수요일","목요일","금요일","토요일","일요일"
-		};
-		List<String> dayList = new ArrayList<String>();
-		for (int i = 0; i < days.length; i++) {
-			dayList.add(days[i]);
-		}
-		model.addAttribute("dayList", dayList);
-		
+		service.getHostInfo(req, model);
 		return "host/hostPage/hostPage";
 	}
 	
@@ -44,4 +32,6 @@ public class HostController {
 		service.setWorkTime(req, model);
 		return "host/hostPage/setWorkTime";
 	}
+	
+	
 }

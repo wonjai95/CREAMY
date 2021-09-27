@@ -5,6 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="_csrf" content="${_csrf.token}"/>
+<meta name="_csrf_header" content="${_csrf.headerName}"/>
 <title>Insert title here</title>
 <style type="text/css">
 #p_group {
@@ -123,6 +125,30 @@
 		}
 	}
 
+	function dddd(code){
+		
+		var header = $("meta[name='_csrf_header']").attr("content");
+		var token = $("meta[name='_csrf']").attr("content");
+		
+		$.ajax({
+			type:"post",
+			url:"dddd",
+			data: "code=" + code,
+			beforeSend: function(jqXHR, settings){
+				jqXHR.setRequestHeader(header,token);
+			},
+			success: function(list){
+				
+			},
+			error: function(){
+				alert("오류");
+			}
+			
+		});
+		
+	}
+
+	
 </script>
 </head>
 <body>
@@ -138,7 +164,7 @@
 
 			<div class="row wrapper border-bottom white-bg page-heading">
 				<div class="col-lg-8">
-					<h2>상품</h2>
+					<h2 id = "product">상품</h2>
 				</div>
 			</div>
 
@@ -244,7 +270,10 @@
 																			value="${productGroup.product_group_code}">
 																		</td>
 
-																		<td class="footable-visible"><span>${productGroup.product_group_name}</span>
+																		<td class="footable-visible">
+																		<a href="#" onclick="dddd('${productGroup.product_group_code}');">
+																			<span>${productGroup.product_group_name}</span>
+																		</a>
 																		</td>
 																	</tr>
 																</c:forEach>

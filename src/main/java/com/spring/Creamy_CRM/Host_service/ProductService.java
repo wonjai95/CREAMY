@@ -6,10 +6,15 @@
 */
 package com.spring.Creamy_CRM.Host_service;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+
+import com.spring.Creamy_CRM.VO.ProductGroupVO;
+import com.spring.Creamy_CRM.VO.ProductVO;
 
 public interface ProductService {
 
@@ -63,5 +68,22 @@ public interface ProductService {
 	void modifyStockAction(HttpServletRequest req, Model model);
 	//재고 삭제
 	void deleteStockAction(HttpServletRequest req, Model model);
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/*ajax*/
+	List<ProductVO> ajax_getProductByCode(HttpServletRequest req, Model model);
 	
 }

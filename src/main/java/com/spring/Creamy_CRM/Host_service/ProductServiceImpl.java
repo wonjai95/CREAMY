@@ -28,6 +28,7 @@ import com.spring.Creamy_CRM.Host_dao.ProductDAOImpl;
 import com.spring.Creamy_CRM.VO.P_pgVO;
 import com.spring.Creamy_CRM.VO.ProductGroupVO;
 import com.spring.Creamy_CRM.VO.ProductVO;
+import com.spring.Creamy_CRM.VO.S_tVO;
 import com.spring.Creamy_CRM.VO.SaleVO;
 import com.spring.Creamy_CRM.VO.StockVO;
 import com.spring.Creamy_CRM.VO.TradeVO;
@@ -78,10 +79,12 @@ public class ProductServiceImpl implements ProductService {
 		List<P_pgVO> productList = null;
 		List<TradeVO> tradeList = null;
 		List<StockVO> stockList = null;
+		List<S_tVO> stList = null; //입출고 (재고 + 거래처) 리스트
 		Page productGroupPage = new Page();
 		Page productPage = new Page();
 		Page tradePage = new Page();
 		Page stockPage = new Page();
+		Page stPage = new Page();
 
 		// 상품그룹 페이지
 		productGroupPage.setCnt(dao.productGroupCnt(host_code));
@@ -138,11 +141,30 @@ public class ProductServiceImpl implements ProductService {
 			map.put("end", stockPage.getEnd());
 			stockList = dao.selectStockList(map);
 		}
+		
+		//입출고 현황
+		stPage.setCnt(dao.stCnt(host_code)); 
+		stPage.setPageSize(10);
+		stPage.setPageBlock(5);
+		stPage.setCurrentPage(req.getParameter("pageNum"));
+
+		if (stockPage.getCnt() > 0) {
+			map = new HashMap<String, Object>();
+			map.put("host_code", host_code);
+			map.put("start", stPage.getStart());
+			map.put("end", stPage.getEnd());
+			stList = dao.selectStList(map);
+		}
+		
+		
+		model.addAttribute("stList", stList);
 		model.addAttribute("stockList", stockList);
 		model.addAttribute("tradeList", tradeList);
 		model.addAttribute("productGroupList", productGroupList);
 		model.addAttribute("productList", productList);
 
+		
+		
 		/*
 		model.addAttribute("productGroupPageCnt", productGroupPage.getCnt());
 		model.addAttribute("productGroupPageNumber", productGroupPage.getNumber());
@@ -585,14 +607,29 @@ public class ProductServiceImpl implements ProductService {
 		model.addAttribute("vo", vo);
 	}
 
+
+	
+	
+	
+	
+	/*ajax*/
+	@Override
+	public List<ProductVO> ajax_getProductByCode(HttpServletRequest req, Model model) {
+		String product_group_code = req.getParameter("code");
+		return dao.ajax_getProductByCode(product_group_code);
+	}
+	
+	
+	
+
 	// 결제 정보 insert
 	@Override
-	public void addSaleInfo(HttpServletRequest req, Model model) {
+	public void addSaleInf) req.getSession().getAttribute("code");
+		System.out.println("host_code : " + host_code);
+		o(HttpServletRequest req, Model model) {
 		System.out.println("service ==> addSaleInfo");
 		
-		String host_code = (String) req.getSession().getAttribute("code");
-		System.out.println("host_code : " + host_code);
-		
+		String host_code = (String
 		int total_payment = Integer.parseInt(req.getParameter("product_price_hidden"));
 		System.out.println("total_payment : " + total_payment);
 		String payment_option = req.getParameter("payment_option_hidden");
@@ -626,5 +663,6 @@ public class ProductServiceImpl implements ProductService {
 		model.addAttribute("dto", vo);
 		
 	}
+
 
 }

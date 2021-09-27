@@ -68,12 +68,13 @@
 		                                
 		                                <form role="form" id="form" novalidate="novalidate">
 		                                    
-		                                    <div class="form-group"><label>Email</label> <input type="email" placeholder="Enter email" class="form-control" required="" aria-required="true"></div>
-		                                    <div class="form-group"><label>Password</label> <input type="password" placeholder="Password" class="form-control" name="password"></div>
-		                                    <div class="form-group"><label>Url</label> <input type="text" placeholder="Enter email" class="form-control" name="url"></div>
-		                                    <div class="form-group"><label>Number</label> <input type="text" placeholder="Enter email" class="form-control" name="number"></div>
-		                                    <div class="form-group"><label>MinLength</label> <input type="text" placeholder="Enter email" class="form-control" name="min"></div>
-		                                    <div class="form-group"><label>MaxLength</label> <input type="text" placeholder="Enter email" class="form-control" name="max"></div>
+		                                    <div class="form-group"><label>코드</label> <input type="text" class="form-control" readonly value="${hostVo.host_code}"></div>
+		                                    <div class="form-group"><label>아이디</label> <input type="text" class="form-control" readonly value="${hostVo.host_id}"></div>
+		                                    <div class="form-group"><label>비밀번호</label> <input type="text" class="form-control" readonly value="암호회됨"></div>
+		                                    <div class="form-group"><label>이름</label> <input type="text" class="form-control" readonly value="${hostVo.host_name}"></div>
+		                                    <div class="form-group"><label>이메일</label> <input type="text" class="form-control" readonly value="${hostVo.host_email}"></div>
+		                                    <div class="form-group"><label>회사명</label> <input type="text" class="form-control" readonly value="${hostVo.comp_name}"></div>
+		                                    <div class="form-group"><label>번호</label> <input type="text" class="form-control" readonly value="${hostVo.host_ph}"></div>
 		                                   
 		                                    <div>
 		                                        <button class="btn btn-sm btn-primary m-t-n-xs" type="submit"><strong>Submit</strong></button>

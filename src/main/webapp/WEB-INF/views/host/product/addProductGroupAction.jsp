@@ -19,8 +19,10 @@
 		<c:if test="${insertCnt == 1}">
 			<script type="text/javascript">
 				alert("등록완료");
-				self.close();
-				opener.window.location = "${path}/host/product";
+				window.opener.location.reload();
+				window.close();
+				//self.close();
+				//opener.window.location = "${path}/host/product";
 			</script>
 		</c:if>
 		
