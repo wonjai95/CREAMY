@@ -121,10 +121,10 @@
 	    <div class="ibox ">
 		
 		
-		<%-- <form action="requestReservation" method="post">
+		<form action="requestReservation" method="post">
 		   <sec:csrfInput/>
            <input type="hidden" id="pageNum" name="pageNum" value="${pageNum}">
-           <input type="hidden" id="user_id" name="user_id" value="${dto.user_id}"> --%>
+           <input type="hidden" id="user_id" name="user_id" value="${dto.user_id}">
 		<div class="ibox-content">
 			<div class="table-responsive">
 	        <table class="table table-striped table-bordered table-hover dataTables-example">
@@ -168,7 +168,7 @@
 				<!-- 예약조회 목록이 없다면, -->
 				<c:if test="${cnt == 0}">
 					<tr>
-						<td align="center">
+						<td colspan="6" align="center">
 							예약요청 목록이 없습니다.
 						</td>			
 					</tr>
