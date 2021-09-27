@@ -10,4 +10,7 @@ public interface HostService {
 	void getHostInfo(HttpServletRequest req, Model model);
 	//시간설정
 	void setWorkTime(HttpServletRequest req, Model model);
+	
+	//사업자정보 등록
+	void addCompanyAction(HttpServletRequest req, Model model);
 }

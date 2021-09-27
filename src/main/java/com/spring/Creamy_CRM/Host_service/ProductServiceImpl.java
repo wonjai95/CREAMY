@@ -607,10 +607,6 @@ public class ProductServiceImpl implements ProductService {
 		model.addAttribute("vo", vo);
 	}
 
-
-	
-	
-	
 	
 	/*ajax*/
 	@Override
@@ -618,8 +614,6 @@ public class ProductServiceImpl implements ProductService {
 		String product_group_code = req.getParameter("code");
 		return dao.ajax_getProductByCode(product_group_code);
 	}
-	
-	
 	
 
 	// 결제 정보 insert

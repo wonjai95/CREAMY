@@ -35,4 +35,23 @@
 		where host_code = #{host_code} and operating_day = #{operating_day}
 	</update>
 	
+	<!-- zip코드 존재확인 -->
+	<select id="chkZipcode" parameterType="String" resultType="int">
+		select count(*) from zipcode_tbl where zipcode = #{zipcode}
+	</select>
+	
+	<!-- zip코드 삽입 -->
+	<insert id="insertZipcode" parameterType="com.spring.Creamy_CRM.VO.ZipcodeVO">
+		insert into zipcode_tbl(zipcode,sido,gugun) values(#{zipcode},#{sido},#{gugun})
+	</insert>
+	
+	<!-- 사업자등록 -->
+	<insert id="insertCompany" parameterType="com.spring.Creamy_CRM.VO.HostVO">
+		insert into company_tbl(comp_no,host_code,comp_address,comp_condition,comp_type,zipcode,comp_res) 
+			values('C'||com_seq.nextval,#{host_code},#{comp_address},
+				#{comp_condition},#{comp_type},#{zipcode},#{comp_res})
+	</insert>
+	
+	
+	
   </mapper>

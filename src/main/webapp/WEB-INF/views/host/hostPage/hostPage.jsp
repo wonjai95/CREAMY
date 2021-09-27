@@ -47,6 +47,12 @@
                                 	근무시간 설정
                                 </a>
                             </li>
+                            
+                            <li class="list-group-item">
+                                <a class="nav-link" data-toggle="tab" href="#tab-4">
+                                	호실 등록
+                                </a>
+                            </li>
                         </ul>
 
                     </div><div class="slimScrollBar" style="background: rgb(0, 0, 0); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 625.03px;"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div></div>
@@ -91,6 +97,10 @@
 
                                 <div id="tab-3" class="tab-pane">
                                     <jsp:include page="./timeSetting.jsp" />
+                                </div>
+                                
+                                <div id="tab-4" class="tab-pane">
+                                    <jsp:include page="setRoom.jsp" />
                                 </div>
                                 
                             </div>

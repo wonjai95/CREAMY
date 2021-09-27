@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.spring.Creamy_CRM.VO.HostVO;
 import com.spring.Creamy_CRM.VO.OperatingScheVO;
+import com.spring.Creamy_CRM.VO.ZipcodeVO;
 
 @Repository
 public class HostDaoImpl implements HostDao{
@@ -43,8 +44,24 @@ public class HostDaoImpl implements HostDao{
 	public int altOperatingTime(OperatingScheVO vo) {
 		return sqlSession.update("com.spring.Creamy_CRM.Host_dao.HostDao.altOperatingTime",vo);
 	}
+
+	//zip코드 존재확인
+	@Override
+	public int chkZipcode(String zipcode) {
+		return sqlSession.selectOne("com.spring.Creamy_CRM.Host_dao.HostDao.chkZipcode", zipcode);
+	}
 	
-	
+	//zip코드 삽입
+	@Override
+	public int insertZipcode(ZipcodeVO zipcodeVo) {
+		return sqlSession.insert("com.spring.Creamy_CRM.Host_dao.HostDao.insertZipcode",zipcodeVo);
+	}
+
+	//사업자 등록
+	@Override
+	public int insertCompany(HostVO vo) {
+		return sqlSession.insert("com.spring.Creamy_CRM.Host_dao.HostDao.insertCompany", vo);
+	}
 	
 	
 	
