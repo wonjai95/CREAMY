@@ -26,11 +26,20 @@ public class HostController {
 		return "host/hostPage/hostPage";
 	}
 	
+	//시간설정
 	@RequestMapping("/host/setWorkTime")
 	public String setWorkTime(HttpServletRequest req, Model model) {
 		logger.info("url -> setWorkTime");
 		service.setWorkTime(req, model);
 		return "host/hostPage/setWorkTime";
+	}
+	
+	//사업자 정보 등록(company)
+	@RequestMapping("/host/addCompanyAction")
+	public String addCompanyAction(HttpServletRequest req, Model model) {
+		logger.info("url -> addCompanyAction");
+		service.addCompanyAction(req, model);
+		return "host/hostPage/addCompanyAction";
 	}
 	
 	

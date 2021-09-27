@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.spring.Creamy_CRM.VO.HostVO;
 import com.spring.Creamy_CRM.VO.OperatingScheVO;
+import com.spring.Creamy_CRM.VO.ZipcodeVO;
 
 public interface HostDao {
 	
@@ -19,7 +20,14 @@ public interface HostDao {
 	int setOeratingTime(OperatingScheVO vo);
 	int altOperatingTime(OperatingScheVO vo);
 	
+	//zip코드 존재확인
+	int chkZipcode(String zipcode);
 	
+	//zip코드 삽입
+	int insertZipcode(ZipcodeVO zipcodeVo);
+	
+	//사업자정보 등록
+	int insertCompany(HostVO vo);
 	
 	
 }
