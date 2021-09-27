@@ -33,6 +33,12 @@ public interface EmployeeDAO {
 	// 직원의 해당 근태 정보
 	public AttendanceVO getAttendanceInfo(String attendance_code);
 	
+	// 직원의 출근 정보 수정
+	public int updateCheckInTime(AttendanceVO vo);
+	
+	// 직원의 퇴근 정보 수정
+	public int updateCheckOutTime(AttendanceVO vo);
+	
 	// 직원 근태 삭제
 	public int deleteAttendance(String attendance_code);
 	

@@ -60,6 +60,18 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		return dao.getAttendanceInfo(attendance_code);
 	}
 	
+	// 직원의 출근 정보 수정
+	public int updateCheckInTime(AttendanceVO vo) {
+		EmployeeDAO dao = sqlSession.getMapper(EmployeeDAO.class);
+		return dao.updateCheckInTime(vo);
+	}
+		
+	// 직원의 퇴근 정보 수정
+	public int updateCheckOutTime(AttendanceVO vo) {
+		EmployeeDAO dao = sqlSession.getMapper(EmployeeDAO.class);
+		return dao.updateCheckOutTime(vo);
+	}
+	
 	// 직원 근태 삭제
 	public int deleteAttendance(String attendance_code) {
 		EmployeeDAO dao = sqlSession.getMapper(EmployeeDAO.class);

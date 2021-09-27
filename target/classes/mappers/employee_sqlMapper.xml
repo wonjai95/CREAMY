@@ -59,10 +59,24 @@
 		 WHERE attendance_code = #{attendance_code}
 	</select>
 	
+	<!-- 직원의 출근 시간 수정 -->
+	<update id="updateCheckInTime" parameterType="com.spring.Creamy_CRM.VO.AttendanceVO">
+		UPDATE attendance_tbl
+		   SET lateChk = #{lateChk}, check_in_time = #{check_in_time}, temperature = #{temperature}, memo = #{memo}
+		 WHERE attendance_code = #{attendance_code}
+	</update>
+	
+	<!-- 직원의 퇴근 시간 수정 -->
+	<update id="updateCheckOutTime" parameterType="com.spring.Creamy_CRM.VO.AttendanceVO">
+		UPDATE attendance_tbl
+		   SET lateChk = #{lateChk}, check_out_time = #{check_out_time}, memo = #{memo}
+		 WHERE attendance_code = #{attendance_code}
+	</update>
+	
 	<!-- 직원의 근태 정보 삭제 -->
 	<delete id="deleteAttendance" parameterType="String">
 		DELETE FROM attendance_tbl
-		 WHERE attendance_code = #{attendance_tbl}
+		 WHERE attendance_code = #{attendance_code}
 	</delete>
 	
 	<!-- 직원의 휴가 정보 조회 -->

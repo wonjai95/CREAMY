@@ -30,6 +30,9 @@ public interface EmployeeService {
 	// 수정할 근태 정보 가져오기
 	public void getAttendanceInfo(HttpServletRequest req, Model model);
 	
+	// 직원 근태 수정 처리
+	public void updateAttendance(HttpServletRequest req, Model model);
+	
 	// 직원 근태 삭제
 	public void deleteAttendance(HttpServletRequest req, Model model);
 	
