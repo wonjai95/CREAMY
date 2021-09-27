@@ -336,7 +336,7 @@ public class ReservationServiceImpl implements ReservationService {
 		
 		System.out.println("==============================");
 		
-		List<ReservationVO> dtos = null;
+		List<ReservationVO> cdtos = null;
 
 		if(cnt > 0) {
 			// 5-2단계. 게시글 목록 조회
@@ -344,10 +344,10 @@ public class ReservationServiceImpl implements ReservationService {
 			map.put("start", start);
 			map.put("end", end);
 			
-			dtos = dao.getCompleteList(map);  // dtos대신 list로 매개변수 줘도 무방하다.
+			cdtos = dao.getCompleteList(map);  // dtos대신 list로 매개변수 줘도 무방하다.
 		}
 		// 6단계. jsp로 전달하기 위해 request나 session에 처리결과를 저장
-		model.addAttribute("dtos", dtos);			// 리스트 = 게시글 목록
+		model.addAttribute("cdtos", cdtos);			// 리스트 = 게시글 목록
 		model.addAttribute("cnt", cnt);			// 글 갯수
 		model.addAttribute("pageNum", pageNum);	// 페이지 번호
 		model.addAttribute("number", number);		// 출력용 글 번호

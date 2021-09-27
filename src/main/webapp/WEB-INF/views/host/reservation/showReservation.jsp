@@ -28,7 +28,17 @@
 				alert('오류');
 			}
 		});
+		
+		
+		
+		
 	});
+	
+	
+	
+	
+	
+	
 	
 </script>
 
@@ -82,22 +92,22 @@
 				<c:if test="${cnt > 0}">
 					<%-- <c:if test="${dto.res_state == '서비스 완' > 0}"> --%>
 					<%-- c:forEach var="작은 바구니 참조변수(임의로 지정하기)" items="${큰 바구니}" --%>
-					<c:forEach var="dto" items="${dtos}">
+					<c:forEach var="cdto" items="${cdtos}">
 						<tr class="gradeX">
 							<td style="text-align:center">
 								<!-- 상세페이지 -->
-								<a href="requestDetails?res_code=${dto.res_code}&res_detail_code=${dto.res_detail_code}&user_id=${dto.user_id}">${dto.res_code}</a>
+								<a href="completeDetails?res_code=${cdto.res_code}&res_detail_code=${cdto.res_detail_code}&user_id=${cdto.user_id}">${cdto.res_code}</a>
 							</td>
 							
-							<td style="text-align:center">${dto.user_id}</td>
+							<td style="text-align:center">${cdto.user_id}</td>
 							
-							<td style="text-align:center">${dto.employee_code}</td>
+							<td style="text-align:center">${cdto.employee_code}</td>
 							
-							<td style="text-align:center">${dto.res_state}</td>
+							<td style="text-align:center">${cdto.res_state}</td>
 							
-							<td style="text-align:center">${dto.res_hour}시</td>
+							<td style="text-align:center">${cdto.res_hour}시</td>
 							
-							<td style="text-align:center">${dto.res_date}</td>
+							<td style="text-align:center">${cdto.res_date}</td>
 						</tr>
 					</c:forEach>
 					<%-- </c:if> --%>
@@ -106,7 +116,7 @@
 				<!-- 예약조회 목록이 없다면, -->
 				<c:if test="${cnt == 0}">
 					<tr>
-						<td align="center">
+						<td colspan="6" align="center">
 							예약요청 목록이 없습니다.
 						</td>			
 					</tr>
