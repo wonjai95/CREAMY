@@ -630,8 +630,10 @@ public class ProductServiceImpl implements ProductService {
 		System.out.println("total_payment : " + total_payment);
 		String payment_option = req.getParameter("payment_option_hidden");
 		System.out.println("payment_option  : " + payment_option);
-		//String credit_select = req.getParameter("credit_select");
-		//String credit_installment = req.getParameter("credit_installment");
+		String credit_select = req.getParameter("credit_select");
+		System.out.println("credit_select : " + credit_select);
+		String credit_installment = req.getParameter("credit_installment");
+		System.out.println("credit_installment : " + credit_installment);
 		String sale_date = req.getParameter("sale_date");
 		
 		String sale_memo = req.getParameter("sale_memo");
@@ -643,12 +645,12 @@ public class ProductServiceImpl implements ProductService {
 		userVO vo = new userVO();
 		vo.setTotal_payment(total_payment);
 		vo.setPayment_option(payment_option);
-		
+		vo.setCredit_select(credit_select);
+		vo.setCredit_installment(credit_installment);
 		Date sDate = Date.valueOf(sale_date);
 		vo.setSale_date(sDate);
 		vo.setSale_memo(sale_memo);
 		vo.setEmployee_code(employee_code);
-		
 		
 		vo.setUser_code(user_code);
 		vo.setProduct_code(product_code);

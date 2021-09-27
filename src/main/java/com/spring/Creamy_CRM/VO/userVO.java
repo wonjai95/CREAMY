@@ -33,7 +33,8 @@ public class userVO {
 	private Date sale_date;
 	private String payment_option;
 	private String sale_memo;
-	
+	private String credit_select;
+	private String credit_installment;
 	
 	// product_tbl(상품 테이블)
 	private String product_code;
@@ -197,6 +198,19 @@ public class userVO {
 	public void setSale_memo(String sale_memo) {
 		this.sale_memo = sale_memo;
 	}
+	public String getCredit_select() {
+		return credit_select;
+	}
+	public void setCredit_select(String credit_select) {
+		this.credit_select = credit_select;
+	}
+	public String getCredit_installment() {
+		return credit_installment;
+	}
+	public void setCredit_installment(String credit_installment) {
+		this.credit_installment = credit_installment;
+	}
+	
 	
 	
 	// product_tbl

@@ -38,5 +38,18 @@
   		 WHERE user_code=#{user_code}
   	</select>
   	
+  	<!-- 회원 삭제 처리(user_tbl) -->
+  	<delete id="deleteUser" parameterType="String">
+  		DELETE 
+  		  FROM user_tbl
+  		 WHERE user_code=#{user_code}
+  	</delete>
+  	
+  	<!-- 회원 삭제 처리(Auth_tbl) -->
+  	<delete id="deleteUserAuth" parameterType="String">
+  		DELETE
+  		  FROM Auth_tbl
+  		 WHERE user_code=#{user_code}
+  	</delete>
   	
   </mapper>
