@@ -83,6 +83,16 @@ public class EmployeeController {
 		return "host/employee/employee_getAttendanceInfo";
 	}
 	
+	// 직원 근태 수정 처리
+	@RequestMapping("host/employee_updateAttendance")
+	public String employee_updateAttendance(HttpServletRequest req, Model model) {
+		logger.info("url -> employee_updateAttendance");
+		
+		service.updateAttendance(req, model);
+		
+		return "host/employee/employee_attendanceAction";
+	}
+	
 	// 직원 근태 삭제
 	@RequestMapping("host/employee_attendanceDelete")
 	public String employee_attendanceDelete(HttpServletRequest req, Model model) {

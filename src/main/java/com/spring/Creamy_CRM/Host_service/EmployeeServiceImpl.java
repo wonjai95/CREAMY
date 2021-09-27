@@ -186,6 +186,52 @@ public class EmployeeServiceImpl implements EmployeeService {
 		model.addAttribute("vo", vo);
 	}
 	
+	// 직원 근태 수정 처리
+	public void updateAttendance(HttpServletRequest req, Model model) {
+		String attendance_code = req.getParameter("attendance_code");
+		System.out.println("attendance_code : " + attendance_code);
+		
+		String employee_in = req.getParameter("employee_in");
+		String employee_out = req.getParameter("employee_out");
+		String inout_time = req.getParameter("inout_time");
+		String late_early = req.getParameter("late_early");
+		String temperature = req.getParameter("temperature");
+		String memo = req.getParameter("memo");
+		
+		if(late_early == null || late_early.equals("")) late_early = "0";
+		
+		System.out.println("late_early : " + late_early);
+		System.out.println("temperature : " + temperature);
+		System.out.println("employee_in : " + employee_in);
+		System.out.println("employee_out : " + employee_out);
+		
+		
+		AttendanceVO vo = new AttendanceVO();
+		vo.setAttendance_code(attendance_code);
+		vo.setMemo(memo);
+		vo.setLateChk(late_early);
+		
+		int updateCnt = 0;
+		
+		// 출근일 경우 attendance_tbl에 바로 삽입
+		if(employee_in.equals("출근")) {
+			vo.setCheck_in_time(inout_time);
+			vo.setTemperature(temperature);
+			
+			updateCnt = dao.updateCheckInTime(vo);
+			
+		// 퇴근일 경우 
+		} else if(employee_out.equals("퇴근")){
+			
+			vo.setCheck_out_time(inout_time);
+			updateCnt = dao.updateCheckOutTime(vo);
+		}
+		
+		System.out.println("updateCnt : " + updateCnt);
+		
+		model.addAttribute("updateCnt",updateCnt);
+	}
+	
 	// 직원 근태 삭제
 	public void deleteAttendance(HttpServletRequest req, Model model) {
 		String attendance_code = req.getParameter("attendance_code");
@@ -508,6 +554,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	// 근태 등록 처리
 	@Override
 	public void employeeAttendanceAction(HttpServletRequest req, Model model) {
+		String point = null;
 		String employee_code = req.getParameter("employee_code");
 		String employee_in = req.getParameter("employee_in");
 		String employee_out = req.getParameter("employee_out");
