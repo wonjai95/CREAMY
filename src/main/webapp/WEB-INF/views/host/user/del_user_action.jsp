@@ -6,26 +6,22 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
- <!-- 내가 쓴 js  -->
-  <script src="${path}/resources/user/js/modifyUser.js"></script>
-
 </head>
 <body>
-<h3> Loading to modify user info </h3>
+<h3> Loading to delete user info </h3>
 
-<c:if test="${updateCnt == 1}">
+<c:if test="${deleteCnt == 1}">
 	<script type="text/javascript">
-		window.alert("회원 정보 수정 성공!!");
-		window.location("user");
+		window.alert("회원 삭제 성공!!");
+		window.close();
 	</script>
 </c:if>
-<c:if test="${updateCnt == 0}">
+<c:if test="${deleteCnt == 0}">
 	<script type="text/javascript">
-		window.alert("회원 정보 수정 실패!!");
+		window.alert("회원 삭제 실패!!");
 		window.history.back();
 	</script>
 </c:if>
-
 
 </body>
 </html>

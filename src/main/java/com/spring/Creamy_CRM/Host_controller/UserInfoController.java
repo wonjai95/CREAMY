@@ -46,7 +46,7 @@ private static final Logger logger = LoggerFactory.getLogger(UserInfoController.
 		
 		if(user_code != null) {
 			
-			// 회원별 판매 목록 출력
+			// 회원별 판매 목록 출력(수정중)
 			service_user.userSale(req, model);
 			
 		} else {
@@ -77,7 +77,7 @@ private static final Logger logger = LoggerFactory.getLogger(UserInfoController.
 		return "host/user/modify_user";
 	}
 	
-	// 회원 수정 액션
+	// 회원 수정 처리
 	@RequestMapping("/host/modify_user_action")
 	public String modify_user_action(HttpServletRequest req, Model model) {
 		logger.info("url -> modify_user_action");
@@ -96,6 +96,17 @@ private static final Logger logger = LoggerFactory.getLogger(UserInfoController.
 		return "host/user/mypage";
 	}
 	  
+	// 회원 삭제 처리
+	@RequestMapping("/host/del_user_action")
+	public String del_user_action(HttpServletRequest req, Model model) {
+		logger.info("url -> del_user_action");
+		
+		service_user.deleteUser(req, model);
+		
+		return "host/user/del_user_action";
+	}
+	
+	
 	// 회원별 판매 내역 출력
 	/*
 	@RequestMapping("/host/user_sale")
