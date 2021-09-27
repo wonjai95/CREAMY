@@ -9,6 +9,17 @@
 	product에서 사용하는 mapper
 -->
   <mapper namespace="com.spring.Creamy_CRM.Host_dao.HostDao">
+  
+  	
+  	<!-- 호스트정보 -->
+  	<select id="selectInfo" parameterType="String" resultType="com.spring.Creamy_CRM.VO.HostVO">
+  		select * from h_c_view where host_code = #{host_code}
+  	</select>
+  	
+  	<select id="getWorkTime" parameterType="String" resultType="com.spring.Creamy_CRM.VO.OperatingScheVO">
+	 	select * from operating_sche_tbl where host_code = #{host_code}
+  	</select>
+  
   	
   	<select id="chkScheSet" parameterType="java.util.Map" resultType="int">
   		select count(*) from operating_sche_tbl where host_code = #{host_code} and operating_day = #{operating_day}

@@ -12,6 +12,7 @@ import java.util.Map;
 import com.spring.Creamy_CRM.VO.P_pgVO;
 import com.spring.Creamy_CRM.VO.ProductGroupVO;
 import com.spring.Creamy_CRM.VO.ProductVO;
+import com.spring.Creamy_CRM.VO.S_tVO;
 import com.spring.Creamy_CRM.VO.SaleVO;
 import com.spring.Creamy_CRM.VO.StockVO;
 import com.spring.Creamy_CRM.VO.TradeVO;
@@ -89,5 +90,15 @@ public interface ProductDAO {
 	int updateStock(StockVO vo);
 	// 재고 삭제
 	int deleteStock(String stock_code);
+	
+	
+	//입출고 현황
+	int stCnt(String host_code);
+	// 입출고현황 페이징(재고+거래처)
+	List<S_tVO> selectStList(Map<String, Object> map);
+	
+	
+	/*ajax*/
+	List<ProductVO> ajax_getProductByCode(String product_group_code);
 
 }
