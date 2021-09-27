@@ -624,12 +624,13 @@ public class ProductServiceImpl implements ProductService {
 
 	// 결제 정보 insert
 	@Override
-	public void addSaleInf) req.getSession().getAttribute("code");
+	public void addSaleInfo(HttpServletRequest req, Model model) {
+		
+		String host_code = (String) req.getSession().getAttribute("code");
 		System.out.println("host_code : " + host_code);
-		o(HttpServletRequest req, Model model) {
+		
 		System.out.println("service ==> addSaleInfo");
 		
-		String host_code = (String
 		int total_payment = Integer.parseInt(req.getParameter("product_price_hidden"));
 		System.out.println("total_payment : " + total_payment);
 		String payment_option = req.getParameter("payment_option_hidden");
