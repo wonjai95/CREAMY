@@ -46,7 +46,7 @@ public class AccountController {
 		return "host/accounting/SGA_expenses";
 	}
 	
-	// 판관비 등록 처리
+	// 매입매출 등록 처리
 	@RequestMapping("/host/insertSlip")
 	public @ResponseBody String insertSGA_expenses(HttpServletRequest req, Model model) {
 		logger.info("url -> insertSlip");
@@ -71,5 +71,33 @@ public class AccountController {
 		return Integer.toString(insertCnt);
 		
 	}
+	
+	// 매입매출 수정 페이지
+	@RequestMapping("/host/slip_modify")
+	public String slip_modify(HttpServletRequest req, Model model) {
+		logger.info("url -> slip_modify");
+	  
+		service.getSlipInfo(req, model);
+		return "host/accounting/slip_modify";
+	}
+	
+	// 매입매출 수정 페이지
+	@RequestMapping("/host/slip_modifyAction")
+	public String slip_modifyAction(HttpServletRequest req, Model model) {
+		logger.info("url -> slip_modifyAction");
+		
+		service.modifySlip(req, model);
+		return "host/accounting/slip_modifyAction";
+	}
+	
+	// 매입매출 삭제 페이지
+	@RequestMapping("/host/slip_deleteAction")
+	public String slip_deleteAction(HttpServletRequest req, Model model) {
+		logger.info("url -> slip_deleteAction");
+		
+		service.deleteSlip(req, model);
+		return "host/accounting/slip_deleteAction";
+	}
+	
 
 }

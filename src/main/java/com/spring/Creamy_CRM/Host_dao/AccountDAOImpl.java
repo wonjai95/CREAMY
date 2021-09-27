@@ -33,6 +33,29 @@ public class AccountDAOImpl implements AccountDAO {
 		AccountDAO dao = sqlSessoin.getMapper(AccountDAO.class);
 		return dao.insertSlip(vo);
 	}
+	
+	// 매입매출 전표 수정 페이지
+	@Override
+	public AccountVO getSlipInfo(String slip_code) {
+		AccountDAO dao = sqlSessoin.getMapper(AccountDAO.class);
+		return dao.getSlipInfo(slip_code);
+	}
+	
+	// 매입매출 전표 수정처리
+	@Override
+	public int updateSlip(AccountVO vo) {
+		AccountDAO dao = sqlSessoin.getMapper(AccountDAO.class);
+		return dao.updateSlip(vo);
+	}
+
+	// 매입매출 전표 삭제처리
+	@Override
+	public int deleteSlip(String slip_code) {
+		AccountDAO dao = sqlSessoin.getMapper(AccountDAO.class);
+		return dao.deleteSlip(slip_code);
+	}
+
+	
 
 
 

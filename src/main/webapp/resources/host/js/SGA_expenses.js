@@ -54,4 +54,58 @@ $("document").ready(function() {
 		
 	});
 	
+	$("tr[class^=sga_info]").click(function() {
+		$("tr[class^=sga_info]").css("background", "");
+		
+		$(this).css("background", "#20c997");
+		
+	});
+	
+	$("tr[class^=sga_info]").dblclick(function() {
+		var popUpWidth = 800;
+		var popUpHeight = 800;
+		
+		var thisTr = $(this);
+		var thisTd = $(this).children();
+		var slip_code = thisTd.find("input[name^=slip_code]").val();
+		console.log(slip_code);
+		
+		var popupX = (window.screen.width/2) - (popUpWidth/2);
+		var popupY = (window.screen.height/2) - (popUpHeight/2);
+		console.log("popupX : " + popupX);
+		console.log("popupY : " + popupY);
+		
+		var url = "slip_modify?slip_code=" + slip_code;
+			window.open(url, "slip_modify", "status=no, width=800, height=600, left="+ popupX + ", top="+ popupY);
+	
+	});
+	
+	// slip_modify 수정 submit 클릭시
+	$("#slip_modifyForm").submit(function() {
+		var slip_type = $("#slip_type option:selected").val();
+		if(slip_type == "0") {
+			alert("유형을 선택하세요!");
+			return false;
+		}
+		
+	});
+	
+	$("#deleteBtn").click(function() {
+		var slip_code = $("input[name=slip_code]").val();
+		if(confirm("삭제하시면 되돌릴 수 없습니다. 삭제 하시겠습니까?")) {
+			console.log("확인");
+			window.location="slip_deleteAction?slip_code=" + slip_code;
+		} else {
+			console.log("취소");
+			return false;
+		}
+		
+	});
+	
+	// 창 닫기 클릭
+	$("input[name=window_close]").click(function() {
+		window.close();
+	});
+	
+	
 });

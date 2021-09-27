@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../setting.jsp" %>
+<%@ include file="../setting_user.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,6 +31,11 @@
 </head>
 <body style="background: white">
 
+  	<!-- header  -->
+	<jsp:include page="header.jsp" />
+    <!-- mypage header  -->
+	<jsp:include page="selectHost_header.jsp" />
+	
     <div id="wrapper" >
         <div id="wrapper wrapper-content" class="gray-bg" style="min-height: 1000px;">
         <div class="row border-bottom">

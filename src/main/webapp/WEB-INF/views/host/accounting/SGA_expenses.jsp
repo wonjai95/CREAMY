@@ -69,7 +69,7 @@
             	<sec:csrfInput/>
 	            <div class="form-group" >
 	                <label>날짜</label>
-	                <input type="date" class="form-control" name="slip_regDate" style="width: 40%;" required>
+	                <input type="date" class="form-control" name="slip_regDate" style="width: 50%;" required>
 	            </div>
 	            
 	            <div class="form-group" >
@@ -82,7 +82,7 @@
 	            
 	            <div class="form-group" >
 	                <label>금액</label>
-	                <input type="text" class="form-control" name="slip_money" style="width: 40%;" placeholder="금액을 입력해주세요." required>
+	                <input type="text" class="form-control" name="slip_money" style="width: 50%;" placeholder="금액을 입력해주세요." required>
 	            </div>
 	            
 	            <div class="form-group" >
@@ -103,7 +103,8 @@
    		 <div class="ibox-content" style="height: auto; ">
             <div class="row">
                <div class="col-sm-5 m-b-xs" style="width: 30%; ">
-               		<select class="form-control-sm form-control input-s-sm inline"  style="width: 80%; ">
+               	<select class="form-control-sm form-control input-s-sm inline" name="slip_type" style="width: 80%; ">
+                   <option value="0">유형 선택</option>
                    <option value="복리후생비">복리후생비</option>
                    <option value="수수료비용">수수료비용</option>
                    <option value="소모품비">소모품비</option>
@@ -139,8 +140,11 @@
                    </thead>
                     <tbody>
                     <c:forEach var="dto" items="${dtos}" varStatus="status">
-	                    <tr>
-	                        <td>${dto.slip_regDate}</td>
+	                    <tr class="sga_info${status.index}">
+	                        <td>
+	                        	${dto.slip_regDate}
+	                        	<input type="hidden" name="slip_code${status}" value="${dto.slip_code}">
+	                        </td>
 	                        <td>${dto.slip_type}</td>
 	                        <td><fmt:formatNumber value="${dto.slip_money}" pattern="###,###,###원" /></td>
 	                        <td>${dto.slip_memo}</td>
@@ -155,26 +159,6 @@
 </div>
 </div>  
 </div>
-<!-- Mainly scripts -->
-<script src="${path}/resources/bootstrap/js/moment.min.js"></script>
-<script src="${path}/resources/bootstrap/js/jquery-3.1.1.min.js"></script>
-<script src="${path}/resources/bootstrap/js/popper.min.js"></script>
-<script src="${path}/resources/bootstrap/js/bootstrap.js"></script>
-<script src="${path}/resources/bootstrap/js/jquery.metisMenu.js"></script>
-<script src="${path}/resources/bootstrap/js/jquery.slimscroll.min.js"></script>
-
-<!-- Custom and plugin javascript -->
-<script src="${path}/resources/bootstrap/js/inspinia.js"></script>
-<script src="${path}/resources/bootstrap/js/pace.min.js"></script>
-
-<!-- jQuery UI  -->
-<script src="${path}/resources/bootstrap/js/jquery-ui.min.js"></script>
-
-<!-- iCheck -->
-<script src="${path}/resources/bootstrap/js/icheck.min.js"></script>
-
-<!-- Full Calendar -->
-<script src="${path}/resources/bootstrap/js/fullcalendar.min.js"></script>
 
 
 </body>

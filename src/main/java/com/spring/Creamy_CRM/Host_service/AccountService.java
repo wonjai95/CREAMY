@@ -15,5 +15,13 @@ public interface AccountService {
 	// 판관비 목록
 	public void slipList(HttpServletRequest req, Model model);
 	
-
+	// 매입매출 전표 수정 페이지
+	public void getSlipInfo(HttpServletRequest req, Model model);
+	
+	// 매입매출 전표 수정처리
+	public void modifySlip(HttpServletRequest req, Model model);
+	
+	// 매입매출 전표 삭제처리
+	public void deleteSlip(HttpServletRequest req, Model model);
+	
 }
