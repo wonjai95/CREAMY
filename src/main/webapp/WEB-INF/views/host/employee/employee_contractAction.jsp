@@ -6,17 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>employee_contractAction.jsp</title>
-<link href="${path}/resources/bootstrap/css/bootstrap.min.css"
-	rel="stylesheet">
-<link href="${path}/resources/bootstrap/css/font-awesome.css"
-	rel="stylesheet">
-<link href="${path}/resources/bootstrap/css/summernote-bs4.css"
-	rel="stylesheet">
-<link href="${path}/resources/bootstrap/css/datepicker3.css"
-	rel="stylesheet">
-<link href="${path}/resources/bootstrap/css/animate.css"
-	rel="stylesheet">
-<link href="${path}/resources/bootstrap/css/style.css" rel="stylesheet">
 <style type="text/css">
 body {
 	background-color: white;

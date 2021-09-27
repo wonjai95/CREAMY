@@ -74,6 +74,7 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public void product(HttpServletRequest req, Model model) {
 		String host_code = (String) req.getSession().getAttribute("code");
+		System.out.println("host_code : " + host_code);
 		Map<String, Object> map = null;
 		List<ProductGroupVO> productGroupList = null;
 		List<P_pgVO> productList = null;
