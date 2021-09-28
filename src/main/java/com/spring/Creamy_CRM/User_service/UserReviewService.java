@@ -30,4 +30,7 @@ public interface UserReviewService {
 	//후기 수정 액션
 	public void Modify_reviewAction(HttpServletRequest req, Model model);
 	
+	//후기 삭제
+	public void Delete_reviewAction(HttpServletRequest req, Model model);
+	
 }

@@ -64,6 +64,7 @@
 		         	 	<input type="hidden" name="img_url" value="0">
 		         	 	<input type="hidden" name="check_page" value="${check_page}">
 		         	 	<input type="hidden" name="review_code" value="${vo.review_code}">
+		         	 	<input type="hidden" name="res_code" value="${vo.res_code}">
 		         	 	<sec:csrfInput/>
 		         	 	
 		         	 		<div style="padding-bottom: 9px; display: flex; justify-content: flex-end; ">

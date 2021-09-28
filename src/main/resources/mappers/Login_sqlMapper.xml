@@ -77,7 +77,12 @@
   	
   	<insert id="insertHost" parameterType="com.spring.Creamy_CRM.VO.HostVO">
   		INSERT INTO host_tbl(host_code,host_id,host_pw,host_email,host_name,comp_name,host_ph)
-  		VALUES('U'||host_seq.NEXTVAL,#{host_id},#{host_pw},#{host_email},#{host_name},#{comp_name},#{host_ph})
+  		VALUES('H'||host_seq.NEXTVAL,#{host_id},#{host_pw},#{host_email},#{host_name},#{comp_name},#{host_ph})
+  	</insert>
+  	
+  	<insert id="insertAuthVO" parameterType="com.spring.Creamy_CRM.VO.Android_AuthVO">
+  		insert into Auth_tbl(id,password,key,authority,enabled)
+  		values(#{id}, #{password},#{key}, #{authority}, 1)
   	</insert>
   	
   

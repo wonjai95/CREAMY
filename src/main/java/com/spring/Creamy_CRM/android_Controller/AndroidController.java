@@ -69,5 +69,19 @@ public class AndroidController {
 		
 		return map;
 	}
+	
+	//회원가입
+	@ResponseBody
+	@RequestMapping("android/Join")
+	public Map<String,Object> androidJoin(HttpServletRequest req){
+		log.info("android_Join");
+		System.out.println("url -> 안드로이드 회원가입");
+		
+		Map<String, Object> map = service_android.getUserInfomation(req);
+		
+		return map;
+		
+	}
+	
 
 }

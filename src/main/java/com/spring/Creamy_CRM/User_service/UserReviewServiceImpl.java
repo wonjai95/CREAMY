@@ -205,5 +205,20 @@ public class UserReviewServiceImpl implements UserReviewService {
 		
 	}
 
+	//리뷰 삭제
+	@Override
+	public void Delete_reviewAction(HttpServletRequest req, Model model) {
+		String review_code = req.getParameter("review_code");
+		String res_code = req.getParameter("res_code");
+		
+		int deleteCnt = dao_review.Delete_Review(review_code);
+		System.out.println("후기 삭제 성공 : "+ deleteCnt);
+		
+		//삭제 성공시 예약코드받아와서 후기 작성여부 N으로 변경시켜야함
+		int modifyCnt = dao_review.modifyNoresCheck(res_code);
+		System.out.println("예약 테이블 상태변경 : "+modifyCnt);
+		
+	}
+
 
 }

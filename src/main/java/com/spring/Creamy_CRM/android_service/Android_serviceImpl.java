@@ -17,16 +17,22 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.spring.Creamy_CRM.Host_dao.LoginDAOImpl;
+import com.spring.Creamy_CRM.VO.Android_AuthVO;
+import com.spring.Creamy_CRM.VO.AuthVO;
 import com.spring.Creamy_CRM.VO.EmployeeVO;
 import com.spring.Creamy_CRM.VO.HostVO;
 import com.spring.Creamy_CRM.VO.userVO;
 import com.spring.Creamy_CRM.android_DAO.Android_LoginDAOImpl;
+import com.spring.Creamy_CRM.util.EmailChkHandler;
 
 @Service
 public class Android_serviceImpl implements Android_service{
 
 	@Autowired
 	Android_LoginDAOImpl dao_Android_login;
+	
+	@Autowired
+	LoginDAOImpl dao_login;
 	
 	@Autowired
 	BCryptPasswordEncoder bcryptPassword;
@@ -126,6 +132,62 @@ public class Android_serviceImpl implements Android_service{
 		map.put("member", vo);
 		
 		
+		
+		return map;
+	}
+
+
+	//회원가입
+	@Override
+	public Map<String, Object> Join(HttpServletRequest req) {
+
+		//안드로이드에서 전달한 값
+		String id = req.getParameter("id");
+		String pw = req.getParameter("pwd");
+		String name = req.getParameter("name");
+		String email = req.getParameter("email");
+		String phone = req.getParameter("phone");
+		String birth = req.getParameter("birth");
+		
+		String key = EmailChkHandler.getKey();
+		
+		String bcypw =  bcryptPassword.encode(pw);
+		
+		//나이 계산
+		String[] dates = birth.split("-");
+		int year = Integer.parseInt(dates[0]);
+		int age = 2021 - year;
+		
+		java.sql.Date date = java.sql.Date.valueOf(birth);
+	    System.out.println("생일 : "+date);
+		
+		//인증 테이블  insert하기
+		Android_AuthVO Authvo = new Android_AuthVO();
+		Authvo.setID(id);
+		Authvo.setPassword(bcypw);
+		Authvo.setAuthority("ROLE_USER");
+		Authvo.setKey(key);
+		
+		int insertCnt = dao_login.insertAuthVO(Authvo);
+		System.out.println("인증 테이블 insert 성공 : "+insertCnt);
+		
+		
+		//인증테이블에  insert되면 그다음에 회원 테이블에 insert
+		userVO vo = new userVO();
+		vo.setUser_id(id);
+		vo.setUser_password(bcypw);
+		vo.setUser_name(name);
+		vo.setUser_email(email);
+		vo.setUser_ph(phone);
+		vo.setUser_age(age);
+		vo.setUser_birth(date);
+		
+		
+		
+		vo.setUser_id(id);
+		vo.setUser_password(bcypw);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
 		
 		return map;
 	}

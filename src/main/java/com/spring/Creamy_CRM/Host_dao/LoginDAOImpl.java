@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.mail.javamail.JavaMailSender;
 
+import com.spring.Creamy_CRM.VO.Android_AuthVO;
 import com.spring.Creamy_CRM.VO.HostVO;
 import com.spring.Creamy_CRM.VO.ZipcodeVO;
 import com.spring.Creamy_CRM.VO.userVO;
@@ -116,6 +117,11 @@ public class LoginDAOImpl implements LoginDAO {
 	@Override
 	public int insertHost(HostVO vo) {
 		return sqlSession.insert("com.spring.Creamy_CRM.Host_dao.loginDAO.insertHost",vo);
+	}
+
+	@Override
+	public int insertAuthVO(Android_AuthVO vo) {
+		return sqlSession.insert("com.spring.Creamy_CRM.Host_dao.loginDAO.insertAuthVO",vo); 
 	}
 	
 

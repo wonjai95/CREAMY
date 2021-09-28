@@ -20,6 +20,9 @@ public interface UserReviewDAO {
 	//리뷰 작성 완료시 예약테이블 체크 바꿔주기
 	public int modifyresCheck(String res_code);
 	
+	//리뷰 삭제시 예약테이블 체크 바꿔주기
+	public int modifyNoresCheck(String res_code);
+	
 	//내가 쓴 리뷰 보기
 	public List<ReviewVO> getMyReviewList(String user_code);
 	
@@ -40,5 +43,8 @@ public interface UserReviewDAO {
 	
 	//리뷰 수정하기
 	public int modify_Review(ReviewVO vo);
+	
+	//리뷰 삭제
+	public int Delete_Review(String review_code);
 	
 }

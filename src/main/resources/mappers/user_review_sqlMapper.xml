@@ -38,6 +38,11 @@
   	WHERE res_code = #{res_code}
   </update>
   
+  <update id="modifyNoresCheck" parameterType="String">
+  	UPDATE reservation_tbl SET res_review_chk = 'N'
+  	WHERE res_code = #{res_code}
+  </update>
+  
   <select id="getMyReviewList" parameterType="String" resultType="com.spring.Creamy_CRM.VO.ReviewVO">
   	select * from review_tbl where user_code = #{user_code}
   	order by review_code desc
@@ -90,6 +95,11 @@
   	review_img = #{review_img}
   	where review_code = #{review_code}
   </update>
+  
+  <delete id="Delete_Review" parameterType="String">
+  	delete from review_tbl 
+	where review_code = #{review_code}
+  </delete>	
   	
   
   </mapper>

@@ -239,6 +239,26 @@ public class MainwebController {
 			}
 			
 		}
+		
+	//리뷰 삭제 처리
+	@RequestMapping("/delete_review")
+	public String delete_review(HttpServletRequest req, Model model) {
+		logger.info("url -> delete_review");
+		
+		service_review.Delete_reviewAction(req, model);
+		
+		String pageCheck = req.getParameter("check_page");
+		
+		if(pageCheck.equals("my")) {
+			service_review.getMyReviewList(req, model);
+			
+			return "mainweb/review/review_mypage";
+		}else {
+			
+			service_review.getReviewList(req, model);
+			return "mainweb/review/review_main";	
+		}
+	}
 	
 	//로그아웃 - 수정예정
 	@RequestMapping("/logout")

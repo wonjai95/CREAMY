@@ -8,6 +8,7 @@ package com.spring.Creamy_CRM.Host_dao;
 
 import java.util.Map;
 
+import com.spring.Creamy_CRM.VO.Android_AuthVO;
 import com.spring.Creamy_CRM.VO.HostVO;
 import com.spring.Creamy_CRM.VO.ZipcodeVO;
 import com.spring.Creamy_CRM.VO.userVO;
@@ -19,6 +20,9 @@ public interface LoginDAO {
 	
 	//이메일인증테이블 insert
 	public int insertAuth(Map<String,String> map);
+	
+	//이메일인증 테이블  insert ->vo버전
+	public int insertAuthVO(Android_AuthVO vo);
 	
 	//우편번호 유무 여부 
 	public int getZipcodeCount(Map<String,String> map);

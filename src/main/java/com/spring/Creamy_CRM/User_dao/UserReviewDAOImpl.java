@@ -72,5 +72,15 @@ public class UserReviewDAOImpl implements UserReviewDAO {
 	public int modify_Review(ReviewVO vo) {
 		return sqlSession.update("com.spring.Creamy_CRM.User_dao.UserReviewDAO.modify_Review",vo);
 	}
+
+	@Override
+	public int Delete_Review(String review_code) {
+		return sqlSession.selectOne("com.spring.Creamy_CRM.User_dao.UserReviewDAO.Delete_Review",review_code);
+	}
+
+	@Override
+	public int modifyNoresCheck(String res_code) {
+		return sqlSession.selectOne("com.spring.Creamy_CRM.User_dao.UserReviewDAO.modifyNoresCheck",res_code);	
+	}
 	
 }
