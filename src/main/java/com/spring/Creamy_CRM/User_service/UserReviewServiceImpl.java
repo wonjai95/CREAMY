@@ -29,12 +29,13 @@ public class UserReviewServiceImpl implements UserReviewService {
 	//예약목록 받아오기
 	@Override
 	public void getReservationList(HttpServletRequest req, Model model) {
-		String id = (String) req.getSession().getAttribute("id");
-		System.out.println("id : "+id);
+		String user_id = (String) req.getSession().getAttribute("id");
+		System.out.println("id : "+ user_id);
 		
 		Date today = new Date(System.currentTimeMillis());
 		
-		List<ReservationVO> list = dao_review.getReservationList(id);
+		List<ReservationVO> list = dao_review.getReservationList(user_id);
+		System.out.println("list : " + list.size());
 		req.setAttribute("list", list);
 		req.setAttribute("today", today);
 	}
