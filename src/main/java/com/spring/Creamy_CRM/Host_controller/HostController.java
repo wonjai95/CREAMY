@@ -1,7 +1,6 @@
 package com.spring.Creamy_CRM.Host_controller;
 
-import java.util.ArrayList;
-import java.util.Iterator;
+
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,8 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring.Creamy_CRM.Host_service.HostService;
+import com.spring.Creamy_CRM.VO.RoomSettingVO;
 
 @Controller
 public class HostController {
@@ -23,25 +24,52 @@ public class HostController {
 	private HostService service;
 	
 	@RequestMapping("/host/hostPage")
-	public String mypage(Model model) {
+	public String mypage(HttpServletRequest req, Model model) {
 		logger.info("url -> hostPage");
-		
-		String[] days = {
-			"월요일","화요일","수요일","목요일","금요일","토요일","일요일"
-		};
-		List<String> dayList = new ArrayList<String>();
-		for (int i = 0; i < days.length; i++) {
-			dayList.add(days[i]);
-		}
-		model.addAttribute("dayList", dayList);
-		
+		service.getHostInfo(req, model);
 		return "host/hostPage/hostPage";
 	}
 	
+	//시간설정
 	@RequestMapping("/host/setWorkTime")
 	public String setWorkTime(HttpServletRequest req, Model model) {
 		logger.info("url -> setWorkTime");
 		service.setWorkTime(req, model);
 		return "host/hostPage/setWorkTime";
 	}
+	
+	//사업자 정보 등록(company)
+	@RequestMapping("/host/addCompanyAction")
+	public String addCompanyAction(HttpServletRequest req, Model model) {
+		logger.info("url -> addCompanyAction");
+		service.addCompanyAction(req, model);
+		return "host/hostPage/addCompanyAction";
+	}
+	
+	//호실이름중복확인
+	@ResponseBody
+	@RequestMapping("/host/chkRoomName")
+	public int chkRoomName(HttpServletRequest req, Model model) {
+		logger.info("url -> chkRoomName");
+		return service.chkRoomName(req, model);
+	}
+	
+	//호실 등록
+	@ResponseBody
+	@RequestMapping("/host/addRoomAction")
+	public RoomSettingVO addRoomAction(HttpServletRequest req, Model model) {
+		logger.info("url -> addRoomAction");
+		return service.addRoomAction(req, model);
+	}
+	
+	//호실 리스트
+	@ResponseBody
+	@RequestMapping("/host/roomList")
+	public List<RoomSettingVO> roomList(HttpServletRequest req, Model model) {
+		logger.info("url -> roomList");
+		return service.roomList(req, model);
+	}
+	
+	
+	
 }

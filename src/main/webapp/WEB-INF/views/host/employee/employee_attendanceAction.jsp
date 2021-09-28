@@ -73,5 +73,33 @@ body {
 	
 </c:if>
 
+<c:if test="${updateCnt == 1}">
+	<script type="text/javascript">
+		alert("수정에 성공했습니다!");
+		history.back();
+	</script>
+</c:if>
+
+<c:if test="${updateCnt == 0}">
+	<script type="text/javascript">
+		alert("수정에 실패했습니다.");
+		history.back();
+	</script>
+</c:if>
+
+<c:if test="${deleteCnt == 1}">
+	<script type="text/javascript">
+		alert("삭제에 성공했습니다!");
+		history.back();
+	</script>
+</c:if>
+
+<c:if test="${deleteCnt == 0}">
+	<script type="text/javascript">
+		alert("삭제에 실패했습니다.");
+		history.back();
+	</script>
+</c:if>
+
 </body>
 </html>

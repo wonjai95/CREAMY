@@ -16,6 +16,7 @@ import org.springframework.stereotype.Repository;
 import com.spring.Creamy_CRM.VO.P_pgVO;
 import com.spring.Creamy_CRM.VO.ProductGroupVO;
 import com.spring.Creamy_CRM.VO.ProductVO;
+import com.spring.Creamy_CRM.VO.S_tVO;
 import com.spring.Creamy_CRM.VO.SaleVO;
 import com.spring.Creamy_CRM.VO.StockVO;
 import com.spring.Creamy_CRM.VO.TradeVO;
@@ -219,6 +220,25 @@ public class ProductDAOImpl implements ProductDAO {
 	@Override
 	public int deleteStock(String stock_code) {
 		return sqlSession.delete("com.spring.Creamy_CRM.Host_dao.productDAO.deleteStock", stock_code);
+	}
+
+
+	
+	//입출고 현황
+	@Override
+	public int stCnt(String host_code) {
+		return sqlSession.selectOne("com.spring.Creamy_CRM.Host_dao.productDAO.stCnt", host_code);
+	}
+	// 입출고현황 페이징(재고+거래처)
+	@Override
+	public List<S_tVO> selectStList(Map<String, Object> map) {
+		return sqlSession.selectList("com.spring.Creamy_CRM.Host_dao.productDAO.selectStList", map);
+	}
+
+	/*ajax*/
+	@Override
+	public List<ProductVO> ajax_getProductByCode(String product_group_code) {
+		return sqlSession.selectList("com.spring.Creamy_CRM.Host_dao.productDAO.ajax_getProductByCode", product_group_code);
 	}
 
 	// 결제정보 등록

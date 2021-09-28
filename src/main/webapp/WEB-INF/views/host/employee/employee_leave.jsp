@@ -75,14 +75,6 @@ body {
 			
 			<div class="hr-line-dashed"></div>
 			<div class="form-group row">
-				<label class="col-sm-2 col-form-label">사유</label>
-				<div class="col-sm-7">
-					<input type="text" class="form-control" name="leave_memo" placeholder="사유">
-				</div>
-			</div>
-			
-			<div class="hr-line-dashed"></div>
-			<div class="form-group row">
 				<label class="col-sm-2 col-form-label">핸드폰</label>
 				<div class="col-sm-7" style="display: flex;">
 					<input type="text" class="form-control" name="employee_ph1" maxlength="3" placeholder="000"> &nbsp;&nbsp;-&nbsp;&nbsp;

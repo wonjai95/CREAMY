@@ -1,11 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../setting.jsp" %>
+<%@ include file="/WEB-INF/views/setting.jsp" %>
 <!DOCTYPE html>
 <html>
-
 <head>
-
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="_csrf" content="${_csrf.token}"/>
@@ -18,18 +16,6 @@
          border-spacing: 0 20px;
       }
       
-      .panel-heading {
-         margin-bottom: 20px;
-      }
-   
-	   @font-face {
-		    font-family: 'Wemakeprice-Regular';
-		    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/Wemakeprice-Regular.woff') format('woff');
-		    font-weight: normal;
-		    font-style: normal;
-		}
-		
-		body { font-family: 'Wemakeprice-Regular';}
 		.panel-heading { margin-bottom: 20px;}
 		a:link {text-decoration: none;}
 		h3 {font-size: 18px;}
@@ -41,15 +27,11 @@
 </head>
 
 <body class="top-navigation">
-
+	
     <div id="wrapper">
         <div id="page-wrapper" class="gray-bg">
         <div class="row border-bottom white-bg">
         <nav class="navbar navbar-expand-lg navbar-static-top" role="navigation">
-            <!--<div class="navbar-header">-->
-                <!--<button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">-->
-                    <!--<i class="fa fa-reorder"></i>-->
-                <!--</button>-->
             <a href="home" class="navbar-brand">CREAMY</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fa fa-reorder"></i>
@@ -61,12 +43,12 @@
            <form action="insertBooking" method="post" id="custBookingForm">
            <sec:csrfInput/>
            <input type="hidden" id="user_id" name="user_id" value="${sessionScope.id}">
-           <input type="hidden" id="res_state" name="res_state"> <!-- custRoomBooking.jsp에도 hidden으로 res_state를 넣기??? -->
-           <input type="hidden" id="res_date" name="res_date">   <!-- 다시 체크해 볼 것!  name="custBookingForm" -->
+           <input type="hidden" id="res_state" name="res_state"> 
+           <input type="hidden" id="res_date" name="res_date">   
            <input type="hidden" id="res_memo" name="res_memo">
            <input type="hidden" id="host_code" name="host_code" value="${host_code}">
            <input type="hidden" id="chkDay">
-           <input type="hidden" id="com_res" value="${com_res}">
+           <input type="hidden" id="comp_res" value="${comp_res}">
            <input type="hidden" id="product_code" name="product_code">
                 <div class="row">
                    <!-- col-lg-8  시작 -->
@@ -133,8 +115,8 @@
                                     </tr>
                                     
                                      <!-- 담당자 -->
-                                    <tr>
-                                       <td><strong>담당자</strong></td>
+                                    <tr >
+                                       <td style="padding-top: 20px;"><strong>담당자</strong></td>
                                     </tr>
                                     <tr>
                                        <td>
@@ -145,8 +127,8 @@
                                           <div class="panel-heading" style="background-color: #e5e6e7; margin-top:15px; color: black">
                                               <input type="text" name="selectManager" id="selectManager" style="display: none">담당자 : <span class="managerSelectedInfo">담당자</span>
                                           </div>
-                                          <div class="form-group" style="margin-top:30px;">
-	                                        <span><strong>추가 요청사항</strong></span>
+                                          <div class="form-group" style="margin-top:40px;">
+	                                        <span ><strong>추가 요청사항</strong></span>
 	                                        <textarea class="form-control" placeholder="필요 시 내용을 입력하세요." rows="3"
 	                                        			name="res_indiv_request"
 	                                        			style="margin-top:10px;"></textarea>

@@ -66,6 +66,53 @@ $(document).ready(function() {
        
     });
     
+    // 이용시간 계산 - 시작 시간 변경시
+    $("input[name=res_start]").change(function() {
+    	var startTime = $(this).val();
+    	var endTime = $("input[name=res_end]").val();
+    	var calTime = 0;
+    	console.log("startTime : " + startTime);
+    	console.log("endTime : " + endTime);
+    	
+    	if(startTime != "" && endTime != "") {
+    		calTime = parseInt(endTime) - parseInt(startTime);
+    		if(calTime <= 0) {
+    			alert("시간을 다시 입력해주세요.");
+    			$("input[name=res_start]").val("");
+    			$("input[name=res_end]").val("");
+    		} else {
+    			$("input[name=calTime]").val(calTime);
+    			$(".calTime").html(calTime);
+    			$("#GuestCountMinus").click();
+    		}
+    	}
+    	
+    });
+    
+    // 이용시간 계산 - 종료 시간 변경시
+    $("input[name=res_end]").change(function() {
+    	var startTime = $("input[name=res_start]").val();
+    	var endTime = $(this).val();
+    	var calTime = 0;
+    	console.log("startTime : " + startTime);
+    	console.log("endTime : " + endTime);
+    	
+    	if(startTime != "" && endTime != "") {
+    		calTime = parseInt(endTime) - parseInt(startTime);
+    		if(calTime <= 0) {
+    			alert("시간을 다시 입력해주세요.");
+    			$("input[name=res_start]").val("");
+    			$("input[name=res_end]").val("");
+    		} else {
+    			$("input[name=calTime]").val(calTime);
+    			$(".calTime").html(calTime);
+    			$("#GuestCountMinus").click();
+    		}
+    	}
+    	
+    });
+    
+    
     //천단위 콤마 함수
     function addComma(value){
          value = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");

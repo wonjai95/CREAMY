@@ -39,43 +39,38 @@ $("document").ready(function() {
 	      document.getElementById("cart_product_name").innerHTML = cart_product_name;
 	      document.getElementById("cart_product_price").innerHTML = cart_product_price;
 	      document.getElementById("total_payment").innerHTML = cart_product_price;
+	      $("input[name=total_payment]").val = cart_product_price;
+	      
+	      $("selling").on("click", function() {
+	    	  location.href = "selling_action?total_payment?" + cart_product_price;
+	      })
       }
+   });
+   
+   
+   // 버튼 클릭시 해당 값 넘기기
+   $("input[id=cash_btn]").click(function() {
+      $("input[id=cash_btn]").css("background", "");
+      
+      alert("버튼 값 : " + $(this).attr("value"));   
+      
+      var cash_btn =  $(this).attr("value");
+      console.log("cash_btn : " + cash_btn);
+      
+      $("input[name=payment_option]").val(cash_btn);
+      
+      alert("값 : " + $("input[name=payment_option]").val());
+      $(this).css("background", "#20c997");
    });
    
    
    
    
    
-	// 현금 버튼 클릭
-	$("#cash_btn").click(function() {
-		alert("탄다");
-		// 클릭시 버튼 색깔 지정
-		/*
-		$("#employee_out").css("background", "");
-		$("#employee_in").css("background", "#20c997");
-		$("#employee_in").css("color", "#212529");
-		
-		// 클릭시 지각 체크박스 보여줌
-		$(".form-check-input").show();
-		$(".form-check-label").html("지각");
-		$("input[name=late_early]").val("지각");
-		*/
-		
-		// 클릭시 현금 칸 출력
-		$("#cash").show();
-		
-		// 클릭시 카드사, 할부 숨기기
-		$("#banking_credit").css('display', 'block');
-		$("#banking_installment").css('display', 'block');
-		
-		
-		// 출퇴근 값을 hidden에 담아서 service로 넘김
-		/*
-		$("input[name=employee_in]").val("출근");
-		$("input[name=employee_out]").val("0");
-		*/
-	});
    
+   
+   
+
    
    
    
