@@ -196,8 +196,8 @@
 							
 							<!-- 처음[◀︎◀︎] / 이전 블록[◀︎] /  -->
 							<c:if test="${startPage > pageBlock}">
-								<a href="requestReservation"> [◀︎◀︎] </a>
-								<a href="requestReservation?pageNum=${startPage - pageBlock} "> [◀︎] </a>
+								<a href="reservation"> [◀︎◀︎] </a>
+								<a href="reservation?pageNum=${startPage - pageBlock} "> [◀︎] </a>
 							</c:if>	
 								
 							<!-- 블록 내의 페이지 번호 -->
@@ -207,14 +207,14 @@
 								</c:if>
 								
 								<c:if test="${i != currentPage}">
-									<a href="requestReservation?pageNum=${i} ">[${i}]</a>
+									<a href="reservation?pageNum=${i} ">[${i}]</a>
 								</c:if>
 							</c:forEach>
 							
 							<!-- 다음 블록[▶︎︎] / 마지막[▶︎▶︎︎] /  -->
 							<c:if test="${pageCount > endPage}">
-								<a href="requestReservation?pageNum=${startPage + pageBlock} "> [▶︎︎] </a>
-								<a href="requestReservation?pageNum=${pageCount} "> [▶︎▶︎︎] </a>
+								<a href="reservation?pageNum=${startPage + pageBlock} "> [▶︎︎] </a>
+								<a href="reservation?pageNum=${pageCount} "> [▶︎▶︎︎] </a>
 							</c:if>
 							
 						</c:if>
