@@ -18,18 +18,6 @@
          border-spacing: 0 20px;
       }
       
-      .panel-heading {
-         margin-bottom: 20px;
-      }
-      
-	@font-face {
-	    font-family: 'Wemakeprice-Regular';
-	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/Wemakeprice-Regular.woff') format('woff');
-	    font-weight: normal;
-	    font-style: normal;
-	}
-	
-	body { font-family: 'Wemakeprice-Regular';}
 	.panel-heading { margin-bottom: 20px;}
 	a:link {text-decoration: none;}
 	h3 {font-size: 18px;}
@@ -41,7 +29,7 @@
 </head>
 
 <body class="top-navigation">
-
+	
     <div id="wrapper">
         <div id="page-wrapper" class="gray-bg">
         <div class="row border-bottom white-bg">
@@ -61,7 +49,7 @@
            <input type="hidden" id="res_memo" name="res_memo">
            <input type="hidden" id="host_code" name="host_code" value="${host_code}">
            <input type="hidden" id="chkDay">
-           <input type="hidden" id="com_res" value="${com_res}">
+           <input type="hidden" id="comp_res" value="${comp_res}">
            <input type="hidden" id="per_price" value="0">
            <input type="hidden" id="min_cnt" value="0">
            <input type="hidden" id="max_cnt" value="0">
@@ -112,7 +100,6 @@
                                	<div class="col-lg-12" id="roomDetail">
 
 					            </div>              
-					            
 					            
 					             <!-- 인원 -->
                                  <table class="box">
