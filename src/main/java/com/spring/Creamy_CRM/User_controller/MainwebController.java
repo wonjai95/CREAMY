@@ -371,7 +371,20 @@ public class MainwebController {
 		
 		service_review.getReservationList(req, model);
 		return "mainweb/mypage/showBookingDetail";
+	}   
+	
+	 
+	// ------------------- 회원 결제 페이지 ------------------------
+	//회원 예약내역 확인
+	@RequestMapping("/add_saleInfo")
+	public String add_saleInfo(HttpServletRequest req, Model model) {
+		logger.info("url -> add_saleInfo");
+		
+		return "mainweb/sale/add_saleInfo";
 	}
+		
+	
+	
 
 }
 	
