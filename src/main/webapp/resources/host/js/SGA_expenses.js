@@ -102,6 +102,86 @@ $("document").ready(function() {
 		
 	});
 	
+	// 목록의 option 선택시
+	$("select[name=slip_type]").change(function(){
+		
+		var selectType = $("select[name=slip_type] option:selected").val();
+		console.log("selectType : " + selectType);
+		
+		var header = $("meta[name='_csrf_header']").attr("content");
+        var token = $("meta[name='_csrf']").attr("content");
+        console.log("header : " + header);
+        
+         $.ajax({
+	       	  url : "slip_List",
+	       	  type : "Post",
+	       	  data : "slip_type=" + selectType,
+       	  	  async: false,	
+  			  beforeSend : function(jqXHR, settings) {
+	       		  console.log("beforesend 진행");
+	                 jqXHR.setRequestHeader(header, token);
+	       	  },
+	       	  success : function(result) {
+	       		  $("#slipList").html(result);
+	       	  },
+	       	  error : function(error) {
+	       		console.log(error);  
+	       	  }
+         });
+	})
+	
+	$("#Search_content").keyup(function(){
+		var header = $("meta[name='_csrf_header']").attr("content");
+        var token = $("meta[name='_csrf']").attr("content");
+		var content = $("#Search_content").val();
+		console.log("content : " + content);
+		
+		$.ajax({
+	       	  url : "slip_Search",
+	       	  type : "Post",
+	       	  data : "search_content=" + content,
+     	  	  async: false,	
+			  beforeSend : function(jqXHR, settings) {
+	       		  console.log("beforesend 진행");
+	                 jqXHR.setRequestHeader(header, token);
+	       	  },
+	       	  success : function(result) {
+	       		  $("#slipList").html(result);
+	       	  },
+	       	  error : function(error) {
+	       		console.log(error);  
+	       	  }
+       });
+	})
+	
+	/*
+	// 검색 버튼 클릭시
+	$("input[id=Search_btn]").click(function(){
+		alert("검색");
+		
+		var header = $("meta[name='_csrf_header']").attr("content");
+        var token = $("meta[name='_csrf']").attr("content");
+		var content = $("#Search_content").val();
+		console.log("content : " + content);
+		
+		$.ajax({
+	       	  url : "slip_Search",
+	       	  type : "Post",
+	       	  data : "search_content=" + content,
+     	  	  async: false,	
+			  beforeSend : function(jqXHR, settings) {
+	       		  console.log("beforesend 진행");
+	                 jqXHR.setRequestHeader(header, token);
+	       	  },
+	       	  success : function(result) {
+	       		  $("#slipList").html(result);
+	       	  },
+	       	  error : function(error) {
+	       		console.log(error);  
+	       	  }
+       });
+	});
+	*/
 	// 창 닫기 클릭
 	$("input[name=window_close]").click(function() {
 		window.close();

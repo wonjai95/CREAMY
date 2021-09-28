@@ -31,18 +31,21 @@ public class AccountController {
 	@Autowired
 	AccountDAOImpl dao;
 	
+	// 손익 계산서
 	@RequestMapping("/host/Accounting")
 	public String Accounting(HttpServletRequest req, Model model) {
 		logger.info("url -> Accounting");
 	  
 		return "host/accounting/Accounting";
 	}
-	   
+	
+	// 매입매출 전표
 	@RequestMapping("/host/SGA_expenses")
 	public String SGA_expenses(HttpServletRequest req, Model model) {
 		logger.info("url -> SGA_expenses");
 	  
 		service.slipList(req, model);
+		
 		return "host/accounting/SGA_expenses";
 	}
 	
@@ -72,6 +75,27 @@ public class AccountController {
 		
 	}
 	
+	// 목록에서 유형 선택시 해당되는 데이터만 출력
+	@RequestMapping("host/slip_List")
+	public String slip_List(HttpServletRequest req, Model model) {
+		logger.info("url -> slip_List]");
+		
+		service.getSelectList(req, model);
+		
+		return "host/accounting/slip_List";
+	}
+	
+	// 검색어 조회
+	@RequestMapping("host/slip_Search")
+	public String slip_Search(HttpServletRequest req, Model model) {
+		logger.info("url -> slip_Search");
+		
+		service.getSearchList(req, model);
+		
+		return "host/accounting/slip_List";
+	}
+	
+	
 	// 매입매출 수정 페이지
 	@RequestMapping("/host/slip_modify")
 	public String slip_modify(HttpServletRequest req, Model model) {
@@ -81,7 +105,7 @@ public class AccountController {
 		return "host/accounting/slip_modify";
 	}
 	
-	// 매입매출 수정 페이지
+	// 매입매출 수정 처리
 	@RequestMapping("/host/slip_modifyAction")
 	public String slip_modifyAction(HttpServletRequest req, Model model) {
 		logger.info("url -> slip_modifyAction");
@@ -90,7 +114,7 @@ public class AccountController {
 		return "host/accounting/slip_modifyAction";
 	}
 	
-	// 매입매출 삭제 페이지
+	// 매입매출 삭제 처리
 	@RequestMapping("/host/slip_deleteAction")
 	public String slip_deleteAction(HttpServletRequest req, Model model) {
 		logger.info("url -> slip_deleteAction");

@@ -18,6 +18,12 @@ public interface AccountDAO {
 	// 매입매출 전표 등록
 	public int insertSlip(AccountVO vo);
 	
+	// 선택된 유형의 매출전표 조회
+	public List<AccountVO> getSelectList(String slip_type);
+	
+	// 검색어에 따른 매출전표 조회
+	public List<AccountVO> getSearchList(String search);
+	
 	// 매입매출 전표 수정 페이지
 	public AccountVO getSlipInfo(String slip_code);
 	

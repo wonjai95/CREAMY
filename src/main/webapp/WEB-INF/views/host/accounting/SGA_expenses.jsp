@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../../setting.jsp" %>
+<%@ include file="/WEB-INF/views/setting.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -124,8 +124,8 @@
                    </div>
                </div>
                <div class="col-sm-3" style="width: 40%; ">
-                   <div class="input-group"><input placeholder="Search" type="text" class="form-control form-control-sm"> <span class="input-group-append"> 
-                   		<input type="button" class="btn btn-sm btn-primary" value="검색">
+                   <div class="input-group"><input placeholder="Search" type="text" id="Search_content" class="form-control form-control-sm"> <span class="input-group-append"> 
+                   		<input type="button" class="btn btn-sm btn-primary" id="Search_btn" value="검색">
                     </span></div>
 
                </div>
@@ -138,7 +138,7 @@
                       <th>금액</th>
                       <th>메모</th>
                    </thead>
-                    <tbody>
+                    <tbody id="slipList">
                     <c:forEach var="dto" items="${dtos}" varStatus="status">
 	                    <tr class="sga_info${status.index}">
 	                        <td>

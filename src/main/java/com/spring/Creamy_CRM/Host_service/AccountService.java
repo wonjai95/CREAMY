@@ -15,6 +15,12 @@ public interface AccountService {
 	// 판관비 목록
 	public void slipList(HttpServletRequest req, Model model);
 	
+	// 유형에 따른 매출전표 조회
+	public void getSelectList(HttpServletRequest req, Model model);
+	
+	// 검색에 따른 매출전표 조회
+	public void getSearchList(HttpServletRequest req, Model model);
+	
 	// 매입매출 전표 수정 페이지
 	public void getSlipInfo(HttpServletRequest req, Model model);
 	

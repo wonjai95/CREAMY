@@ -33,6 +33,27 @@ public class AccountServiceImpl implements AccountService {
 		
 		model.addAttribute("dtos", dtos);
 	}
+	
+	// 유형에 따른 매출전표 조회
+	public void getSelectList(HttpServletRequest req, Model model) {
+		String slip_type = req.getParameter("slip_type");
+		System.out.println("slip_type : " + slip_type);
+		
+		List<AccountVO> vo = dao.getSelectList(slip_type);
+		
+		model.addAttribute("vo", vo);
+	}
+	
+	// 검색에 따른 매출전표 조회
+	public void getSearchList(HttpServletRequest req, Model model) {
+		String search = req.getParameter("search_content");
+		System.out.println("search : " + search);
+		
+		List<AccountVO> vo = dao.getSearchList(search);
+		
+		model.addAttribute("vo", vo);
+	}
+	
 
 	// 매입매출 전표 수정 페이지
 	@Override
