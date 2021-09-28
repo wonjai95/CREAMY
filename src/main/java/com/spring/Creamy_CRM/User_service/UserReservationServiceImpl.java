@@ -230,6 +230,7 @@ public class UserReservationServiceImpl implements UserReservationService {
 	// 호실 예약 처리
 	@Override
 	public void insertRoomBookingAction(HttpServletRequest req, Model model) {
+		String host_code = req.getParameter("host_code");
 		String res_start = req.getParameter("res_start");
 		String res_end = req.getParameter("res_end");
 		int res_sales = Integer.parseInt(req.getParameter("res_sales"));
@@ -249,6 +250,7 @@ public class UserReservationServiceImpl implements UserReservationService {
 		int closeTime = Integer.parseInt(close_sche.split(":")[0]);
 		
 		ReservationVO vo = new ReservationVO();
+		vo.setHost_code(host_code);
 		vo.setRes_state(res_state);
 		vo.setRes_cnt(guestCount);
 		vo.setRoom_setting_code(room_setting_code);

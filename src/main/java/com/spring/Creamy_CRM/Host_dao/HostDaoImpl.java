@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.spring.Creamy_CRM.VO.HostVO;
 import com.spring.Creamy_CRM.VO.OperatingScheVO;
+import com.spring.Creamy_CRM.VO.RoomSettingVO;
 import com.spring.Creamy_CRM.VO.ZipcodeVO;
 
 @Repository
@@ -63,7 +64,22 @@ public class HostDaoImpl implements HostDao{
 		return sqlSession.insert("com.spring.Creamy_CRM.Host_dao.HostDao.insertCompany", vo);
 	}
 	
-	
-	
+	//호실 이름 중복확인
+	@Override
+	public int chkRoomName(Map<String, Object> map) {
+		return sqlSession.selectOne("com.spring.Creamy_CRM.Host_dao.HostDao.chkRoomName", map);
+	}
+
+	//호실 등록
+	@Override
+	public int insertRoom(RoomSettingVO vo) {
+		return sqlSession.insert("com.spring.Creamy_CRM.Host_dao.HostDao.insertRoom",vo);
+	}
+
+	//호실 리스트
+	@Override
+	public List<RoomSettingVO> selectRoomList(String host_code) {
+		return sqlSession.selectList("com.spring.Creamy_CRM.Host_dao.HostDao.selectRoomList", host_code);
+	}
 	
 }

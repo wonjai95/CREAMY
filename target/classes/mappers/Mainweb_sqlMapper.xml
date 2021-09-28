@@ -12,8 +12,10 @@
   <mapper namespace="com.spring.Creamy_CRM.User_dao.MainwebDAO">
   
   	<insert id="insertBooking1" parameterType="com.spring.Creamy_CRM.VO.ReservationVO">
-		INSERT INTO reservation_tbl(res_code, res_state, res_date, res_hour, employee_code, user_id, res_detail_code, res_regDate)
-		VALUES ('RS'||res_seq.currval, #{res_state}, #{res_date}, #{res_hour}, #{employee_code}, #{user_id}, 'RS'||res_seq.currval, SYSDATE)
+		INSERT INTO reservation_tbl(res_code, res_state, res_date, res_hour, employee_code, 
+										user_id, res_detail_code, res_regDate, host_code)
+		VALUES ('RS'||res_seq.currval, #{res_state}, #{res_date}, #{res_hour}, #{employee_code}, 
+					#{user_id}, 'RS'||res_seq.currval, SYSDATE, #{host_code})
 	</insert> 
   
 	<insert id="insertBooking2" parameterType="com.spring.Creamy_CRM.VO.ReservationVO">

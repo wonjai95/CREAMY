@@ -12,14 +12,11 @@
   <mapper namespace="com.spring.Creamy_CRM.User_dao.UserReviewDAO">
   
   <select id="getReservationList" parameterType="String" resultType="com.spring.Creamy_CRM.VO.ReservationVO">
-	  SELECT res.*, d.*, h.comp_name
-		FROM (SELECT r.*, e.host_code
-	      	  FROM reservation_tbl r, employee_tbl e
-	     	  WHERE e.employee_code = r.employee_code) res, host_tbl h, reservation_detail_tbl d
-		WHERE res.host_code = h.host_code
-	    AND res.res_detail_code = d.res_detail_code
-		AND res.user_id = #{id}
-		ORDER BY res.res_code desc
+	  SELECT r.res_code, h.comp_name, r.res_state, r.res_date
+	    FROM reservation_tbl r
+	    JOIN host_tbl h
+	      ON h.host_code = r.host_code
+	   WHERE user_id = #{user_id}  
   </select>
   
   <select id="getReservationDetail" parameterType="String" resultType="com.spring.Creamy_CRM.VO.ReservationVO">

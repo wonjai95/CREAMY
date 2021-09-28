@@ -8,7 +8,6 @@
 package com.spring.Creamy_CRM.User_controller;
 
 import javax.servlet.http.HttpServletRequest;
-import java.sql.Date;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +16,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 import com.spring.Creamy_CRM.Host_controller.MainController;
 import com.spring.Creamy_CRM.Host_service.LoginServiceImpl;
 import com.spring.Creamy_CRM.User_service.MainwebServiceImpl;
@@ -371,7 +369,20 @@ public class MainwebController {
 		
 		service_review.getReservationList(req, model);
 		return "mainweb/mypage/showBookingDetail";
+	}   
+	
+	 
+	// ------------------- 회원 결제 페이지 ------------------------
+	//회원 예약내역 확인
+	@RequestMapping("/add_saleInfo")
+	public String add_saleInfo(HttpServletRequest req, Model model) {
+		logger.info("url -> add_saleInfo");
+		
+		return "mainweb/sale/add_saleInfo";
 	}
+		
+	
+	
 
 }
 	

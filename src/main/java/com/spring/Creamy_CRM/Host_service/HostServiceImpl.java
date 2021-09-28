@@ -15,7 +15,11 @@ import org.springframework.ui.Model;
 import com.spring.Creamy_CRM.Host_dao.HostDao;
 import com.spring.Creamy_CRM.VO.HostVO;
 import com.spring.Creamy_CRM.VO.OperatingScheVO;
+import com.spring.Creamy_CRM.VO.RoomSettingVO;
 import com.spring.Creamy_CRM.VO.ZipcodeVO;
+
+import sun.awt.image.PNGImageDecoder.Chromaticities;
+import sun.print.resources.serviceui;
 
 @Service
 public class HostServiceImpl implements HostService {
@@ -146,6 +150,56 @@ public class HostServiceImpl implements HostService {
 		
 		model.addAttribute("insertCnt",insertCnt);
 	}
+
+	//ㅊ
+	@Override
+	public int chkRoomName(HttpServletRequest req, Model model) {
+		String host_code = (String)req.getSession().getAttribute("code");
+		String room_name = req.getParameter("room_name");
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("host_code", host_code);
+		map.put("room_name", room_name);
+		
+		return dao.chkRoomName(map);
+	}
+
+	//룸확인
+	@Override
+	public RoomSettingVO addRoomAction(HttpServletRequest req, Model model) {
+		String host_code = (String)req.getSession().getAttribute("code");
+		String room_name = req.getParameter("room_name");
+		String room_stat = req.getParameter("room_stat");
+		String per_price = req.getParameter("per_price");
+		String min_cnt = req.getParameter("min_cnt");
+		String max_cnt = req.getParameter("max_cnt");
+		
+		RoomSettingVO vo = new RoomSettingVO();
+		vo.setHost_code(host_code);
+		vo.setRoom_name(room_name);
+		vo.setRoom_stat(room_stat);
+		vo.setPer_price(Integer.parseInt(per_price));
+		vo.setMin_cnt(Integer.parseInt(min_cnt));
+		vo.setMax_cnt(Integer.parseInt(max_cnt));
+		
+		int cnt = dao.insertRoom(vo);
+		if(cnt != 1) {
+			vo = null;
+		}
+		return vo;
+		
+	}
+
+	//호실 리스트
+	@Override
+	public List<RoomSettingVO> roomList(HttpServletRequest req, Model model) {
+		String host_code = (String)req.getSession().getAttribute("code");
+		return dao.selectRoomList(host_code);
+	
+	}
+	
+	
+	
 	
 	
 	

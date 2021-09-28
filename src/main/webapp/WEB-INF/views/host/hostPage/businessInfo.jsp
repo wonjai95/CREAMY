@@ -58,7 +58,6 @@ function addressSearch() {
 	    <h2>
 	    	사업자 정보
 	    </h2>
-	    <br>
 	    
 	    <c:if test="${hostVo.comp_no != null}">
 		    <p class="font-bold">사업자 정보</p>
