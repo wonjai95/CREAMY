@@ -283,12 +283,12 @@ public class MainwebController {
 	   public String custBooking(HttpServletRequest req, Model model) {
 	      logger.info("url -> custBooking");
 	      
-	      String com_res = req.getParameter("com_res");
+	      String comp_res = req.getParameter("comp_res");
 	      model.addAttribute("host_code", req.getParameter("host_code"));
 	      model.addAttribute("comp_address", req.getParameter("comp_address"));
-	      model.addAttribute("com_res", com_res);
+	      model.addAttribute("comp_res", comp_res);
 	      
-	      if(com_res.equals("담당자")) {
+	      if(comp_res.equals("담당자")) {
 	    	  System.out.println("담당자 진입");
 	    	  service_custReserve.custManagerBooking(req, model);
 	    	  return "mainweb/custManagerBooking";
@@ -369,6 +369,7 @@ public class MainwebController {
 	public String showBookingDetail(HttpServletRequest req, Model model) {
 		logger.info("url -> showBookingDetail");
 		
+		service_review.getReservationList(req, model);
 		return "mainweb/mypage/showBookingDetail";
 	}
 

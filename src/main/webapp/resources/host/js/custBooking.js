@@ -89,11 +89,11 @@ $(document).ready(function() {
               console.log("header : " + header);
               console.log("token : " + token);
               
-              var com_res = $("#com_res").val();
-              console.log("com_res : " + com_res);
+              var comp_res = $("#comp_res").val();
+              console.log("comp_res : " + comp_res);
               
-              // 달력에 날짜 클릭시 com_res가 "담당자"일 경우 bookingTimeTable 내용을 보여줌
-              if(com_res == "담당자") {
+              // 달력에 날짜 클릭시 comp_res가 "담당자"일 경우 bookingTimeTable 내용을 보여줌
+              if(comp_res == "담당자") {
             	  $.ajax({
                 	  url : "bookingTimeTable",
                 	  type : "Post",
@@ -111,8 +111,8 @@ $(document).ready(function() {
                 	  }
                   });
             	  
-              // 달력에 날짜 클릭시 com_res가 "호실"일 경우 bookingRoomTable 내용을 보여줌
-              } else if (com_res == "호실") {
+              // 달력에 날짜 클릭시 comp_res가 "호실"일 경우 bookingRoomTable 내용을 보여줌
+              } else if (comp_res == "호실") {
             	  $.ajax({
                 	  url : "bookingRoomTable",
                 	  type : "Post",
@@ -158,11 +158,13 @@ $(document).ready(function() {
     function calTotalPrice() {
     	var cnt = $("#GuestCount").val();
     	var per_price = $("#per_price").val();
-    	
-    	var priceTotal = parseInt(cnt) * parseInt(per_price);
+    	var totalTime = $("input[name=calTime]").val();
+    	console.log("totalTime : " + totalTime);
+    	var priceTotal = parseInt(cnt) * parseInt(per_price) * parseInt(totalTime);
     	$("#priceTotal").val(addComma(priceTotal));
     	$("#res_sales").val(priceTotal);
     };
+    
     
     // 인원수 감소
     $("#GuestCountMinus").click(function(){

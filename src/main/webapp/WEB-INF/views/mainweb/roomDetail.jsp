@@ -41,7 +41,7 @@
             	<div class='home_div navy-bg'>&nbsp; 예약 완료 :&nbsp; ${dto.res_start} - ${dto.res_end}</div>
             </c:forEach>
             <br>
-				<p class="m-t" style="border-top: 1px solid gray; padding-top: 5px; display: flex;">
+				<p class="m-t" style="border-top: 1px solid gray; padding-top: 15px; display: flex; margin-bottom: 10px;">
 					<span class="timeTxt" style="font-size: 16px; place-self: center;">시간 입력 : &nbsp;</span> 
 					<input type="number" class="form-control" placeholder="시작 NN" name="res_start" min="0" max="24"
 						 style="width: 25%" required>
@@ -51,6 +51,9 @@
 						 <span class="timeTxt" style="font-size: 16px; place-self: center;">&nbsp;시 </span>            
 				</p>
         </div>
+         <div class="panel-heading" style="background-color: #e5e6e7; margin-top:15px; color: black">
+	         <input type="text" name="calTime" id="calTime" style="display: none">이용 시간 : <span class="calTime">N </span>시간
+	      </div>
     </div>
 </div>
 </div>              

@@ -1,16 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="../setting.jsp" %>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta name="_csrf" content="${_csrf.token}"/>
+<meta name="_csrf_header" content="${_csrf.headerName}"/>
   <title>CRM</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
-
 </head>
 
 <body>
@@ -25,31 +24,21 @@
       </div>
       <div class="container">
         <div class="row mt-5 justify-content-center">
-
           <div class="col-lg-10">
-
             <div class="info-wrap">
               <div class="row">
                 <div class="col-lg-4 info">
-                  <i class="bi bi-geo-alt"></i>
-                  <a href="mypage" style="align-self: center;"><h4 style="padding-top: 10px;">회원정보 수정</h4></a>
-                </div>
-
-                <div class="col-lg-4 info mt-4 mt-lg-0">
-                  <i class="bi bi-envelope"></i>
-                  <a href="insertPaymentInfo" style="align-self: center;"><h4 style="padding-top: 10px;">결제수단 등록</h4></a>
-                </div>
-
-                <div class="col-lg-4 info mt-4 mt-lg-0">
-                  <i class="bi bi-phone"></i>
-                  <a href="mypage_reservation" style="align-self: center;"><h4 style="padding-top: 10px;">예약내역 확인</h4></a>
+	                <sec:csrfInput/>
+	                <div class="form-group">
+	                    <input type="text" placeholder="검색어 입력" 
+	                    	class="form-control" name="top-search" id="top-search">
+	                </div>
                 </div>
               </div>
             </div>
           </div>
-
+          </div>
         </div>
-        
         <!-- ======= 상단 메뉴 끝 ======= -->
         
 </body>
