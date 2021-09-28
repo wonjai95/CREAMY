@@ -8,7 +8,6 @@
 package com.spring.Creamy_CRM.User_controller;
 
 import javax.servlet.http.HttpServletRequest;
-import java.sql.Date;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +16,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 import com.spring.Creamy_CRM.Host_controller.MainController;
 import com.spring.Creamy_CRM.Host_service.LoginServiceImpl;
 import com.spring.Creamy_CRM.User_service.MainwebServiceImpl;
@@ -303,12 +301,12 @@ public class MainwebController {
 	   public String custBooking(HttpServletRequest req, Model model) {
 	      logger.info("url -> custBooking");
 	      
-	      String com_res = req.getParameter("com_res");
+	      String comp_res = req.getParameter("comp_res");
 	      model.addAttribute("host_code", req.getParameter("host_code"));
 	      model.addAttribute("comp_address", req.getParameter("comp_address"));
-	      model.addAttribute("com_res", com_res);
+	      model.addAttribute("comp_res", comp_res);
 	      
-	      if(com_res.equals("담당자")) {
+	      if(comp_res.equals("담당자")) {
 	    	  System.out.println("담당자 진입");
 	    	  service_custReserve.custManagerBooking(req, model);
 	    	  return "mainweb/custManagerBooking";
@@ -389,8 +387,22 @@ public class MainwebController {
 	public String showBookingDetail(HttpServletRequest req, Model model) {
 		logger.info("url -> showBookingDetail");
 		
+		service_review.getReservationList(req, model);
 		return "mainweb/mypage/showBookingDetail";
+	}   
+	
+	 
+	// ------------------- 회원 결제 페이지 ------------------------
+	//회원 예약내역 확인
+	@RequestMapping("/add_saleInfo")
+	public String add_saleInfo(HttpServletRequest req, Model model) {
+		logger.info("url -> add_saleInfo");
+		
+		return "mainweb/sale/add_saleInfo";
 	}
+		
+	
+	
 
 }
 	

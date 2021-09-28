@@ -199,6 +199,7 @@
 	    <div class="ibox ">
 	        <div class="ibox-title">
 	            <h3>예약 상세</h3>
+	            <small>예약 코드 : ${dto.res_code}</small>
 	        </div>
 	        <div class="ibox-content">
 <!-- form -->	<form action="" method="post" id="requestDetail">
@@ -222,8 +223,6 @@
                                  style="margin: 10px" value="예약신청">예약신청</button>
                               <button type="button" class="btn btn-outline btn-primary" class="typeBtn" id="stateBtn2"
                                  style="margin: 10px" value="예약중">예약중</button>
-                              <button type="button" class="btn btn-outline btn-primary" class="typeBtn" id="stateBtn3"
-                                 style="margin: 10px" value="서비스 완료">서비스 완료</button>
                            </div>
                            <div class="col-lg-3" style="margin-top:15px; color: black">
                          <%-- <input type="text" name="selectType" id="selectType" style="display: none">형태 : <span class="stateSelectedInfo">${dto.res_state}</span> --%>
