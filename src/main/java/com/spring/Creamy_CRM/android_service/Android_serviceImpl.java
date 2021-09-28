@@ -182,6 +182,7 @@ public class Android_serviceImpl implements Android_service{
 		vo.setUser_age(age);
 		vo.setUser_birth(date);
 		
+		insertCnt = dao_login.insertUserinfo(vo);
 		
 		
 		vo.setUser_id(id);
