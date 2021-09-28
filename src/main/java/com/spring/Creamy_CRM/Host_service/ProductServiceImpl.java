@@ -28,6 +28,7 @@ import com.spring.Creamy_CRM.Host_dao.ProductDAOImpl;
 import com.spring.Creamy_CRM.VO.P_pgVO;
 import com.spring.Creamy_CRM.VO.ProductGroupVO;
 import com.spring.Creamy_CRM.VO.ProductVO;
+import com.spring.Creamy_CRM.VO.S_tVO;
 import com.spring.Creamy_CRM.VO.SaleVO;
 import com.spring.Creamy_CRM.VO.StockVO;
 import com.spring.Creamy_CRM.VO.TradeVO;
@@ -73,15 +74,18 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public void product(HttpServletRequest req, Model model) {
 		String host_code = (String) req.getSession().getAttribute("code");
+		System.out.println("host_code : " + host_code);
 		Map<String, Object> map = null;
 		List<ProductGroupVO> productGroupList = null;
 		List<P_pgVO> productList = null;
 		List<TradeVO> tradeList = null;
 		List<StockVO> stockList = null;
+		List<S_tVO> stList = null; //입출고 (재고 + 거래처) 리스트
 		Page productGroupPage = new Page();
 		Page productPage = new Page();
 		Page tradePage = new Page();
 		Page stockPage = new Page();
+		Page stPage = new Page();
 
 		// 상품그룹 페이지
 		productGroupPage.setCnt(dao.productGroupCnt(host_code));
@@ -138,11 +142,30 @@ public class ProductServiceImpl implements ProductService {
 			map.put("end", stockPage.getEnd());
 			stockList = dao.selectStockList(map);
 		}
+		
+		//입출고 현황
+		stPage.setCnt(dao.stCnt(host_code)); 
+		stPage.setPageSize(10);
+		stPage.setPageBlock(5);
+		stPage.setCurrentPage(req.getParameter("pageNum"));
+
+		if (stockPage.getCnt() > 0) {
+			map = new HashMap<String, Object>();
+			map.put("host_code", host_code);
+			map.put("start", stPage.getStart());
+			map.put("end", stPage.getEnd());
+			stList = dao.selectStList(map);
+		}
+		
+		
+		model.addAttribute("stList", stList);
 		model.addAttribute("stockList", stockList);
 		model.addAttribute("tradeList", tradeList);
 		model.addAttribute("productGroupList", productGroupList);
 		model.addAttribute("productList", productList);
 
+		
+		
 		/*
 		model.addAttribute("productGroupPageCnt", productGroupPage.getCnt());
 		model.addAttribute("productGroupPageNumber", productGroupPage.getNumber());
@@ -585,32 +608,50 @@ public class ProductServiceImpl implements ProductService {
 		model.addAttribute("vo", vo);
 	}
 
+	
+	/*ajax*/
+	@Override
+	public List<ProductVO> ajax_getProductByCode(HttpServletRequest req, Model model) {
+		String product_group_code = req.getParameter("code");
+		return dao.ajax_getProductByCode(product_group_code);
+	}
+	
+
 	// 결제 정보 insert
 	@Override
 	public void addSaleInfo(HttpServletRequest req, Model model) {
+		
+		String host_code = (String) req.getSession().getAttribute("code");
+		System.out.println("host_code : " + host_code);
+		
 		System.out.println("service ==> addSaleInfo");
 		
-		//int total_payment = Integer.parseInt(req.getParameter("total_payment"));
-		String payment_option = req.getParameter("payment_option");
+		int total_payment = Integer.parseInt(req.getParameter("product_price_hidden"));
+		System.out.println("total_payment : " + total_payment);
+		String payment_option = req.getParameter("payment_option_hidden");
+		System.out.println("payment_option  : " + payment_option);
 		String credit_select = req.getParameter("credit_select");
+		System.out.println("credit_select : " + credit_select);
 		String credit_installment = req.getParameter("credit_installment");
+		System.out.println("credit_installment : " + credit_installment);
 		String sale_date = req.getParameter("sale_date");
 		
 		String sale_memo = req.getParameter("sale_memo");
 		
 		String user_code = req.getParameter("user_code");
-		String employee_code = req.getParameter("employee_code");
+		String employee_code = req.getParameter("employee_name");
 		String product_code = req.getParameter("product_code");
-		
+		System.out.println("product_code : " + product_code);
 		userVO vo = new userVO();
-		//vo.setTotal_payment(total_payment);
-		//vo.setPayment_option(payment_option);
-		
+		vo.setTotal_payment(total_payment);
+		vo.setPayment_option(payment_option);
+		vo.setCredit_select(credit_select);
+		vo.setCredit_installment(credit_installment);
 		Date sDate = Date.valueOf(sale_date);
 		vo.setSale_date(sDate);
 		vo.setSale_memo(sale_memo);
-		
 		vo.setEmployee_code(employee_code);
+		
 		vo.setUser_code(user_code);
 		vo.setProduct_code(product_code);
 		
@@ -620,5 +661,6 @@ public class ProductServiceImpl implements ProductService {
 		model.addAttribute("dto", vo);
 		
 	}
+
 
 }

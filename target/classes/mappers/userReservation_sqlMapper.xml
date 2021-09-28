@@ -138,8 +138,10 @@
   	
   	<!-- 호실 예약 처리 -->
   	<insert id="insertRoomBooking" parameterType="com.spring.Creamy_CRM.VO.ReservationVO">
-  		INSERT INTO reservation_tbl(res_code, res_state, res_date, res_hour, user_id, res_detail_code, room_setting_code, res_review_chk)
-  		VALUES('RS'||res_seq.currval, #{res_state}, #{res_date}, #{res_hour}, #{user_id}, 'RS'||res_seq.currval, #{room_setting_code}, 'N')
+  		INSERT INTO reservation_tbl(res_code, res_state, res_date, res_hour, user_id, 
+  										res_detail_code, room_setting_code, res_review_chk, host_code)
+  		VALUES('RS'||res_seq.currval, #{res_state}, #{res_date}, #{res_hour}, #{user_id}, 
+  					'RS'||res_seq.currval, #{room_setting_code}, 'N', #{host_code})
   	</insert>
   	
   	<!-- 호실 예약 상세 처리 -->

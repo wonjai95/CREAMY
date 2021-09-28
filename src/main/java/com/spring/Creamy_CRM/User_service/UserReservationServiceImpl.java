@@ -38,6 +38,7 @@ public class UserReservationServiceImpl implements UserReservationService {
 	@Override
 	public void selectHost(HttpServletRequest req, Model model) {
 		ArrayList<HostVO> list = (ArrayList<HostVO>) dao.selectHost();
+		System.out.println("selectHost : " + list.get(0).getComp_name());
 		model.addAttribute("dtos", list);
 	}
 	
@@ -187,6 +188,7 @@ public class UserReservationServiceImpl implements UserReservationService {
 		String host_code = req.getParameter("host_code");
 		String selectDate = req.getParameter("selectDate");
 		List<ReservationVO> dtos = dao.getAvailableRoom(host_code);
+		System.out.println("dtos : " + dtos.size());
 		model.addAttribute("dtos", dtos);
 		model.addAttribute("selectDate", selectDate);
 		
@@ -228,6 +230,7 @@ public class UserReservationServiceImpl implements UserReservationService {
 	// 호실 예약 처리
 	@Override
 	public void insertRoomBookingAction(HttpServletRequest req, Model model) {
+		String host_code = req.getParameter("host_code");
 		String res_start = req.getParameter("res_start");
 		String res_end = req.getParameter("res_end");
 		int res_sales = Integer.parseInt(req.getParameter("res_sales"));
@@ -247,6 +250,7 @@ public class UserReservationServiceImpl implements UserReservationService {
 		int closeTime = Integer.parseInt(close_sche.split(":")[0]);
 		
 		ReservationVO vo = new ReservationVO();
+		vo.setHost_code(host_code);
 		vo.setRes_state(res_state);
 		vo.setRes_cnt(guestCount);
 		vo.setRoom_setting_code(room_setting_code);
@@ -279,10 +283,10 @@ public class UserReservationServiceImpl implements UserReservationService {
 							+ "AS "
 							+ "SELECT * "
 							+ "FROM reservation_detail_tbl "
-							+ "WHERE TO_DATE('1990/01/01' || '" + res_start + "', 'YYYY/MM/dd HH24:mi') BETWEEN TO_DATE(TO_CHAR('1990/01/01' || res_start), 'YYYY/MM/dd HH24:mi') + 5/(24*60) AND TO_DATE(TO_CHAR('1990/01/01' || res_end), 'YYYY/MM/dd HH24:mi') + 5/(24*60) "
-							+ "OR TO_DATE('1990/01/01' || '" + res_end + "', 'YYYY/MM/dd HH24:mi') BETWEEN TO_DATE(TO_CHAR('1990/01/01' || res_start), 'YYYY/MM/dd HH24:mi') + 5/(24*60) AND TO_DATE(TO_CHAR('1990/01/01' || res_end), 'YYYY/MM/dd HH24:mi') + 5/(24*60) "
+							+ "WHERE TO_DATE('1990/01/01' || '" + res_start + "', 'YYYY/MM/dd HH24:mi') BETWEEN TO_DATE(TO_CHAR('1990/01/01' || res_start), 'YYYY/MM/dd HH24:mi') + 5/(24*60) AND TO_DATE(TO_CHAR('1990/01/01' || res_end), 'YYYY/MM/dd HH24:mi') - 5/(24*60) "
+							+ "OR TO_DATE('1990/01/01' || '" + res_end + "', 'YYYY/MM/dd HH24:mi') BETWEEN TO_DATE(TO_CHAR('1990/01/01' || res_start), 'YYYY/MM/dd HH24:mi') + 5/(24*60) AND TO_DATE(TO_CHAR('1990/01/01' || res_end), 'YYYY/MM/dd HH24:mi') - 5/(24*60) "
 							+ "OR TO_DATE(TO_CHAR('1990/01/01' || res_start), 'YYYY/MM/dd HH24:mi') + 5/(24*60) BETWEEN TO_DATE('1990/01/01' || '" + res_start + "', 'YYYY/MM/dd HH24:mi') AND TO_DATE('1990/01/01' || '" + res_end + "', 'YYYY/MM/dd HH24:mi') " 
-							+ "OR TO_DATE(TO_CHAR('1990/01/01' || res_end), 'YYYY/MM/dd HH24:mi') + 5/(24*60) BETWEEN TO_DATE('1990/01/01' || '" + res_start + "', 'YYYY/MM/dd HH24:mi') AND TO_DATE('1990/01/01' || '" + res_end + "', 'YYYY/MM/dd HH24:mi')";
+							+ "OR TO_DATE(TO_CHAR('1990/01/01' || res_end), 'YYYY/MM/dd HH24:mi') - 5/(24*60) BETWEEN TO_DATE('1990/01/01' || '" + res_start + "', 'YYYY/MM/dd HH24:mi') AND TO_DATE('1990/01/01' || '" + res_end + "', 'YYYY/MM/dd HH24:mi')";
 			
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("sql", sql);

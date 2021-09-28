@@ -12,29 +12,36 @@ $("document").ready(function(){
 	
 	
 	$("#top-search").keyup(function() {
+		var timeout = null;
+        clearTimeout(timeout);
+
+        timeout = setTimeout(function () {
 		
-		 var header = $("meta[name='_csrf_header']").attr("content");
-         var token = $("meta[name='_csrf']").attr("content");
-         
-         // 검색어
-         var keyword = $("#top-search").val();
-         console.log(keyword);
-         $.ajax({
-       	  url : "searchHostList",
-       	  type : "Post",
-       	  data : "keyword=" + keyword,
-       	  beforeSend : function(jqXHR, settings) {
-       		  console.log("beforesend 진행");
-                 jqXHR.setRequestHeader(header, token);
-       	  },
-       	  success : function(result) {
-       		  $("#hostList").html(result);
-       	  },
-       	  error : function(error) {
-       		console.log(error);  
-       		$("#hostList").html("검색하신 내용에 일치하는 결과가 존재하지 않습니다.");
-       	  }
-         });
+			 var header = $("meta[name='_csrf_header']").attr("content");
+		     var token = $("meta[name='_csrf']").attr("content");
+		     
+		     // 검색어
+		     var keyword = $("#top-search").val();
+		     console.log(keyword);
+		     $.ajax({
+		   	  url : "searchHostList",
+		   	  type : "Post",
+		   	  data : "keyword=" + keyword,
+		   	  async: false,
+		   	  beforeSend : function(jqXHR, settings) {
+		   		  console.log("beforesend 진행");
+		             jqXHR.setRequestHeader(header, token);
+		   	  },
+		   	  success : function(result) {
+		   		  $("#hostList").html(result);
+		   	  },
+		   	  error : function(error) {
+		   		console.log(error);  
+		   		$("#hostList").html("검색하신 내용에 일치하는 결과가 존재하지 않습니다.");
+		   	  }
+		     });
+		     
+        }, 2000);
          
 	});
 	

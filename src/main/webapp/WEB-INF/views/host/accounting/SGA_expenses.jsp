@@ -1,33 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../../setting.jsp" %>
+<%@ include file="/WEB-INF/views/setting.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>INSPINIA | Data Tables</title>
-
-<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link href="../bootstrap/css/font-awesome.css" rel="stylesheet">
-<link href="../bootstrap/css/table/datatables.min.css" rel="stylesheet">
-
-<link href="../bootstrap/css/animate.css" rel="stylesheet">
-<link href="../bootstrap/css/style.css" rel="stylesheet">
+<meta name="_csrf" content="${_csrf.token}"/>
+<meta name="_csrf_header" content="${_csrf.headerName}"/>
+<title>SGA_expenses</title>
 
 <style>
-/* .ibox {
-   float: left;
-}
-
-.tab-content{
-   float: right;
-} */
+	label {
+		margin-bottom: 10px;
+	}
+	
+	.form-group {
+		margin-bottom: 30px;
+	}
+	
+	.btn-block {
+		margin-top: -10px;
+	}
 
 </style>
+<script type="text/javascript" src="${path}/resources/host/js/SGA_expenses.js"></script>
 </head>
 <body>
 <div id="wrapper">
@@ -46,10 +43,10 @@
         <h2>판매비와 관리비</h2>
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="index.html">Home</a>
+                <a href="home">Home</a>
             </li>
             <li class="breadcrumb-item">
-                   회계
+                  	 회계
             </li>
             <li class="breadcrumb-item active">
                 <strong>판매비와 관리비</strong>
@@ -59,112 +56,100 @@
 </div>
 <div class="row">
 <!-- 매입매출전표 등록 부분 -->
-<div class="col-lg-6 col-md-12">
-    <div class="ibox" style="padding: 0;">
-        <div class="ibox-content" >
-            <h3>전표 입력</h3>
-   
+<div class="col-lg-6 col-md-12" style="width: 30%;">
+    <div class="ibox" style="padding: 0; ">
+        <div class="ibox-content">
+            <h3 style="font-size:20px;">전표 입력</h3>
+   			<hr>
             <p class="small">
                             복리후생비,소모품비,수수료비용을 적어주세요.
             </p>
             
-            <form>
-            <div class="form-group" >
-                <label>날짜</label>
-                <input type="date" class="form-control">
-            </div>
-            
-            <div class="form-group" >
-                <label>유형</label>
-                <br>
-              <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-              <label class="btn btn-outline-success" for="btnradio1">복리후생비</label>
-            
-              <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-              <label class="btn btn-outline-success" for="btnradio2">소모품비</label>
-            
-              <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
-              <label class="btn btn-outline-success" for="btnradio3">수수료비용</label>
-            </div>
-            
-            <div class="form-group" >
-                <label>금액</label>
-                <input type="text" class="form-control" placeholder="금액을 입력해주세요.">
-            </div>
-            
-            <div class="form-group" >
-                <label>메모</label>
-                <textarea class="form-control" placeholder="Your message" rows="3"></textarea>
-            </div>
-            <br>
-            <button class="btn btn-primary btn-block">확인</button>
-            <button class="btn btn-primary btn-block">취소</button>
+            <form id="SGAform">
+            	<sec:csrfInput/>
+	            <div class="form-group" >
+	                <label>날짜</label>
+	                <input type="date" class="form-control" name="slip_regDate" style="width: 50%;" required>
+	            </div>
+	            
+	            <div class="form-group" >
+	                <label>유형</label><br>
+	              <input type="button" class="btn btn-outline btn-primary" name="slip_type1" id="slip_type1" value="복리후생비">
+	              <input type="button" class="btn btn-outline btn-primary" name="slip_type2" id="slip_type3" value="소모품비">
+	              <input type="button" class="btn btn-outline btn-primary" name="slip_type3" id="slip_type4" value="수수료비용">
+	              <input type="text" style="display: none" name="slip_type" id="slip_type">
+	            </div>
+	            
+	            <div class="form-group" >
+	                <label>금액</label>
+	                <input type="text" class="form-control" name="slip_money" style="width: 50%;" placeholder="금액을 입력해주세요." required>
+	            </div>
+	            
+	            <div class="form-group" >
+	                <label>메모</label>
+	                <textarea class="form-control" name="slip_memo" style="width: 80%;" placeholder="판매비와 관리비 내용" rows="3" required></textarea>
+	            </div>
+	            <br>
+	            <input type="button" class="btn btn-primary btn-block" id="insertSGA" value="등록">
+	            <input type="reset" class="btn btn-primary btn-block" value="취소">
          </form>
         </div>
     </div>
 </div>
  
 <!-- 리스트 부분 -->
-<div class="col-lg-6 col-md-12">
-    <div id="tab-1" class="ibox-content" style="">
-        <div class="full-height-scroll">
-            <div class="table-responsive">
-                <table class="table table-striped table-hover">
+<div class="col-lg-6 col-md-12" style="width: 70%;">
+	<div class="ibox" style="padding: 0;">
+   		 <div class="ibox-content" style="height: auto; ">
+            <div class="row">
+               <div class="col-sm-5 m-b-xs" style="width: 30%; ">
+               	<select class="form-control-sm form-control input-s-sm inline" name="slip_type" style="width: 80%; ">
+                   <option value="0">유형 선택</option>
+                   <option value="복리후생비">복리후생비</option>
+                   <option value="수수료비용">수수료비용</option>
+                   <option value="소모품비">소모품비</option>
+               </select>
+               </div>
+               <div class="col-sm-4 m-b-xs" style="width: 30%; ">
+                   <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                       <label class="btn btn-sm btn-white ">
+                           <input type="radio" name="options" id="option1" autocomplete="off" checked> Day
+                       </label>
+                       <label class="btn btn-sm btn-white active">
+                           <input type="radio" name="options" id="option2" autocomplete="off"> Week
+                       </label>
+                       <label class="btn btn-sm btn-white">
+                           <input type="radio" name="options" id="option3" autocomplete="off"> Month
+                       </label>
+                   </div>
+               </div>
+               <div class="col-sm-3" style="width: 40%; ">
+                   <div class="input-group"><input placeholder="Search" type="text" id="Search_content" class="form-control form-control-sm"> <span class="input-group-append"> 
+                   		<input type="button" class="btn btn-sm btn-primary" id="Search_btn" value="검색">
+                    </span></div>
+
+               </div>
+           </div>
+           <div class="table-responsive">
+                <table class="table table-bordered">
                    <thead>
                       <th>날짜</th>
                       <th>유형</th>
                       <th>금액</th>
                       <th>메모</th>
                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>9월 16일</td>
-                        <td>복리후생비</td>
-                        <td><fmt:formatNumber value="10000" pattern="###,###,###원" /></td>
-                        <td>직원식사</td>
-                    </tr>
-                    <tr>
-                        <td>9월 16일</td>
-                        <td>소모품비</td>
-                        <td><fmt:formatNumber value="25000" pattern="###,###,###원" /></td>
-                        <td>필기구</td>
-                    </tr>
-                    <tr>
-                        <td>9월 15일</td>
-                        <td>복리후생비</td>
-                        <td><fmt:formatNumber value="10000" pattern="###,###,###원" /></td>
-                        <td>직원식사</td>
-                    </tr>
-                    <tr>
-                        <td>9월 14일</td>
-                        <td>복리후생비</td>
-                        <td><fmt:formatNumber value="1000000" pattern="###,###,###원" /></td>
-                        <td>직원 결혼식</td>
-                    </tr>
-                    <tr>
-                        <td>9월 12일</td>
-                        <td>소모품비</td>
-                        <td><fmt:formatNumber value="30000" pattern="###,###,###원" /></td>
-                        <td>전구</td>
-                    </tr>
-                    <tr>
-                        <td>9월 12일</td>
-                        <td>수수료비용</td>
-                        <td><fmt:formatNumber value="10000" pattern="###,###,###원" /></td>
-                        <td>택배</td>
-                    </tr>
-                    <tr>
-                        <td>9월 11일</td>
-                        <td>복리후생비</td>
-                        <td><fmt:formatNumber value="10000" pattern="###,###,###원" /></td>
-                        <td>직원식사</td>
-                    </tr>
-                    <tr>
-                        <td>9월 10일</td>
-                        <td>수수료비용</td>
-                        <td><fmt:formatNumber value="20000" pattern="###,###,###원" /></td>
-                        <td>택배</td>
-                    </tr>
+                    <tbody id="slipList">
+                    <c:forEach var="dto" items="${dtos}" varStatus="status">
+	                    <tr class="sga_info${status.index}">
+	                        <td>
+	                        	${dto.slip_regDate}
+	                        	<input type="hidden" name="slip_code${status}" value="${dto.slip_code}">
+	                        </td>
+	                        <td>${dto.slip_type}</td>
+	                        <td><fmt:formatNumber value="${dto.slip_money}" pattern="###,###,###원" /></td>
+	                        <td>${dto.slip_memo}</td>
+	                    </tr>
+                    </c:forEach>
                     </tbody>
                 </table>
             </div>
@@ -174,26 +159,6 @@
 </div>
 </div>  
 </div>
-<!-- Mainly scripts -->
-<script src="${path}/resources/bootstrap/js/moment.min.js"></script>
-<script src="${path}/resources/bootstrap/js/jquery-3.1.1.min.js"></script>
-<script src="${path}/resources/bootstrap/js/popper.min.js"></script>
-<script src="${path}/resources/bootstrap/js/bootstrap.js"></script>
-<script src="${path}/resources/bootstrap/js/jquery.metisMenu.js"></script>
-<script src="${path}/resources/bootstrap/js/jquery.slimscroll.min.js"></script>
-
-<!-- Custom and plugin javascript -->
-<script src="${path}/resources/bootstrap/js/inspinia.js"></script>
-<script src="${path}/resources/bootstrap/js/pace.min.js"></script>
-
-<!-- jQuery UI  -->
-<script src="${path}/resources/bootstrap/js/jquery-ui.min.js"></script>
-
-<!-- iCheck -->
-<script src="${path}/resources/bootstrap/js/icheck.min.js"></script>
-
-<!-- Full Calendar -->
-<script src="${path}/resources/bootstrap/js/fullcalendar.min.js"></script>
 
 
 </body>

@@ -32,6 +32,8 @@ public interface ReservationService {
 	// 예약요청 삭제처리 페이지
 	public void deleteAction(HttpServletRequest req, Model model);
 	
+	// 서비스 완료처리 페이지
+	public void completeAction(HttpServletRequest req, Model model);
 	
 //======= 예약조회 탭 =======	
 	// 예약조회 목록	

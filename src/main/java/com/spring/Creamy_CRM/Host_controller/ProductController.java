@@ -5,6 +5,8 @@
 */
 package com.spring.Creamy_CRM.Host_controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
@@ -12,13 +14,19 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.spring.Creamy_CRM.Host_service.CRMuserService;
-import com.spring.Creamy_CRM.Host_service.LoginServiceImpl;
+import com.spring.Creamy_CRM.Host_service.EmployeeService;
 import com.spring.Creamy_CRM.Host_service.ProductService;
+
+import com.spring.Creamy_CRM.VO.ProductGroupVO;
+import com.spring.Creamy_CRM.VO.ProductVO;
 import com.spring.Creamy_CRM.VO.userVO;
+
 
 @Controller
 public class ProductController {
@@ -26,9 +34,27 @@ public class ProductController {
 
 	@Autowired
 	ProductService service;
+	
 	@Autowired
 	CRMuserService service_user;
 
+ 
+	@ResponseBody
+	@RequestMapping("/host/dddd")
+	public List<ProductVO> dddd(HttpServletRequest req, Model model) {
+		logger.info("url -> dddd");
+		List<ProductVO> list = service.ajax_getProductByCode(req, model);
+		for (int i = 0; i < list.size(); i++) {
+			ProductVO vo = list.get(i);
+			System.out.println(vo.getProduct_name());
+		}
+		return list;
+	}
+
+	@Autowired
+	EmployeeService service_emp;
+
+	
 	// 상품관련 페이지 요청
 	@RequestMapping("/host/product")
 	public String product(HttpServletRequest req, Model model) {
@@ -195,8 +221,8 @@ public class ProductController {
 		return "host/product/deleteStockAction";
 	}
 
-	// 판매 페이지
-	@RequestMapping("/host/product_selling")
+	// 판매 페이지      
+	@RequestMapping("/host/product_selling")         
 	public String product_selling(HttpServletRequest req, Model model) {
 		logger.info("url -> product_selling");
 
@@ -209,10 +235,14 @@ public class ProductController {
 		service.printProducts(req, model);
 		model.addAttribute("dto_product", req.getAttribute("dto2")); // 상품 정보 넘겨주기
 		
+		// 결제정보 입력창에서 직원(수납자) 정보 뿌리기
+		service_emp.employeeList(req, model);
+		
+		
 		return "host/product/product_selling";
 	}
 	
-	// 판매 처리 
+	// 판매 처리
 	@RequestMapping("/host/selling_action")
 	public String selling_action(HttpServletRequest req, Model model) {
 		logger.info("url -> product_selling");
@@ -221,8 +251,8 @@ public class ProductController {
 		service.addSaleInfo(req, model);
 		
 		return "host/product/selling_action";
-	}
-	
+	}    
+	    
 	
 
 }

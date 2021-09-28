@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../setting.jsp" %>
+<%@ include file="/WEB-INF/views/setting_tags.jsp" %>
 <!DOCTYPE html>
 <html>
 
@@ -31,13 +31,18 @@
 		 <!-- 인원 -->
       	<table class="box">		
       		<tr>
-		      	<c:forEach var="dto" items="${dtos}" varStatus="status">
-					<td class="mangTr${status.index}">
-						<button type="button" class="btn btn-outline btn-primary" class="managerBtn" id="managerBtn${status.index}" 
-			                 style="margin: 10px" value="${dto.employee_name}">${dto.employee_name}</button>
-			             <input type="text" style="display: none" name="employee_code" value="${dto.employee_code}">
-		             </td>
-				</c:forEach>
+      			<c:if test="${dtos.length == 0}">
+      				예약 가능한 담당자가 없습니다.
+      			</c:if>
+      			<c:if test="${dtos.length != 0}">
+			      	<c:forEach var="dto" items="${dtos}" varStatus="status">
+						<td class="mangTr${status.index}">
+							<button type="button" class="btn btn-outline btn-primary" class="managerBtn" id="managerBtn${status.index}" 
+				                 style="margin: 10px" value="${dto.employee_name}">${dto.employee_name}</button>
+				             <input type="text" style="display: none" name="employee_code" value="${dto.employee_code}">
+			             </td>
+					</c:forEach>
+				</c:if>
 			</tr>
 		</table>
 	</div>

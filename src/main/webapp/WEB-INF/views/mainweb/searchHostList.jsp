@@ -9,21 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="_csrf" content="${_csrf.token}"/>
 	<meta name="_csrf_header" content="${_csrf.headerName}"/>
-    <title>hostList</title>
-<style type="text/css">
-	@font-face {
-	    font-family: 'Wemakeprice-SemiBold';
-	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/Wemakeprice-SemiBold.woff') format('woff');
-	    font-weight: normal;
-	    font-style: normal;
-	}
-	
-	body {font-family: 'Wemakeprice-SemiBold';}
-	.panel-heading { margin-bottom: 20px;}
-	a:link {text-decoration: none;}
-	h3 {font-size: 18px;}
-	address {font-size: 14px;}
-</style>
+    <title>searchHostList</title>
 <script type="text/javascript" src="${path}/resources/host/js/selectHost.js"></script>
 </head>
 <sec:csrfInput/>
@@ -32,7 +18,7 @@
 	<c:forEach var="dto" items="${dtos}">
 	    <div class="col-lg-4">
 	        <div class="contact-box">
-	            <a class="row" href="custBooking?host_code=${dto.host_code}&comp_address=${dto.comp_address}&com_res=${dto.com_res}" 
+	            <a class="row" href="custBooking?host_code=${dto.host_code}&comp_address=${dto.comp_address}&comp_res=${dto.comp_res}" 
 	            	style="justify-content: center;">
 	             <div class="col-8" style="text-align: center;">
 	                 <h3><strong>${dto.comp_name}</strong></h3>

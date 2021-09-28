@@ -6,22 +6,25 @@
 <head>
 <meta charset="UTF-8">
 <title>employee_paymentList.jsp</title>
+<script type="text/javascript" src="${path}/resources/host/js/employee_paymentList.js"></script>
 </head>
 <body>
 <!-- 급여 지급 시작 -->
 <div id="tab-4" class="tab-pane active">
     <div class="panel-body">
+    
+    <input type="hidden" name="salary_code" value="0">
 
         <!-- 월선택 달력!!! -->
 		<div class="form-group" id="data_4" style="width:13%; margin-bottom:10px; display:inline-block;">
 			<div class="input-group date">
-			  <input type="month" class="form-control" style="width:auto;">
+			  <input type="hidden" id="curYear" value="${curYear}">
+			  <select name="YEAR" id="YEAR" title="년도" class="form-control"></select>
 		    </div>
 		</div>
 
 		<div class="round-btn" style="display:inline-block; float:right;">
-			<a class="btn btn-default btn-rounded" href="#">수정</a>
-			<a class="btn btn-default btn-rounded" href="#">삭제</a>
+			<a class="btn btn-default btn-rounded" id="salaryDel_btn">삭제</a>
 		</div>
 
 		<fieldset>
@@ -39,13 +42,15 @@
 						<th style="width:8%;">장기요양보험</th>
 						<th style="width:9%;">공제합계</th>
 						<th style="width:9%;">차인지급액</th>
-						<th style="width:15%;">기타메모</th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach var="list4" items="${paymentList}">
-						<tr>
-						    <td>${list4.salary_payDate}</td>
+						<tr class="salary">
+						    <td>
+						    	${list4.salary_payDate}
+								<input type="hidden" name="salary_cd" value="${list4.salary_code}">
+						    </td>
 							<td>${list4.pay_month}</td>
 							<td><fmt:formatNumber value="${list4.salary}" pattern="###,###,###"/></td>
 							<td><fmt:formatNumber value="${list4.income_tax}" pattern="###,###,###"/></td>
@@ -55,25 +60,8 @@
 							<td><fmt:formatNumber value="${list4.lt_care_insurance}" pattern="###,###,###"/></td>
 							<td><fmt:formatNumber value="${list4.deduction_total}" pattern="###,###,###"/></td>
 							<td><fmt:formatNumber value="${list4.loan_payment_amount}" pattern="###,###,###"/></td>
-						    <td>-</td>
 						</tr>
 					</c:forEach>
-				    <%--  <tr>
-				         <td>2021-08-05</td>
-				         <td>2021년 07월분</td>
-				         <td><fmt:formatNumber value="2000000" pattern="###,###,###"/></td>
-				         <td><fmt:formatNumber value="200000" pattern="###,###,###"/></td>
-				         <td><fmt:formatNumber value="1800000" pattern="###,###,###"/></td>
-				         <td></td>
-				     </tr>
-				     <tr>
-				         <td>2021-07-05</td>
-				         <td>2021년 06월분</td>
-				         <td><fmt:formatNumber value="2000000" pattern="###,###,###"/></td>
-				         <td><fmt:formatNumber value="200000" pattern="###,###,###"/></td>
-				         <td><fmt:formatNumber value="1800000" pattern="###,###,###"/></td>
-				         <td></td>
-				     </tr> --%>
 		     	</tbody>
 			</table>
 		</fieldset>

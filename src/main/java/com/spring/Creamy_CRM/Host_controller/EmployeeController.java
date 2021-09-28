@@ -50,7 +50,7 @@ public class EmployeeController {
 		
 		service.updateEmployeeAction(req, model);
 		
-		return "host/employee/employee_updateAction";
+		return "host/employee/employee_enlistAction";
 	}
 	
 	// 직원 근태 목록 조회
@@ -68,8 +68,39 @@ public class EmployeeController {
 	public String month_attendanceList(HttpServletRequest req, Model model) {
 		logger.info("url -> month_attendanceList");
 		
+		service.attendanceMonthList(req, model);
 		
 		return "host/employee/employee_attendanceList";
+	}
+	
+	// 직원 근태 수정 페이지
+	@RequestMapping("host/employee_getAttendanceInfo")
+	public String employee_getAttendanceInfo(HttpServletRequest req, Model model) {
+		logger.info("url -> employee_getAttendanceInfo");
+		
+		service.getAttendanceInfo(req, model);
+		
+		return "host/employee/employee_getAttendanceInfo";
+	}
+	
+	// 직원 근태 수정 처리
+	@RequestMapping("host/employee_updateAttendance")
+	public String employee_updateAttendance(HttpServletRequest req, Model model) {
+		logger.info("url -> employee_updateAttendance");
+		
+		service.updateAttendance(req, model);
+		
+		return "host/employee/employee_attendanceAction";
+	}
+	
+	// 직원 근태 삭제
+	@RequestMapping("host/employee_attendanceDelete")
+	public String employee_attendanceDelete(HttpServletRequest req, Model model) {
+		logger.info("url -> employee_attendanceDelete");
+		
+		service.deleteAttendance(req, model);
+		
+		return "host/employee/employee_attendanceAction";
 	}
 	
 	// 직원 휴가 목록 조회
@@ -80,6 +111,36 @@ public class EmployeeController {
 		service.leaveList(req, model);
 		
 		return "host/employee/employee_leaveList";
+	}
+	
+	// 직원 휴가 수정 페이지
+	@RequestMapping("host/employee_getLeaveInfo")
+	public String employee_getLeaveInfo(HttpServletRequest req, Model model) {
+		logger.info("url -> employee_getLeaveInfo");
+		
+		service.getLeaveInfo(req, model);
+		
+		return "host/employee/employee_getLeaveInfo";
+	}
+	
+	// 직원 휴가 수정 처리
+	@RequestMapping("host/employee_leaveUpdate")
+	public String employee_leaveUpdate(HttpServletRequest req, Model model) {
+		logger.info("url -> employee_leaveUpdate");
+		
+		service.updateLeave(req, model);
+		
+		return "host/employee/employee_leaveAction";
+	}
+	
+	// 직원 휴가 삭제
+	@RequestMapping("host/employee_leaveDelete")
+	public String employee_leaveDelete(HttpServletRequest req, Model model) {
+		logger.info("url -> employee_leaveDelete");
+		
+		service.deleteLeave(req, model);
+		
+		return "host/employee/employee_leaveAction";
 	}
 	
 	// 직원 급여 계약 목록 조회
@@ -119,6 +180,16 @@ public class EmployeeController {
 		service.paymentList(req, model);
 		
 		return "host/employee/employee_paymentList";
+	}
+	
+	// 직원 급여 지급 삭제
+	@RequestMapping("host/employee_paymentDelete")
+	public String employee_salaryDelete(HttpServletRequest req, Model model) {
+		logger.info("url -> employee_paymentDelete");
+		
+		service.deletePayment(req, model);
+		
+		return "host/employee/employee_paymentAction";
 	}
 	   
 	// 직원 등록

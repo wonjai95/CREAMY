@@ -54,11 +54,53 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		return dao.getAttendanceList(map);
 	}
 	
+	// 직원의 해당 근태 정보
+	public AttendanceVO getAttendanceInfo(String attendance_code) {
+		EmployeeDAO dao = sqlSession.getMapper(EmployeeDAO.class);
+		return dao.getAttendanceInfo(attendance_code);
+	}
+	
+	// 직원의 출근 정보 수정
+	public int updateCheckInTime(AttendanceVO vo) {
+		EmployeeDAO dao = sqlSession.getMapper(EmployeeDAO.class);
+		return dao.updateCheckInTime(vo);
+	}
+		
+	// 직원의 퇴근 정보 수정
+	public int updateCheckOutTime(AttendanceVO vo) {
+		EmployeeDAO dao = sqlSession.getMapper(EmployeeDAO.class);
+		return dao.updateCheckOutTime(vo);
+	}
+	
+	// 직원 근태 삭제
+	public int deleteAttendance(String attendance_code) {
+		EmployeeDAO dao = sqlSession.getMapper(EmployeeDAO.class);
+		return dao.deleteAttendance(attendance_code);
+	}
+	
 	// 직원의 휴가 정보
 	@Override
 	public ArrayList<LeaveVO> getLeaveList(String employee_code){
 		EmployeeDAO dao = sqlSession.getMapper(EmployeeDAO.class);
 		return dao.getLeaveList(employee_code);
+	}
+	
+	// 직원의 해당 휴가 정보
+	public LeaveVO getLeaveInfo(String leave_code) {
+		EmployeeDAO dao = sqlSession.getMapper(EmployeeDAO.class);
+		return dao.getLeaveInfo(leave_code);
+	}
+	
+	// 직원의 휴가 수정 처리
+	public int updateLeave(LeaveVO vo) {
+		EmployeeDAO dao = sqlSession.getMapper(EmployeeDAO.class);
+		return dao.updateLeave(vo);
+	}
+	
+	// 직원 휴가 삭제
+	public int deleteLeave(String leave_code) {
+		EmployeeDAO dao = sqlSession.getMapper(EmployeeDAO.class);
+		return dao.deleteLeave(leave_code);
 	}
 	
 	// 직원의 급여 계약 정보
@@ -75,6 +117,12 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		return dao.deleteContract(salary_contract_code);
 	}
 	
+	// 이미 급여 지급이 완료되었는지 체크
+	public int chkPaymentAction(String pay_month) {
+		EmployeeDAO dao = sqlSession.getMapper(EmployeeDAO.class);
+		return dao.chkPaymentAction(pay_month);
+	}
+	
 	// 직원 급여 지급 등록
 	@Override
 	public int insertPayment(SalaryVO vo) {
@@ -86,6 +134,12 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	public ArrayList<SalaryVO> getPaymentList(String employee_code){
 		EmployeeDAO dao = sqlSession.getMapper(EmployeeDAO.class);
 		return dao.getPaymentList(employee_code);
+	}
+	
+	// 직원 급여 지급 삭제
+	public int deletePayment(String salary_code) {
+		EmployeeDAO dao = sqlSession.getMapper(EmployeeDAO.class);
+		return dao.deletePayment(salary_code);
 	}
 	
 	// 이미 직원 등록이 완료된 id인지 체크
