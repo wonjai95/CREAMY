@@ -1,6 +1,8 @@
 package com.spring.Creamy_CRM.Host_controller;
 
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
@@ -9,8 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring.Creamy_CRM.Host_service.HostService;
+import com.spring.Creamy_CRM.VO.RoomSettingVO;
 
 @Controller
 public class HostController {
@@ -41,6 +45,31 @@ public class HostController {
 		service.addCompanyAction(req, model);
 		return "host/hostPage/addCompanyAction";
 	}
+	
+	//호실이름중복확인
+	@ResponseBody
+	@RequestMapping("/host/chkRoomName")
+	public int chkRoomName(HttpServletRequest req, Model model) {
+		logger.info("url -> chkRoomName");
+		return service.chkRoomName(req, model);
+	}
+	
+	//호실 등록
+	@ResponseBody
+	@RequestMapping("/host/addRoomAction")
+	public RoomSettingVO addRoomAction(HttpServletRequest req, Model model) {
+		logger.info("url -> addRoomAction");
+		return service.addRoomAction(req, model);
+	}
+	
+	//호실 리스트
+	@ResponseBody
+	@RequestMapping("/host/roomList")
+	public List<RoomSettingVO> roomList(HttpServletRequest req, Model model) {
+		logger.info("url -> roomList");
+		return service.roomList(req, model);
+	}
+	
 	
 	
 }

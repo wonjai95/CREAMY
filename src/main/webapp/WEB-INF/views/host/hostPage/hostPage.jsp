@@ -6,6 +6,26 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+	$(function(){
+			
+		$("#roomList").click(function(){
+			
+			$.ajax({
+				type:"get",
+				url:"roomList",
+				success: function(resultList){
+					
+				},
+				error: function(){
+					alert("오류");
+				}
+			});
+			
+		});
+		
+	});
+</script>
 </head>
 <body>
 
@@ -48,9 +68,9 @@
                                 </a>
                             </li>
                             
-                            <li class="list-group-item">
+                            <li class="list-group-item" id="roomList">
                                 <a class="nav-link" data-toggle="tab" href="#tab-4">
-                                	호실 등록
+                                	호실 목록
                                 </a>
                             </li>
                         </ul>
@@ -100,7 +120,7 @@
                                 </div>
                                 
                                 <div id="tab-4" class="tab-pane">
-                                    <jsp:include page="setRoom.jsp" />
+                                    <jsp:include page="roomList.jsp" />
                                 </div>
                                 
                             </div>

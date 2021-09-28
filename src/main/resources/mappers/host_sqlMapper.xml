@@ -52,6 +52,22 @@
 				#{comp_condition},#{comp_type},#{zipcode},#{comp_res})
 	</insert>
 	
+	<!-- 호실 이름 중복확인 -->
+	<select id="chkRoomName" parameterType="java.util.Map" resultType="int">
+		select count(*) from room_setting_tbl where host_code = #{host_code} and room_name = #{room_name}
+	</select>
 	
+	<!-- 호실 등록 -->
+	<insert id="insertRoom" parameterType="com.spring.Creamy_CRM.VO.RoomSettingVO">
+		insert into room_setting_tbl(room_setting_code,room_name,
+			host_code,room_stat,per_price,min_cnt,max_cnt) 
+		values('RSS'||room_setting_seq.nextval,#{room_name},#{host_code},#{room_stat},
+			#{per_price},#{min_cnt},#{max_cnt})
+	</insert>
+	
+	<!-- 호실 리스트 -->
+	<select id="selectRoomList" parameterType="String" resultType="com.spring.Creamy_CRM.VO.RoomSettingVO">
+		select * from room_setting_tbl where host_code = #{host_code}	
+	</select>
 	
   </mapper>
