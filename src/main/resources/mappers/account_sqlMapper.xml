@@ -23,6 +23,22 @@
   		VALUES ('SLIP'||slip_seq.nextval, #{host_code}, #{slip_type}, #{slip_regDate}, #{slip_money}, #{slip_memo})
   	</insert>
   	
+  	<!-- 선택된 유형의 매출전표 조회 -->
+  	<select id="getSelectList" parameterType="String" resultType="com.spring.Creamy_CRM.VO.AccountVO">
+  		SELECT *
+  		  FROM slip_tbl
+  		 WHERE slip_type = #{slip_type}
+  		ORDER BY slip_regdate DESC
+  	</select>
+  	
+  	<!-- 검색어에 따른 매출전표 조회 -->
+  	<select id="getSearchList" parameterType="String" resultType="com.spring.Creamy_CRM.VO.AccountVO">
+  		SELECT *
+  		  FROM slip_tbl
+  		 WHERE slip_memo LIKE '%'||#{search}||'%'
+  		ORDER BY slip_regdate DESC
+  	</select>
+  	
   	<!-- 매입매출 전표 수정 정보 조회 -->
   	<select id="getSlipInfo" parameterType="String" resultType="com.spring.Creamy_CRM.VO.AccountVO">
   		SELECT * 
